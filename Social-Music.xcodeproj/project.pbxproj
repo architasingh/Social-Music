@@ -1,0 +1,596 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ADC6708628725C1A004CFA6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708528725C1A004CFA6D /* AppDelegate.m */; };
+		ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708828725C1A004CFA6D /* SceneDelegate.m */; };
+		ADC6708C28725C1A004CFA6D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708B28725C1A004CFA6D /* ViewController.m */; };
+		ADC6708F28725C1A004CFA6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC6708D28725C1A004CFA6D /* Main.storyboard */; };
+		ADC6709128725C1B004CFA6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADC6709028725C1B004CFA6D /* Assets.xcassets */; };
+		ADC6709428725C1B004CFA6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC6709228725C1B004CFA6D /* LaunchScreen.storyboard */; };
+		ADC6709728725C1B004CFA6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6709628725C1B004CFA6D /* main.m */; };
+		ADC670A128725C1B004CFA6D /* Social_MusicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670A028725C1B004CFA6D /* Social_MusicTests.m */; };
+		ADC670AB28725C1B004CFA6D /* Social_MusicUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670AA28725C1B004CFA6D /* Social_MusicUITests.m */; };
+		ADC670AD28725C1B004CFA6D /* Social_MusicUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670AC28725C1B004CFA6D /* Social_MusicUITestsLaunchTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ADC6709D28725C1B004CFA6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADC6707928725C1A004CFA6D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ADC6708028725C1A004CFA6D;
+			remoteInfo = "Social-Music";
+		};
+		ADC670A728725C1B004CFA6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADC6707928725C1A004CFA6D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ADC6708028725C1A004CFA6D;
+			remoteInfo = "Social-Music";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ADC6708128725C1A004CFA6D /* Social-Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social-Music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADC6708428725C1A004CFA6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		ADC6708528725C1A004CFA6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		ADC6708728725C1A004CFA6D /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		ADC6708828725C1A004CFA6D /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		ADC6708A28725C1A004CFA6D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		ADC6708B28725C1A004CFA6D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		ADC6708E28725C1A004CFA6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ADC6709028725C1B004CFA6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ADC6709328725C1B004CFA6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ADC6709528725C1B004CFA6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADC6709628725C1B004CFA6D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		ADC6709C28725C1B004CFA6D /* Social-MusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Social-MusicTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADC670A028725C1B004CFA6D /* Social_MusicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Social_MusicTests.m; sourceTree = "<group>"; };
+		ADC670A628725C1B004CFA6D /* Social-MusicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Social-MusicUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADC670AA28725C1B004CFA6D /* Social_MusicUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Social_MusicUITests.m; sourceTree = "<group>"; };
+		ADC670AC28725C1B004CFA6D /* Social_MusicUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Social_MusicUITestsLaunchTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ADC6707E28725C1A004CFA6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADC6709928725C1B004CFA6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADC670A328725C1B004CFA6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ADC6707828725C1A004CFA6D = {
+			isa = PBXGroup;
+			children = (
+				ADC6708328725C1A004CFA6D /* Social-Music */,
+				ADC6709F28725C1B004CFA6D /* Social-MusicTests */,
+				ADC670A928725C1B004CFA6D /* Social-MusicUITests */,
+				ADC6708228725C1A004CFA6D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ADC6708228725C1A004CFA6D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ADC6708128725C1A004CFA6D /* Social-Music.app */,
+				ADC6709C28725C1B004CFA6D /* Social-MusicTests.xctest */,
+				ADC670A628725C1B004CFA6D /* Social-MusicUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ADC6708328725C1A004CFA6D /* Social-Music */ = {
+			isa = PBXGroup;
+			children = (
+				ADC6708428725C1A004CFA6D /* AppDelegate.h */,
+				ADC6708528725C1A004CFA6D /* AppDelegate.m */,
+				ADC6708728725C1A004CFA6D /* SceneDelegate.h */,
+				ADC6708828725C1A004CFA6D /* SceneDelegate.m */,
+				ADC6708A28725C1A004CFA6D /* ViewController.h */,
+				ADC6708B28725C1A004CFA6D /* ViewController.m */,
+				ADC6708D28725C1A004CFA6D /* Main.storyboard */,
+				ADC6709028725C1B004CFA6D /* Assets.xcassets */,
+				ADC6709228725C1B004CFA6D /* LaunchScreen.storyboard */,
+				ADC6709528725C1B004CFA6D /* Info.plist */,
+				ADC6709628725C1B004CFA6D /* main.m */,
+			);
+			path = "Social-Music";
+			sourceTree = "<group>";
+		};
+		ADC6709F28725C1B004CFA6D /* Social-MusicTests */ = {
+			isa = PBXGroup;
+			children = (
+				ADC670A028725C1B004CFA6D /* Social_MusicTests.m */,
+			);
+			path = "Social-MusicTests";
+			sourceTree = "<group>";
+		};
+		ADC670A928725C1B004CFA6D /* Social-MusicUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ADC670AA28725C1B004CFA6D /* Social_MusicUITests.m */,
+				ADC670AC28725C1B004CFA6D /* Social_MusicUITestsLaunchTests.m */,
+			);
+			path = "Social-MusicUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ADC6708028725C1A004CFA6D /* Social-Music */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADC670B028725C1B004CFA6D /* Build configuration list for PBXNativeTarget "Social-Music" */;
+			buildPhases = (
+				ADC6707D28725C1A004CFA6D /* Sources */,
+				ADC6707E28725C1A004CFA6D /* Frameworks */,
+				ADC6707F28725C1A004CFA6D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Social-Music";
+			productName = "Social-Music";
+			productReference = ADC6708128725C1A004CFA6D /* Social-Music.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ADC6709B28725C1B004CFA6D /* Social-MusicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADC670B328725C1B004CFA6D /* Build configuration list for PBXNativeTarget "Social-MusicTests" */;
+			buildPhases = (
+				ADC6709828725C1B004CFA6D /* Sources */,
+				ADC6709928725C1B004CFA6D /* Frameworks */,
+				ADC6709A28725C1B004CFA6D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ADC6709E28725C1B004CFA6D /* PBXTargetDependency */,
+			);
+			name = "Social-MusicTests";
+			productName = "Social-MusicTests";
+			productReference = ADC6709C28725C1B004CFA6D /* Social-MusicTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ADC670A528725C1B004CFA6D /* Social-MusicUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADC670B628725C1B004CFA6D /* Build configuration list for PBXNativeTarget "Social-MusicUITests" */;
+			buildPhases = (
+				ADC670A228725C1B004CFA6D /* Sources */,
+				ADC670A328725C1B004CFA6D /* Frameworks */,
+				ADC670A428725C1B004CFA6D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ADC670A828725C1B004CFA6D /* PBXTargetDependency */,
+			);
+			name = "Social-MusicUITests";
+			productName = "Social-MusicUITests";
+			productReference = ADC670A628725C1B004CFA6D /* Social-MusicUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ADC6707928725C1A004CFA6D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					ADC6708028725C1A004CFA6D = {
+						CreatedOnToolsVersion = 13.4;
+					};
+					ADC6709B28725C1B004CFA6D = {
+						CreatedOnToolsVersion = 13.4;
+						TestTargetID = ADC6708028725C1A004CFA6D;
+					};
+					ADC670A528725C1B004CFA6D = {
+						CreatedOnToolsVersion = 13.4;
+						TestTargetID = ADC6708028725C1A004CFA6D;
+					};
+				};
+			};
+			buildConfigurationList = ADC6707C28725C1A004CFA6D /* Build configuration list for PBXProject "Social-Music" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ADC6707828725C1A004CFA6D;
+			productRefGroup = ADC6708228725C1A004CFA6D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ADC6708028725C1A004CFA6D /* Social-Music */,
+				ADC6709B28725C1B004CFA6D /* Social-MusicTests */,
+				ADC670A528725C1B004CFA6D /* Social-MusicUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ADC6707F28725C1A004CFA6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADC6709428725C1B004CFA6D /* LaunchScreen.storyboard in Resources */,
+				ADC6709128725C1B004CFA6D /* Assets.xcassets in Resources */,
+				ADC6708F28725C1A004CFA6D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADC6709A28725C1B004CFA6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADC670A428725C1B004CFA6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ADC6707D28725C1A004CFA6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADC6708C28725C1A004CFA6D /* ViewController.m in Sources */,
+				ADC6708628725C1A004CFA6D /* AppDelegate.m in Sources */,
+				ADC6709728725C1B004CFA6D /* main.m in Sources */,
+				ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADC6709828725C1B004CFA6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADC670A128725C1B004CFA6D /* Social_MusicTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADC670A228725C1B004CFA6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADC670AD28725C1B004CFA6D /* Social_MusicUITestsLaunchTests.m in Sources */,
+				ADC670AB28725C1B004CFA6D /* Social_MusicUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ADC6709E28725C1B004CFA6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ADC6708028725C1A004CFA6D /* Social-Music */;
+			targetProxy = ADC6709D28725C1B004CFA6D /* PBXContainerItemProxy */;
+		};
+		ADC670A828725C1B004CFA6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ADC6708028725C1A004CFA6D /* Social-Music */;
+			targetProxy = ADC670A728725C1B004CFA6D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ADC6708D28725C1A004CFA6D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ADC6708E28725C1A004CFA6D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ADC6709228725C1B004CFA6D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ADC6709328725C1B004CFA6D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ADC670AE28725C1B004CFA6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		ADC670AF28725C1B004CFA6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ADC670B128725C1B004CFA6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Social-Music/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.Social-Music";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ADC670B228725C1B004CFA6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Social-Music/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.Social-Music";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ADC670B428725C1B004CFA6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.Social-MusicTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Social-Music.app/Social-Music";
+			};
+			name = Debug;
+		};
+		ADC670B528725C1B004CFA6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.Social-MusicTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Social-Music.app/Social-Music";
+			};
+			name = Release;
+		};
+		ADC670B728725C1B004CFA6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.Social-MusicUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Social-Music";
+			};
+			name = Debug;
+		};
+		ADC670B828725C1B004CFA6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.Social-MusicUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Social-Music";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ADC6707C28725C1A004CFA6D /* Build configuration list for PBXProject "Social-Music" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADC670AE28725C1B004CFA6D /* Debug */,
+				ADC670AF28725C1B004CFA6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ADC670B028725C1B004CFA6D /* Build configuration list for PBXNativeTarget "Social-Music" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADC670B128725C1B004CFA6D /* Debug */,
+				ADC670B228725C1B004CFA6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ADC670B328725C1B004CFA6D /* Build configuration list for PBXNativeTarget "Social-MusicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADC670B428725C1B004CFA6D /* Debug */,
+				ADC670B528725C1B004CFA6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ADC670B628725C1B004CFA6D /* Build configuration list for PBXNativeTarget "Social-MusicUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADC670B728725C1B004CFA6D /* Debug */,
+				ADC670B828725C1B004CFA6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ADC6707928725C1A004CFA6D /* Project object */;
+}
