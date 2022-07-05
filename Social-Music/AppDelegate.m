@@ -6,8 +6,9 @@
 //
 
 #import "AppDelegate.h"
+#import <SpotifyiOS/SPTConfiguration.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () <SPTSessionManagerDelegate>
 
 @end
 
@@ -15,10 +16,22 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    NSString *spotifyClientID = @"[44e02d11d81f40eab530cb019d8ae367]";
+    NSURL *spotifyRedirectURL = [NSURL URLWithString:@"spotify-ios-quick-start://spotify-login-callback"];
+
+    self.configuration  = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
+    
+    NSURL *tokenSwapURL = [NSURL URLWithString:@"https://getyourspotifyrefreshtoken.herokuapp.com/callback"];
+    NSURL *tokenRefreshURL = [NSURL URLWithString:@"https://getyourspotifyrefreshtoken.herokuapp.com/callback"];
+
+    self.configuration.tokenSwapURL = tokenSwapURL;
+    self.configuration.tokenRefreshURL = tokenRefreshURL;
+    self.configuration.playURI = @"";
+
+    self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
+    
     return YES;
 }
-
 
 #pragma mark - UISceneSession lifecycle
 
@@ -36,5 +49,17 @@
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
 
+- (void)sessionManager:(nonnull SPTSessionManager *)manager didInitiateSession:(nonnull SPTSession *)session {
+    NSLog(@"success: %@", session);
+}
+
+- (void)sessionManager:(nonnull SPTSessionManager *)manager didFailWithError:(nonnull NSError *)error {
+    NSLog(@"fail: %@", error);
+}
+
+- (void)sessionManager:(SPTSessionManager *)manager didRenewSession:(SPTSession *)session
+{
+  NSLog(@"renewed: %@", session);
+}
 
 @end

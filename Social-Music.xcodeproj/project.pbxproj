@@ -13,10 +13,11 @@
 		ADC6708F28725C1A004CFA6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC6708D28725C1A004CFA6D /* Main.storyboard */; };
 		ADC6709128725C1B004CFA6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADC6709028725C1B004CFA6D /* Assets.xcassets */; };
 		ADC6709428725C1B004CFA6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC6709228725C1B004CFA6D /* LaunchScreen.storyboard */; };
-		ADC6709728725C1B004CFA6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6709628725C1B004CFA6D /* main.m */; };
 		ADC670A128725C1B004CFA6D /* Social_MusicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670A028725C1B004CFA6D /* Social_MusicTests.m */; };
 		ADC670AB28725C1B004CFA6D /* Social_MusicUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670AA28725C1B004CFA6D /* Social_MusicUITests.m */; };
 		ADC670AD28725C1B004CFA6D /* Social_MusicUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670AC28725C1B004CFA6D /* Social_MusicUITestsLaunchTests.m */; };
+		ADC670BA287261D4004CFA6D /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADC670B9287261D4004CFA6D /* SpotifyiOS.framework */; };
+		ADC670BC2874AF10004CFA6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6709628725C1B004CFA6D /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		ADC670A628725C1B004CFA6D /* Social-MusicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Social-MusicUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADC670AA28725C1B004CFA6D /* Social_MusicUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Social_MusicUITests.m; sourceTree = "<group>"; };
 		ADC670AC28725C1B004CFA6D /* Social_MusicUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Social_MusicUITestsLaunchTests.m; sourceTree = "<group>"; };
+		ADC670B9287261D4004CFA6D /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADC670BA287261D4004CFA6D /* SpotifyiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +87,7 @@
 		ADC6707828725C1A004CFA6D = {
 			isa = PBXGroup;
 			children = (
+				ADC670B9287261D4004CFA6D /* SpotifyiOS.framework */,
 				ADC6708328725C1A004CFA6D /* Social-Music */,
 				ADC6709F28725C1B004CFA6D /* Social-MusicTests */,
 				ADC670A928725C1B004CFA6D /* Social-MusicUITests */,
@@ -268,7 +272,7 @@
 			files = (
 				ADC6708C28725C1A004CFA6D /* ViewController.m in Sources */,
 				ADC6708628725C1A004CFA6D /* AppDelegate.m in Sources */,
-				ADC6709728725C1B004CFA6D /* main.m in Sources */,
+				ADC670BC2874AF10004CFA6D /* main.m in Sources */,
 				ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,6 +446,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Social-Music/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -454,6 +462,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.Social-Music";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -468,6 +477,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Social-Music/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -480,6 +493,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.Social-Music";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
