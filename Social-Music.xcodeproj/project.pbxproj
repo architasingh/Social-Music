@@ -21,6 +21,7 @@
 		ADC670BA287261D4004CFA6D /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADC670B9287261D4004CFA6D /* SpotifyiOS.framework */; };
 		ADC670BC2874AF10004CFA6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6709628725C1B004CFA6D /* main.m */; };
 		ADC670C02874E789004CFA6D /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADC670BF2874E789004CFA6D /* Keys.plist */; };
+		ADC670C52875EFBF004CFA6D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670C42875EFBF004CFA6D /* LoginViewController.m */; };
 		EDA1EAB4CB10118FF0023953 /* Pods_Social_Music_Social_MusicUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34FCA3684A8807992B9402 /* Pods_Social_Music_Social_MusicUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,8 @@
 		ADC670AC28725C1B004CFA6D /* Social_MusicUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Social_MusicUITestsLaunchTests.m; sourceTree = "<group>"; };
 		ADC670B9287261D4004CFA6D /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		ADC670BF2874E789004CFA6D /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		ADC670C32875EFBF004CFA6D /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		ADC670C42875EFBF004CFA6D /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BC34FCA3684A8807992B9402 /* Pods_Social_Music_Social_MusicUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social_Music_Social_MusicUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6341F7DD8541947F26FD441 /* Pods-Social-Music-Social-MusicUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social-Music-Social-MusicUITests.debug.xcconfig"; path = "Target Support Files/Pods-Social-Music-Social-MusicUITests/Pods-Social-Music-Social-MusicUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +152,8 @@
 				ADC6709528725C1B004CFA6D /* Info.plist */,
 				ADC6709628725C1B004CFA6D /* main.m */,
 				ADC670BF2874E789004CFA6D /* Keys.plist */,
+				ADC670C32875EFBF004CFA6D /* LoginViewController.h */,
+				ADC670C42875EFBF004CFA6D /* LoginViewController.m */,
 			);
 			path = "Social-Music";
 			sourceTree = "<group>";
@@ -180,7 +185,6 @@
 				54A6CB8EDF0C974543FC616E /* Pods-Social-MusicTests.debug.xcconfig */,
 				15B686046BE5D5F14D63D346 /* Pods-Social-MusicTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -426,6 +430,7 @@
 				ADC6708C28725C1A004CFA6D /* ViewController.m in Sources */,
 				ADC6708628725C1A004CFA6D /* AppDelegate.m in Sources */,
 				ADC670BC2874AF10004CFA6D /* main.m in Sources */,
+				ADC670C52875EFBF004CFA6D /* LoginViewController.m in Sources */,
 				ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

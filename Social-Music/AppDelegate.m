@@ -6,14 +6,14 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 #import <SpotifyiOS/SPTConfiguration.h>
-#import <SpotifyiOS/SPTAppRemotePlayerAPI.h>
 #import <SpotifyiOS/SPTAppRemote.h>
-#import <SpotifyiOS/SPTSession.h>
-#import <SpotifyiOS/SpotifyAppRemote.h>
-#import <Parse/Parse.h>
+#import <SpotifyiOS/SPTAppRemotePlayerState.h>
 
-@interface AppDelegate () <SPTSessionManagerDelegate, SPTAppRemotePlayerStateDelegate, SPTAppRemoteDelegate>
+@interface AppDelegate () <SPTAppRemotePlayerStateDelegate>
+
+@property(nonatomic, strong) LoginViewController *rootViewController;
 
 @end
 
@@ -22,21 +22,43 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    self.window.rootViewController = [LoginViewController new];
+    self.rootViewController = [LoginViewController new];
+    self.window.rootViewController = self.rootViewController;
+    [self.window makeKeyAndVisible];
+    
     NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
+
+    NSString *SpotifyClientID = [dict objectForKey: @"client_key"];
+    
+    SPTConfiguration *configuration = [SPTConfiguration configurationWithClientID:SpotifyClientID
+                                                                          redirectURL:[NSURL URLWithString:SpotifyRedirectURLString]];
+    /* The session manager lets you authorize, get access tokens, and so on. */
+    configuration.playURI = @"spotify:track:20I6sIOMTCkB6w7ryavxtO";
+    
+    self.sessionManager = [SPTSessionManager sessionManagerWithConfiguration:configuration
+                                                                        delegate:self];
+    
+    self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:configuration logLevel:SPTAppRemoteLogLevelDebug];
+    
+    self.appRemote.delegate = self;
+
+    SPTScope requestedScope = SPTAppRemoteControlScope;
+    [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
+    
+    return YES;
+    
+    /*NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
     
     NSString *spotifyClientID = [dict objectForKey: @"client_key"];
-    //NSString *spotifyClientIDSecret = [dict objectForKey: @"client_secret"];
+    NSString *spotifyClientIDSecret = [dict objectForKey: @"client_secret"];
     
     NSURL *spotifyRedirectURL = [NSURL URLWithString:@"spotify-ios-quick-start://spotify-login-callback"];
     
     self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
-    
-    /*self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientIDSecret redirectURL:spotifyRedirectURL];*/
-
-    self.configuration.playURI = @"spotify:track:20I6sIOMTCkB6w7ryavxtO";
-    
-    self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
    
     self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:self.configuration logLevel:SPTAppRemoteLogLevelDebug];
     
@@ -45,10 +67,10 @@
     SPTScope requestedScope = SPTAppRemoteControlScope;
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
     
-    return self;
+    return self;*/
 }
 
-- (void) parseBackend {
+/* - (void) parseBackend {
     ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
 
             configuration.applicationId = @"4rFA5IOfLkZUPvBK3cBl5vfxsNWDGwcoFPFq5rpO";
@@ -57,7 +79,7 @@
         }];
 
         [Parse initializeWithConfiguration:config];
-}
+} */
 
 #pragma mark - UISceneSession lifecycle
 
@@ -75,26 +97,13 @@
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
 
-- (void)sessionManager:(nonnull SPTSessionManager *)manager didInitiateSession:(nonnull SPTSession *)session {
-    self.appRemote.connectionParameters.accessToken = session.accessToken;
-    [self.appRemote connect];
-    NSLog(@"success: %@", session);
-
-}
-
-- (void)sessionManager:(nonnull SPTSessionManager *)manager didFailWithError:(nonnull NSError *)error {
-    NSLog(@"fail: %@", error);
-}
-
-- (void)sessionManager:(SPTSessionManager *)manager didRenewSession:(SPTSession *)session
-{
-  NSLog(@"renewed: %@", session);
-}
-
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
-    [self.sessionManager application:app openURL:url options:options];
-    return true;
+    [self.rootViewController.sessionManager application:app openURL:url options:options];
+       NSLog(@"%@ %@", url, options);
+       return YES;
+    /*[self.sessionManager application:app openURL:url options:options];
+    return true;*/
 }
 
 - (void)appRemoteDidEstablishConnection:(nonnull SPTAppRemote *)appRemote {
@@ -113,11 +122,6 @@
 
 - (void)appRemote:(nonnull SPTAppRemote *)appRemote didFailConnectionAttemptWithError:(nullable NSError *)error {
     NSLog(@"failed");
-}
-
-- (void)playerStateDidChange:(nonnull id<SPTAppRemotePlayerState>)playerState {
-    NSLog(@"Track name: %@", playerState.track.name);
-    NSLog(@"player state changed");
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
