@@ -11,6 +11,7 @@
 #import <SpotifyiOS/SPTAppRemote.h>
 #import <SpotifyiOS/SPTSession.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
+#import <Parse/Parse.h>
 
 @interface AppDelegate () <SPTSessionManagerDelegate, SPTAppRemotePlayerStateDelegate, SPTAppRemoteDelegate>
 
@@ -25,26 +26,37 @@
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
     
     NSString *spotifyClientID = [dict objectForKey: @"client_key"];
-    NSString *spotifyClientIDSecret = [dict objectForKey: @"client_secret"];
+    //NSString *spotifyClientIDSecret = [dict objectForKey: @"client_secret"];
     
     NSURL *spotifyRedirectURL = [NSURL URLWithString:@"spotify-ios-quick-start://spotify-login-callback"];
     
     self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
     
-    self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientIDSecret redirectURL:spotifyRedirectURL];
+    /*self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientIDSecret redirectURL:spotifyRedirectURL];*/
 
+    self.configuration.playURI = @"spotify:track:20I6sIOMTCkB6w7ryavxtO";
+    
     self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
    
     self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:self.configuration logLevel:SPTAppRemoteLogLevelDebug];
     
     self.appRemote.delegate = self;
-    
-    self.configuration.playURI = @"spotify:track:20I6sIOMTCkB6w7ryavxtO";
 
     SPTScope requestedScope = SPTAppRemoteControlScope;
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
     
     return self;
+}
+
+- (void) parseBackend {
+    ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+
+            configuration.applicationId = @"4rFA5IOfLkZUPvBK3cBl5vfxsNWDGwcoFPFq5rpO";
+            configuration.clientKey = @"ZcaO0xmXqxj91dL4Ma6QDEFLEiHl1PKe1oA9YPgE";
+            configuration.server = @"https://parseapi.back4app.com";
+        }];
+
+        [Parse initializeWithConfiguration:config];
 }
 
 #pragma mark - UISceneSession lifecycle
