@@ -11,7 +11,7 @@
 		3261E486B89C4C546FDFF8A3 /* Pods_Social_Music.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DBEB4C3C3F1D54E07599E20 /* Pods_Social_Music.framework */; };
 		ADC6708628725C1A004CFA6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708528725C1A004CFA6D /* AppDelegate.m */; };
 		ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708828725C1A004CFA6D /* SceneDelegate.m */; };
-		ADC6708C28725C1A004CFA6D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708B28725C1A004CFA6D /* ViewController.m */; };
+		ADC6708C28725C1A004CFA6D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708B28725C1A004CFA6D /* LoginViewController.m */; };
 		ADC6708F28725C1A004CFA6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC6708D28725C1A004CFA6D /* Main.storyboard */; };
 		ADC6709128725C1B004CFA6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADC6709028725C1B004CFA6D /* Assets.xcassets */; };
 		ADC6709428725C1B004CFA6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC6709228725C1B004CFA6D /* LaunchScreen.storyboard */; };
@@ -54,8 +54,8 @@
 		ADC6708528725C1A004CFA6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		ADC6708728725C1A004CFA6D /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		ADC6708828725C1A004CFA6D /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		ADC6708A28725C1A004CFA6D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		ADC6708B28725C1A004CFA6D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		ADC6708A28725C1A004CFA6D /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		ADC6708B28725C1A004CFA6D /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		ADC6708E28725C1A004CFA6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ADC6709028725C1B004CFA6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADC6709328725C1B004CFA6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -141,8 +141,8 @@
 				ADC6708528725C1A004CFA6D /* AppDelegate.m */,
 				ADC6708728725C1A004CFA6D /* SceneDelegate.h */,
 				ADC6708828725C1A004CFA6D /* SceneDelegate.m */,
-				ADC6708A28725C1A004CFA6D /* ViewController.h */,
-				ADC6708B28725C1A004CFA6D /* ViewController.m */,
+				ADC6708A28725C1A004CFA6D /* LoginViewController.h */,
+				ADC6708B28725C1A004CFA6D /* LoginViewController.m */,
 				ADC6708D28725C1A004CFA6D /* Main.storyboard */,
 				ADC6709028725C1B004CFA6D /* Assets.xcassets */,
 				ADC6709228725C1B004CFA6D /* LaunchScreen.storyboard */,
@@ -180,7 +180,6 @@
 				54A6CB8EDF0C974543FC616E /* Pods-Social-MusicTests.debug.xcconfig */,
 				15B686046BE5D5F14D63D346 /* Pods-Social-MusicTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -423,7 +422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADC6708C28725C1A004CFA6D /* ViewController.m in Sources */,
+				ADC6708C28725C1A004CFA6D /* LoginViewController.m in Sources */,
 				ADC6708628725C1A004CFA6D /* AppDelegate.m in Sources */,
 				ADC670BC2874AF10004CFA6D /* main.m in Sources */,
 				ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */,
