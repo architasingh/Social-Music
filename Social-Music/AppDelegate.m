@@ -25,20 +25,13 @@
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
     
     NSString *spotifyClientID = [dict objectForKey: @"client_key"];
-    //NSString *spotifyClientIDSecret = [dict objectForKey: @"client_secret"];
+    NSString *spotifyClientIDSecret = [dict objectForKey: @"client_secret"];
     
     NSURL *spotifyRedirectURL = [NSURL URLWithString:@"spotify-ios-quick-start://spotify-login-callback"];
     
-    /*if ([[NSUserDefaults standardUserDefaults] stringForKey:@"client_key"]) {
-        key = [[NSUserDefaults standardUserDefaults] stringForKey:@"client_key"];
-    }
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"client_secret"]) {
-        secret = [[NSUserDefaults standardUserDefaults] stringForKey:@"client_secret"];
-    }*/
-    
-    self.configuration.playURI = @"spotify:track:20I6sIOMTCkB6w7ryavxtO";
-
     self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
+    
+    self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientIDSecret redirectURL:spotifyRedirectURL];
 
     self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
    
@@ -46,6 +39,8 @@
     
     self.appRemote.delegate = self;
     
+    self.configuration.playURI = @"spotify:track:20I6sIOMTCkB6w7ryavxtO";
+
     SPTScope requestedScope = SPTAppRemoteControlScope;
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
     

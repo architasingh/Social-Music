@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
-#import "SPTScope.h"
+#import <SpotifyiOS/SPTSession.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
