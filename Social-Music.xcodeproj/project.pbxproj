@@ -21,6 +21,10 @@
 		ADC670BA287261D4004CFA6D /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADC670B9287261D4004CFA6D /* SpotifyiOS.framework */; };
 		ADC670BC2874AF10004CFA6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6709628725C1B004CFA6D /* main.m */; };
 		ADC670C02874E789004CFA6D /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADC670BF2874E789004CFA6D /* Keys.plist */; };
+		ADC670CA28764BAB004CFA6D /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670C928764BAB004CFA6D /* HomeViewController.m */; };
+		ADC670CE28764BF1004CFA6D /* MatchesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670CD28764BF1004CFA6D /* MatchesViewController.m */; };
+		ADC670D128764C05004CFA6D /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670D028764C05004CFA6D /* ProfileViewController.m */; };
+		ADC670D428764C1C004CFA6D /* SongsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670D328764C1C004CFA6D /* SongsViewController.m */; };
 		EDA1EAB4CB10118FF0023953 /* Pods_Social_Music_Social_MusicUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34FCA3684A8807992B9402 /* Pods_Social_Music_Social_MusicUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +72,14 @@
 		ADC670AC28725C1B004CFA6D /* Social_MusicUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Social_MusicUITestsLaunchTests.m; sourceTree = "<group>"; };
 		ADC670B9287261D4004CFA6D /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		ADC670BF2874E789004CFA6D /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		ADC670C828764BAB004CFA6D /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		ADC670C928764BAB004CFA6D /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		ADC670CC28764BF1004CFA6D /* MatchesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchesViewController.h; sourceTree = "<group>"; };
+		ADC670CD28764BF1004CFA6D /* MatchesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchesViewController.m; sourceTree = "<group>"; };
+		ADC670CF28764C05004CFA6D /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		ADC670D028764C05004CFA6D /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		ADC670D228764C1C004CFA6D /* SongsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SongsViewController.h; sourceTree = "<group>"; };
+		ADC670D328764C1C004CFA6D /* SongsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SongsViewController.m; sourceTree = "<group>"; };
 		BC34FCA3684A8807992B9402 /* Pods_Social_Music_Social_MusicUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social_Music_Social_MusicUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6341F7DD8541947F26FD441 /* Pods-Social-Music-Social-MusicUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social-Music-Social-MusicUITests.debug.xcconfig"; path = "Target Support Files/Pods-Social-Music-Social-MusicUITests/Pods-Social-Music-Social-MusicUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,18 +149,14 @@
 		ADC6708328725C1A004CFA6D /* Social-Music */ = {
 			isa = PBXGroup;
 			children = (
-				ADC6708428725C1A004CFA6D /* AppDelegate.h */,
-				ADC6708528725C1A004CFA6D /* AppDelegate.m */,
-				ADC6708728725C1A004CFA6D /* SceneDelegate.h */,
-				ADC6708828725C1A004CFA6D /* SceneDelegate.m */,
-				ADC6708A28725C1A004CFA6D /* LoginViewController.h */,
-				ADC6708B28725C1A004CFA6D /* LoginViewController.m */,
-				ADC6708D28725C1A004CFA6D /* Main.storyboard */,
-				ADC6709028725C1B004CFA6D /* Assets.xcassets */,
-				ADC6709228725C1B004CFA6D /* LaunchScreen.storyboard */,
 				ADC6709528725C1B004CFA6D /* Info.plist */,
-				ADC6709628725C1B004CFA6D /* main.m */,
 				ADC670BF2874E789004CFA6D /* Keys.plist */,
+				ADC6708D28725C1A004CFA6D /* Main.storyboard */,
+				ADC6709228725C1B004CFA6D /* LaunchScreen.storyboard */,
+				ADC6709028725C1B004CFA6D /* Assets.xcassets */,
+				ADC6709628725C1B004CFA6D /* main.m */,
+				ADC670C728764B96004CFA6D /* Delegates */,
+				ADC670C628764B7A004CFA6D /* View Controllers */,
 			);
 			path = "Social-Music";
 			sourceTree = "<group>";
@@ -168,6 +176,34 @@
 				ADC670AC28725C1B004CFA6D /* Social_MusicUITestsLaunchTests.m */,
 			);
 			path = "Social-MusicUITests";
+			sourceTree = "<group>";
+		};
+		ADC670C628764B7A004CFA6D /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				ADC6708A28725C1A004CFA6D /* LoginViewController.h */,
+				ADC6708B28725C1A004CFA6D /* LoginViewController.m */,
+				ADC670C828764BAB004CFA6D /* HomeViewController.h */,
+				ADC670C928764BAB004CFA6D /* HomeViewController.m */,
+				ADC670CC28764BF1004CFA6D /* MatchesViewController.h */,
+				ADC670CD28764BF1004CFA6D /* MatchesViewController.m */,
+				ADC670CF28764C05004CFA6D /* ProfileViewController.h */,
+				ADC670D028764C05004CFA6D /* ProfileViewController.m */,
+				ADC670D228764C1C004CFA6D /* SongsViewController.h */,
+				ADC670D328764C1C004CFA6D /* SongsViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		ADC670C728764B96004CFA6D /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				ADC6708428725C1A004CFA6D /* AppDelegate.h */,
+				ADC6708528725C1A004CFA6D /* AppDelegate.m */,
+				ADC6708728725C1A004CFA6D /* SceneDelegate.h */,
+				ADC6708828725C1A004CFA6D /* SceneDelegate.m */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		FCB2C66B86E9B89306152157 /* Pods */ = {
@@ -423,8 +459,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADC6708C28725C1A004CFA6D /* LoginViewController.m in Sources */,
+				ADC670D428764C1C004CFA6D /* SongsViewController.m in Sources */,
 				ADC6708628725C1A004CFA6D /* AppDelegate.m in Sources */,
+				ADC670CE28764BF1004CFA6D /* MatchesViewController.m in Sources */,
 				ADC670BC2874AF10004CFA6D /* main.m in Sources */,
+				ADC670D128764C05004CFA6D /* ProfileViewController.m in Sources */,
+				ADC670CA28764BAB004CFA6D /* HomeViewController.m in Sources */,
 				ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

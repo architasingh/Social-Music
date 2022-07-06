@@ -11,22 +11,13 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkA-Jd-7Uc">
-                                <rect key="frame" x="92" y="469" width="88" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Log in"/>
-                                <connections>
-                                    <action selector="didTapLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Fr-3R-TCu"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gke-Uc-pAn">
-                                <rect key="frame" x="228" y="469" width="94" height="31"/>
+                                <rect key="frame" x="92" y="467" width="94" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Sign up"/>
@@ -53,6 +44,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkA-Jd-7Uc">
+                                <rect key="frame" x="234" y="467" width="88" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Log in"/>
+                                <connections>
+                                    <action selector="didTapLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Fr-3R-TCu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -72,7 +72,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="x1R-Mi-5w8">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="UpB-DC-VGc" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" modalPresentationStyle="fullScreen" id="UpB-DC-VGc" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ugj-YJ-yFT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -89,65 +89,79 @@
             </objects>
             <point key="canvasLocation" x="1164" y="78"/>
         </scene>
-        <!--Home-->
+        <!--Matches-->
         <scene sceneID="dqb-Al-ejN">
             <objects>
-                <viewController id="v65-9G-UTX" sceneMemberID="viewController">
+                <viewController id="v65-9G-UTX" customClass="MatchesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8RL-np-q1W">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Kdm-QV-Lln"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="1UH-Rc-QSX"/>
+                    <tabBarItem key="tabBarItem" title="Matches" id="1UH-Rc-QSX"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oqy-Co-XBs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1164" y="822"/>
         </scene>
-        <!--Songs-->
+        <!--Profile-->
         <scene sceneID="mTV-dC-RZY">
             <objects>
-                <viewController id="Agy-Kp-GIX" sceneMemberID="viewController">
+                <viewController id="Agy-Kp-GIX" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="04V-8c-pz1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="rjh-Q3-96M"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Songs" id="x0s-Xe-mYf"/>
+                    <tabBarItem key="tabBarItem" title="Profile" id="x0s-Xe-mYf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bu4-U1-KfM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1996" y="822"/>
         </scene>
-        <!--Profile-->
+        <!--Home-->
         <scene sceneID="3ii-dv-W4J">
             <objects>
-                <viewController id="D3n-ay-07O" sceneMemberID="viewController">
+                <viewController id="D3n-ay-07O" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="76A-VV-ZW7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6B-7s-bWY">
+                                <rect key="frame" x="16" y="44" width="104" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                                <connections>
+                                    <action selector="didTapLogout:" destination="D3n-ay-07O" eventType="touchUpInside" id="Gxr-0S-CIi"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="v5R-JP-Qaq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="hRA-dU-rGa"/>
+                    <tabBarItem key="tabBarItem" title="Home" id="hRA-dU-rGa"/>
+                    <connections>
+                        <outlet property="logoutButton" destination="L6B-7s-bWY" id="gLA-WS-FT0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mna-K6-BRG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-580" y="822"/>
+            <point key="canvasLocation" x="-581.15942028985512" y="821.65178571428567"/>
         </scene>
-        <!--Matches-->
+        <!--Songs-->
         <scene sceneID="oO9-7h-Ioi">
             <objects>
-                <viewController id="4gV-xG-pKd" sceneMemberID="viewController">
+                <viewController id="4gV-xG-pKd" customClass="SongsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xuO-Hl-u9m">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="NL9-qp-aCR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Matches" id="TiG-rl-2vI"/>
+                    <tabBarItem key="tabBarItem" title="Songs" id="TiG-rl-2vI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mj1-LP-E3U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -26,13 +26,9 @@
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
         
     NSString *spotifyClientID = [dict objectForKey: @"client_key"];
-    //NSString *spotifyClientIDSecret = [dict objectForKey: @"client_secret"];
-        
     NSURL *spotifyRedirectURL = [NSURL URLWithString:@"spotify-ios-quick-start://spotify-login-callback"];
         
     self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
-        
-    //self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientIDSecret redirectURL:spotifyRedirectURL];
 
     self.configuration.playURI = @"spotify:track:20I6sIOMTCkB6w7ryavxtO";
         
