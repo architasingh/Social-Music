@@ -32,7 +32,7 @@
     
     self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
     
-    /*self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientIDSecret redirectURL:spotifyRedirectURL];*/
+    //self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientIDSecret redirectURL:spotifyRedirectURL];
 
     self.configuration.playURI = @"spotify:track:20I6sIOMTCkB6w7ryavxtO";
     
@@ -44,6 +44,8 @@
 
     SPTScope requestedScope = SPTAppRemoteControlScope;
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
+    
+    [self parseBackend];
     
     return self;
 }
