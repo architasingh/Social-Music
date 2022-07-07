@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    gestureRecognizer.cancelsTouchesInView = NO; //so that action such as clear text field button can be pressed
+    [self.view addGestureRecognizer:gestureRecognizer];
 }
 
 
@@ -80,6 +83,10 @@
     
     [self presentViewController:alert animated:YES completion:^{
     }];
+}
+
+- (void) hideKeyboard {
+    [self.view endEditing:YES];
 }
 
 @end
