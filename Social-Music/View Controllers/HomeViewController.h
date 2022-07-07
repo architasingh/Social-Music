@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIButton *spotifyButton;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (weak, nonatomic) IBOutlet UILabel *introLabel;
 - (IBAction)didTapLogout:(id)sender;
 - (IBAction)didTapSpotify:(id)sender;
 

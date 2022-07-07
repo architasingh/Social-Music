@@ -57,7 +57,9 @@
 
     SPTScope requestedScope = SPTAppRemoteControlScope;
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
-    [self performSegueWithIdentifier:@"HomeSegue" sender:nil];
+    [self.introLabel setHidden:YES];
+    [self.spotifyButton setHidden:YES];
+
 }
 
 - (IBAction)didTapLogout:(id)sender {

@@ -201,29 +201,14 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="home-icon" id="hRA-dU-rGa"/>
                     <connections>
+                        <outlet property="introLabel" destination="gFg-f0-EDN" id="nIq-wt-2V9"/>
                         <outlet property="logoutButton" destination="L6B-7s-bWY" id="gLA-WS-FT0"/>
                         <outlet property="spotifyButton" destination="aU4-36-q9W" id="V5o-HH-gVk"/>
-                        <segue destination="TVO-vZ-GM6" kind="presentation" identifier="HomeSegue" id="Uiv-6W-aop"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mna-K6-BRG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1429" y="822"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="9Fa-sb-AAS">
-            <objects>
-                <viewController modalPresentationStyle="fullScreen" id="TVO-vZ-GM6" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="DoT-aK-PE2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="MLB-A0-vBU"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="k5c-HJ-l1m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-641" y="821"/>
         </scene>
         <!--Songs View Controller-->
         <scene sceneID="oO9-7h-Ioi">
