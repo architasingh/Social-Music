@@ -13,9 +13,12 @@
 #import <SpotifyiOS/SPTSession.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeViewController : UIViewController <SPTSessionManagerDelegate, SPTAppRemotePlayerStateDelegate, SPTAppRemoteDelegate>
+
+@property (nullable, nonatomic, strong, readonly) id<SPTAppRemoteUserAPI> userAPI;
 
 @property (nonatomic, strong) SPTSessionManager *sessionManager;
 @property (nonatomic, strong) SPTConfiguration *configuration;

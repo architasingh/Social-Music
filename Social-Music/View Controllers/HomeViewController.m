@@ -52,9 +52,13 @@
     self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:self.configuration logLevel:SPTAppRemoteLogLevelDebug];
         
     self.appRemote.delegate = self;
+    NSLog(@"redirected");
+
 
     SPTScope requestedScope = SPTAppRemoteControlScope;
-    [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];}
+    [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
+    [self performSegueWithIdentifier:@"HomeSegue" sender:nil];
+}
 
 - (IBAction)didTapLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -70,7 +74,6 @@
     self.appRemote.connectionParameters.accessToken = session.accessToken;
     [self.appRemote connect];
     NSLog(@"success: %@", session);
-
 }
 
 - (void)sessionManager:(nonnull SPTSessionManager *)manager didFailWithError:(nonnull NSError *)error {
