@@ -17,9 +17,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gke-Uc-pAn">
-                                <rect key="frame" x="92" y="531" width="100" height="31"/>
+                                <rect key="frame" x="92" y="531" width="73" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="BSQ-Ej-gGx"/>
                                     <constraint firstAttribute="height" constant="31" id="yu1-pM-DcQ"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
@@ -31,7 +30,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2g-8B-fdU">
                                 <rect key="frame" x="129" y="280" width="157" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="157" id="0J6-6l-e75"/>
                                     <constraint firstAttribute="height" constant="100" id="FgD-VA-Kyk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="38"/>
@@ -41,7 +39,6 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o4i-9I-5mT">
                                 <rect key="frame" x="92" y="409" width="230" height="34"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="230" id="8V9-hE-Cwf"/>
                                     <constraint firstAttribute="height" constant="34" id="Oe1-Sf-Pur"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -50,17 +47,15 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CIU-T7-Jrh">
                                 <rect key="frame" x="92" y="465" width="230" height="34"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="230" id="kUJ-dm-I3i"/>
                                     <constraint firstAttribute="height" constant="34" id="sbW-O0-l7v"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkA-Jd-7Uc">
-                                <rect key="frame" x="221" y="531" width="100" height="31"/>
+                                <rect key="frame" x="257.5" y="531" width="63.5" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="7CI-IE-3T7"/>
-                                    <constraint firstAttribute="width" constant="100" id="Lz6-d8-gB1"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Log in"/>
@@ -122,7 +117,7 @@
             </objects>
             <point key="canvasLocation" x="1164" y="78"/>
         </scene>
-        <!--Matches-->
+        <!--Matches View Controller-->
         <scene sceneID="dqb-Al-ejN">
             <objects>
                 <viewController id="v65-9G-UTX" customClass="MatchesViewController" sceneMemberID="viewController">
@@ -132,13 +127,13 @@
                         <viewLayoutGuide key="safeArea" id="Kdm-QV-Lln"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Matches" id="1UH-Rc-QSX"/>
+                    <tabBarItem key="tabBarItem" title="" image="matches-icon" id="1UH-Rc-QSX"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oqy-Co-XBs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1164" y="822"/>
         </scene>
-        <!--Profile-->
+        <!--Profile View Controller-->
         <scene sceneID="mTV-dC-RZY">
             <objects>
                 <viewController id="Agy-Kp-GIX" customClass="ProfileViewController" sceneMemberID="viewController">
@@ -148,13 +143,13 @@
                         <viewLayoutGuide key="safeArea" id="rjh-Q3-96M"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="x0s-Xe-mYf"/>
+                    <tabBarItem key="tabBarItem" title="" image="profile-icon" id="x0s-Xe-mYf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bu4-U1-KfM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1996" y="822"/>
         </scene>
-        <!--Home-->
+        <!--Home View Controller-->
         <scene sceneID="3ii-dv-W4J">
             <objects>
                 <viewController id="D3n-ay-07O" customClass="HomeViewController" sceneMemberID="viewController">
@@ -171,22 +166,40 @@
                                     <action selector="didTapLogout:" destination="D3n-ay-07O" eventType="touchUpInside" id="Gxr-0S-CIi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aU4-36-q9W">
-                                <rect key="frame" x="114" y="176" width="186" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aU4-36-q9W">
+                                <rect key="frame" x="134.5" y="421" width="165.5" height="32"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Connect with Spotify">
+                                    <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="15"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" red="0.028379481639999999" green="0.78039215689999997" blue="0.05897731036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="didTapSpotify:" destination="D3n-ay-07O" eventType="touchUpInside" id="8eT-Xo-EMO"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To get started, log-in to your Spotify account:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFg-f0-EDN">
+                                <rect key="frame" x="63.5" y="353" width="307.5" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="squ-sU-0z8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="v5R-JP-Qaq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="aU4-36-q9W" secondAttribute="trailing" constant="94" id="Bsi-Pk-8gw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gFg-f0-EDN" secondAttribute="trailing" constant="23" id="WqB-PQ-quS"/>
+                            <constraint firstItem="aU4-36-q9W" firstAttribute="top" secondItem="gFg-f0-EDN" secondAttribute="bottom" constant="18" id="dbc-tF-j2z"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="aU4-36-q9W" secondAttribute="bottom" constant="360" id="oYU-Y9-SQJ"/>
+                            <constraint firstItem="aU4-36-q9W" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="76A-VV-ZW7" secondAttribute="leadingMargin" constant="94" id="oyL-a3-EM3"/>
+                            <constraint firstItem="gFg-f0-EDN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="76A-VV-ZW7" secondAttribute="leadingMargin" constant="23" id="wIs-Qm-Kei"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="hRA-dU-rGa"/>
+                    <tabBarItem key="tabBarItem" title="" image="home-icon" id="hRA-dU-rGa"/>
                     <connections>
                         <outlet property="logoutButton" destination="L6B-7s-bWY" id="gLA-WS-FT0"/>
                         <outlet property="spotifyButton" destination="aU4-36-q9W" id="V5o-HH-gVk"/>
@@ -194,9 +207,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mna-K6-BRG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-581.15942028985512" y="821.65178571428567"/>
+            <point key="canvasLocation" x="-865" y="822"/>
         </scene>
-        <!--Songs-->
+        <!--Songs View Controller-->
         <scene sceneID="oO9-7h-Ioi">
             <objects>
                 <viewController id="4gV-xG-pKd" customClass="SongsViewController" sceneMemberID="viewController">
@@ -206,7 +219,7 @@
                         <viewLayoutGuide key="safeArea" id="NL9-qp-aCR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Songs" id="TiG-rl-2vI"/>
+                    <tabBarItem key="tabBarItem" title="" image="music-icon" id="TiG-rl-2vI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mj1-LP-E3U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -214,6 +227,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="home-icon" width="16" height="16"/>
+        <image name="matches-icon" width="16" height="16"/>
+        <image name="music-icon" width="16" height="16"/>
+        <image name="profile-icon" width="16" height="16"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

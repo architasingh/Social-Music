@@ -45,7 +45,7 @@
         
     self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
 
-    self.configuration.playURI = @"spotify:track:20I6sIOMTCkB6w7ryavxtO";
+    self.configuration.playURI = @"";
         
     self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
        
