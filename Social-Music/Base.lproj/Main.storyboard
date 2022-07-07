@@ -28,7 +28,7 @@
                                     <action selector="didTapSignup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I2Y-kj-vcO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2g-8B-fdU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2g-8B-fdU">
                                 <rect key="frame" x="129" y="280" width="157" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="157" id="0J6-6l-e75"/>
@@ -171,6 +171,17 @@
                                     <action selector="didTapLogout:" destination="D3n-ay-07O" eventType="touchUpInside" id="Gxr-0S-CIi"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aU4-36-q9W">
+                                <rect key="frame" x="114" y="176" width="186" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Connect with Spotify">
+                                    <color key="baseBackgroundColor" red="0.028379481639999999" green="0.78039215689999997" blue="0.05897731036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapSpotify:" destination="D3n-ay-07O" eventType="touchUpInside" id="8eT-Xo-EMO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="v5R-JP-Qaq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -178,6 +189,7 @@
                     <tabBarItem key="tabBarItem" title="Home" id="hRA-dU-rGa"/>
                     <connections>
                         <outlet property="logoutButton" destination="L6B-7s-bWY" id="gLA-WS-FT0"/>
+                        <outlet property="spotifyButton" destination="aU4-36-q9W" id="V5o-HH-gVk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mna-K6-BRG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
