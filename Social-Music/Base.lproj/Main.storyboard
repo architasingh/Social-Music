@@ -11,7 +11,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,6 +63,13 @@
                                     <action selector="didTapLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Fr-3R-TCu"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="1oG-Ku-nhB">
+                                <rect key="frame" x="147" y="152" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="d4p-Lf-p1T"/>
+                                    <constraint firstAttribute="height" constant="120" id="ixj-Kk-VBx"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -73,12 +80,16 @@
                             <constraint firstItem="lkA-Jd-7Uc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gke-Uc-pAn" secondAttribute="trailing" constant="29" id="9Cq-NO-eIo"/>
                             <constraint firstAttribute="bottomMargin" secondItem="lkA-Jd-7Uc" secondAttribute="bottom" constant="300" id="FhZ-9J-S7g"/>
                             <constraint firstItem="o4i-9I-5mT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="72" id="FxK-5p-rA0"/>
+                            <constraint firstItem="n2g-8B-fdU" firstAttribute="top" secondItem="1oG-Ku-nhB" secondAttribute="bottom" constant="8" id="JX2-Yf-Iir"/>
                             <constraint firstItem="gke-Uc-pAn" firstAttribute="top" secondItem="CIU-T7-Jrh" secondAttribute="bottom" constant="32" id="UaA-JJ-uu4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1oG-Ku-nhB" secondAttribute="trailing" constant="127" id="Xi5-XN-WQN"/>
                             <constraint firstItem="n2g-8B-fdU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="109" id="YPM-wE-gc5"/>
                             <constraint firstItem="gke-Uc-pAn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="72" id="eNy-vU-nie"/>
                             <constraint firstItem="CIU-T7-Jrh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="72" id="esR-Ho-SYb"/>
+                            <constraint firstItem="1oG-Ku-nhB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="108" id="fWP-6f-oLk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="o4i-9I-5mT" secondAttribute="trailing" constant="72" id="lp3-Wr-bpq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lkA-Jd-7Uc" secondAttribute="trailing" constant="73" id="otv-Ze-yYJ"/>
+                            <constraint firstItem="1oG-Ku-nhB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="127" id="pB0-e7-cYc"/>
                             <constraint firstItem="o4i-9I-5mT" firstAttribute="top" secondItem="n2g-8B-fdU" secondAttribute="bottom" constant="29" id="tdC-57-Wsw"/>
                             <constraint firstItem="lkA-Jd-7Uc" firstAttribute="top" secondItem="CIU-T7-Jrh" secondAttribute="bottom" constant="32" id="uuU-0M-Iru"/>
                             <constraint firstItem="n2g-8B-fdU" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="236" id="vq7-NV-RA4"/>
@@ -95,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="78.348214285714278"/>
+            <point key="canvasLocation" x="-633.33333333333337" y="77.678571428571431"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="x1R-Mi-5w8">
@@ -115,7 +126,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Htg-FO-iKa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1164" y="78"/>
+            <point key="canvasLocation" x="674" y="78"/>
         </scene>
         <!--Matches View Controller-->
         <scene sceneID="dqb-Al-ejN">
@@ -167,48 +178,66 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aU4-36-q9W">
-                                <rect key="frame" x="134.5" y="421" width="165.5" height="32"/>
+                                <rect key="frame" x="106" y="424" width="202" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="HjV-oy-ufc"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Connect with Spotify">
                                     <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="15"/>
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="baseBackgroundColor" red="0.028379481639999999" green="0.78039215689999997" blue="0.05897731036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="didTapSpotify:" destination="D3n-ay-07O" eventType="touchUpInside" id="8eT-Xo-EMO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To get started, log-in to your Spotify account:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFg-f0-EDN">
-                                <rect key="frame" x="63.5" y="353" width="307.5" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="squ-sU-0z8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" alignment="firstBaseline" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ACN-Wk-EZ6">
+                                <rect key="frame" x="106" y="330" width="202" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRG-x8-j5N">
+                                        <rect key="frame" x="0.0" y="0.0" width="54" height="44"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="prev-button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IH4-bV-OQs">
+                                        <rect key="frame" x="74" y="0.0" width="54" height="44"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="play-button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwE-tv-GIa">
+                                        <rect key="frame" x="148" y="0.0" width="54" height="44"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="skip-button"/>
+                                        <connections>
+                                            <action selector="didTapSkip:" destination="D3n-ay-07O" eventType="touchUpInside" id="IdC-Zc-Rby"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="v5R-JP-Qaq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="aU4-36-q9W" secondAttribute="trailing" constant="94" id="Bsi-Pk-8gw"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gFg-f0-EDN" secondAttribute="trailing" constant="23" id="WqB-PQ-quS"/>
-                            <constraint firstItem="aU4-36-q9W" firstAttribute="top" secondItem="gFg-f0-EDN" secondAttribute="bottom" constant="18" id="dbc-tF-j2z"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="aU4-36-q9W" secondAttribute="bottom" constant="360" id="oYU-Y9-SQJ"/>
-                            <constraint firstItem="aU4-36-q9W" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="76A-VV-ZW7" secondAttribute="leadingMargin" constant="94" id="oyL-a3-EM3"/>
-                            <constraint firstItem="gFg-f0-EDN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="76A-VV-ZW7" secondAttribute="leadingMargin" constant="23" id="wIs-Qm-Kei"/>
+                            <constraint firstItem="aU4-36-q9W" firstAttribute="top" secondItem="ACN-Wk-EZ6" secondAttribute="bottom" constant="50" id="E6a-K9-8cz"/>
+                            <constraint firstItem="aU4-36-q9W" firstAttribute="leading" secondItem="76A-VV-ZW7" secondAttribute="leadingMargin" constant="86" id="KTe-x4-TeE"/>
+                            <constraint firstItem="ACN-Wk-EZ6" firstAttribute="leading" secondItem="76A-VV-ZW7" secondAttribute="leadingMargin" constant="86" id="PLG-BE-RQo"/>
+                            <constraint firstItem="v5R-JP-Qaq" firstAttribute="bottom" secondItem="aU4-36-q9W" secondAttribute="bottom" constant="349" id="Tna-mD-uVl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ACN-Wk-EZ6" secondAttribute="trailing" constant="86" id="UKr-wA-cql"/>
+                            <constraint firstItem="ACN-Wk-EZ6" firstAttribute="top" secondItem="76A-VV-ZW7" secondAttribute="topMargin" constant="286" id="ncd-Ph-trP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aU4-36-q9W" secondAttribute="trailing" constant="86" id="yaI-Wu-GCb"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="home-icon" id="hRA-dU-rGa"/>
                     <connections>
-                        <outlet property="introLabel" destination="gFg-f0-EDN" id="nIq-wt-2V9"/>
                         <outlet property="logoutButton" destination="L6B-7s-bWY" id="gLA-WS-FT0"/>
+                        <outlet property="skipButton" destination="jwE-tv-GIa" id="ErD-hB-wfQ"/>
                         <outlet property="spotifyButton" destination="aU4-36-q9W" id="V5o-HH-gVk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mna-K6-BRG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1429" y="822"/>
+            <point key="canvasLocation" x="-601.44927536231887" y="821.65178571428567"/>
         </scene>
         <!--Songs View Controller-->
         <scene sceneID="oO9-7h-Ioi">
@@ -228,12 +257,19 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LaunchScreenIcon" width="512" height="512"/>
         <image name="home-icon" width="16" height="16"/>
         <image name="matches-icon" width="16" height="16"/>
         <image name="music-icon" width="16" height="16"/>
+        <image name="play-button" width="30" height="30"/>
+        <image name="prev-button" width="30" height="30"/>
         <image name="profile-icon" width="16" height="16"/>
+        <image name="skip-button" width="30" height="30"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -22,8 +22,10 @@
 @implementation HomeViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self spotifyLoginAlert];
 }
 
 /*
@@ -35,6 +37,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)didTapSkip:(id)sender {
+    [self.appRemote.playerAPI skipToNext:^(id  _Nullable result, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"failed");
+        } else {
+            NSLog(@"succeeded");
+        }
+    }];
+}
 
 - (IBAction)didTapSpotify:(id)sender {
     NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
@@ -53,11 +65,11 @@
         
     self.appRemote.delegate = self;
     NSLog(@"redirected");
-
+    NSLog(@"%@", self.configuration.playURI);
 
     SPTScope requestedScope = SPTAppRemoteControlScope;
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
-    [self.introLabel setHidden:YES];
+    
     [self.spotifyButton setHidden:YES];
 
 }
@@ -129,4 +141,28 @@
     [self.appRemote connect];
   }
 }
+
+- (void) spotifyLoginAlert {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Please login to Spotify to continue"
+                                message:@""
+                                preferredStyle:(UIAlertControllerStyleAlert)];
+   
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                    style:UIAlertActionStyleCancel
+                                    handler:^(UIAlertAction * _Nonnull action) {
+                                                             
+                                    }];
+    
+    [alert addAction:cancelAction];
+
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                     }];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:^{
+    }];
+}
+
 @end

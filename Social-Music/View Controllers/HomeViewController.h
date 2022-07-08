@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeViewController : UIViewController <SPTSessionManagerDelegate, SPTAppRemotePlayerStateDelegate, SPTAppRemoteDelegate>
 
-@property (nullable, nonatomic, strong, readonly) id<SPTAppRemoteUserAPI> userAPI;
+//@property (nullable, nonatomic, strong, readonly) id<SPTAppRemoteUserAPI> userAPI;
 
 @property (nonatomic, strong) SPTSessionManager *sessionManager;
 @property (nonatomic, strong) SPTConfiguration *configuration;
@@ -26,9 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIButton *spotifyButton;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
-@property (weak, nonatomic) IBOutlet UILabel *introLabel;
+@property (weak, nonatomic) IBOutlet UIButton *skipButton;
+
 - (IBAction)didTapLogout:(id)sender;
 - (IBAction)didTapSpotify:(id)sender;
+- (IBAction)didTapSkip:(id)sender;
 
 @end
 
