@@ -42,8 +42,6 @@
     [self.appRemote.playerAPI skipToNext:^(id  _Nullable result, NSError * _Nullable error) {
         if (error) {
             NSLog(@"failed");
-        } else {
-            NSLog(@"succeeded");
         }
     }];
 }
