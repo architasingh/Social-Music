@@ -25,7 +25,7 @@
     
     [super viewDidLoad];
     
-    [self spotifyLoginAlert];
+    //[self spotifyLoginAlert];
 }
 
 /*
@@ -49,6 +49,7 @@
 }
 
 - (IBAction)didTapSpotify:(id)sender {
+    NSLog(@"reached");
     NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
         

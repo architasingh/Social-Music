@@ -3,4 +3,37 @@
    uuid = "C13E9DF3-F17F-4A72-BAFD-100B39AB73F4"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "F4E99D63-0B53-425B-9D2D-D8BAC7139A3D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "UIViewAlertForUnsatisfiableConstraints"
+            moduleName = "">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "po [[UIWindow keyWindow] _autolayoutTrace]">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+            <Locations>
+               <Location
+                  uuid = "F4E99D63-0B53-425B-9D2D-D8BAC7139A3D - ba3ad5676a792f38"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "UIViewAlertForUnsatisfiableConstraints"
+                  moduleName = "UIKitCore"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
