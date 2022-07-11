@@ -7,8 +7,9 @@
 
 #import "ProfileViewController.h"
 #import <Parse/Parse.h>
+#import "FavoritesCell.h"
 
-@interface ProfileViewController () <UIImagePickerControllerDelegate>
+@interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
 
 @end
 
@@ -23,13 +24,28 @@
     self.profileImage.file = user[@"profilePicture"];
     [self.profileImage loadInBackground];
     
-    // Do any additional setup after loading the view.
+    self.favoritesTableView.dataSource = self;
+    [self.favoritesTableView reloadData];
+    
+    self.favoritesTableView.estimatedRowHeight = UITableViewAutomaticDimension;
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+       [self.favoritesTableView insertSubview:refreshControl atIndex:0];
+    
 }
+
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    self.favoritesTableView.dataSource = self;
+
+    [self.favoritesTableView reloadData];
+    [refreshControl endRefreshing];
+}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     // Get the image captured by the UIImagePickerController
-    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    PFImageView *editedImage = info[UIImagePickerControllerEditedImage];
 
     // Do something with the images (based on your use case)
     self.profileImage = editedImage;
@@ -95,6 +111,17 @@
     }
 
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+}
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    FavoritesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:indexPath];
+    cell.favoriteLabel.text = @"favorite";
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 20;
 }
 
 @end
