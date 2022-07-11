@@ -149,19 +149,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KX7-8R-Dfr">
-                                <rect key="frame" x="105" y="139" width="204" height="145"/>
+                                <rect key="frame" x="30" y="139" width="354" height="175.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8RG-BV-fKu" customClass="PFImageView">
-                                        <rect key="frame" x="0.0" y="0.0" width="204" height="104"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="104"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="104" id="fyx-Aw-zYm"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="idN-XP-dMP">
-                                        <rect key="frame" x="0.0" y="114" width="204" height="31"/>
+                                        <rect key="frame" x="0.0" y="114" width="354" height="31"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJy-ab-xzQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="102" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="177" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Take Photo"/>
                                                 <connections>
@@ -169,7 +169,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Erb-uY-dyG">
-                                                <rect key="frame" x="102" y="0.0" width="102" height="31"/>
+                                                <rect key="frame" x="177" y="0.0" width="177" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Camera Roll"/>
                                                 <connections>
@@ -178,22 +178,21 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwL-fH-qEB">
+                                        <rect key="frame" x="0.0" y="155" width="354" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwL-fH-qEB">
-                                <rect key="frame" x="186" y="300" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rjh-Q3-96M"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="KX7-8R-Dfr" secondAttribute="trailing" constant="85" id="9XS-1V-CYt"/>
-                            <constraint firstItem="KX7-8R-Dfr" firstAttribute="leading" secondItem="04V-8c-pz1" secondAttribute="leadingMargin" constant="85" id="Eww-8y-jKL"/>
-                            <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="KX7-8R-Dfr" secondAttribute="bottom" constant="529" id="VXl-zx-QCT"/>
+                            <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="KX7-8R-Dfr" secondAttribute="bottom" constant="5" id="VXl-zx-QCT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KX7-8R-Dfr" secondAttribute="trailing" constant="10" id="gr0-Ei-jaI"/>
+                            <constraint firstItem="KX7-8R-Dfr" firstAttribute="leading" secondItem="04V-8c-pz1" secondAttribute="leadingMargin" constant="10" id="ja3-mq-3T1"/>
                             <constraint firstItem="KX7-8R-Dfr" firstAttribute="top" secondItem="04V-8c-pz1" secondAttribute="topMargin" constant="95" id="rOu-YJ-9bU"/>
                         </constraints>
                     </view>

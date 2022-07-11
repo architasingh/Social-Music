@@ -7,7 +7,6 @@
 
 #import "ProfileViewController.h"
 #import <Parse/Parse.h>
-//#import "PFImageView.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate>
 
@@ -21,8 +20,8 @@
     PFUser *user = PFUser.currentUser;
     self.usernameLabel.text = [@"@" stringByAppendingString: user.username];
     
-    //self.profileImage = user[@"profilePicture"];
-    //[self.profileImage loadInBackground];
+    self.profileImage.file = user[@"profilePicture"];
+    [self.profileImage loadInBackground];
     
     // Do any additional setup after loading the view.
 }
@@ -33,10 +32,10 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
 
     // Do something with the images (based on your use case)
-    //self.profileImage = editedImage;
+    self.profileImage = editedImage;
     
     PFUser *user = PFUser.currentUser;
-    //user[@"profilePicture"] = [self getPFFileFromImage:self.profileImage];
+    user[@"profilePicture"] = [self getPFFileFromImage:self.profileImage];
     [user saveInBackground];
     
     // Dismiss UIImagePickerController to go back to your original view controller
