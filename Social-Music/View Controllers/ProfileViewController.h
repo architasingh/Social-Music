@@ -6,10 +6,19 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import "PFImageView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProfileViewController : UIViewController
+//@property (weak, nonatomic) IBOutlet PFImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
+@property (weak, nonatomic) IBOutlet UIButton *cameraRollButton;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+
+- (IBAction)didTapTakePhoto:(id)sender;
+- (IBAction)didTapCameraRoll:(id)sender;
+
 
 @end
 

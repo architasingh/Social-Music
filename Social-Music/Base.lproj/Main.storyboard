@@ -97,7 +97,7 @@
                         <outlet property="passwordField" destination="CIU-T7-Jrh" id="F2f-Jp-nn5"/>
                         <outlet property="signupButton" destination="gke-Uc-pAn" id="TUf-Zz-duK"/>
                         <outlet property="usernameField" destination="o4i-9I-5mT" id="cgp-Lv-sz5"/>
-                        <segue destination="UpB-DC-VGc" kind="presentation" identifier="loginSegue" id="eut-5D-F59"/>
+                        <segue destination="UpB-DC-VGc" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" id="eut-5D-F59"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -147,19 +147,72 @@
                     <view key="view" contentMode="scaleToFill" id="04V-8c-pz1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KX7-8R-Dfr">
+                                <rect key="frame" x="105" y="139" width="204" height="145"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8RG-BV-fKu" customClass="PFImageView">
+                                        <rect key="frame" x="0.0" y="0.0" width="204" height="104"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="104" id="fyx-Aw-zYm"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="idN-XP-dMP">
+                                        <rect key="frame" x="0.0" y="114" width="204" height="31"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJy-ab-xzQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="102" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Take Photo"/>
+                                                <connections>
+                                                    <action selector="didTapTakePhoto:" destination="Agy-Kp-GIX" eventType="touchUpInside" id="YAn-ob-uIi"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Erb-uY-dyG">
+                                                <rect key="frame" x="102" y="0.0" width="102" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Camera Roll"/>
+                                                <connections>
+                                                    <action selector="didTapCameraRoll:" destination="Agy-Kp-GIX" eventType="touchUpInside" id="BcI-dN-F1l"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwL-fH-qEB">
+                                <rect key="frame" x="186" y="300" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="rjh-Q3-96M"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="KX7-8R-Dfr" secondAttribute="trailing" constant="85" id="9XS-1V-CYt"/>
+                            <constraint firstItem="KX7-8R-Dfr" firstAttribute="leading" secondItem="04V-8c-pz1" secondAttribute="leadingMargin" constant="85" id="Eww-8y-jKL"/>
+                            <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="KX7-8R-Dfr" secondAttribute="bottom" constant="529" id="VXl-zx-QCT"/>
+                            <constraint firstItem="KX7-8R-Dfr" firstAttribute="top" secondItem="04V-8c-pz1" secondAttribute="topMargin" constant="95" id="rOu-YJ-9bU"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="profile-icon" id="x0s-Xe-mYf"/>
+                    <connections>
+                        <outlet property="cameraRollButton" destination="Erb-uY-dyG" id="f5e-tu-9fz"/>
+                        <outlet property="profileImage" destination="8RG-BV-fKu" id="LOv-Gu-gwQ"/>
+                        <outlet property="takePhotoButton" destination="jJy-ab-xzQ" id="emK-kv-cfW"/>
+                        <outlet property="usernameLabel" destination="NwL-fH-qEB" id="ocV-ha-6os"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bu4-U1-KfM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1996" y="822"/>
+            <point key="canvasLocation" x="1995.6521739130437" y="821.65178571428567"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="3ii-dv-W4J">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="D3n-ay-07O" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeController" modalPresentationStyle="fullScreen" id="D3n-ay-07O" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="76A-VV-ZW7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

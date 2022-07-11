@@ -40,7 +40,7 @@
                 }
             } else {
                 NSLog(@"User registered successfully");
-                [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+                [self performSegueWithIdentifier:@"loginSegue" sender:self];
             }
         }];
 }
@@ -57,7 +57,7 @@
                 }
             } else {
                 NSLog(@"User logged in successfully");
-                [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+                [self performSegueWithIdentifier:@"loginSegue" sender:self];
             }
         }];
 }

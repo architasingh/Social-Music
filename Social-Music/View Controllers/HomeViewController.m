@@ -25,7 +25,6 @@
     
     [super viewDidLoad];
     
-    //[self spotifyLoginAlert];
 }
 
 /*
@@ -39,11 +38,15 @@
 */
 
 - (IBAction)didTapSkip:(id)sender {
+    
     [self.appRemote.playerAPI skipToNext:^(id  _Nullable result, NSError * _Nullable error) {
         if (error) {
             NSLog(@"failed");
+        } else {
+            NSLog(@"success");
         }
     }];
+    
 }
 
 - (IBAction)didTapSpotify:(id)sender {
@@ -52,12 +55,12 @@
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
         
     NSString *spotifyClientID = [dict objectForKey: @"client_key"];
-    NSURL *spotifyRedirectURL = [NSURL URLWithString:@"spotify-ios-quick-start://spotify-login-callback"];
+    NSURL *spotifyRedirectURL = [NSURL URLWithString:@"com.codepath.Social-Music://spotify-login-callback"];
         
     self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
 
     self.configuration.playURI = @"";
-        
+    
     self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
        
     self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:self.configuration logLevel:SPTAppRemoteLogLevelDebug];
@@ -70,6 +73,10 @@
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
     
     [self.spotifyButton setHidden:YES];
+    
+    if (self.appRemote.connectionParameters.accessToken) {
+      [self.appRemote connect];
+    }
 
 }
 
@@ -127,41 +134,11 @@
     NSLog(@"player state changed");
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
+/*- (void)applicationWillResignActive:(UIApplication *)application
 {
   if (self.appRemote.isConnected) {
     [self.appRemote disconnect];
   }
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-  if (self.appRemote.connectionParameters.accessToken) {
-    [self.appRemote connect];
-  }
-}
-
-- (void) spotifyLoginAlert {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Please login to Spotify to continue"
-                                message:@""
-                                preferredStyle:(UIAlertControllerStyleAlert)];
-   
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                    style:UIAlertActionStyleCancel
-                                    handler:^(UIAlertAction * _Nonnull action) {
-                                                             
-                                    }];
-    
-    [alert addAction:cancelAction];
-
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction * _Nonnull action) {
-                                                     }];
-    [alert addAction:okAction];
-    
-    [self presentViewController:alert animated:YES completion:^{
-    }];
-}
+}*/
 
 @end

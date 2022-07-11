@@ -7,6 +7,7 @@ target 'Social-Music' do
 
   # Pods for Social-Music
   pod 'Parse'
+  pod 'Parse/UI'
 
   target 'Social-MusicTests' do
     inherit! :search_paths
