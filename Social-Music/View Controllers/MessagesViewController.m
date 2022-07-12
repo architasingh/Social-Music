@@ -58,7 +58,7 @@
 - (void)loadMessages {
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
     
-    [query orderByAscending:@"createdAt"];
+    [query orderByDescending:@"createdAt"];
     [query includeKey:@"user"];
     query.limit = 20;
     [query findObjectsInBackgroundWithBlock:^(NSArray *messages, NSError *error) {
@@ -151,7 +151,6 @@
     [self moveFrameToVerticalPosition:0.0f forDuration:0.3f];
 }
 
-
 - (void)moveFrameToVerticalPosition:(float)position forDuration:(float)duration {
     CGRect frame = self.view.frame;
     frame.origin.y = position;
@@ -159,6 +158,16 @@
     [UIView animateWithDuration:duration animations:^{
         self.view.frame = frame;
     }];
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    // Prevent crashing undo bug – see note below.
+    if(range.length + range.location > self.chatMessage.text.length)
+    {
+        return NO;
+    }
+        
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    return newLength <= 500;
 }
 
 @end
