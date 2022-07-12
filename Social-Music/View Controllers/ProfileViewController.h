@@ -16,11 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *cameraRollButton;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *favoritesTableView;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 
 @property (nonatomic, strong) NSMutableArray *arrayOfFavorites;
 
 - (IBAction)didTapTakePhoto:(id)sender;
 - (IBAction)didTapCameraRoll:(id)sender;
+- (IBAction)didTapLogout:(id)sender;
 
 
 @end

@@ -27,6 +27,7 @@
 		ADC670CE28764BF1004CFA6D /* MatchesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670CD28764BF1004CFA6D /* MatchesViewController.m */; };
 		ADC670D128764C05004CFA6D /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670D028764C05004CFA6D /* ProfileViewController.m */; };
 		ADC670D428764C1C004CFA6D /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670D328764C1C004CFA6D /* MessagesViewController.m */; };
+		ADF55C4A287E2A5700EC3BB9 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF55C49287E2A5700EC3BB9 /* APIManager.m */; };
 		EDA1EAB4CB10118FF0023953 /* Pods_Social_Music_Social_MusicUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34FCA3684A8807992B9402 /* Pods_Social_Music_Social_MusicUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,8 @@
 		ADC670D028764C05004CFA6D /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		ADC670D228764C1C004CFA6D /* MessagesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
 		ADC670D328764C1C004CFA6D /* MessagesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
+		ADF55C48287E2A5700EC3BB9 /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		ADF55C49287E2A5700EC3BB9 /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		BC34FCA3684A8807992B9402 /* Pods_Social_Music_Social_MusicUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social_Music_Social_MusicUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6341F7DD8541947F26FD441 /* Pods-Social-Music-Social-MusicUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social-Music-Social-MusicUITests.debug.xcconfig"; path = "Target Support Files/Pods-Social-Music-Social-MusicUITests/Pods-Social-Music-Social-MusicUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,10 +166,9 @@
 				ADC6709628725C1B004CFA6D /* main.m */,
 				ADC670C728764B96004CFA6D /* Delegates */,
 				ADC670C628764B7A004CFA6D /* View Controllers */,
-				AD806AA7287CC8A200D6BA0F /* FavoritesCell.h */,
-				AD806AA8287CC8A200D6BA0F /* FavoritesCell.m */,
-				AD806AAA287D365200D6BA0F /* ChatCell.h */,
-				AD806AAB287D365200D6BA0F /* ChatCell.m */,
+				ADF55C4B287E2A6100EC3BB9 /* Cells */,
+				ADF55C48287E2A5700EC3BB9 /* APIManager.h */,
+				ADF55C49287E2A5700EC3BB9 /* APIManager.m */,
 			);
 			path = "Social-Music";
 			sourceTree = "<group>";
@@ -214,6 +216,17 @@
 				ADC6708828725C1A004CFA6D /* SceneDelegate.m */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		ADF55C4B287E2A6100EC3BB9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AD806AA7287CC8A200D6BA0F /* FavoritesCell.h */,
+				AD806AA8287CC8A200D6BA0F /* FavoritesCell.m */,
+				AD806AAA287D365200D6BA0F /* ChatCell.h */,
+				AD806AAB287D365200D6BA0F /* ChatCell.m */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		FCB2C66B86E9B89306152157 /* Pods */ = {
@@ -478,6 +491,7 @@
 				ADC670D128764C05004CFA6D /* ProfileViewController.m in Sources */,
 				ADC670CA28764BAB004CFA6D /* SongViewController.m in Sources */,
 				ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */,
+				ADF55C4A287E2A5700EC3BB9 /* APIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

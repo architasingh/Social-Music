@@ -68,7 +68,7 @@
     NSLog(@"redirected");
     NSLog(@"%@", self.configuration.playURI);
 
-    SPTScope requestedScope = SPTAppRemoteControlScope;
+    SPTScope requestedScope = SPTAppRemoteControlScope|SPTUserTopReadScope;
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
     
     [self.spotifyButton setHidden:YES];
@@ -80,7 +80,8 @@
 }
 
 - (void)sessionManager:(nonnull SPTSessionManager *)manager didInitiateSession:(nonnull SPTSession *)session {
-    self.appRemote.connectionParameters.accessToken = session.accessToken;
+    self.appRemote.connectionParameters.accessToken = session.accessToken; // update api manager with token
+    NSLog(@"Token: %@", session.accessToken);
     [self.appRemote connect];
     NSLog(@"success: %@", session);
 }

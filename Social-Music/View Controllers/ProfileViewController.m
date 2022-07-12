@@ -8,6 +8,8 @@
 #import "ProfileViewController.h"
 #import <Parse/Parse.h>
 #import "FavoritesCell.h"
+#import "SceneDelegate.h"
+#import "LoginViewController.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
 
@@ -66,6 +68,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)didTapLogout:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+    }];
+    
+    SceneDelegate *mySceneDelegate = (SceneDelegate * ) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    mySceneDelegate.window.rootViewController = loginViewController;
+}
 
 - (IBAction)didTapCameraRoll:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
