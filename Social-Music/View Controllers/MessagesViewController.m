@@ -11,7 +11,7 @@
 #import "LoginViewController.h"
 #import "ChatCell.h"
 
-@interface MessagesViewController () <UITableViewDataSource>
+@interface MessagesViewController () <UITableViewDataSource, UITextViewDelegate>
 @property (strong, nonatomic) NSArray *messages;
 
 @end
@@ -33,6 +33,8 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
        [self.chatTableView insertSubview:refreshControl atIndex:0];
+    
+    self.chatMessage.delegate = self;
     
     // Do any additional setup after loading the view.
 }
@@ -124,6 +126,39 @@
 
 - (void) hideKeyboard {
     [self.view endEditing:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+
+    float newVerticalPosition = -keyboardSize.height;
+
+    [self moveFrameToVerticalPosition:newVerticalPosition forDuration:0.3f];
+}
+
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    [self moveFrameToVerticalPosition:0.0f forDuration:0.3f];
+}
+
+
+- (void)moveFrameToVerticalPosition:(float)position forDuration:(float)duration {
+    CGRect frame = self.view.frame;
+    frame.origin.y = position;
+
+    [UIView animateWithDuration:duration animations:^{
+        self.view.frame = frame;
+    }];
 }
 
 @end

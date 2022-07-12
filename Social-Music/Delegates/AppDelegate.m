@@ -55,7 +55,6 @@
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
 
-/*
 - (void)applicationWillResignActive:(UIApplication *)application
 {
   if (self.appRemote.isConnected) {
@@ -68,6 +67,24 @@
   if (self.appRemote.connectionParameters.accessToken) {
     [self.appRemote connect];
   }
-}*/
+}
+
+- (void)appRemoteDidEstablishConnection:(nonnull SPTAppRemote *)appRemote {
+    self.appRemote.playerAPI.delegate = self;
+     [self.appRemote.playerAPI subscribeToPlayerState:^(id _Nullable result, NSError * _Nullable error) {
+       if (error) {
+         NSLog(@"error: %@", error.localizedDescription);
+       }
+     }];
+    NSLog(@"connected");
+}
+
+- (void)appRemote:(nonnull SPTAppRemote *)appRemote didDisconnectWithError:(nullable NSError *)error {
+    NSLog(@"disconnected");
+}
+
+- (void)appRemote:(nonnull SPTAppRemote *)appRemote didFailConnectionAttemptWithError:(nullable NSError *)error {
+    NSLog(@"failed");
+}
 
 @end

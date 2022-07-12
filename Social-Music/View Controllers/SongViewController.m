@@ -24,7 +24,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
 }
 
 /*
@@ -99,24 +98,6 @@
 {
     [self.sessionManager application:app openURL:url options:options];
     return true;
-}
-
-- (void)appRemoteDidEstablishConnection:(nonnull SPTAppRemote *)appRemote {
-    self.appRemote.playerAPI.delegate = self;
-     [self.appRemote.playerAPI subscribeToPlayerState:^(id _Nullable result, NSError * _Nullable error) {
-       if (error) {
-         NSLog(@"error: %@", error.localizedDescription);
-       }
-     }];
-    NSLog(@"connected");
-}
-
-- (void)appRemote:(nonnull SPTAppRemote *)appRemote didDisconnectWithError:(nullable NSError *)error {
-    NSLog(@"disconnected");
-}
-
-- (void)appRemote:(nonnull SPTAppRemote *)appRemote didFailConnectionAttemptWithError:(nullable NSError *)error {
-    NSLog(@"failed");
 }
 
 - (void)playerStateDidChange:(nonnull id<SPTAppRemotePlayerState>)playerState {
