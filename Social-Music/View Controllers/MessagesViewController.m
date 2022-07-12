@@ -92,6 +92,8 @@
     if (user != nil) {
         cell.usernameLabel.text = [@"@" stringByAppendingString: user.username];
         cell.profileImage.file = user[@"profilePicture"];
+        cell.profileImage.layer.cornerRadius = 30;
+        cell.profileImage.layer.masksToBounds = YES;
         [cell.profileImage loadInBackground];
         
     } else {

@@ -10,6 +10,7 @@
 		1DF0DC639F5314D99F5A2195 /* Pods_Social_MusicTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6038DACF05AE60EFE7B4B5E6 /* Pods_Social_MusicTests.framework */; };
 		3261E486B89C4C546FDFF8A3 /* Pods_Social_Music.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DBEB4C3C3F1D54E07599E20 /* Pods_Social_Music.framework */; };
 		AD806AA9287CC8A200D6BA0F /* FavoritesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD806AA8287CC8A200D6BA0F /* FavoritesCell.m */; };
+		AD806AAC287D365200D6BA0F /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD806AAB287D365200D6BA0F /* ChatCell.m */; };
 		ADC6708628725C1A004CFA6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708528725C1A004CFA6D /* AppDelegate.m */; };
 		ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708828725C1A004CFA6D /* SceneDelegate.m */; };
 		ADC6708C28725C1A004CFA6D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708B28725C1A004CFA6D /* LoginViewController.m */; };
@@ -25,7 +26,7 @@
 		ADC670CA28764BAB004CFA6D /* SongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670C928764BAB004CFA6D /* SongViewController.m */; };
 		ADC670CE28764BF1004CFA6D /* MatchesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670CD28764BF1004CFA6D /* MatchesViewController.m */; };
 		ADC670D128764C05004CFA6D /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670D028764C05004CFA6D /* ProfileViewController.m */; };
-		ADC670D428764C1C004CFA6D /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670D328764C1C004CFA6D /* HomeViewController.m */; };
+		ADC670D428764C1C004CFA6D /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670D328764C1C004CFA6D /* MessagesViewController.m */; };
 		EDA1EAB4CB10118FF0023953 /* Pods_Social_Music_Social_MusicUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC34FCA3684A8807992B9402 /* Pods_Social_Music_Social_MusicUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,8 @@
 		89CD46D581B89C05451A4957 /* Pods-Social-Music.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social-Music.release.xcconfig"; path = "Target Support Files/Pods-Social-Music/Pods-Social-Music.release.xcconfig"; sourceTree = "<group>"; };
 		AD806AA7287CC8A200D6BA0F /* FavoritesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoritesCell.h; sourceTree = "<group>"; };
 		AD806AA8287CC8A200D6BA0F /* FavoritesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoritesCell.m; sourceTree = "<group>"; };
+		AD806AAA287D365200D6BA0F /* ChatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
+		AD806AAB287D365200D6BA0F /* ChatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
 		ADC6708128725C1A004CFA6D /* Social-Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social-Music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADC6708428725C1A004CFA6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		ADC6708528725C1A004CFA6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -81,8 +84,8 @@
 		ADC670CD28764BF1004CFA6D /* MatchesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchesViewController.m; sourceTree = "<group>"; };
 		ADC670CF28764C05004CFA6D /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		ADC670D028764C05004CFA6D /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		ADC670D228764C1C004CFA6D /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		ADC670D328764C1C004CFA6D /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		ADC670D228764C1C004CFA6D /* MessagesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
+		ADC670D328764C1C004CFA6D /* MessagesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
 		BC34FCA3684A8807992B9402 /* Pods_Social_Music_Social_MusicUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social_Music_Social_MusicUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6341F7DD8541947F26FD441 /* Pods-Social-Music-Social-MusicUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social-Music-Social-MusicUITests.debug.xcconfig"; path = "Target Support Files/Pods-Social-Music-Social-MusicUITests/Pods-Social-Music-Social-MusicUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -162,6 +165,8 @@
 				ADC670C628764B7A004CFA6D /* View Controllers */,
 				AD806AA7287CC8A200D6BA0F /* FavoritesCell.h */,
 				AD806AA8287CC8A200D6BA0F /* FavoritesCell.m */,
+				AD806AAA287D365200D6BA0F /* ChatCell.h */,
+				AD806AAB287D365200D6BA0F /* ChatCell.m */,
 			);
 			path = "Social-Music";
 			sourceTree = "<group>";
@@ -194,8 +199,8 @@
 				ADC670CD28764BF1004CFA6D /* MatchesViewController.m */,
 				ADC670CF28764C05004CFA6D /* ProfileViewController.h */,
 				ADC670D028764C05004CFA6D /* ProfileViewController.m */,
-				ADC670D228764C1C004CFA6D /* HomeViewController.h */,
-				ADC670D328764C1C004CFA6D /* HomeViewController.m */,
+				ADC670D228764C1C004CFA6D /* MessagesViewController.h */,
+				ADC670D328764C1C004CFA6D /* MessagesViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -465,7 +470,8 @@
 			files = (
 				AD806AA9287CC8A200D6BA0F /* FavoritesCell.m in Sources */,
 				ADC6708C28725C1A004CFA6D /* LoginViewController.m in Sources */,
-				ADC670D428764C1C004CFA6D /* HomeViewController.m in Sources */,
+				ADC670D428764C1C004CFA6D /* MessagesViewController.m in Sources */,
+				AD806AAC287D365200D6BA0F /* ChatCell.m in Sources */,
 				ADC6708628725C1A004CFA6D /* AppDelegate.m in Sources */,
 				ADC670CE28764BF1004CFA6D /* MatchesViewController.m in Sources */,
 				ADC670BC2874AF10004CFA6D /* main.m in Sources */,
