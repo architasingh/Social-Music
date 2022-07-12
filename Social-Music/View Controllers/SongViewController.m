@@ -124,11 +124,4 @@
     NSLog(@"player state changed");
 }
 
-/*- (void)applicationWillResignActive:(UIApplication *)application
-{
-  if (self.appRemote.isConnected) {
-    [self.appRemote disconnect];
-  }
-}*/
-
 @end

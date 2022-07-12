@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(beginRefresh:) userInfo:nil repeats:true];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(loadMessages) userInfo:nil repeats:true];
 
     self.chatTableView.dataSource = self;
     self.chatTableView.estimatedRowHeight = UITableViewAutomaticDimension;
@@ -29,6 +29,10 @@
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     gestureRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:gestureRecognizer];
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+       [self.chatTableView insertSubview:refreshControl atIndex:0];
     
     // Do any additional setup after loading the view.
 }
@@ -42,8 +46,14 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    self.chatTableView.dataSource = self;
+
+    [self.chatTableView reloadData];
+    [refreshControl endRefreshing];
+}
+
+- (void)loadMessages {
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
     
     [query orderByAscending:@"createdAt"];
@@ -87,6 +97,9 @@
     ChatCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChatCell" forIndexPath:indexPath];
     
     cell.chatLabel.text = self.messages[indexPath.row][@"text"];
+    cell.bubbleView.layer.cornerRadius = 16;
+    cell.bubbleView.clipsToBounds = true;
+    
     PFUser *user = self.messages[indexPath.row][@"user"];
     
     if (user != nil) {

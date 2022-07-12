@@ -114,10 +114,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="Agy-Kp-GIX" kind="relationship" relationship="viewControllers" id="3tg-2O-8vI"/>
                         <segue destination="4gV-xG-pKd" kind="relationship" relationship="viewControllers" id="spk-FO-cR4"/>
                         <segue destination="D3n-ay-07O" kind="relationship" relationship="viewControllers" id="YFR-r2-YFj"/>
                         <segue destination="v65-9G-UTX" kind="relationship" relationship="viewControllers" id="jFN-p8-9gJ"/>
-                        <segue destination="Agy-Kp-GIX" kind="relationship" relationship="viewControllers" id="3tg-2O-8vI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Htg-FO-iKa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -364,7 +364,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="169"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RtZ-kK-ufv">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RtZ-kK-ufv">
                                                     <rect key="frame" x="10" y="10" width="394" height="149"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BgJ-vN-vDI">
@@ -390,15 +390,24 @@
                                                                 <constraint firstAttribute="height" constant="60" id="x3Y-eR-Hs1"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pzd-py-GfJ">
-                                                            <rect key="frame" x="0.0" y="60" width="394" height="89"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUJ-Mq-T3j">
+                                                            <rect key="frame" x="0.0" y="68" width="394" height="81"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pzd-py-GfJ">
+                                                                    <rect key="frame" x="8" y="8" width="39.5" height="65"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.29743355818679451" green="0.75713683870049253" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="80" id="1Jz-Da-nwh"/>
+                                                                <constraint firstItem="Pzd-py-GfJ" firstAttribute="top" secondItem="dUJ-Mq-T3j" secondAttribute="top" constant="8" id="BnE-EQ-Jcg"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Pzd-py-GfJ" secondAttribute="trailing" constant="8" id="IW6-Pz-UPL"/>
+                                                                <constraint firstItem="Pzd-py-GfJ" firstAttribute="leading" secondItem="dUJ-Mq-T3j" secondAttribute="leading" constant="8" id="daO-pd-dZK"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Pzd-py-GfJ" secondAttribute="bottom" constant="8" id="qKa-HR-c03"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        </view>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -410,6 +419,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="bubbleView" destination="dUJ-Mq-T3j" id="WBa-yJ-dro"/>
                                             <outlet property="chatLabel" destination="Pzd-py-GfJ" id="JxF-E0-1tZ"/>
                                             <outlet property="profileImage" destination="RVw-63-ANY" id="sGc-OG-rgM"/>
                                             <outlet property="usernameLabel" destination="hke-JZ-27p" id="ukU-Rb-zo8"/>
@@ -469,6 +479,9 @@
         <image name="prev-button" width="30" height="30"/>
         <image name="profile-icon" width="16" height="16"/>
         <image name="skip-button" width="30" height="30"/>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
