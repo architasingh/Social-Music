@@ -55,6 +55,8 @@
 - (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
     NSURL *url = URLContexts.allObjects[0].URL;
     NSDictionary *parameters = [self.appRemote authorizationParametersFromURL:url];
+    NSLog(@"Params:", @"%@", parameters);
+    NSLog(@"%@", url);
     
     NSString *access_token = SPTAppRemoteAccessTokenKey;
     

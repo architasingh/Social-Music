@@ -421,6 +421,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" id="uY2-aW-ewz">
+                                <rect key="frame" x="198" y="444" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="EqF-bw-mHH">
                                 <rect key="frame" x="25" y="774" width="364" height="34"/>
                                 <subviews>
@@ -461,6 +465,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="messages-icon" id="TiG-rl-2vI"/>
                     <connections>
+                        <outlet property="activityIndicatorChat" destination="uY2-aW-ewz" id="htd-xn-O3v"/>
                         <outlet property="chatMessage" destination="cVa-Do-bT5" id="IzE-UZ-5Vo"/>
                         <outlet property="chatTableView" destination="Ecw-cG-3eP" id="LU5-m3-vY0"/>
                         <outlet property="sendButton" destination="bO4-7h-WwE" id="BoD-oj-iyg"/>

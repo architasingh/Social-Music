@@ -19,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.activityIndicatorChat startAnimating];
+    
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(loadMessages) userInfo:nil repeats:true];
 
     self.chatTableView.dataSource = self;
@@ -31,6 +33,7 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
        [self.chatTableView insertSubview:refreshControl atIndex:0];
+    
     
     self.chatMessage.delegate = self;
     
@@ -54,6 +57,8 @@
 }
 
 - (void)loadMessages {
+    [self.activityIndicatorChat stopAnimating];
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
     
     [query orderByDescending:@"createdAt"];
