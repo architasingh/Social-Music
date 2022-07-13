@@ -49,7 +49,7 @@
 }
 
 - (IBAction)didTapSpotify:(id)sender {
-    NSLog(@"reached");
+    /*NSLog(@"reached");
     NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
         
@@ -67,7 +67,7 @@
     self.appRemote.delegate = self;
     NSLog(@"redirected");
     NSLog(@"%@", self.configuration.playURI);
-
+    
     SPTScope requestedScope = SPTAppRemoteControlScope|SPTUserTopReadScope;
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
     
@@ -75,11 +75,11 @@
     
     if (self.appRemote.connectionParameters.accessToken) {
       [self.appRemote connect];
-    }
+    }*/
 
 }
 
-- (void)sessionManager:(nonnull SPTSessionManager *)manager didInitiateSession:(nonnull SPTSession *)session {
+/*- (void)sessionManager:(nonnull SPTSessionManager *)manager didInitiateSession:(nonnull SPTSession *)session {
     self.appRemote.connectionParameters.accessToken = session.accessToken; // update api manager with token
     NSLog(@"Token: %@", session.accessToken);
     [self.appRemote connect];
@@ -95,15 +95,27 @@
   NSLog(@"renewed: %@", session);
 }
 
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
-{
-    [self.sessionManager application:app openURL:url options:options];
-    return true;
-}
-
 - (void)playerStateDidChange:(nonnull id<SPTAppRemotePlayerState>)playerState {
     NSLog(@"Track name: %@", playerState.track.name);
     NSLog(@"player state changed");
 }
+
+- (void)appRemoteDidEstablishConnection:(nonnull SPTAppRemote *)appRemote {
+    self.appRemote.playerAPI.delegate = self;
+     [self.appRemote.playerAPI subscribeToPlayerState:^(id _Nullable result, NSError * _Nullable error) {
+       if (error) {
+         NSLog(@"error: %@", error.localizedDescription);
+       }
+     }];
+    NSLog(@"connected");
+}
+
+- (void)appRemote:(nonnull SPTAppRemote *)appRemote didDisconnectWithError:(nullable NSError *)error {
+    NSLog(@"disconnected");
+}
+
+- (void)appRemote:(nonnull SPTAppRemote *)appRemote didFailConnectionAttemptWithError:(nullable NSError *)error {
+    NSLog(@"failed");
+}*/
 
 @end

@@ -8,6 +8,13 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 
+#import "SceneDelegate.h"
+#import <SpotifyiOS/SPTConfiguration.h>
+#import <SpotifyiOS/SPTAppRemotePlayerAPI.h>
+#import <SpotifyiOS/SPTAppRemote.h>
+#import <SpotifyiOS/SPTSession.h>
+#import <SpotifyiOS/SpotifyAppRemote.h>
+
 @interface AppDelegate ()
 
 @end
@@ -18,8 +25,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         
     [self parseBackend];
+    
+    NSLog(@"reached");
+    
         
-    return self;
+    return YES;
 }
 
 - (void) parseBackend {
@@ -67,6 +77,33 @@
   if (self.appRemote.connectionParameters.accessToken) {
     [self.appRemote connect];
   }
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+    [self.sessionManager application:app openURL:url options:options];
+    return true;
+}
+
+- (void)sessionManager:(nonnull SPTSessionManager *)manager didInitiateSession:(nonnull SPTSession *)session {
+    self.appRemote.connectionParameters.accessToken = session.accessToken; // update api manager with token
+    NSLog(@"Token: %@", session.accessToken);
+    [self.appRemote connect];
+    NSLog(@"success: %@", session);
+}
+
+- (void)sessionManager:(nonnull SPTSessionManager *)manager didFailWithError:(nonnull NSError *)error {
+    NSLog(@"fail: %@", error);
+}
+
+- (void)sessionManager:(SPTSessionManager *)manager didRenewSession:(SPTSession *)session
+{
+  NSLog(@"renewed: %@", session);
+}
+
+- (void)playerStateDidChange:(nonnull id<SPTAppRemotePlayerState>)playerState {
+    NSLog(@"Track name: %@", playerState.track.name);
+    NSLog(@"player state changed");
 }
 
 - (void)appRemoteDidEstablishConnection:(nonnull SPTAppRemote *)appRemote {

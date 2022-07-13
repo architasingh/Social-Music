@@ -8,7 +8,14 @@
 #import "SceneDelegate.h"
 #import <Parse/Parse.h>
 
+#import <SpotifyiOS/SPTAppRemotePlayerAPI.h>
+#import <SpotifyiOS/SPTAppRemote.h>
+#import <SpotifyiOS/SPTSession.h>
+#import <SpotifyiOS/SpotifyAppRemote.h>
+
 @interface SceneDelegate ()
+
+
 
 @end
 
@@ -20,8 +27,57 @@
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
     }
-}
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
+        
+    NSString *spotifyClientID = [dict objectForKey: @"client_key"];
+    NSURL *spotifyRedirectURL = [NSURL URLWithString:@"com.codepath.Social-Music://spotify-login-callback"];
+        
+    self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
 
+    self.configuration.playURI = @"";
+    
+    self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
+       
+    self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:self.configuration logLevel:SPTAppRemoteLogLevelDebug];
+        
+    self.appRemote.delegate = self;
+    NSLog(@"redirected");
+    NSLog(@"%@", self.configuration.playURI);
+    
+    SPTScope requestedScope = SPTAppRemoteControlScope|SPTUserTopReadScope;
+    [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
+    
+    if (self.appRemote.connectionParameters.accessToken) {
+      [self.appRemote connect];
+    }
+}
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
+    NSURL *url = URLContexts.allObjects[0].URL;
+    NSDictionary *parameters = [self.appRemote authorizationParametersFromURL:url];
+    
+    NSString *access_token = SPTAppRemoteAccessTokenKey;
+    
+    if (access_token == parameters[access_token]) {
+        self.appRemote.connectionParameters.accessToken = access_token;
+    } else {
+        NSLog(@"error in scene delegate");
+    }
+    
+    
+    /*guard let url = URLContexts.first?.url else {
+            return
+        }
+
+        let parameters = appRemote.authorizationParameters(from: url);
+
+        if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
+            appRemote.connectionParameters.accessToken = access_token
+            self.accessToken = access_token
+        } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
+            // Show the error
+        }*/
+}
 
 - (void)sceneDidDisconnect:(UIScene *)scene {
     // Called as the scene is being released by the system.
