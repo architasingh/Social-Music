@@ -25,9 +25,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         
     [self parseBackend];
-    
-    NSLog(@"reached");
-    
         
     return YES;
 }

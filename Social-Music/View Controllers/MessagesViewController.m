@@ -8,6 +8,7 @@
 #import "MessagesViewController.h"
 #import <Parse/Parse.h>
 #import "ChatCell.h"
+#import "DateTools.h"
 
 @interface MessagesViewController () <UITableViewDataSource, UITextViewDelegate>
 @property (strong, nonatomic) NSArray *messages;
@@ -103,6 +104,10 @@
         cell.profileImage.layer.cornerRadius = 30;
         cell.profileImage.layer.masksToBounds = YES;
         [cell.profileImage loadInBackground];
+        
+        /*NSDate *dateForm = self.messages[indexPath.row][@"createdAt"];
+        NSString *dateString = dateForm.timeAgoSinceNow;
+        cell.dateLabel.text = dateString;*/
         
     } else {
         cell.usernameLabel.text = @"🤖";

@@ -25,7 +25,7 @@
                                             <constraint firstAttribute="height" constant="80" id="Yu7-gZ-7oZ"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Social Music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2g-8B-fdU">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Music Buddy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2g-8B-fdU">
                                         <rect key="frame" x="0.0" y="110" width="314" height="45.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45.5" id="t5b-FG-1BZ"/>
@@ -102,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-633.33333333333337" y="77.678571428571431"/>
+            <point key="canvasLocation" x="-345" y="78"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="x1R-Mi-5w8">
@@ -157,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oqy-Co-XBs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1195.6521739130435" y="821.65178571428567"/>
+            <point key="canvasLocation" x="1055" y="822"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="mTV-dC-RZY">
@@ -266,7 +266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bu4-U1-KfM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1937.68115942029" y="821.65178571428567"/>
+            <point key="canvasLocation" x="1857" y="822"/>
         </scene>
         <!--Song View Controller-->
         <scene sceneID="3ii-dv-W4J">
@@ -340,7 +340,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mna-K6-BRG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="441" y="822"/>
+            <point key="canvasLocation" x="300" y="822"/>
         </scene>
         <!--Messages View Controller-->
         <scene sceneID="oO9-7h-Ioi">
@@ -374,9 +374,18 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hke-JZ-27p">
-                                                                    <rect key="frame" x="70" y="0.0" width="324" height="60"/>
+                                                                    <rect key="frame" x="70" y="0.0" width="224" height="60"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                     <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXC-ak-Hyr">
+                                                                    <rect key="frame" x="304" y="0.0" width="90" height="60"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="cgT-Qb-iiM"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" systemColor="systemGray2Color"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -415,6 +424,7 @@
                                         <connections>
                                             <outlet property="bubbleView" destination="dUJ-Mq-T3j" id="WBa-yJ-dro"/>
                                             <outlet property="chatLabel" destination="Pzd-py-GfJ" id="JxF-E0-1tZ"/>
+                                            <outlet property="dateLabel" destination="VXC-ak-Hyr" id="7ey-uY-dWS"/>
                                             <outlet property="profileImage" destination="RVw-63-ANY" id="sGc-OG-rgM"/>
                                             <outlet property="usernameLabel" destination="hke-JZ-27p" id="ukU-Rb-zo8"/>
                                         </connections>
@@ -473,7 +483,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mj1-LP-E3U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-304.34782608695656" y="821.65178571428567"/>
+            <point key="canvasLocation" x="-468" y="822"/>
         </scene>
     </scenes>
     <resources>
@@ -490,6 +500,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

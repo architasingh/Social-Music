@@ -1,5 +1,6 @@
 PODS:
   - Bolts/Tasks (1.9.1)
+  - DateTools (2.0.0)
   - Parse (1.19.3):
     - Parse/Core (= 1.19.3)
   - Parse/Core (1.19.3):
@@ -8,18 +9,21 @@ PODS:
     - Parse/Core
 
 DEPENDENCIES:
+  - DateTools
   - Parse
   - Parse/UI
 
 SPEC REPOS:
   trunk:
     - Bolts
+    - DateTools
     - Parse
 
 SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
 
-PODFILE CHECKSUM: b980b836d1e134f09e779ef4e0161725133325ce
+PODFILE CHECKSUM: 5e313e89122e96b696b9396b8fcc97b1f0067e98
 
 COCOAPODS: 1.11.3

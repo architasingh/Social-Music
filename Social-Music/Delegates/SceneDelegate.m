@@ -15,8 +15,6 @@
 
 @interface SceneDelegate ()
 
-
-
 @end
 
 @implementation SceneDelegate
@@ -55,12 +53,13 @@
 - (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
     NSURL *url = URLContexts.allObjects[0].URL;
     NSDictionary *parameters = [self.appRemote authorizationParametersFromURL:url];
-    NSLog(@"Params:", @"%@", parameters);
-    NSLog(@"%@", url);
+    NSLog(@"Params = %@", parameters);
+    NSLog(@"URL = %@", URLContexts.allObjects[0].URL);
     
     NSString *access_token = SPTAppRemoteAccessTokenKey;
+    NSLog(@"access token = %@", access_token);
     
-    if (access_token == parameters[access_token]) {
+    if ([access_token isEqualToString:parameters[access_token]]) {
         self.appRemote.connectionParameters.accessToken = access_token;
     } else {
         NSLog(@"error in scene delegate");
