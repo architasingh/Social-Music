@@ -16,7 +16,6 @@
 #import <SpotifyiOS/SpotifyAppRemote.h>
 
 @interface SongViewController ()
-///<SPTSessionManagerDelegate, SPTAppRemotePlayerStateDelegate, SPTAppRemoteDelegate>
 
 @end
 

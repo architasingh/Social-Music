@@ -17,17 +17,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SongViewController : UIViewController ///<SPTSessionManagerDelegate, SPTAppRemotePlayerStateDelegate, SPTAppRemoteDelegate>
+@interface SongViewController : UIViewController 
 
-@property (nonatomic, strong) SPTSessionManager *sessionManager;
-@property (nonatomic, strong) SPTConfiguration *configuration;
 @property (nonatomic, strong) SPTAppRemote *appRemote;
-
-@property (nonatomic, weak) id<SPTAppRemotePlayerStateDelegate> delegate;
-
-@property (weak, nonatomic) IBOutlet UIButton *spotifyButton;
-
-@property (weak, nonatomic) IBOutlet UIButton *skipButton;
 
 - (IBAction)didTapSpotify:(id)sender;
 - (IBAction)didTapSkip:(id)sender;

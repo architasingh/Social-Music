@@ -45,8 +45,8 @@
             filePath = "Social-Music/View Controllers/SongViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "SongViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -61,8 +61,8 @@
             filePath = "Social-Music/View Controllers/SongViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-didTapSpotify:"
             landmarkType = "7">
          </BreakpointContent>
@@ -77,8 +77,8 @@
             filePath = "Social-Music/View Controllers/SongViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "SongViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -93,8 +93,8 @@
             filePath = "Social-Music/View Controllers/SongViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "-didTapSpotify:"
             landmarkType = "7">
          </BreakpointContent>
@@ -109,8 +109,8 @@
             filePath = "Social-Music/View Controllers/SongViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "SongViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -125,8 +125,8 @@
             filePath = "Social-Music/View Controllers/SongViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "SongViewController"
             landmarkType = "3">
          </BreakpointContent>
