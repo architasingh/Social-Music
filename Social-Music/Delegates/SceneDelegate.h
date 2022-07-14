@@ -14,9 +14,5 @@
 
 @property (strong, nonatomic) UIWindow * window;
 
-@property (nonatomic, strong) SPTSessionManager *sessionManager;
-@property (nonatomic, strong) SPTConfiguration *configuration;
-@property (nonatomic, strong) SPTAppRemote *appRemote;
-
 @end
 

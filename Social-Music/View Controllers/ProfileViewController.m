@@ -10,6 +10,7 @@
 #import "FavoritesCell.h"
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
+#import "SpotifyManager.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
 
@@ -34,6 +35,11 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
        [self.favoritesTableView insertSubview:refreshControl atIndex:0];
+    
+    [[SpotifyManager shared] authenticateSpotify];
+
+    NSString *savedValue = [[NSUserDefaults standardUserDefaults]
+        stringForKey:@"access_token"];
     
 }
 

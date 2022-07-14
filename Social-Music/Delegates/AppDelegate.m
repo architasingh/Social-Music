@@ -14,6 +14,7 @@
 #import <SpotifyiOS/SPTAppRemote.h>
 #import <SpotifyiOS/SPTSession.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
+#import "SpotifyManager.h"
 
 @interface AppDelegate ()
 
@@ -23,9 +24,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-        
+    // Update this? Keychain? Belongs in SpotifyManager? Look into encoded details within token if possible?
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"access_token"];
+
+    [[SpotifyManager shared] setupSpotify];
     [self parseBackend];
-        
     return YES;
 }
 
@@ -48,7 +51,6 @@
 
 #pragma mark - UISceneSession lifecycle
 
-
 - (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
     // Called when a new scene session is being created.
     // Use this method to select a configuration to create the new scene with.
@@ -64,61 +66,13 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-  if (self.appRemote.isConnected) {
-    [self.appRemote disconnect];
-  }
+    [[SpotifyManager shared] applicationWillResignActive];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-  if (self.appRemote.connectionParameters.accessToken) {
-    [self.appRemote connect];
-  }
+    [[SpotifyManager shared] applicationDidBecomeActive];
 }
 
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
-{
-    [self.sessionManager application:app openURL:url options:options];
-    return true;
-}
-
-- (void)sessionManager:(nonnull SPTSessionManager *)manager didInitiateSession:(nonnull SPTSession *)session {
-    self.appRemote.connectionParameters.accessToken = session.accessToken; // update api manager with token
-    NSLog(@"Token: %@", session.accessToken);
-    [self.appRemote connect];
-    NSLog(@"success: %@", session);
-}
-
-- (void)sessionManager:(nonnull SPTSessionManager *)manager didFailWithError:(nonnull NSError *)error {
-    NSLog(@"fail: %@", error);
-}
-
-- (void)sessionManager:(SPTSessionManager *)manager didRenewSession:(SPTSession *)session
-{
-  NSLog(@"renewed: %@", session);
-}
-
-- (void)playerStateDidChange:(nonnull id<SPTAppRemotePlayerState>)playerState {
-    NSLog(@"Track name: %@", playerState.track.name);
-    NSLog(@"player state changed");
-}
-
-- (void)appRemoteDidEstablishConnection:(nonnull SPTAppRemote *)appRemote {
-    self.appRemote.playerAPI.delegate = self;
-     [self.appRemote.playerAPI subscribeToPlayerState:^(id _Nullable result, NSError * _Nullable error) {
-       if (error) {
-         NSLog(@"error: %@", error.localizedDescription);
-       }
-     }];
-    NSLog(@"connected");
-}
-
-- (void)appRemote:(nonnull SPTAppRemote *)appRemote didDisconnectWithError:(nullable NSError *)error {
-    NSLog(@"disconnected");
-}
-
-- (void)appRemote:(nonnull SPTAppRemote *)appRemote didFailConnectionAttemptWithError:(nullable NSError *)error {
-    NSLog(@"failed");
-}
 
 @end

@@ -1,0 +1,33 @@
+//
+//  APIManager.h
+//  Social-Music
+//
+//  Created by Archita Singh on 7/12/22.
+//
+
+#import <Foundation/Foundation.h>
+#import <SpotifyiOS/SPTSessionManager.h>
+#import <SpotifyiOS/SPTConfiguration.h>
+#import <SpotifyiOS/SPTAppRemotePlayerAPI.h>
+#import <SpotifyiOS/SPTAppRemote.h>
+#import <SpotifyiOS/SPTSession.h>
+#import <SpotifyiOS/SpotifyAppRemote.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface SpotifyManager : NSObject <SPTAppRemoteDelegate, SPTSessionManagerDelegate>
+
++ (id)shared;
+- (void)authenticateSpotify;
+- (void)applicationWillResignActive;
+- (void)applicationDidBecomeActive;
+- (void)setupSpotify;
+
+@property (nonatomic, strong) SPTSessionManager *sessionManager;
+@property (nonatomic, strong) SPTConfiguration *configuration;
+@property (nonatomic, strong) SPTAppRemote *appRemote;
+@property (nonatomic, weak) id<SPTAppRemotePlayerStateDelegate> delegate;
+
+@end
+
+NS_ASSUME_NONNULL_END

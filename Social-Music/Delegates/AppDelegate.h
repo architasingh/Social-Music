@@ -13,13 +13,7 @@
 #import <SpotifyiOS/SPTSession.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, SPTAppRemoteDelegate, SPTSessionManagerDelegate>
-
-@property (nonatomic, strong) SPTSessionManager *sessionManager;
-@property (nonatomic, strong) SPTConfiguration *configuration;
-@property (nonatomic, strong) SPTAppRemote *appRemote;
-
-@property (nonatomic, weak) id<SPTAppRemotePlayerStateDelegate> delegate;
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @end
 
