@@ -40,7 +40,7 @@
 
     NSString *savedValue = [[NSUserDefaults standardUserDefaults]
         stringForKey:@"access_token"];
-    NSLog(@"%@", savedValue);
+    NSLog(@"Saved value = %@", savedValue);
     
 }
 

@@ -40,6 +40,7 @@
     self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:self.configuration logLevel:SPTAppRemoteLogLevelDebug];
 
     self.appRemote.delegate = self;
+
 }
 
 - (void)authenticateSpotify {
