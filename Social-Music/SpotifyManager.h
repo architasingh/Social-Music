@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) SPTSessionManager *sessionManager;
 @property (nonatomic, strong) SPTConfiguration *configuration;
 @property (nonatomic, strong) SPTAppRemote *appRemote;
+@property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, weak) id<SPTAppRemotePlayerStateDelegate> delegate;
 
 @end

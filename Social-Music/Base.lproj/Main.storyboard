@@ -223,21 +223,30 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvI-4U-PMq">
-                                                            <rect key="frame" x="28" y="19" width="298" height="62"/>
+                                                            <rect key="frame" x="28" y="19" width="298" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvg-2B-M3g">
+                                                            <rect key="frame" x="28" y="47.5" width="298" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="kvg-2B-M3g" firstAttribute="top" secondItem="TvI-4U-PMq" secondAttribute="bottom" constant="8" id="Flt-dV-yiY"/>
                                                         <constraint firstItem="TvI-4U-PMq" firstAttribute="leading" secondItem="G5p-wB-NJi" secondAttribute="leadingMargin" constant="8" id="GlB-B4-FVl"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="TvI-4U-PMq" secondAttribute="bottom" constant="8" id="YrZ-Zy-PG6"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="kvg-2B-M3g" secondAttribute="trailing" constant="8" id="RY3-26-cCZ"/>
+                                                        <constraint firstItem="kvg-2B-M3g" firstAttribute="leading" secondItem="G5p-wB-NJi" secondAttribute="leadingMargin" constant="8" id="j5n-Ta-Sqk"/>
                                                         <constraint firstItem="TvI-4U-PMq" firstAttribute="top" secondItem="G5p-wB-NJi" secondAttribute="topMargin" constant="8" id="mUz-Z8-Hvx"/>
                                                         <constraint firstAttribute="trailingMargin" secondItem="TvI-4U-PMq" secondAttribute="trailing" constant="8" id="ml0-1X-9qB"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="favoriteLabel" destination="TvI-4U-PMq" id="2BP-kj-VQC"/>
+                                                    <outlet property="artistLabel" destination="TvI-4U-PMq" id="2BP-kj-VQC"/>
+                                                    <outlet property="songLabel" destination="kvg-2B-M3g" id="1hJ-mA-NOb"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

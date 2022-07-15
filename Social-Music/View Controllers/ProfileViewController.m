@@ -37,11 +37,12 @@
        [self.favoritesTableView insertSubview:refreshControl atIndex:0];
     
     [[SpotifyManager shared] authenticateSpotify];
+}
 
-    NSString *savedValue = [[NSUserDefaults standardUserDefaults]
-        stringForKey:@"access_token"];
-    NSLog(@"Saved value = %@", savedValue);
-    
+- (void)viewDidAppear:(BOOL)animated {
+    self.accessToken = [[SpotifyManager shared] accessToken];
+    NSLog(@"saved val = %@", self.accessToken);
+    [self fetchTopArtistData];
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -132,10 +133,31 @@
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
 
+- (void)fetchTopArtistData {
+    NSString *token = self.accessToken;
+    
+    NSString *tokenType = @"Bearer";
+    NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    NSURL *url = [NSURL URLWithString:@"https://api.spotify.com/v1/me/top/artists"];
+    [request setValue:header forHTTPHeaderField:@"Authorization"];
+    [request setURL:url];
+            
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (!error) {
+                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                self.spotifyData = dataDictionary[@"items"];
+                NSLog(@"%@", self.spotifyData);
+            }
+        }] resume];
+}
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     FavoritesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:indexPath];
-    cell.favoriteLabel.text = @"favorite";
+    cell.artistLabel.text = self.spotifyData[indexPath.row][@"name"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     return cell;
 }
 

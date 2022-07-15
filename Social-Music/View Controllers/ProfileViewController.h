@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *favoritesTableView;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (nonatomic, strong) NSArray *spotifyData;
+@property (nonatomic, strong) NSString *accessToken;
 
 - (IBAction)didTapTakePhoto:(id)sender;
 - (IBAction)didTapCameraRoll:(id)sender;

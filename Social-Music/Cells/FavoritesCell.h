@@ -10,7 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FavoritesCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *favoriteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *artistLabel;
+@property (weak, nonatomic) IBOutlet UILabel *songLabel;
 
 @end
 

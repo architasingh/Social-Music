@@ -64,11 +64,17 @@
 
 - (void)sessionManager:(nonnull SPTSessionManager *)manager didInitiateSession:(nonnull SPTSession *)session {
     self.appRemote.connectionParameters.accessToken = session.accessToken; // update api manager with token
-    NSLog(@"Token: %@", session.accessToken);
     [self.appRemote connect];
-    [[NSUserDefaults standardUserDefaults] setObject:session.accessToken forKey:@"access_token"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     NSLog(@"success: %@", session);
+    
+    self.accessToken = session.accessToken;
+    /*NSString *valueToSave = session.accessToken;
+    [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"access_token"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSString *savedValue = [[NSUserDefaults standardUserDefaults]
+           stringForKey:@"access_token"];
+    NSLog(@"Saved value = %@", savedValue);*/
+    
 }
 
 - (void)sessionManager:(nonnull SPTSessionManager *)manager didFailWithError:(nonnull NSError *)error {
