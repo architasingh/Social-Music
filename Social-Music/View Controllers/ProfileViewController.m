@@ -36,13 +36,12 @@
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
        [self.favoritesTableView insertSubview:refreshControl atIndex:0];
     
-    [[SpotifyManager shared] authenticateSpotify];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     self.accessToken = [[SpotifyManager shared] accessToken];
-    NSLog(@"saved val = %@", self.accessToken);
-    [self fetchTopArtistData];
+    [self fetchTopArtistData:@"artists"];
+    [self fetchTopArtistData:@"tracks"];
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -133,13 +132,15 @@
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
 
-- (void)fetchTopArtistData {
+- (void)fetchTopArtistData:(NSString *)type {
     NSString *token = self.accessToken;
     
     NSString *tokenType = @"Bearer";
     NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSURL *url = [NSURL URLWithString:@"https://api.spotify.com/v1/me/top/artists"];
+    
+    NSString *baseURL = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:type];
+    NSURL *url = [NSURL URLWithString:baseURL];
     [request setValue:header forHTTPHeaderField:@"Authorization"];
     [request setURL:url];
             
@@ -147,15 +148,21 @@
     [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (!error) {
                 NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                self.spotifyData = dataDictionary[@"items"];
-                NSLog(@"%@", self.spotifyData);
+                if ([type  isEqual: @"artists"]) {
+                    self.artistData = dataDictionary[@"items"];
+                } if ([type  isEqual: @"tracks"]) {
+                    self.trackData = dataDictionary[@"items"];
+                }
             }
         }] resume];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     FavoritesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:indexPath];
-    cell.artistLabel.text = self.spotifyData[indexPath.row][@"name"];
+    
+    cell.artistLabel.text = self.artistData[indexPath.row][@"name"];
+    cell.songLabel.text = self.trackData[indexPath.row][@"name"];
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;

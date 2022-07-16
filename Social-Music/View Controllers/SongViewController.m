@@ -14,6 +14,7 @@
 #import <SpotifyiOS/SPTAppRemote.h>
 #import <SpotifyiOS/SPTSession.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
+#import "SpotifyManager.h"
 
 @interface SongViewController ()
 
@@ -36,20 +37,8 @@
 }
 */
 
-- (IBAction)didTapSkip:(id)sender {
-    
-    /*[self.appRemote.playerAPI skipToNext:^(id  _Nullable result, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"failed");
-        } else {
-            NSLog(@"success");
-        }
-    }];*/
-    
-}
 
 - (IBAction)didTapSpotify:(id)sender {
+    [[SpotifyManager shared] authenticateSpotify];
 }
-
-
 @end
