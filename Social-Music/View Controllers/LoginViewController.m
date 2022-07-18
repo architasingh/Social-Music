@@ -44,7 +44,7 @@
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
                 if ([self.usernameField.text isEqual:@""] || [self.passwordField.text isEqual:@""]) {
-                    [self alert];
+                    [self loginAlert];
                 }
             } else {
                 NSLog(@"User registered successfully");
@@ -61,7 +61,7 @@
             if (error != nil) {
                 NSLog(@"User log in failed: %@", error.localizedDescription);
                 if ([self.usernameField.text isEqual:@""] || [self.passwordField.text isEqual:@""]) {
-                    [self alert];
+                    [self loginAlert];
                 }
             } else {
                 NSLog(@"User logged in successfully");
@@ -70,7 +70,7 @@
         }];
 }
 
-- (void) alert {
+- (void) loginAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty Fields Alert"
                                 message:@"You have submitted one or more empty fields. Please enter at least 1 character for username/password and try again."
                                 preferredStyle:(UIAlertControllerStyleAlert)];

@@ -68,6 +68,7 @@
     
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"user"];
+    
     query.limit = 20;
     [query findObjectsInBackgroundWithBlock:^(NSArray *messages, NSError *error) {
         if (messages != nil) {
@@ -80,13 +81,21 @@
 }
 
 - (IBAction)didTapSend:(id)sender {
-    PFObject *chatMessage = [PFObject objectWithClassName:@"Message"];
-    chatMessage[@"text"] = self.chatMessage.text;
-    chatMessage[@"user"] = PFUser.currentUser;
-    [chatMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+    if ([self.chatMessage.text isEqual:@""]) {
+        [self emptyMessageAlert];
+        return;
+    }
+    PFObject *chatMessageObject = [PFObject objectWithClassName:@"Message"];
+    
+    chatMessageObject[@"text"] = self.chatMessage.text;
+    chatMessageObject[@"user"] = PFUser.currentUser;
+    
+    [chatMessageObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (succeeded) {
                 NSLog(@"The message was saved!");
                 self.chatMessage.text = @"";
+//                chatMessageObject[@"date"] = chatMessageObject.createdAt;
+//                NSLog(@"object - %@", chatMessageObject);
             } else {
                 NSLog(@"Problem saving message: %@", error.localizedDescription);
             }
@@ -107,11 +116,13 @@
         cell.profileImage.file = user[@"profilePicture"];
         cell.profileImage.layer.cornerRadius = 30;
         cell.profileImage.layer.masksToBounds = YES;
-        [cell.profileImage loadInBackground];
         
-        /*NSDate *dateForm = self.messages[indexPath.row][@"createdAt"];
-        NSString *dateString = dateForm.timeAgoSinceNow;
-        cell.dateLabel.text = dateString;*/
+//        NSDate *dateForm = .createdAt;
+//        NSLog(@"cell date - %@", dateForm);
+//        NSString *dateString = dateForm.timeAgoSinceNow;
+//        cell.dateLabel.text = dateString;
+        
+        [cell.profileImage loadInBackground];
         
     } else {
         cell.usernameLabel.text = @"🤖";
@@ -170,6 +181,29 @@
         
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return newLength <= 500;
+}
+
+- (void) emptyMessageAlert {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty Message Alert"
+                                message:@"You have submitted an empty message. Please enter at least 1 character for your message and try again."
+                                preferredStyle:(UIAlertControllerStyleAlert)];
+   
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                    style:UIAlertActionStyleCancel
+                                    handler:^(UIAlertAction * _Nonnull action) {
+                                                             
+                                    }];
+    
+    [alert addAction:cancelAction];
+
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                     }];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:^{
+    }];
 }
 
 @end
