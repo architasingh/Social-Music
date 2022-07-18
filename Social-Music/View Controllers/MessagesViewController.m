@@ -11,7 +11,7 @@
 #import "DateTools.h"
 
 @interface MessagesViewController () <UITableViewDataSource, UITextViewDelegate>
-@property (strong, nonatomic) NSArray *messages;
+@property (strong, nonatomic) NSMutableArray *messages;
 @property (weak, nonatomic) IBOutlet UITextField *chatMessage;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
 @property (weak, nonatomic) IBOutlet UITableView *chatTableView;
@@ -38,7 +38,6 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
        [self.chatTableView insertSubview:refreshControl atIndex:0];
-    
     
     self.chatMessage.delegate = self;
     
@@ -94,8 +93,9 @@
             if (succeeded) {
                 NSLog(@"The message was saved!");
                 self.chatMessage.text = @"";
-//                chatMessageObject[@"date"] = chatMessageObject.createdAt;
-//                NSLog(@"object - %@", chatMessageObject);
+                chatMessageObject[@"date"] = chatMessageObject.createdAt;
+                [chatMessageObject saveInBackground];
+                [self.messages addObject:chatMessageObject[@"date"]];
             } else {
                 NSLog(@"Problem saving message: %@", error.localizedDescription);
             }
@@ -105,6 +105,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChatCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChatCell" forIndexPath:indexPath];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.chatLabel.text = self.messages[indexPath.row][@"text"];
     cell.bubbleView.layer.cornerRadius = 16;
     cell.bubbleView.clipsToBounds = true;
@@ -117,19 +118,20 @@
         cell.profileImage.layer.cornerRadius = 30;
         cell.profileImage.layer.masksToBounds = YES;
         
-//        NSDate *dateForm = .createdAt;
-//        NSLog(@"cell date - %@", dateForm);
-//        NSString *dateString = dateForm.timeAgoSinceNow;
-//        cell.dateLabel.text = dateString;
+        NSDate *dateForm = self.messages[indexPath.row][@"date"];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"MM-dd-yyyy";
+        
+        NSDate *date = dateForm; // your NSDate object
+        NSString *dateString = [dateFormatter stringFromDate:date];
+        cell.dateLabel.text = dateString;
         
         [cell.profileImage loadInBackground];
         
     } else {
         cell.usernameLabel.text = @"🤖";
     }
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
     return cell;
 }
 
@@ -159,7 +161,6 @@
     [self moveFrameToVerticalPosition:newVerticalPosition forDuration:0.3f];
 }
 
-
 - (void)keyboardWillHide:(NSNotification *)notification {
     [self moveFrameToVerticalPosition:0.0f forDuration:0.3f];
 }
@@ -173,7 +174,6 @@
     }];
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    // Prevent crashing undo bug – see note below.
     if(range.length + range.location > self.chatMessage.text.length)
     {
         return NO;

@@ -453,7 +453,7 @@
                                         <connections>
                                             <outlet property="bubbleView" destination="dUJ-Mq-T3j" id="WBa-yJ-dro"/>
                                             <outlet property="chatLabel" destination="Pzd-py-GfJ" id="JxF-E0-1tZ"/>
-                                            <outlet property="dateLabel" destination="VXC-ak-Hyr" id="7ey-uY-dWS"/>
+                                            <outlet property="dateLabel" destination="VXC-ak-Hyr" id="37o-hx-k0C"/>
                                             <outlet property="profileImage" destination="RVw-63-ANY" id="sGc-OG-rgM"/>
                                             <outlet property="usernameLabel" destination="hke-JZ-27p" id="ukU-Rb-zo8"/>
                                         </connections>

@@ -199,6 +199,7 @@
 - (void) saveTopSongs {
     PFObject *topSongs = [PFObject objectWithClassName:@"Songs"];
     PFUser *curr = PFUser.currentUser;
+    
     topSongs[@"user"] = curr;
     if (!(PFUser.currentUser.objectId == curr.objectId)) {
         NSLog(@"Song PFUser: %@", PFUser.currentUser.objectId);
