@@ -18,6 +18,10 @@
 
 @interface SongViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *spotifyButton;
+
+- (IBAction)didTapSpotify:(id)sender;
+
 @end
 
 @implementation SongViewController

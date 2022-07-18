@@ -20,8 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SongViewController : UIViewController 
 
 @property (nonatomic, strong) SPTAppRemote *appRemote;
-@property (weak, nonatomic) IBOutlet UIButton *spotifyButton;
-- (IBAction)didTapSpotify:(id)sender;
 
 @end
 

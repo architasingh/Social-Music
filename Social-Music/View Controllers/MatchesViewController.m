@@ -9,6 +9,8 @@
 
 @interface MatchesViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *matchesLabel;
+
 @end
 
 @implementation MatchesViewController

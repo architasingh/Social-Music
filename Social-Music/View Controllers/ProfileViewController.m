@@ -14,6 +14,22 @@
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet PFImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
+@property (weak, nonatomic) IBOutlet UIButton *cameraRollButton;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UITableView *favoritesTableView;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+
+@property (nonatomic, strong) NSArray *artistData;
+@property (nonatomic, strong) NSArray *trackData;
+@property (nonatomic, strong) NSString *accessToken;
+
+- (IBAction)didTapTakePhoto:(id)sender;
+- (IBAction)didTapCameraRoll:(id)sender;
+- (IBAction)didTapLogout:(id)sender;
+
 @end
 
 @implementation ProfileViewController
@@ -36,12 +52,15 @@
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
        [self.favoritesTableView insertSubview:refreshControl atIndex:0];
     
+    [self.favoriteButton setTitle:@"Top Songs" forState:UIControlStateSelected];
+    [self.favoriteButton setTitle:@"Top Artists" forState:UIControlStateNormal];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     self.accessToken = [[SpotifyManager shared] accessToken];
-    [self fetchTopArtistData:@"artists"];
-    [self fetchTopArtistData:@"tracks"];
+    [self fetchTopData:@"artists"];
+    [self fetchTopData:@"tracks"];
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -116,6 +135,11 @@
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
+- (IBAction)didTapArtistButton:(id)sender {
+    self.favoriteButton.selected = !self.favoriteButton.selected;
+    [self.favoritesTableView reloadData];
+}
+
 - (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
 
     // check if image is not nil
@@ -132,7 +156,7 @@
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
 
-- (void)fetchTopArtistData:(NSString *)type {
+- (void)fetchTopData:(NSString *)type {
     NSString *token = self.accessToken;
     
     NSString *tokenType = @"Bearer";
@@ -159,17 +183,19 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     FavoritesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:indexPath];
-    
-    cell.artistLabel.text = self.artistData[indexPath.row][@"name"];
-    cell.songLabel.text = self.trackData[indexPath.row][@"name"];
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-    return cell;
+    if (self.favoriteButton.isSelected) {
+        cell.artistLabel.text = self.artistData[indexPath.row][@"name"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    } else { // if song button/nothing is selected
+        cell.artistLabel.text = self.trackData[indexPath.row][@"name"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.artistData.count;
 }
 
 @end
