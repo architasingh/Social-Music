@@ -25,7 +25,6 @@
 @property (nonatomic, strong) NSArray *artistData;
 @property (nonatomic, strong) NSArray *trackData;
 @property (nonatomic, strong) NSString *accessToken;
-@property Boolean *saved;
 
 - (IBAction)didTapTakePhoto:(id)sender;
 - (IBAction)didTapCameraRoll:(id)sender;
@@ -53,19 +52,15 @@
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
        [self.favoritesTableView insertSubview:refreshControl atIndex:0];
     
-    [self.favoriteButton setTitle:@"Top Songs" forState:UIControlStateSelected];
-    [self.favoriteButton setTitle:@"Top Artists" forState:UIControlStateNormal];
-    self.saved = FALSE;
+    [self.favoriteButton setTitle:@"Show Top Songs" forState:UIControlStateSelected];
+    [self.favoriteButton setTitle:@"Show Top Artists" forState:UIControlStateNormal];
     
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     self.accessToken = [[SpotifyManager shared] accessToken];
-    if (self.saved == FALSE) {
-        [self fetchTopData:@"artists"];
-        [self fetchTopData:@"tracks"];
-        self.saved = TRUE;
-    }
+    [self fetchTopData:@"artists"];
+    [self fetchTopData:@"tracks"];
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -203,38 +198,49 @@
 
 - (void) saveTopSongs {
     PFObject *topSongs = [PFObject objectWithClassName:@"Songs"];
-    NSMutableArray *topSongsArray = [NSMutableArray new];
-    for (int i = 0; i < self.trackData.count; i++) {
-        [topSongsArray addObject:self.trackData[i][@"name"]];
+    PFUser *curr = PFUser.currentUser;
+    topSongs[@"user"] = curr;
+    if (!(PFUser.currentUser.objectId == curr.objectId)) {
+        NSLog(@"Song PFUser: %@", PFUser.currentUser.objectId);
+        NSLog(@"Song User: %@", topSongs[@"user"]);
+        NSMutableArray *topSongsArray = [NSMutableArray new];
+        for (int i = 0; i < self.trackData.count; i++) {
+            [topSongsArray addObject:self.trackData[i][@"name"]];
+        }
+        NSLog(@"top songs: %@", topSongsArray);
+        topSongs[@"text"] = topSongsArray;
+        [topSongs saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+                if (succeeded) {
+                    NSLog(@"The song data was saved!");
+                } else {
+                    NSLog(@"Problem saving song data: %@", error.localizedDescription);
+                }
+            }];
     }
-    NSLog(@"top songs: %@", topSongsArray);
-    topSongs[@"text"] = topSongsArray;
-    topSongs[@"user"] = PFUser.currentUser;
-    [topSongs saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-            if (succeeded) {
-                NSLog(@"The song data was saved!");
-            } else {
-                NSLog(@"Problem saving song data: %@", error.localizedDescription);
-            }
-        }];
 }
 
 - (void) saveTopArtists {
     PFObject *topArtists = [PFObject objectWithClassName:@"Artists"];
-    NSMutableArray *topArtistsArray = [NSMutableArray new];
-    for (int i = 0; i < self.artistData.count; i++) {
-        [topArtistsArray addObject:self.artistData[i][@"name"]];
+    PFUser *curr = PFUser.currentUser;
+    topArtists[@"user"] = curr;
+    if (!(PFUser.currentUser.objectId == curr.objectId)) {
+        NSLog(@"Artist PFUser: %@", PFUser.currentUser.objectId);
+        NSLog(@"Artist User: %@", topArtists[@"user"]);
+        NSMutableArray *topArtistsArray = [NSMutableArray new];
+        for (int i = 0; i < self.artistData.count; i++) {
+            [topArtistsArray addObject:self.artistData[i][@"name"]];
+        }
+        NSLog(@"top artists: %@", topArtistsArray);
+        topArtists[@"text"] = topArtistsArray;
+    
+        [topArtists saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+                if (succeeded) {
+                    NSLog(@"The artist data was saved!");
+                } else {
+                    NSLog(@"Problem saving artist data: %@", error.localizedDescription);
+                }
+            }];
     }
-    NSLog(@"top artists: %@", topArtistsArray);
-    topArtists[@"text"] = topArtistsArray;
-    topArtists[@"user"] = PFUser.currentUser;
-    [topArtists saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-            if (succeeded) {
-                NSLog(@"The artist data was saved!");
-            } else {
-                NSLog(@"Problem saving artist data: %@", error.localizedDescription);
-            }
-        }];
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
