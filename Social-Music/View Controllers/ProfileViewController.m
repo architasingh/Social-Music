@@ -174,8 +174,10 @@
                 NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 if ([type  isEqual: @"artists"]) {
                     self.artistData = dataDictionary[@"items"];
+                    [self saveTopArtists];
                 } if ([type  isEqual: @"tracks"]) {
                     self.trackData = dataDictionary[@"items"];
+                    [self saveTopSongs];
                 }
             }
         }] resume];
@@ -184,14 +186,50 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     FavoritesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:indexPath];
     if (self.favoriteButton.isSelected) {
-        cell.artistLabel.text = self.artistData[indexPath.row][@"name"];
+        cell.favoriteLabel.text = self.artistData[indexPath.row][@"name"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else { // if song button/nothing is selected
-        cell.artistLabel.text = self.trackData[indexPath.row][@"name"];
+        cell.favoriteLabel.text = self.trackData[indexPath.row][@"name"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
+}
+
+- (void) saveTopSongs {
+    PFObject *topSongs = [PFObject objectWithClassName:@"Songs"];
+    NSMutableArray *topSongsArray = [NSMutableArray new];
+    for (int i = 0; i < self.trackData.count; i++) {
+        [topSongsArray addObject:self.trackData[i][@"name"]];
+    }
+    NSLog(@"top songs: %@", topSongsArray);
+    topSongs[@"text"] = topSongsArray;
+    topSongs[@"user"] = PFUser.currentUser;
+    [topSongs saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+            if (succeeded) {
+                NSLog(@"The song data was saved!");
+            } else {
+                NSLog(@"Problem saving song data: %@", error.localizedDescription);
+            }
+        }];
+}
+
+- (void) saveTopArtists {
+    PFObject *topArtists = [PFObject objectWithClassName:@"Artists"];
+    NSMutableArray *topArtistsArray = [NSMutableArray new];
+    for (int i = 0; i < self.artistData.count; i++) {
+        [topArtistsArray addObject:self.artistData[i][@"name"]];
+    }
+    NSLog(@"top artists: %@", topArtistsArray);
+    topArtists[@"text"] = topArtistsArray;
+    topArtists[@"user"] = PFUser.currentUser;
+    [topArtists saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+            if (succeeded) {
+                NSLog(@"The artist data was saved!");
+            } else {
+                NSLog(@"Problem saving artist data: %@", error.localizedDescription);
+            }
+        }];
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -267,7 +267,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="artistLabel" destination="TvI-4U-PMq" id="2BP-kj-VQC"/>
+                                            <outlet property="favoriteLabel" destination="TvI-4U-PMq" id="2BP-kj-VQC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
