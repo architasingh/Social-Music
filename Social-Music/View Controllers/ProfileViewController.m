@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSArray *artistData;
 @property (nonatomic, strong) NSArray *trackData;
 @property (nonatomic, strong) NSString *accessToken;
+@property Boolean *saved;
 
 - (IBAction)didTapTakePhoto:(id)sender;
 - (IBAction)didTapCameraRoll:(id)sender;
@@ -54,13 +55,17 @@
     
     [self.favoriteButton setTitle:@"Top Songs" forState:UIControlStateSelected];
     [self.favoriteButton setTitle:@"Top Artists" forState:UIControlStateNormal];
+    self.saved = FALSE;
     
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     self.accessToken = [[SpotifyManager shared] accessToken];
-    [self fetchTopData:@"artists"];
-    [self fetchTopData:@"tracks"];
+    if (self.saved == FALSE) {
+        [self fetchTopData:@"artists"];
+        [self fetchTopData:@"tracks"];
+        self.saved = TRUE;
+    }
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
