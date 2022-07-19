@@ -119,13 +119,10 @@
         cell.profileImage.layer.masksToBounds = YES;
         
         NSDate *dateForm = self.messages[indexPath.row][@"date"];
-        
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"MM-dd-yyyy";
         
         NSDate *date = dateForm; // your NSDate object
-        NSString *string = dateForm.shortTimeAgoSinceNow;
-        NSLog(@"%@", string);
         NSString *dateString = [dateFormatter stringFromDate:date];
         cell.dateLabel.text = dateString;
         
