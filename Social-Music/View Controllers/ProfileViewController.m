@@ -43,9 +43,6 @@
     self.profileImage.file = user[@"profilePicture"];
     [self.profileImage loadInBackground];
     
-    self.favoritesTableView.dataSource = self;
-    [self.favoritesTableView reloadData];
-    
     self.favoritesTableView.estimatedRowHeight = UITableViewAutomaticDimension;
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -55,10 +52,16 @@
     [self.favoriteButton setTitle:@"Show Top Songs" forState:UIControlStateSelected];
     [self.favoriteButton setTitle:@"Show Top Artists" forState:UIControlStateNormal];
     
+    self.favoritesTableView.dataSource = self;
+    [self.favoritesTableView reloadData];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     self.accessToken = [[SpotifyManager shared] accessToken];
+  
+    [self.favoritesTableView reloadData];
+    
     [self fetchTopData:@"artists"];
     [self fetchTopData:@"tracks"];
 }
@@ -171,6 +174,7 @@
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (!error) {
+               //[self.favoritesTableView reloadData];
                 NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 if ([type  isEqual: @"artists"]) {
                     self.artistData = dataDictionary[@"items"];
@@ -184,14 +188,15 @@
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
     FavoritesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:indexPath];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (self.favoriteButton.isSelected) {
         cell.favoriteLabel.text = self.artistData[indexPath.row][@"name"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else { // if song button/nothing is selected
         cell.favoriteLabel.text = self.trackData[indexPath.row][@"name"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
 }
