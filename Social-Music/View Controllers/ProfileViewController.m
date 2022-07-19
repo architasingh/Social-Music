@@ -11,6 +11,8 @@
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
 #import "SpotifyManager.h"
+#import "UIImageView+AFNetworking.h"
+#import "Parse/PFImageView.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
 
@@ -53,14 +55,14 @@
     [self.favoriteButton setTitle:@"Show Top Artists" forState:UIControlStateNormal];
     
     self.favoritesTableView.dataSource = self;
-    [self.favoritesTableView reloadData];
+    //[self.favoritesTableView reloadData];
     
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     self.accessToken = [[SpotifyManager shared] accessToken];
   
-    [self.favoritesTableView reloadData];
+    //[self.favoritesTableView reloadData];
     
     [self fetchTopData:@"artists"];
     [self fetchTopData:@"tracks"];
@@ -174,7 +176,6 @@
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (!error) {
-               //[self.favoritesTableView reloadData];
                 NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 if ([type  isEqual: @"artists"]) {
                     self.artistData = dataDictionary[@"items"];
@@ -192,8 +193,13 @@
     FavoritesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:indexPath];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     if (self.favoriteButton.isSelected) {
         cell.favoriteLabel.text = self.artistData[indexPath.row][@"name"];
+        
+//        NSURL *image_url = self.artistData[indexPath.row][@"images"][0][@"url"];
+//        [cell.artistPhoto setImageWithURL:image_url];
+       
         return cell;
     } else { // if song button/nothing is selected
         cell.favoriteLabel.text = self.trackData[indexPath.row][@"name"];
@@ -234,6 +240,7 @@
     if (!([curr[@"statusArtist"] isEqualToString:@"saved"])) {
         NSMutableArray *topArtistsArray = [NSMutableArray new];
         curr[@"statusArtist"] = @"saved";
+//        curr[@"artistList"] = ;
         [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         }];
         for (int i = 0; i < self.artistData.count; i++) {

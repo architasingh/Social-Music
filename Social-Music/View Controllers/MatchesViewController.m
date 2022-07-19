@@ -8,6 +8,7 @@
 #import "MatchesViewController.h"
 #import "MatchesCell.h"
 #import <Parse/Parse.h>
+#import "ProfileDetailsViewController.h"
 
 @interface MatchesViewController () <UITableViewDataSource>
 
@@ -22,12 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.matchesTableView.estimatedRowHeight = UITableViewAutomaticDimension;
-    
+    //self.matchesTableView.estimatedRowHeight = UITableViewAutomaticDimension;
+    self.matchesTableView.rowHeight = 100;
     self.matchesTableView.dataSource = self;
     
     [self displayUsers];
-//    [self.matchesTableView reloadData];
 }
 
 - (void) displayUsers {
@@ -36,7 +36,9 @@
         if (!error) {
             self.users = [[NSMutableArray alloc] init];
             for (PFUser *object in objects) {
-                [self.users addObject:object[@"username"]];
+                if (!([object[@"username"] isEqualToString:PFUser.currentUser.username])) {
+                    [self.users addObject:object];
+                }
             }
             [self.matchesTableView reloadData];
             NSLog(@"Users: %@", self.users);
@@ -46,21 +48,25 @@
     }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    NSIndexPath *indexPath = [self.matchesTableView indexPathForCell:(UITableViewCell *)sender];
+    NSArray *user = self.users[indexPath.row];
+    ProfileDetailsViewController *detailVC = [segue destinationViewController];
+    detailVC.user = user;
 }
-*/
+
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MatchesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"matchesCell" forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.userLabel.text = [@"@" stringByAppendingString: self.users[indexPath.row]];
-    NSLog(@"user: %@",self.users);
+    
+    //deselect after tapping
+    cell.userLabel.text = [@"@" stringByAppendingString: self.users[indexPath.row][@"username"]];
+
+    cell.userImage.file = self.users[indexPath.row][@"profilePicture"];
+    cell.userImage.layer.cornerRadius = 45;
+    cell.userImage.layer.masksToBounds = YES;
+    [cell.userImage loadInBackground];
+    
     return cell;
 }
 
