@@ -8,10 +8,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.codepath.Social-Music</string>
+			<string>com.codepath.Social-Music1</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.codepath.Social-Music</string>
+				<string>com.codepath.Social-Music1</string>
 			</array>
 		</dict>
 	</array>

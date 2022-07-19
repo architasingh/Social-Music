@@ -29,7 +29,7 @@
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
         
     NSString *spotifyClientID = [dict objectForKey: @"client_key"];
-    NSURL *spotifyRedirectURL = [NSURL URLWithString:@"com.codepath.Social-Music://spotify-login-callback"];
+    NSURL *spotifyRedirectURL = [NSURL URLWithString:@"com.codepath.Social-Music1://spotify-login-callback"];
 
     self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
 

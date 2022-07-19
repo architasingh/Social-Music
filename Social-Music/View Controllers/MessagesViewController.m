@@ -8,7 +8,7 @@
 #import "MessagesViewController.h"
 #import <Parse/Parse.h>
 #import "ChatCell.h"
-#import "DateTools.h"
+#import "NSDate+DateTools.h"
 
 @interface MessagesViewController () <UITableViewDataSource, UITextViewDelegate>
 @property (strong, nonatomic) NSMutableArray *messages;
@@ -124,6 +124,8 @@
         dateFormatter.dateFormat = @"MM-dd-yyyy";
         
         NSDate *date = dateForm; // your NSDate object
+        NSString *string = dateForm.shortTimeAgoSinceNow;
+        NSLog(@"%@", string);
         NSString *dateString = [dateFormatter stringFromDate:date];
         cell.dateLabel.text = dateString;
         
