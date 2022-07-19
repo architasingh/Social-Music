@@ -71,7 +71,7 @@
     query.limit = 20;
     [query findObjectsInBackgroundWithBlock:^(NSArray *messages, NSError *error) {
         if (messages != nil) {
-            self.messages = messages;
+            self.messages = (NSMutableArray*)messages;
             [self.chatTableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
