@@ -33,7 +33,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     
 //    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(loadMessages) userInfo:nil repeats:true];
     [self setupLiveQuery];
-    [self loadMessages]; // delete after livequery
+//    [self loadMessages]; // delete after livequery
     
     self.chatTableView.dataSource = self;
     self.chatTableView.estimatedRowHeight = UITableViewAutomaticDimension;
@@ -68,6 +68,14 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     NSString *parseClientKey = [dict objectForKey: @"parse_client_key"];
     
     self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:liveQueryURL applicationId:parseAppID clientKey:parseClientKey];
+    PFQuery *query = [PFQuery queryWithClassName:@"Message"];
+    self.liveQuerySubscription = [self.liveQueryClient subscribeToQuery:query];
+    [self.liveQuerySubscription addCreateHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull object) {
+        [self.messages addObject:object];
+        NSLog(@"object: %@", object);
+        dispatch_async(dispatch_get_main_queue(), ^ {[self.chatTableView reloadData];});
+    }];
+    [self loadMessages];
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -79,12 +87,12 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
 
 - (void)loadMessages {
     [self.activityIndicatorChat stopAnimating];
-    
+
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
-    
+
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"user"];
-    
+
     query.limit = 20;
     [query findObjectsInBackgroundWithBlock:^(NSArray *messages, NSError *error) {
         if (messages != nil) {
@@ -104,7 +112,8 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     PFObject *chatMessageObject = [PFObject objectWithClassName:@"Message"];
     
     chatMessageObject[@"text"] = self.chatMessage.text;
-    chatMessageObject[@"user"] = PFUser.currentUser;
+    chatMessageObject[@"username"] = PFUser.currentUser.username;
+//    chatMessageObject[@"profilePicture"] = PFUser.currentUser[@"profilePicture"];
     
     [chatMessageObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (succeeded) {
@@ -127,27 +136,23 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     cell.bubbleView.layer.cornerRadius = 16;
     cell.bubbleView.clipsToBounds = true;
     
-    PFUser *user = self.messages[indexPath.row][@"user"];
+    NSString *chatAuthor = self.messages[indexPath.row][@"user"];
     
-    if (user != nil) {
-        cell.usernameLabel.text = [@"@" stringByAppendingString: user.username];
-        cell.profileImage.file = user[@"profilePicture"];
-        cell.profileImage.layer.cornerRadius = 30;
-        cell.profileImage.layer.masksToBounds = YES;
+//    cell.usernameLabel.text = [@"@" stringByAppendingString: chatAuthor];
+//    cell.profileImage.file = user[@"profilePicture"];
+    cell.profileImage.layer.cornerRadius = 30;
+    cell.profileImage.layer.masksToBounds = YES;
+    
+    NSDate *dateForm = self.messages[indexPath.row][@"date"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"MM-dd-yyyy";
+    
+    NSDate *date = dateForm; // your NSDate object
+    NSString *dateString = [dateFormatter stringFromDate:date];
+    cell.dateLabel.text = dateString;
+    
+    [cell.profileImage loadInBackground];
         
-        NSDate *dateForm = self.messages[indexPath.row][@"date"];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"MM-dd-yyyy";
-        
-        NSDate *date = dateForm; // your NSDate object
-        NSString *dateString = [dateFormatter stringFromDate:date];
-        cell.dateLabel.text = dateString;
-        
-        [cell.profileImage loadInBackground];
-        
-    } else {
-        cell.usernameLabel.text = @"🤖";
-    }
     return cell;
 }
 
