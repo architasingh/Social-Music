@@ -197,7 +197,9 @@
     if (self.favoriteButton.isSelected) {
         cell.favoriteLabel.text = self.artistData[indexPath.row][@"name"];
         
-//        NSURL *image_url = self.artistData[indexPath.row][@"images"][0][@"url"];
+//        NSString *image_string = self.artistData[indexPath.row][@"images"][0][@"url"];
+//        NSURL *image_url = [NSURL URLWithString:image_string];
+//
 //        [cell.artistPhoto setImageWithURL:image_url];
        
         return cell;
@@ -211,12 +213,10 @@
     PFObject *topSongs = [PFObject objectWithClassName:@"Songs"];
     PFUser *curr = PFUser.currentUser;
     topSongs[@"user"] = curr;
+//    curr[@"statusSong"] = @"";
     
     if (!([curr[@"statusSong"] isEqualToString:@"saved"])) {
         NSMutableArray *topSongsArray = [NSMutableArray new];
-        curr[@"statusSong"] = @"saved";
-        [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        }];
         for (int i = 0; i < self.trackData.count; i++) {
             [topSongsArray addObject:self.trackData[i][@"name"]];
         }
@@ -224,6 +224,10 @@
         topSongs[@"text"] = topSongsArray;
         [topSongs saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
                 if (succeeded) {
+                    curr[@"statusSong"] = @"saved";
+                    curr[@"topSongs"] = topSongs;
+                    [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    }];
                     NSLog(@"The song data was saved!");
                 } else {
                     NSLog(@"Problem saving song data: %@", error.localizedDescription);
@@ -236,13 +240,10 @@
     PFObject *topArtists = [PFObject objectWithClassName:@"Artists"];
     PFUser *curr = PFUser.currentUser;
     topArtists[@"user"] = curr;
+//    curr[@"statusArtist"] = @"";
    
     if (!([curr[@"statusArtist"] isEqualToString:@"saved"])) {
         NSMutableArray *topArtistsArray = [NSMutableArray new];
-        curr[@"statusArtist"] = @"saved";
-//        curr[@"artistList"] = ;
-        [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        }];
         for (int i = 0; i < self.artistData.count; i++) {
             [topArtistsArray addObject:self.artistData[i][@"name"]];
         }
@@ -251,6 +252,10 @@
     
         [topArtists saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
                 if (succeeded) {
+                    curr[@"statusArtist"] = @"saved";
+                    curr[@"topArtists"] = topArtists;
+                    [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    }];
                     NSLog(@"The artist data was saved!");
                 } else {
                     NSLog(@"Problem saving artist data: %@", error.localizedDescription);
