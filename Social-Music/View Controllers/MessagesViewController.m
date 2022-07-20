@@ -9,6 +9,7 @@
 #import <Parse/Parse.h>
 #import "ChatCell.h"
 #import "NSDate+DateTools.h"
+#import "ParseLiveQuery/ParseLiveQuery-umbrella.h"
 
 @interface MessagesViewController () <UITableViewDataSource, UITextViewDelegate>
 @property (strong, nonatomic) NSMutableArray *messages;
@@ -16,18 +17,24 @@
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
 @property (weak, nonatomic) IBOutlet UITableView *chatTableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorChat;
+@property (strong, nonatomic) PFLiveQueryClient *liveQueryClient;
+@property (strong, nonatomic) PFLiveQuerySubscription *liveQuerySubscription;
 
 @end
 
 @implementation MessagesViewController
+
+NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.activityIndicatorChat startAnimating];
     
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(loadMessages) userInfo:nil repeats:true];
-
+//    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(loadMessages) userInfo:nil repeats:true];
+    [self setupLiveQuery];
+    [self loadMessages]; // delete after livequery
+    
     self.chatTableView.dataSource = self;
     self.chatTableView.estimatedRowHeight = UITableViewAutomaticDimension;
     
@@ -53,6 +60,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)setupLiveQuery {
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
+        
+    NSString *parseAppID = [dict objectForKey: @"parse_app_id"];
+    NSString *parseClientKey = [dict objectForKey: @"parse_client_key"];
+    
+    self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:liveQueryURL applicationId:parseAppID clientKey:parseClientKey];
+}
+
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
     self.chatTableView.dataSource = self;
 

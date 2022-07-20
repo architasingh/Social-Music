@@ -10,6 +10,7 @@ target 'Social-Music' do
   pod 'Parse/UI'
   pod 'DateTools'
   pod 'AFNetworking'
+  pod 'ParseLiveQuery'
 
   target 'Social-MusicTests' do
     inherit! :search_paths

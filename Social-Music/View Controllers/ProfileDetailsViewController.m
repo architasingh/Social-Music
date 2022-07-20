@@ -6,11 +6,13 @@
 //
 
 #import "ProfileDetailsViewController.h"
+#import <Parse/Parse.h>
 
 @interface ProfileDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 - (IBAction)didTapBack:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *topInfoLabel;
 
 @end
 
@@ -19,8 +21,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.usernameLabel.text = [@"@" stringByAppendingString: self.user[@"username"]];
-    NSLog(@"details user: %@", self.user);
-    // Do any additional setup after loading the view.
+    
+    //self.topInfoLabel.text = self.user[@"topSongs"];
+    //NSLog(@"details user: %@", topSongs);
+    //Do any additional setup after loading the view.
 }
 
 /*

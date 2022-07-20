@@ -11,7 +11,7 @@
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
 #import "SpotifyManager.h"
-#import "UIImageView+AFNetworking.h"
+#import <UIImageView+AFNetworking.h>
 #import "Parse/PFImageView.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
@@ -55,14 +55,10 @@
     [self.favoriteButton setTitle:@"Show Top Artists" forState:UIControlStateNormal];
     
     self.favoritesTableView.dataSource = self;
-    //[self.favoritesTableView reloadData];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     self.accessToken = [[SpotifyManager shared] accessToken];
-  
-    //[self.favoritesTableView reloadData];
     
     [self fetchTopData:@"artists"];
     [self fetchTopData:@"tracks"];

@@ -246,24 +246,42 @@
                                     <action selector="didTapBack:" destination="CNP-v8-sug" eventType="touchUpInside" id="6nC-P0-VFk"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ngx-D2-bsV">
-                                <rect key="frame" x="0.0" y="132" width="414" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="re1-Ax-dGP">
+                                <rect key="frame" x="20" y="94" width="374" height="768"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ngx-D2-bsV">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="dKN-ft-eAJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDa-uc-PnH">
+                                        <rect key="frame" x="0.0" y="70" width="374" height="698"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="D6w-kp-owV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="4Qn-gh-34v" firstAttribute="leading" secondItem="OfA-ex-Y5l" secondAttribute="leadingMargin" id="1ws-4W-eXI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="re1-Ax-dGP" secondAttribute="trailing" id="2ea-7M-hAN"/>
                             <constraint firstItem="4Qn-gh-34v" firstAttribute="top" secondItem="OfA-ex-Y5l" secondAttribute="topMargin" id="JPL-MV-tf5"/>
+                            <constraint firstItem="re1-Ax-dGP" firstAttribute="leading" secondItem="OfA-ex-Y5l" secondAttribute="leadingMargin" id="ZnR-Je-fbI"/>
+                            <constraint firstItem="re1-Ax-dGP" firstAttribute="top" secondItem="OfA-ex-Y5l" secondAttribute="topMargin" constant="50" id="hYx-Ps-6Qp"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="re1-Ax-dGP" secondAttribute="bottom" id="jTM-Go-rnY"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="4Qn-gh-34v" secondAttribute="trailing" constant="269" id="qTJ-YV-glt"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="4Qn-gh-34v" id="0RN-UG-jvm"/>
+                        <outlet property="topInfoLabel" destination="cDa-uc-PnH" id="4M4-KN-rQz"/>
                         <outlet property="usernameLabel" destination="Ngx-D2-bsV" id="eds-zP-tbd"/>
                     </connections>
                 </viewController>
