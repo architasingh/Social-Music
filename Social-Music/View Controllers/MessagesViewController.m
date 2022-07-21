@@ -31,9 +31,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     
     [self.activityIndicatorChat startAnimating];
     
-//    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(loadMessages) userInfo:nil repeats:true];
     [self setupLiveQuery];
-//    [self loadMessages]; // delete after livequery
     
     self.chatTableView.dataSource = self;
     self.chatTableView.estimatedRowHeight = UITableViewAutomaticDimension;
@@ -70,10 +68,13 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:liveQueryURL applicationId:parseAppID clientKey:parseClientKey];
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
     self.liveQuerySubscription = [self.liveQueryClient subscribeToQuery:query];
+    
+    __unsafe_unretained typeof(self) weakSelf = self;
     [self.liveQuerySubscription addCreateHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull object) {
-        [self.messages addObject:object];
+        __strong typeof (self) strongSelf = weakSelf;
+        [strongSelf.messages insertObject:object atIndex:0];
         NSLog(@"object: %@", object);
-        dispatch_async(dispatch_get_main_queue(), ^ {[self.chatTableView reloadData];});
+        dispatch_async(dispatch_get_main_queue(), ^ {[strongSelf.chatTableView reloadData];});
     }];
     [self loadMessages];
 }
@@ -121,7 +122,6 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
                 self.chatMessage.text = @"";
                 chatMessageObject[@"date"] = chatMessageObject.createdAt;
                 [chatMessageObject saveInBackground];
-//                [self.messages addObject:chatMessageObject[@"date"]];
             } else {
                 NSLog(@"Problem saving message: %@", error.localizedDescription);
             }
