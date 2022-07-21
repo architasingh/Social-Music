@@ -47,8 +47,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self compareUserSongs];
-    [self compareUserArtists];
+    [self compareUserTop:@"artists"];
+    [self compareUserTop:@"songs"];
 }
 
 // get top data
@@ -82,25 +82,26 @@
     }];
 }
 
-- (void)compareUserSongs {
-    NSLog(@"curr song %@", self.currUserTopSongs);
-    NSLog(@"other song %@", self.otherUserTopSongs);
-}
+- (void)compareUserTop:(NSString *) type {
+    if ([type isEqualToString:@"artists"]) {
+        NSMutableSet* set1 = [NSMutableSet setWithArray:self.currUserTopArtists];
+        NSMutableSet* set2 = [NSMutableSet setWithArray:self.otherUserTopArtists];
+        [set1 intersectSet:set2]; //this will give you only the objects that are in both sets
 
-- (void)compareUserArtists {
-    NSLog(@"curr artist %@", self.currUserTopArtists);
-    NSLog(@"other artist %@", self.otherUserTopArtists);
-}
+        NSArray* result = [set1 allObjects];
+        
+        NSLog(@"%@", result);
+    } else {
+        NSMutableSet* set1 = [NSMutableSet setWithArray:self.currUserTopSongs];
+        NSMutableSet* set2 = [NSMutableSet setWithArray:self.otherUserTopSongs];
+        
+        [set1 intersectSet:set2]; //this will give you only the objects that are in both sets
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+        NSArray* result = [set1 allObjects];
+        
+        NSLog(@"%@", result);
+    }
 }
-*/
 
 // button action
 
