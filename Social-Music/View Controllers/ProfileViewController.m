@@ -14,19 +14,21 @@
 #import <UIImageView+AFNetworking.h>
 #import "Parse/PFImageView.h"
 #import "TopItems.h"
+#import "ProfileDetailsViewController.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet PFImageView *profileImage;
-@property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
-@property (weak, nonatomic) IBOutlet UIButton *cameraRollButton;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *favoritesTableView;
+
+@property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
+@property (weak, nonatomic) IBOutlet UIButton *cameraRollButton;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 
-@property (nonatomic, strong) NSArray *artistData;
-@property (nonatomic, strong) NSArray *trackData;
+@property (nonatomic, strong) NSArray *currUserArtistData;
+@property (nonatomic, strong) NSArray *currUserTrackData;
 @property (nonatomic, strong) NSString *accessToken;
 
 - (IBAction)didTapTakePhoto:(id)sender;
@@ -39,6 +41,7 @@
 
 
 // view setup
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -64,10 +67,12 @@
     self.accessToken = [[SpotifyManager shared] accessToken];
     
     [[TopItems shared] fetchTopData:@"artists"];
-    self.artistData = [[TopItems shared] artistData];
+    self.currUserArtistData = [[TopItems shared] artistData];
+    [self.favoritesTableView reloadData];
     
     [[TopItems shared] fetchTopData:@"tracks"];
-    self.trackData = [[TopItems shared] trackData];
+    self.currUserTrackData = [[TopItems shared] trackData];
+    [self.favoritesTableView reloadData];
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -167,7 +172,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if (self.favoriteButton.isSelected) {
-        cell.favoriteLabel.text = self.artistData[indexPath.row][@"name"];
+        cell.favoriteLabel.text = self.currUserArtistData[indexPath.row][@"name"];
         
 //        NSString *image_string = self.artistData[indexPath.row][@"images"][0][@"url"];
 //        NSURL *image_url = [NSURL URLWithString:image_string];
@@ -176,14 +181,13 @@
        
         return cell;
     } else { // if song button/nothing is selected
-        cell.favoriteLabel.text = self.trackData[indexPath.row][@"name"];
+        cell.favoriteLabel.text = self.currUserTrackData[indexPath.row][@"name"];
         return cell;
     }
 }
 
-
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.artistData.count;
+    return self.currUserArtistData.count;
 }
 
 @end

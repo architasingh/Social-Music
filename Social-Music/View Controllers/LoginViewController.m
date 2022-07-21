@@ -22,6 +22,8 @@
 
 @implementation LoginViewController
 
+// view setup
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -30,16 +32,14 @@
     [self.view addGestureRecognizer:gestureRecognizer];
 }
 
+// button actions
 
 - (IBAction)didTapSignup:(id)sender {
-    // initialize a user object
         PFUser *newUser = [PFUser user];
         
-        // set user properties
         newUser.username = self.usernameField.text;
         newUser.password = self.passwordField.text;
         
-        // call sign up function on the object
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
@@ -70,28 +70,27 @@
         }];
 }
 
+// alert
+
 - (void) loginAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty Fields Alert"
                                 message:@"You have submitted one or more empty fields. Please enter at least 1 character for username/password and try again."
                                 preferredStyle:(UIAlertControllerStyleAlert)];
    
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                    style:UIAlertActionStyleCancel
-                                    handler:^(UIAlertAction * _Nonnull action) {
-                                                             
-                                    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction * _Nonnull action) {}];
     
     [alert addAction:cancelAction];
 
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction * _Nonnull action) {
-                                                     }];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                            }];
     [alert addAction:okAction];
     
     [self presentViewController:alert animated:YES completion:^{
     }];
 }
+
+// keyboard
 
 - (void) hideKeyboard {
     [self.view endEditing:YES];

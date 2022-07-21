@@ -23,7 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //self.matchesTableView.estimatedRowHeight = UITableViewAutomaticDimension;
     self.matchesTableView.rowHeight = 100;
     self.matchesTableView.dataSource = self;
     
