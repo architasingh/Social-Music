@@ -259,7 +259,16 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDa-uc-PnH">
-                                        <rect key="frame" x="0.0" y="70" width="374" height="698"/>
+                                        <rect key="frame" x="0.0" y="70" width="374" height="320"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="320" id="Aez-fT-Ifq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l93-hb-BXW">
+                                        <rect key="frame" x="0.0" y="410" width="374" height="358"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -282,6 +291,7 @@
                     <connections>
                         <outlet property="backButton" destination="4Qn-gh-34v" id="0RN-UG-jvm"/>
                         <outlet property="topInfoLabel" destination="cDa-uc-PnH" id="4M4-KN-rQz"/>
+                        <outlet property="topSongsLabel" destination="l93-hb-BXW" id="jJk-jN-6Vo"/>
                         <outlet property="usernameLabel" destination="Ngx-D2-bsV" id="eds-zP-tbd"/>
                     </connections>
                 </viewController>
