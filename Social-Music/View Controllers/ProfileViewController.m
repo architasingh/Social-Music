@@ -102,15 +102,15 @@
 // image set up (move)
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    
     // Get the image captured by the UIImagePickerController
-    PFImageView *editedImage = info[UIImagePickerControllerEditedImage];
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
 
     // Do something with the images (based on your use case)
-    self.profileImage = editedImage;
+    self.profileImage.image = editedImage;
     
     PFUser *user = PFUser.currentUser;
-    user[@"profilePicture"] = [self getPFFileFromImage:self.profileImage];
+    user[@"profilePicture"] = [self getPFFileFromImage:self.profileImage.image];
     [user saveInBackground];
     
     // Dismiss UIImagePickerController to go back to your original view controller
@@ -145,6 +145,7 @@
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     [self presentViewController:imagePickerVC animated:YES completion:nil];
+    
 }
 
 - (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
