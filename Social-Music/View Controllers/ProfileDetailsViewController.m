@@ -21,10 +21,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.usernameLabel.text = [@"@" stringByAppendingString: self.user[@"username"]];
+    NSLog(@"user %@", self.user);
     
-    //self.topInfoLabel.text = self.user[@"topSongs"];
-    //NSLog(@"details user: %@", topSongs);
-    //Do any additional setup after loading the view.
+    [self getTopArtists];
+    
+    // Do any additional setup after loading the view.
+}
+
+- (void)getTopArtists {
+    PFQuery *query = [PFQuery queryWithClassName:@"Artists"];
+    [query whereKey:@"username" equalTo:self.user[@"username"]];
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray *topArtists, NSError *error) {
+        if (topArtists != nil) {
+            NSString * result = [[topArtists valueForKey:@"description"] componentsJoinedByString:@""];
+            self.topInfoLabel.text = result;
+            NSLog(@"top artists%@", topArtists);
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 /*

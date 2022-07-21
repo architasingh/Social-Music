@@ -32,16 +32,16 @@
 
 - (void) displayUsers {
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *matchUsers, NSError *error) {
         if (!error) {
             self.users = [[NSMutableArray alloc] init];
-            for (PFUser *object in objects) {
-                if (!([object[@"username"] isEqualToString:PFUser.currentUser.username])) {
-                    [self.users addObject:object];
+            for (PFUser *matchUser in matchUsers) {
+                if (!([matchUser.username isEqualToString:PFUser.currentUser.username])) {
+                    [self.users addObject:matchUser];
                 }
             }
             [self.matchesTableView reloadData];
-            NSLog(@"Users: %@", self.users);
+//            NSLog(@"Users: %@", self.users);
       } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
       }
@@ -52,7 +52,7 @@
     NSIndexPath *indexPath = [self.matchesTableView indexPathForCell:(UITableViewCell *)sender];
     NSArray *user = self.users[indexPath.row];
     ProfileDetailsViewController *detailVC = [segue destinationViewController];
-    detailVC.user = user;
+    detailVC.user = (NSDictionary*)user;
 }
 
 

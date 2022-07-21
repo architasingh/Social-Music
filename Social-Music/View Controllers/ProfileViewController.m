@@ -209,6 +209,7 @@
     PFObject *topSongs = [PFObject objectWithClassName:@"Songs"];
     PFUser *curr = PFUser.currentUser;
     topSongs[@"user"] = curr;
+    topSongs[@"username"] = curr.username;
 //    curr[@"statusSong"] = @"";
     
     if (!([curr[@"statusSong"] isEqualToString:@"saved"])) {
@@ -216,7 +217,7 @@
         for (int i = 0; i < self.trackData.count; i++) {
             [topSongsArray addObject:self.trackData[i][@"name"]];
         }
-        NSLog(@"top songs: %@", topSongsArray);
+//        NSLog(@"top songs: %@", topSongsArray);
         topSongs[@"text"] = topSongsArray;
         [topSongs saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
                 if (succeeded) {
@@ -236,6 +237,7 @@
     PFObject *topArtists = [PFObject objectWithClassName:@"Artists"];
     PFUser *curr = PFUser.currentUser;
     topArtists[@"user"] = curr;
+    topArtists[@"username"] = curr.username;
 //    curr[@"statusArtist"] = @"";
    
     if (!([curr[@"statusArtist"] isEqualToString:@"saved"])) {
@@ -243,7 +245,7 @@
         for (int i = 0; i < self.artistData.count; i++) {
             [topArtistsArray addObject:self.artistData[i][@"name"]];
         }
-        NSLog(@"top artists: %@", topArtistsArray);
+//        NSLog(@"top artists: %@", topArtistsArray);
         topArtists[@"text"] = topArtistsArray;
     
         [topArtists saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
