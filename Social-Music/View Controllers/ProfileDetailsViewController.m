@@ -10,11 +10,13 @@
 
 @interface ProfileDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
-- (IBAction)didTapBack:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *topInfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *topArtistsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *topSongsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *topArtistsHeader;
+@property (weak, nonatomic) IBOutlet UILabel *topSongsHeader;
 
+- (IBAction)didTapBack:(id)sender;
 @end
 
 @implementation ProfileDetailsViewController
@@ -24,36 +26,24 @@
     self.usernameLabel.text = [@"@" stringByAppendingString: self.user[@"username"]];
     NSLog(@"user %@", self.user);
     
-    [self getTopArtists];
-    [self getTopSongs];
+    [self fetchTopData:@"Artists"];
+    [self fetchTopData:@"Songs"];
     
     // Do any additional setup after loading the view.
 }
-
-- (void)getTopArtists {
-    PFQuery *query = [PFQuery queryWithClassName:@"Artists"];
+- (void)fetchTopData:(NSString *)type {
+    PFQuery *query = [PFQuery queryWithClassName:type];
     [query whereKey:@"username" equalTo:self.user[@"username"]];
 
-    [query findObjectsInBackgroundWithBlock:^(NSArray *topArtists, NSError *error) {
-        if (topArtists != nil) {
-            NSString *result = [[topArtists[0][@"text"] valueForKey:@"description"] componentsJoinedByString:@"\n"];
-            self.topInfoLabel.text = result;
-            NSLog(@"top artists%@", topArtists[0][@"text"]);
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
-}
-
-- (void)getTopSongs {
-    PFQuery *query = [PFQuery queryWithClassName:@"Songs"];
-    [query whereKey:@"username" equalTo:self.user[@"username"]];
-
-    [query findObjectsInBackgroundWithBlock:^(NSArray *topSongs, NSError *error) {
-        if (topSongs != nil) {
-            NSString *result = [[topSongs[0][@"text"] valueForKey:@"description"] componentsJoinedByString:@"\n"];
-            self.topSongsLabel.text = result;
-            NSLog(@"top songs%@", topSongs[0][@"text"]);
+    [query findObjectsInBackgroundWithBlock:^(NSArray *topItems, NSError *error) {
+        if (topItems != nil) {
+            NSString *result = [[topItems[0][@"text"] valueForKey:@"description"] componentsJoinedByString:@"\n"];
+            if ([type isEqualToString:@"Artists"]) {
+                self.topArtistsLabel.text = result;
+            } else {
+                self.topSongsLabel.text = result;
+            }
+            NSLog(@"top: %@", topItems[0][@"text"]);
         } else {
             NSLog(@"%@", error.localizedDescription);
         }

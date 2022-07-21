@@ -250,26 +250,44 @@
                                 <rect key="frame" x="20" y="94" width="374" height="768"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ngx-D2-bsV">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="dKN-ft-eAJ"/>
+                                            <constraint firstAttribute="height" constant="40" id="dKN-ft-eAJ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Artists:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ag-56-ewQ">
+                                        <rect key="frame" x="0.0" y="60" width="374" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="5hw-e9-P8s"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDa-uc-PnH">
-                                        <rect key="frame" x="0.0" y="70" width="374" height="320"/>
+                                        <rect key="frame" x="0.0" y="100" width="374" height="289"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="320" id="Aez-fT-Ifq"/>
+                                            <constraint firstAttribute="height" constant="289" id="Aez-fT-Ifq"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Songs:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Db-mc-2mW">
+                                        <rect key="frame" x="0.0" y="409" width="374" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Krz-Yk-oGi"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l93-hb-BXW">
-                                        <rect key="frame" x="0.0" y="410" width="374" height="358"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="449" width="374" height="319"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -290,7 +308,9 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="4Qn-gh-34v" id="0RN-UG-jvm"/>
-                        <outlet property="topInfoLabel" destination="cDa-uc-PnH" id="4M4-KN-rQz"/>
+                        <outlet property="topArtistsHeader" destination="5Ag-56-ewQ" id="jZt-9t-7TN"/>
+                        <outlet property="topArtistsLabel" destination="cDa-uc-PnH" id="4M4-KN-rQz"/>
+                        <outlet property="topSongsHeader" destination="5Db-mc-2mW" id="gQx-Qe-VlA"/>
                         <outlet property="topSongsLabel" destination="l93-hb-BXW" id="jJk-jN-6Vo"/>
                         <outlet property="usernameLabel" destination="Ngx-D2-bsV" id="eds-zP-tbd"/>
                     </connections>

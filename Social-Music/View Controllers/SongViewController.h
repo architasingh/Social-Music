@@ -19,8 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SongViewController : UIViewController 
 
-@property (nonatomic, strong) SPTAppRemote *appRemote;
-
 @end
 
 NS_ASSUME_NONNULL_END
