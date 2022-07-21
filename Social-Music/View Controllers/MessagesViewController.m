@@ -121,7 +121,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
                 self.chatMessage.text = @"";
                 chatMessageObject[@"date"] = chatMessageObject.createdAt;
                 [chatMessageObject saveInBackground];
-                [self.messages addObject:chatMessageObject[@"date"]];
+//                [self.messages addObject:chatMessageObject[@"date"]];
             } else {
                 NSLog(@"Problem saving message: %@", error.localizedDescription);
             }
@@ -133,12 +133,13 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.chatLabel.text = self.messages[indexPath.row][@"text"];
+    NSLog(@"%@",self.messages);
     cell.bubbleView.layer.cornerRadius = 16;
     cell.bubbleView.clipsToBounds = true;
     
-    NSString *chatAuthor = self.messages[indexPath.row][@"user"];
+    NSString *chatAuthor = self.messages[indexPath.row][@"username"];
     
-//    cell.usernameLabel.text = [@"@" stringByAppendingString: chatAuthor];
+    cell.usernameLabel.text = [@"@" stringByAppendingString: chatAuthor];
 //    cell.profileImage.file = user[@"profilePicture"];
     cell.profileImage.layer.cornerRadius = 30;
     cell.profileImage.layer.masksToBounds = YES;
