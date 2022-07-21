@@ -13,6 +13,7 @@
 #import "SpotifyManager.h"
 #import <UIImageView+AFNetworking.h>
 #import "Parse/PFImageView.h"
+#import "TopItems.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
 
@@ -36,6 +37,8 @@
 
 @implementation ProfileViewController
 
+
+// view setup
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -60,8 +63,11 @@
 - (void)viewDidAppear:(BOOL)animated {
     self.accessToken = [[SpotifyManager shared] accessToken];
     
-    [self fetchTopData:@"artists"];
-    [self fetchTopData:@"tracks"];
+    [[TopItems shared] fetchTopData:@"artists"];
+    self.artistData = [[TopItems shared] artistData];
+    
+    [[TopItems shared] fetchTopData:@"tracks"];
+    self.trackData = [[TopItems shared] trackData];
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -70,6 +76,25 @@
     [self.favoritesTableView reloadData];
     [refreshControl endRefreshing];
 }
+
+// button actions
+
+- (IBAction)didTapArtistButton:(id)sender {
+    self.favoriteButton.selected = !self.favoriteButton.selected;
+    [self.favoritesTableView reloadData];
+}
+
+- (IBAction)didTapLogout:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+    }];
+    
+    SceneDelegate *mySceneDelegate = (SceneDelegate * ) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    mySceneDelegate.window.rootViewController = loginViewController;
+}
+
+// image set up (move)
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
@@ -85,25 +110,6 @@
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (IBAction)didTapLogout:(id)sender {
-    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-    }];
-    
-    SceneDelegate *mySceneDelegate = (SceneDelegate * ) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    mySceneDelegate.window.rootViewController = loginViewController;
 }
 
 - (IBAction)didTapCameraRoll:(id)sender {
@@ -136,11 +142,6 @@
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
-- (IBAction)didTapArtistButton:(id)sender {
-    self.favoriteButton.selected = !self.favoriteButton.selected;
-    [self.favoritesTableView reloadData];
-}
-
 - (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
 
     // check if image is not nil
@@ -157,32 +158,7 @@
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
 
-- (void)fetchTopData:(NSString *)type {
-    NSString *token = self.accessToken;
-    
-    NSString *tokenType = @"Bearer";
-    NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    
-    NSString *baseURL = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:type];
-    NSURL *url = [NSURL URLWithString:baseURL];
-    [request setValue:header forHTTPHeaderField:@"Authorization"];
-    [request setURL:url];
-            
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            if (!error) {
-                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                if ([type  isEqual: @"artists"]) {
-                    self.artistData = dataDictionary[@"items"];
-                    [self saveTopArtists];
-                } if ([type  isEqual: @"tracks"]) {
-                    self.trackData = dataDictionary[@"items"];
-                    [self saveTopSongs];
-                }
-            }
-        }] resume];
-}
+// tableview methods
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
@@ -205,62 +181,6 @@
     }
 }
 
-- (void) saveTopSongs {
-    PFObject *topSongs = [PFObject objectWithClassName:@"Songs"];
-    PFUser *curr = PFUser.currentUser;
-    topSongs[@"user"] = curr;
-    topSongs[@"username"] = curr.username;
-//    curr[@"statusSong"] = @"";
-    
-    if (!([curr[@"statusSong"] isEqualToString:@"saved"])) {
-        NSMutableArray *topSongsArray = [NSMutableArray new];
-        for (int i = 0; i < self.trackData.count; i++) {
-            [topSongsArray addObject:self.trackData[i][@"name"]];
-        }
-//        NSLog(@"top songs: %@", topSongsArray);
-        topSongs[@"text"] = topSongsArray;
-        [topSongs saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-                if (succeeded) {
-                    curr[@"statusSong"] = @"saved";
-                    curr[@"topSongs"] = topSongs;
-                    [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                    }];
-                    NSLog(@"The song data was saved!");
-                } else {
-                    NSLog(@"Problem saving song data: %@", error.localizedDescription);
-                }
-            }];
-    }
-}
-
-- (void) saveTopArtists {
-    PFObject *topArtists = [PFObject objectWithClassName:@"Artists"];
-    PFUser *curr = PFUser.currentUser;
-    topArtists[@"user"] = curr;
-    topArtists[@"username"] = curr.username;
-//    curr[@"statusArtist"] = @"";
-   
-    if (!([curr[@"statusArtist"] isEqualToString:@"saved"])) {
-        NSMutableArray *topArtistsArray = [NSMutableArray new];
-        for (int i = 0; i < self.artistData.count; i++) {
-            [topArtistsArray addObject:self.artistData[i][@"name"]];
-        }
-//        NSLog(@"top artists: %@", topArtistsArray);
-        topArtists[@"text"] = topArtistsArray;
-    
-        [topArtists saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-                if (succeeded) {
-                    curr[@"statusArtist"] = @"saved";
-                    curr[@"topArtists"] = topArtists;
-                    [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                    }];
-                    NSLog(@"The artist data was saved!");
-                } else {
-                    NSLog(@"Problem saving artist data: %@", error.localizedDescription);
-                }
-            }];
-    }
-}
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.artistData.count;

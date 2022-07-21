@@ -26,6 +26,7 @@
 
 NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
 
+// view setup
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -42,22 +43,30 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
-       [self.chatTableView insertSubview:refreshControl atIndex:0];
+    [self.chatTableView insertSubview:refreshControl atIndex:0];
     
     self.chatMessage.delegate = self;
     
-    // Do any additional setup after loading the view.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
-*/
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    self.chatTableView.dataSource = self;
+
+    [self.chatTableView reloadData];
+    [refreshControl endRefreshing];
+}
+
+// live query
 - (void)setupLiveQuery {
     NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
@@ -79,13 +88,6 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     [self loadMessages];
 }
 
-- (void)beginRefresh:(UIRefreshControl *)refreshControl {
-    self.chatTableView.dataSource = self;
-
-    [self.chatTableView reloadData];
-    [refreshControl endRefreshing];
-}
-
 - (void)loadMessages {
     [self.activityIndicatorChat stopAnimating];
 
@@ -104,6 +106,8 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
         }
     }];
 }
+
+// button action
 
 - (IBAction)didTapSend:(id)sender {
     if ([self.chatMessage.text isEqual:@""]) {
@@ -128,6 +132,8 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
             }
         }];
 }
+
+// tableview methods
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChatCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChatCell" forIndexPath:indexPath];
@@ -165,18 +171,10 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     return self.messages.count;
 }
 
+// keyboard methods
+
 - (void) hideKeyboard {
     [self.view endEditing:YES];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -199,6 +197,9 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
         self.view.frame = frame;
     }];
 }
+
+// textfield
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if(range.length + range.location > self.chatMessage.text.length)
     {
@@ -208,6 +209,8 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return newLength <= 500;
 }
+
+// alert
 
 - (void) emptyMessageAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty Message Alert"

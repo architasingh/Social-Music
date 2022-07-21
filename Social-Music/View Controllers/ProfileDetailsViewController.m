@@ -21,17 +21,22 @@
 
 @implementation ProfileDetailsViewController
 
+// view setup
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.usernameLabel.text = [@"@" stringByAppendingString: self.user[@"username"]];
     NSLog(@"user %@", self.user);
     
-    [self fetchTopData:@"Artists"];
-    [self fetchTopData:@"Songs"];
+    [self getTopData:@"Artists"];
+    [self getTopData:@"Songs"];
     
     // Do any additional setup after loading the view.
 }
-- (void)fetchTopData:(NSString *)type {
+
+// get top data
+
+- (void)getTopData:(NSString *)type {
     PFQuery *query = [PFQuery queryWithClassName:type];
     [query whereKey:@"username" equalTo:self.user[@"username"]];
 
@@ -59,6 +64,8 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+// button action
 
 - (IBAction)didTapBack:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
