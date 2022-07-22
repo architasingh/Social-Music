@@ -11,7 +11,7 @@
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
 #import "SpotifyManager.h"
-#import <UIImageView+AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
 #import "Parse/PFImageView.h"
 #import "TopItems.h"
 #import "MatchesDetailsViewController.h"
@@ -68,6 +68,7 @@
     
     [[TopItems shared] fetchTopData:@"artists"];
     self.currUserArtistData = [[TopItems shared] artistData];
+    NSLog(@"%@", self.currUserArtistData);
     [self.favoritesTableView reloadData];
     
     [[TopItems shared] fetchTopData:@"tracks"];
@@ -175,10 +176,11 @@
     if (self.favoriteButton.isSelected) {
         cell.favoriteLabel.text = self.currUserArtistData[indexPath.row][@"name"];
         
-//        NSString *image_string = self.artistData[indexPath.row][@"images"][0][@"url"];
+//        NSString *image_string = self.currUserArtistData[indexPath.row][@"images"][0][@"url"];
 //        NSURL *image_url = [NSURL URLWithString:image_string];
+//        NSLog(@"image: %@", image_url);
 //
-//        [cell.artistPhoto setImageWithURL:image_url];
+//        [cell.artistPhoto setImageWithURL:image_url placeholderImage:nil];
        
         return cell;
     } else { // if song button/nothing is selected

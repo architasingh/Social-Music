@@ -82,7 +82,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     [self.liveQuerySubscription addCreateHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull object) {
         __strong typeof (self) strongSelf = weakSelf;
         [strongSelf.messages insertObject:object atIndex:0];
-        NSLog(@"new message:%@", strongSelf.messages);
+        NSLog(@"object: %@", object);
         dispatch_async(dispatch_get_main_queue(), ^ {[strongSelf.chatTableView reloadData];});
     }];
     [self loadMessages];
@@ -140,21 +140,9 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.chatLabel.text = self.messages[indexPath.row][@"text"];
-    NSLog(@"%@",self.messages);
+//    NSLog(@"%@",self.messages);
     cell.bubbleView.layer.cornerRadius = 16;
     cell.bubbleView.clipsToBounds = true;
-    
-    PFUser *chatAuthor = self.messages[indexPath.row][@"user"];
-    
-    if (chatAuthor != nil) {
-        cell.usernameLabel.text = [@"@" stringByAppendingString: chatAuthor.username];
-        cell.profileImage.file = chatAuthor[@"profilePicture"];
-        cell.profileImage.layer.cornerRadius = 30;
-        cell.profileImage.layer.masksToBounds = YES;
-        [cell.profileImage loadInBackground];
-    } else {
-        cell.usernameLabel.text = @"🤖";
-    }
     
     NSDate *dateForm = self.messages[indexPath.row][@"date"];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -165,6 +153,16 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     cell.dateLabel.text = dateString;
         
     return cell;
+    
+    PFUser *chatAuthor = self.messages[indexPath.row][@"user"];
+    
+    [chatAuthor fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        cell.usernameLabel.text = [@"@" stringByAppendingString: self.messages[indexPath.row][@"user"][@"username"]];
+        cell.profileImage.file = self.messages[indexPath.row][@"user"][@"profilePicture"];
+        cell.profileImage.layer.cornerRadius = 30;
+        cell.profileImage.layer.masksToBounds = YES;
+        [cell.profileImage loadInBackground];
+    }];
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
