@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *topSongsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *topArtistsHeader;
 @property (weak, nonatomic) IBOutlet UILabel *topSongsHeader;
+@property (weak, nonatomic) IBOutlet UILabel *compatLabel;
 
 @property (strong, nonatomic) NSArray *otherUserTopArtists;
 @property (strong, nonatomic) NSArray *otherUserTopSongs;
@@ -27,6 +28,8 @@
 @end
 
 @implementation MatchesDetailsViewController
+double artistCompatability;
+double songCompatability;
 
 // view setup
 
@@ -88,10 +91,12 @@
         NSMutableDictionary *currArtistDict = [[NSMutableDictionary alloc] init];
         NSMutableDictionary *otherArtistDict = [[NSMutableDictionary alloc] init];
         for (int i = 0; i < self.currUserTopArtists.count; i++) {
-            [currArtistDict setObject:[NSDecimalNumber numberWithDouble:(i/20.0)] forKey:self.currUserTopArtists[i]];
+            [currArtistDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/20.0)] forKey:self.currUserTopArtists[i]];
+            NSLog(@"%@", currArtistDict[self.otherUserTopArtists[i]]);
         }
         for (int i = 0; i < self.otherUserTopArtists.count; i++) {
-            [otherArtistDict setObject:[NSDecimalNumber numberWithDouble:(i/20.0)] forKey:self.otherUserTopArtists[i]];
+            [otherArtistDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/20.0)] forKey:self.otherUserTopArtists[i]];
+            NSLog(@"%@", otherArtistDict[self.otherUserTopArtists[i]]);
         }
         NSLog(@"curr artist dict: %@", currArtistDict);
         NSLog(@"other artist dict: %@", otherArtistDict);
@@ -118,16 +123,16 @@
         for (NSDecimalNumber *artistInd in artistVal) {
             compatability += fabs([artistInd doubleValue]);
         }
-        NSLog(@"artist compatability: %f", compatability);
+        artistCompatability = compatability;
         
     } else {
         NSMutableDictionary *currSongDict = [[NSMutableDictionary alloc] init];
         NSMutableDictionary *otherSongDict = [[NSMutableDictionary alloc] init];
         for (int i = 0; i < self.currUserTopSongs.count; i++) {
-            [currSongDict setObject:[NSDecimalNumber numberWithDouble:(i/20.0)] forKey:self.currUserTopSongs[i]];
+            [currSongDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/20.0)] forKey:self.currUserTopSongs[i]];
         }
         for (int i = 0; i < self.otherUserTopSongs.count; i++) {
-            [otherSongDict setObject:[NSDecimalNumber numberWithDouble:(i/20.0)] forKey:self.otherUserTopSongs[i]];
+            [otherSongDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/20.0)] forKey:self.otherUserTopSongs[i]];
         }
         
         NSLog(@"curr song Dict: %@", currSongDict);
@@ -156,8 +161,12 @@
         for (NSDecimalNumber *songInd in songVal) {
             compatability += fabs([songInd doubleValue]);
         }
+        songCompatability = compatability;
         NSLog(@"song compatability: %f", compatability);
     }
+    double totalCompatability = (artistCompatability + songCompatability)*100;
+    NSDecimalNumber *totalCompatabilityNS = [NSDecimalNumber numberWithDouble:totalCompatability];
+    self.compatLabel.text = [totalCompatabilityNS stringValue];
 }
 
 // button action

@@ -173,24 +173,14 @@
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIL-Us-q8v">
-                                                            <rect key="frame" x="114" y="0.0" width="156" height="120"/>
+                                                            <rect key="frame" x="114" y="0.0" width="260" height="120"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWj-nD-4cn">
-                                                            <rect key="frame" x="294" y="0.0" width="80" height="120"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="rq4-K8-yrR"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="KRZ-fe-i75" firstAttribute="leading" secondItem="Knw-mP-mE0" secondAttribute="leading" id="HkV-i1-SXX"/>
-                                                        <constraint firstAttribute="trailing" secondItem="CWj-nD-4cn" secondAttribute="trailing" id="N0n-Fj-j31"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -202,7 +192,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="matchLevelLabel" destination="CWj-nD-4cn" id="roX-7k-G0w"/>
                                             <outlet property="userImage" destination="KRZ-fe-i75" id="hTP-dN-P4M"/>
                                             <outlet property="userLabel" destination="WIL-Us-q8v" id="rMu-dt-JPk"/>
                                             <segue destination="CNP-v8-sug" kind="show" id="NGJ-Dd-VJT"/>
@@ -256,19 +245,25 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="re1-Ax-dGP">
-                                                <rect key="frame" x="10" y="24" width="387" height="560"/>
+                                                <rect key="frame" x="10" y="24" width="387" height="604"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ngx-D2-bsV">
                                                         <rect key="frame" x="0.0" y="0.0" width="387" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="dKN-ft-eAJ"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYf-ZI-jeV">
+                                                        <rect key="frame" x="0.0" y="60" width="387" height="24"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                        <color key="textColor" red="0.305863261" green="0.53101509319999995" blue="0.71538740339999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Artists:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ag-56-ewQ">
-                                                        <rect key="frame" x="0.0" y="60" width="387" height="20"/>
+                                                        <rect key="frame" x="0.0" y="104" width="387" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="5hw-e9-P8s"/>
                                                         </constraints>
@@ -277,7 +272,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDa-uc-PnH">
-                                                        <rect key="frame" x="0.0" y="100" width="387" height="400"/>
+                                                        <rect key="frame" x="0.0" y="144" width="387" height="400"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="400" id="Aez-fT-Ifq"/>
                                                         </constraints>
@@ -286,7 +281,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Songs:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Db-mc-2mW">
-                                                        <rect key="frame" x="0.0" y="520" width="387" height="20"/>
+                                                        <rect key="frame" x="0.0" y="564" width="387" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="Krz-Yk-oGi"/>
                                                         </constraints>
@@ -295,7 +290,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l93-hb-BXW">
-                                                        <rect key="frame" x="0.0" y="560" width="387" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="604" width="387" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -339,6 +334,7 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="4Qn-gh-34v" id="0RN-UG-jvm"/>
+                        <outlet property="compatLabel" destination="oYf-ZI-jeV" id="56p-AF-2Rd"/>
                         <outlet property="topArtistsHeader" destination="5Ag-56-ewQ" id="jZt-9t-7TN"/>
                         <outlet property="topArtistsLabel" destination="cDa-uc-PnH" id="4M4-KN-rQz"/>
                         <outlet property="topSongsHeader" destination="5Db-mc-2mW" id="gQx-Qe-VlA"/>
