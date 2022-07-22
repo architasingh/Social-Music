@@ -151,8 +151,6 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     NSDate *date = dateForm; // your NSDate object
     NSString *dateString = [dateFormatter stringFromDate:date];
     cell.dateLabel.text = dateString;
-        
-    return cell;
     
     PFUser *chatAuthor = self.messages[indexPath.row][@"user"];
     
@@ -163,6 +161,8 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
         cell.profileImage.layer.masksToBounds = YES;
         [cell.profileImage loadInBackground];
     }];
+    
+    return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
