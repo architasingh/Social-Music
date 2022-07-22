@@ -27,7 +27,7 @@
 		ADC670D128764C05004CFA6D /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670D028764C05004CFA6D /* ProfileViewController.m */; };
 		ADC670D428764C1C004CFA6D /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC670D328764C1C004CFA6D /* MessagesViewController.m */; };
 		ADDEC5DD28872EC000FDF4AD /* MatchesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDEC5DC28872EC000FDF4AD /* MatchesCell.m */; };
-		ADDEC5E0288762B600FDF4AD /* ProfileDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDEC5DF288762B600FDF4AD /* ProfileDetailsViewController.m */; };
+		ADDEC5E0288762B600FDF4AD /* MatchesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDEC5DF288762B600FDF4AD /* MatchesDetailsViewController.m */; };
 		ADDEC5E12888714E00FDF4AD /* Pods_Social_Music.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F005B169D8EE5472F164E41 /* Pods_Social_Music.framework */; };
 		ADDEC5E92889F93600FDF4AD /* TopItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDEC5E82889F93600FDF4AD /* TopItems.m */; };
 		ADF55C4A287E2A5700EC3BB9 /* SpotifyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF55C49287E2A5700EC3BB9 /* SpotifyManager.m */; };
@@ -92,8 +92,8 @@
 		ADC670D328764C1C004CFA6D /* MessagesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
 		ADDEC5DB28872EC000FDF4AD /* MatchesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchesCell.h; sourceTree = "<group>"; };
 		ADDEC5DC28872EC000FDF4AD /* MatchesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchesCell.m; sourceTree = "<group>"; };
-		ADDEC5DE288762B600FDF4AD /* ProfileDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileDetailsViewController.h; sourceTree = "<group>"; };
-		ADDEC5DF288762B600FDF4AD /* ProfileDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileDetailsViewController.m; sourceTree = "<group>"; };
+		ADDEC5DE288762B600FDF4AD /* MatchesDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchesDetailsViewController.h; sourceTree = "<group>"; };
+		ADDEC5DF288762B600FDF4AD /* MatchesDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchesDetailsViewController.m; sourceTree = "<group>"; };
 		ADDEC5E72889F93600FDF4AD /* TopItems.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopItems.h; sourceTree = "<group>"; };
 		ADDEC5E82889F93600FDF4AD /* TopItems.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopItems.m; sourceTree = "<group>"; };
 		ADF55C48287E2A5700EC3BB9 /* SpotifyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyManager.h; sourceTree = "<group>"; };
@@ -214,8 +214,8 @@
 				ADC670D028764C05004CFA6D /* ProfileViewController.m */,
 				ADC670D228764C1C004CFA6D /* MessagesViewController.h */,
 				ADC670D328764C1C004CFA6D /* MessagesViewController.m */,
-				ADDEC5DE288762B600FDF4AD /* ProfileDetailsViewController.h */,
-				ADDEC5DF288762B600FDF4AD /* ProfileDetailsViewController.m */,
+				ADDEC5DE288762B600FDF4AD /* MatchesDetailsViewController.h */,
+				ADDEC5DF288762B600FDF4AD /* MatchesDetailsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -507,7 +507,7 @@
 				ADC670D128764C05004CFA6D /* ProfileViewController.m in Sources */,
 				ADC670CA28764BAB004CFA6D /* SongViewController.m in Sources */,
 				ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */,
-				ADDEC5E0288762B600FDF4AD /* ProfileDetailsViewController.m in Sources */,
+				ADDEC5E0288762B600FDF4AD /* MatchesDetailsViewController.m in Sources */,
 				ADDEC5E92889F93600FDF4AD /* TopItems.m in Sources */,
 				ADF55C4A287E2A5700EC3BB9 /* SpotifyManager.m in Sources */,
 			);
@@ -790,6 +790,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RR6QFV9BN7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
@@ -844,6 +845,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RR6QFV9BN7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (

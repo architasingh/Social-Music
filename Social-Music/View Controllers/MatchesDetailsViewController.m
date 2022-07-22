@@ -5,10 +5,10 @@
 //  Created by Archita Singh on 7/19/22.
 //
 
-#import "ProfileDetailsViewController.h"
+#import "MatchesDetailsViewController.h"
 #import <Parse/Parse.h>
 
-@interface ProfileDetailsViewController ()
+@interface MatchesDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *topArtistsLabel;
@@ -26,7 +26,7 @@
 - (IBAction)didTapBack:(id)sender;
 @end
 
-@implementation ProfileDetailsViewController
+@implementation MatchesDetailsViewController
 
 // view setup
 

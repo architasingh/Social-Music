@@ -8,7 +8,7 @@
 #import "MatchesViewController.h"
 #import "MatchesCell.h"
 #import <Parse/Parse.h>
-#import "ProfileDetailsViewController.h"
+#import "MatchesDetailsViewController.h"
 
 @interface MatchesViewController () <UITableViewDataSource>
 
@@ -50,7 +50,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.matchesTableView indexPathForCell:(UITableViewCell *)sender];
     NSArray *user = self.users[indexPath.row];
-    ProfileDetailsViewController *detailVC = [segue destinationViewController];
+    MatchesDetailsViewController *detailVC = [segue destinationViewController];
     detailVC.user = (NSDictionary*)user;
 }
 

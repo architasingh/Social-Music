@@ -14,7 +14,7 @@
 #import <UIImageView+AFNetworking.h>
 #import "Parse/PFImageView.h"
 #import "TopItems.h"
-#import "ProfileDetailsViewController.h"
+#import "MatchesDetailsViewController.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
 
