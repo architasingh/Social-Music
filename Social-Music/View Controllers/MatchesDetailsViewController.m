@@ -88,10 +88,10 @@
         NSMutableDictionary *currArtistDict = [[NSMutableDictionary alloc] init];
         NSMutableDictionary *otherArtistDict = [[NSMutableDictionary alloc] init];
         for (int i = 0; i < self.currUserTopArtists.count; i++) {
-            [currArtistDict setObject:[NSDecimalNumber numberWithDouble:((20-i)/20.0)] forKey:self.currUserTopArtists[i]];
+            [currArtistDict setObject:[NSDecimalNumber numberWithDouble:(i/20.0)] forKey:self.currUserTopArtists[i]];
         }
         for (int i = 0; i < self.otherUserTopArtists.count; i++) {
-            [otherArtistDict setObject:[NSDecimalNumber numberWithDouble:((20-i)/20.0)] forKey:self.otherUserTopArtists[i]];
+            [otherArtistDict setObject:[NSDecimalNumber numberWithDouble:(i/20.0)] forKey:self.otherUserTopArtists[i]];
         }
         NSLog(@"curr artist dict: %@", currArtistDict);
         NSLog(@"other artist dict: %@", otherArtistDict);
@@ -102,21 +102,32 @@
 
         NSArray* result = [set1 allObjects];
         NSLog(@"artist result: %@", result);
+        NSMutableArray *artistVal = [[NSMutableArray alloc] init];
         
         for(NSString *object in result) {
             NSDecimalNumber *indexCurr = currArtistDict[object];
             NSDecimalNumber *indexOther = otherArtistDict[object];
             NSDecimalNumber *diff = [indexCurr decimalNumberBySubtracting:indexOther];
-            NSLog(@"artist diff: %@", diff);
+            double diffDouble = fabs([diff doubleValue]);
+            double artistWeight = ((1 - diffDouble)/20)*0.75;
+            [artistVal addObject:[NSDecimalNumber numberWithDouble:artistWeight]];
+            NSLog(@"artist diff: %f", diffDouble);
         }
+        
+        double compatability = 0;
+        for (NSDecimalNumber *artistInd in artistVal) {
+            compatability += fabs([artistInd doubleValue]);
+        }
+        NSLog(@"artist compatability: %f", compatability);
+        
     } else {
         NSMutableDictionary *currSongDict = [[NSMutableDictionary alloc] init];
         NSMutableDictionary *otherSongDict = [[NSMutableDictionary alloc] init];
         for (int i = 0; i < self.currUserTopSongs.count; i++) {
-            [currSongDict setObject:[NSDecimalNumber numberWithDouble:((20-i)/20.0)] forKey:self.currUserTopSongs[i]];
+            [currSongDict setObject:[NSDecimalNumber numberWithDouble:(i/20.0)] forKey:self.currUserTopSongs[i]];
         }
         for (int i = 0; i < self.otherUserTopSongs.count; i++) {
-            [otherSongDict setObject:[NSDecimalNumber numberWithDouble:((20-i)/20.0)] forKey:self.otherUserTopSongs[i]];
+            [otherSongDict setObject:[NSDecimalNumber numberWithDouble:(i/20.0)] forKey:self.otherUserTopSongs[i]];
         }
         
         NSLog(@"curr song Dict: %@", currSongDict);
@@ -127,15 +138,25 @@
         
         [set1 intersectSet:set2];
 
-        NSArray* result = [set1 allObjects];
+        NSArray *result = [set1 allObjects];
         NSLog(@"song result: %@", result);
+        NSMutableArray *songVal = [[NSMutableArray alloc] init];
         
         for(NSString *object in result) {
             NSDecimalNumber *indexCurr = currSongDict[object];
             NSDecimalNumber *indexOther = otherSongDict[object];
             NSDecimalNumber *diff = [indexCurr decimalNumberBySubtracting:indexOther];
-            NSLog(@"song diff: %@", diff);
+            double diffDouble = fabs([diff doubleValue]);
+            double songWeight = ((1 - diffDouble)/20)*0.25;
+            [songVal addObject:[NSDecimalNumber numberWithDouble:songWeight]];
+            NSLog(@"song diff: %f", diffDouble);
         }
+        
+        double compatability = 0;
+        for (NSDecimalNumber *songInd in songVal) {
+            compatability += fabs([songInd doubleValue]);
+        }
+        NSLog(@"song compatability: %f", compatability);
     }
 }
 
