@@ -83,23 +83,59 @@
 }
 
 - (void)compareUserTop:(NSString *) type {
+    
     if ([type isEqualToString:@"artists"]) {
+        NSMutableDictionary *currArtistDict = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary *otherArtistDict = [[NSMutableDictionary alloc] init];
+        for (int i = 0; i < self.currUserTopArtists.count; i++) {
+            [currArtistDict setObject:[NSDecimalNumber numberWithDouble:((20-i)/20.0)] forKey:self.currUserTopArtists[i]];
+        }
+        for (int i = 0; i < self.otherUserTopArtists.count; i++) {
+            [otherArtistDict setObject:[NSDecimalNumber numberWithDouble:((20-i)/20.0)] forKey:self.otherUserTopArtists[i]];
+        }
+        NSLog(@"curr artist dict: %@", currArtistDict);
+        NSLog(@"other artist dict: %@", otherArtistDict);
+        
         NSMutableSet* set1 = [NSMutableSet setWithArray:self.currUserTopArtists];
         NSMutableSet* set2 = [NSMutableSet setWithArray:self.otherUserTopArtists];
-        [set1 intersectSet:set2]; //this will give you only the objects that are in both sets
+        [set1 intersectSet:set2];
 
         NSArray* result = [set1 allObjects];
+        NSLog(@"artist result: %@", result);
         
-        NSLog(@"%@", result);
+        for(NSString *object in result) {
+            NSDecimalNumber *indexCurr = currArtistDict[object];
+            NSDecimalNumber *indexOther = otherArtistDict[object];
+            NSDecimalNumber *diff = [indexCurr decimalNumberBySubtracting:indexOther];
+            NSLog(@"artist diff: %@", diff);
+        }
     } else {
+        NSMutableDictionary *currSongDict = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary *otherSongDict = [[NSMutableDictionary alloc] init];
+        for (int i = 0; i < self.currUserTopSongs.count; i++) {
+            [currSongDict setObject:[NSDecimalNumber numberWithDouble:((20-i)/20.0)] forKey:self.currUserTopSongs[i]];
+        }
+        for (int i = 0; i < self.otherUserTopSongs.count; i++) {
+            [otherSongDict setObject:[NSDecimalNumber numberWithDouble:((20-i)/20.0)] forKey:self.otherUserTopSongs[i]];
+        }
+        
+        NSLog(@"curr song Dict: %@", currSongDict);
+        NSLog(@"other song Dict: %@", otherSongDict);
+        
         NSMutableSet* set1 = [NSMutableSet setWithArray:self.currUserTopSongs];
         NSMutableSet* set2 = [NSMutableSet setWithArray:self.otherUserTopSongs];
         
-        [set1 intersectSet:set2]; //this will give you only the objects that are in both sets
+        [set1 intersectSet:set2];
 
         NSArray* result = [set1 allObjects];
+        NSLog(@"song result: %@", result);
         
-        NSLog(@"%@", result);
+        for(NSString *object in result) {
+            NSDecimalNumber *indexCurr = currSongDict[object];
+            NSDecimalNumber *indexOther = otherSongDict[object];
+            NSDecimalNumber *diff = [indexCurr decimalNumberBySubtracting:indexOther];
+            NSLog(@"song diff: %@", diff);
+        }
     }
 }
 

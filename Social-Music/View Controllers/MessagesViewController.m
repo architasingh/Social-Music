@@ -93,7 +93,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
 
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
 
-    [query orderByDescending:@"createdAt"];
+    [query orderByDescending:@"date"];
     [query includeKey:@"user"];
 
     query.limit = 20;
@@ -119,14 +119,13 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     
     chatMessageObject[@"text"] = self.chatMessage.text;
     chatMessageObject[@"user"] = PFUser.currentUser;
-//    chatMessageObject[@"profilePicture"] = PFUser.currentUser[@"profilePicture"];
     
     [chatMessageObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (succeeded) {
                 NSLog(@"The message was saved!");
                 self.chatMessage.text = @"";
                 chatMessageObject[@"date"] = chatMessageObject.createdAt;
-                [chatMessageObject saveInBackground];
+                [chatMessageObject saveInBackground]; // not showing immediately
             } else {
                 NSLog(@"Problem saving message: %@", error.localizedDescription);
             }
