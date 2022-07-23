@@ -166,7 +166,16 @@ double songCompatability;
     }
     double totalCompatability = (artistCompatability + songCompatability)*100;
     NSDecimalNumber *totalCompatabilityNS = [NSDecimalNumber numberWithDouble:totalCompatability];
-    self.compatLabel.text = [totalCompatabilityNS stringValue];
+    NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain
+                                                                                    scale:2
+                                                                                   raiseOnExactness:NO
+                                                                                    raiseOnOverflow:NO
+                                                                                   raiseOnUnderflow:NO
+                                                                                raiseOnDivideByZero:NO];
+    totalCompatabilityNS = [totalCompatabilityNS decimalNumberByRoundingAccordingToBehavior:behavior];
+    
+    NSString *totalCompatString = [[totalCompatabilityNS stringValue] stringByAppendingString: @"%"];
+    self.compatLabel.text = totalCompatString;
 }
 
 // button action
