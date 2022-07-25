@@ -91,10 +91,10 @@ double songCompatability;
         NSMutableDictionary *currArtistDict = [[NSMutableDictionary alloc] init];
         NSMutableDictionary *otherArtistDict = [[NSMutableDictionary alloc] init];
         for (int i = 0; i < self.currUserTopArtists.count; i++) {
-            [currArtistDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/20.0)] forKey:self.currUserTopArtists[i]];
+            [currArtistDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/200.0)] forKey:self.currUserTopArtists[i]];
         }
         for (int i = 0; i < self.otherUserTopArtists.count; i++) {
-            [otherArtistDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/20.0)] forKey:self.otherUserTopArtists[i]];
+            [otherArtistDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/200.0)] forKey:self.otherUserTopArtists[i]];
         }
         NSLog(@"curr artist dict: %@", currArtistDict);
         NSLog(@"other artist dict: %@", otherArtistDict);
@@ -126,10 +126,10 @@ double songCompatability;
         NSMutableDictionary *currSongDict = [[NSMutableDictionary alloc] init];
         NSMutableDictionary *otherSongDict = [[NSMutableDictionary alloc] init];
         for (int i = 0; i < self.currUserTopSongs.count; i++) {
-            [currSongDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/20.0)] forKey:self.currUserTopSongs[i]];
+            [currSongDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/200.0)] forKey:self.currUserTopSongs[i]];
         }
         for (int i = 0; i < self.otherUserTopSongs.count; i++) {
-            [otherSongDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/20.0)] forKey:self.otherUserTopSongs[i]];
+            [otherSongDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/200.0)] forKey:self.otherUserTopSongs[i]];
         }
         
         NSLog(@"curr song Dict: %@", currSongDict);
@@ -171,6 +171,7 @@ double songCompatability;
     totalCompatabilityNS = [totalCompatabilityNS decimalNumberByRoundingAccordingToBehavior:behavior];
     
     NSString *totalCompatString = [[totalCompatabilityNS stringValue] stringByAppendingString: @"%"];
+    NSLog(@"total compatability: %@", totalCompatString);
     self.compatLabel.text = totalCompatString;
 }
 

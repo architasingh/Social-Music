@@ -69,7 +69,6 @@
     [[TopItems shared] fetchTopData:@"artists"];
     self.currUserArtistData = [[TopItems shared] artistData];
     NSLog(@"%@", self.currUserArtistData);
-    [self.favoritesTableView reloadData];
     
     [[TopItems shared] fetchTopData:@"tracks"];
     self.currUserTrackData = [[TopItems shared] trackData];
@@ -174,6 +173,16 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    
+    CABasicAnimation *animation = [CABasicAnimation animation];
+    animation.keyPath = @"position.x";
+    animation.fromValue = @600;
+    animation.toValue = @200;
+    animation.duration = .8;
+
+    [cell.layer addAnimation:animation forKey:@"basic"];
+        
+
     if (self.favoriteButton.isSelected) {
         cell.favoriteLabel.text = self.currUserArtistData[indexPath.row][@"name"];
         
