@@ -92,11 +92,9 @@ double songCompatability;
         NSMutableDictionary *otherArtistDict = [[NSMutableDictionary alloc] init];
         for (int i = 0; i < self.currUserTopArtists.count; i++) {
             [currArtistDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/20.0)] forKey:self.currUserTopArtists[i]];
-            NSLog(@"%@", currArtistDict[self.otherUserTopArtists[i]]);
         }
         for (int i = 0; i < self.otherUserTopArtists.count; i++) {
             [otherArtistDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/20.0)] forKey:self.otherUserTopArtists[i]];
-            NSLog(@"%@", otherArtistDict[self.otherUserTopArtists[i]]);
         }
         NSLog(@"curr artist dict: %@", currArtistDict);
         NSLog(@"other artist dict: %@", otherArtistDict);
@@ -116,7 +114,6 @@ double songCompatability;
             double diffDouble = fabs([diff doubleValue]);
             double artistWeight = ((1 - diffDouble)/20)*0.75;
             [artistVal addObject:[NSDecimalNumber numberWithDouble:artistWeight]];
-            NSLog(@"artist diff: %f", diffDouble);
         }
         
         double compatability = 0;
@@ -154,7 +151,6 @@ double songCompatability;
             double diffDouble = fabs([diff doubleValue]);
             double songWeight = ((1 - diffDouble)/20)*0.25;
             [songVal addObject:[NSDecimalNumber numberWithDouble:songWeight]];
-            NSLog(@"song diff: %f", diffDouble);
         }
         
         double compatability = 0;
@@ -167,7 +163,7 @@ double songCompatability;
     double totalCompatability = (artistCompatability + songCompatability)*100;
     NSDecimalNumber *totalCompatabilityNS = [NSDecimalNumber numberWithDouble:totalCompatability];
     NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain
-                                                                                    scale:2
+                                                                                    scale:3
                                                                                    raiseOnExactness:NO
                                                                                     raiseOnOverflow:NO
                                                                                    raiseOnUnderflow:NO

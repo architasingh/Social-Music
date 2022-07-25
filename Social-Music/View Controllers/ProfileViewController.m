@@ -73,6 +73,7 @@
     
     [[TopItems shared] fetchTopData:@"tracks"];
     self.currUserTrackData = [[TopItems shared] trackData];
+    NSLog(@"%@", self.currUserTrackData);
     [self.favoritesTableView reloadData];
 }
 
@@ -176,15 +177,26 @@
     if (self.favoriteButton.isSelected) {
         cell.favoriteLabel.text = self.currUserArtistData[indexPath.row][@"name"];
         
-//        NSString *image_string = self.currUserArtistData[indexPath.row][@"images"][0][@"url"];
-//        NSURL *image_url = [NSURL URLWithString:image_string];
-//        NSLog(@"image: %@", image_url);
-//
-//        [cell.artistPhoto setImageWithURL:image_url placeholderImage:nil];
+        NSString *image_string = self.currUserArtistData[indexPath.row][@"images"][0][@"url"];
+        
+        NSURL *url = [NSURL URLWithString:image_string];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [UIImage imageWithData:data];
+
+        cell.artistPhoto.image = image;
        
         return cell;
     } else { // if song button/nothing is selected
         cell.favoriteLabel.text = self.currUserTrackData[indexPath.row][@"name"];
+        
+        NSString *image_string = self.currUserTrackData[indexPath.row][@"album"][@"images"][0][@"url"];
+        
+        NSURL *url = [NSURL URLWithString:image_string];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [UIImage imageWithData:data];
+        
+        cell.artistPhoto.image = image;
+
         return cell;
     }
 }
