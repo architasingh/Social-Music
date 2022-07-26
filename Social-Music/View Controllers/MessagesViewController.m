@@ -125,7 +125,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
                 NSLog(@"The message was saved!");
                 self.chatMessage.text = @"";
                 chatMessageObject[@"date"] = chatMessageObject.createdAt;
-                [chatMessageObject saveInBackground]; // not showing immediately
+                [chatMessageObject saveInBackground];
             } else {
                 NSLog(@"Problem saving message: %@", error.localizedDescription);
             }

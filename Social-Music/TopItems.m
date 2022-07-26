@@ -19,9 +19,10 @@
     });
     return shared;
 }
-
-- (void)fetchTopData:(NSString *)type {
-    NSString *token = [[SpotifyManager shared] accessToken];;
+//- (void)fetchTopData:(NSString *)type completion: (void(^_Nullable)(NSError * _Nullable error)) completionHandler
+- (void)fetchTopData:(NSString *)type completion: (void(^)(void)) completion {
+   
+    NSString *token = [[SpotifyManager shared] accessToken];
     
     NSString *tokenType = @"Bearer";
     NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
@@ -33,18 +34,22 @@
     [request setURL:url];
             
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (!error) {
                 NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 if ([type  isEqual: @"artists"]) {
                     self.artistData = dataDictionary[@"items"];
+                    completion();
                     [self saveTopArtists];
+                    return;
                 } if ([type  isEqual: @"tracks"]) {
                     self.trackData = dataDictionary[@"items"];
+                    completion();
                     [self saveTopSongs];
                 }
             }
-        }] resume];
+        }];
+    [task resume];
 }
 
 - (void) saveTopSongs {

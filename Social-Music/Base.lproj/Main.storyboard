@@ -414,7 +414,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="tinted" title="Label"/>
                                                     <connections>
-                                                        <action selector="didTapArtistButton:" destination="Agy-Kp-GIX" eventType="touchUpInside" id="ksc-Bp-SFI"/>
+                                                        <action selector="didTapFavoritesButton:" destination="Agy-Kp-GIX" eventType="touchUpInside" id="ksc-Bp-SFI"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -467,7 +467,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="artistPhoto" destination="VXi-hs-A2p" id="ZOE-OM-nnT"/>
+                                            <outlet property="favPhoto" destination="VXi-hs-A2p" id="ZOE-OM-nnT"/>
                                             <outlet property="favoriteLabel" destination="TvI-4U-PMq" id="2BP-kj-VQC"/>
                                         </connections>
                                     </tableViewCell>

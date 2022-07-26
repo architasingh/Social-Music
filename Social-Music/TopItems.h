@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TopItems : NSObject
 
 + (id)shared;
-- (void)fetchTopData:(NSString *)type;
+
+- (void)fetchTopData:(NSString *)type completion: (void(^)(void)) completion;
+
 
 @property (nonatomic, strong) NSArray *artistData;
 @property (nonatomic, strong) NSArray *trackData;

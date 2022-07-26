@@ -65,15 +65,20 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     self.accessToken = [[SpotifyManager shared] accessToken];
+    NSLog(@"access token: %@", self.accessToken);
+
+    [[TopItems shared] fetchTopData:@"artists" completion:^{
+        self.currUserArtistData = [[TopItems shared] artistData];
+        NSLog(@"%@", self.currUserArtistData);
+    }];
     
-    [[TopItems shared] fetchTopData:@"artists"];
-    self.currUserArtistData = [[TopItems shared] artistData];
-    NSLog(@"%@", self.currUserArtistData);
+    [[TopItems shared] fetchTopData:@"tracks" completion:^{
+        self.currUserTrackData = [[TopItems shared] trackData];
+        NSLog(@"%@", self.currUserTrackData);
+    }];
     
-    [[TopItems shared] fetchTopData:@"tracks"];
-    self.currUserTrackData = [[TopItems shared] trackData];
-    NSLog(@"%@", self.currUserTrackData);
     [self.favoritesTableView reloadData];
+        
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -85,7 +90,7 @@
 
 // button actions
 
-- (IBAction)didTapArtistButton:(id)sender {
+- (IBAction)didTapFavoritesButton:(id)sender {
     self.favoriteButton.selected = !self.favoriteButton.selected;
     [self.favoritesTableView reloadData];
 }
@@ -173,15 +178,6 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    
-//    CABasicAnimation *animation = [CABasicAnimation animation];
-//    animation.keyPath = @"position.x";
-//    animation.fromValue = @600;
-//    animation.toValue = @200;
-//    animation.duration = .8;
-//
-//    [cell.layer addAnimation:animation forKey:@"basic"];
-    
     CAKeyframeAnimation *shakeCells = [CAKeyframeAnimation animation];
      shakeCells.keyPath = @"position.x";
      shakeCells.values = @[ @0, @10, @-10, @10, @0 ];
@@ -191,21 +187,8 @@
      shakeCells.additive = YES;
 
      [cell.layer addAnimation:shakeCells forKey:@"shake"];
-        
 
-    if (self.favoriteButton.isSelected) {
-        cell.favoriteLabel.text = self.currUserArtistData[indexPath.row][@"name"];
-        
-        NSString *image_string = self.currUserArtistData[indexPath.row][@"images"][0][@"url"];
-        
-        NSURL *url = [NSURL URLWithString:image_string];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *image = [UIImage imageWithData:data];
-
-        cell.artistPhoto.image = image;
-       
-        return cell;
-    } else { // if song button/nothing is selected
+    if (!self.favoriteButton.isSelected) {
         cell.favoriteLabel.text = self.currUserTrackData[indexPath.row][@"name"];
         
         NSString *image_string = self.currUserTrackData[indexPath.row][@"album"][@"images"][0][@"url"];
@@ -214,8 +197,20 @@
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *image = [UIImage imageWithData:data];
         
-        cell.artistPhoto.image = image;
+        cell.favPhoto.image = image;
 
+        return cell;
+    } else { // if song button is selected
+        cell.favoriteLabel.text = self.currUserArtistData[indexPath.row][@"name"];
+        
+        NSString *image_string = self.currUserArtistData[indexPath.row][@"images"][0][@"url"];
+        
+        NSURL *url = [NSURL URLWithString:image_string];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [UIImage imageWithData:data];
+
+        cell.favPhoto.image = image;
+       
         return cell;
     }
 }
