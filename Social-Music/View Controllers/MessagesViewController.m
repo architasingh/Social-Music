@@ -8,7 +8,6 @@
 #import "MessagesViewController.h"
 #import <Parse/Parse.h>
 #import "ChatCell.h"
-#import "NSDate+DateTools.h"
 #import "ParseLiveQuery/ParseLiveQuery-umbrella.h"
 
 @interface MessagesViewController () <UITableViewDataSource, UITextViewDelegate>

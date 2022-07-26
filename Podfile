@@ -8,8 +8,6 @@ target 'Social-Music' do
   # Pods for Social-Music
   pod 'Parse'
   pod 'Parse/UI'
-  pod 'DateTools'
-  pod 'AFNetworking'
   pod 'ParseLiveQuery'
 
   target 'Social-MusicTests' do

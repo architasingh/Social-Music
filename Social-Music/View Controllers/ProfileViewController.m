@@ -11,7 +11,6 @@
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
 #import "SpotifyManager.h"
-#import "UIImageView+AFNetworking.h"
 #import "Parse/PFImageView.h"
 #import "TopItems.h"
 #import "MatchesDetailsViewController.h"
@@ -29,6 +28,8 @@
 
 @property (nonatomic, strong) NSArray *currUserArtistData;
 @property (nonatomic, strong) NSArray *currUserTrackData;
+@property (nonatomic, strong) NSArray *currUserArtistPhotos;
+@property (nonatomic, strong) NSArray *currUserTrackPhotos;
 @property (nonatomic, strong) NSString *accessToken;
 
 - (IBAction)didTapTakePhoto:(id)sender;
@@ -46,6 +47,7 @@
     [super viewDidLoad];
     
     PFUser *user = PFUser.currentUser;
+    
     self.usernameLabel.text = [@"@" stringByAppendingString: user.username];
     
     self.profileImage.file = user[@"profilePicture"];
@@ -66,19 +68,47 @@
 - (void)viewDidAppear:(BOOL)animated {
     self.accessToken = [[SpotifyManager shared] accessToken];
     NSLog(@"access token: %@", self.accessToken);
+    
+    PFUser *curr = PFUser.currentUser;
 
-    [[TopItems shared] fetchTopData:@"artists" completion:^{
-        self.currUserArtistData = [[TopItems shared] artistData];
-        NSLog(@"%@", self.currUserArtistData);
-    }];
-    
-    [[TopItems shared] fetchTopData:@"tracks" completion:^{
-        self.currUserTrackData = [[TopItems shared] trackData];
-        NSLog(@"%@", self.currUserTrackData);
-    }];
-    
-    [self.favoritesTableView reloadData];
+    if (curr[@"topArtists"] == nil && curr[@"topSongs"] == nil) {
+        [[TopItems shared] fetchTopData:@"artists" completion:^{
+            self.currUserArtistData = [[TopItems shared] artistData];
+            self.currUserArtistPhotos = [[TopItems shared] artistPhotos];
+            NSLog(@"profile artist data: %@", self.currUserArtistData);
+        }];
         
+        [[TopItems shared] fetchTopData:@"tracks" completion:^{
+            self.currUserTrackData = [[TopItems shared] trackData];
+            self.currUserTrackPhotos = [[TopItems shared] trackPhotos];
+            NSLog(@"profile track data: %@", self.currUserTrackData);
+        }];
+    } else {
+        PFQuery *trackQuery = [PFQuery queryWithClassName:@"Songs"];
+        [trackQuery whereKey:@"username" equalTo:PFUser.currentUser.username];
+        [trackQuery findObjectsInBackgroundWithBlock:^(NSArray *topSongs, NSError *error) {
+            if (topSongs != nil) {
+                self.currUserTrackData = topSongs[0][@"text"];
+                self.currUserTrackPhotos = topSongs[0][@"songImage"];
+                NSLog(@"top songs: %@", self.currUserTrackData);
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+        
+        PFQuery *artistQuery = [PFQuery queryWithClassName:@"Artists"];
+        [artistQuery whereKey:@"username" equalTo:PFUser.currentUser.username];
+        [artistQuery findObjectsInBackgroundWithBlock:^(NSArray *topArtists, NSError *error) {
+            if (topArtists != nil) {
+                self.currUserArtistData = topArtists[0][@"text"];
+                self.currUserArtistPhotos = topArtists[0][@"artistImage"];
+                NSLog(@"top artists: %@", self.currUserArtistData);
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    }
+    [self.favoritesTableView reloadData];
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -189,22 +219,22 @@
      [cell.layer addAnimation:shakeCells forKey:@"shake"];
 
     if (!self.favoriteButton.isSelected) {
-        cell.favoriteLabel.text = self.currUserTrackData[indexPath.row][@"name"];
+        cell.favoriteLabel.text = self.currUserTrackData[indexPath.row];
         
-        NSString *image_string = self.currUserTrackData[indexPath.row][@"album"][@"images"][0][@"url"];
-        
+        NSString *image_string = self.currUserTrackPhotos[indexPath.row];
+
         NSURL *url = [NSURL URLWithString:image_string];
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *image = [UIImage imageWithData:data];
-        
+
         cell.favPhoto.image = image;
 
         return cell;
     } else { // if song button is selected
-        cell.favoriteLabel.text = self.currUserArtistData[indexPath.row][@"name"];
+        cell.favoriteLabel.text = self.currUserArtistData[indexPath.row];
         
-        NSString *image_string = self.currUserArtistData[indexPath.row][@"images"][0][@"url"];
-        
+        NSString *image_string = self.currUserArtistPhotos[indexPath.row];
+
         NSURL *url = [NSURL URLWithString:image_string];
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *image = [UIImage imageWithData:data];
