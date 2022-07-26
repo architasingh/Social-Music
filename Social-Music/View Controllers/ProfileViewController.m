@@ -174,13 +174,23 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
-    CABasicAnimation *animation = [CABasicAnimation animation];
-    animation.keyPath = @"position.x";
-    animation.fromValue = @600;
-    animation.toValue = @200;
-    animation.duration = .8;
+//    CABasicAnimation *animation = [CABasicAnimation animation];
+//    animation.keyPath = @"position.x";
+//    animation.fromValue = @600;
+//    animation.toValue = @200;
+//    animation.duration = .8;
+//
+//    [cell.layer addAnimation:animation forKey:@"basic"];
+    
+    CAKeyframeAnimation *shakeCells = [CAKeyframeAnimation animation];
+     shakeCells.keyPath = @"position.x";
+     shakeCells.values = @[ @0, @10, @-10, @10, @0 ];
+     shakeCells.keyTimes = @[ @0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1 ];
+     shakeCells.duration = 0.4;
 
-    [cell.layer addAnimation:animation forKey:@"basic"];
+     shakeCells.additive = YES;
+
+     [cell.layer addAnimation:shakeCells forKey:@"shake"];
         
 
     if (self.favoriteButton.isSelected) {
