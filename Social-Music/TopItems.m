@@ -19,9 +19,13 @@
     });
     return shared;
 }
-//- (void)fetchTopData:(NSString *)type completion: (void(^_Nullable)(NSError * _Nullable error)) completionHandler
+
 - (void)fetchTopData:(NSString *)type completion: (void(^)(void)) completion {
-   
+    self.artistData = [[NSMutableArray alloc] init];
+    self.trackData = [[NSMutableArray alloc] init];
+    self.artistPhotos = [[NSMutableArray alloc] init];
+    self.trackPhotos = [[NSMutableArray alloc] init];
+    
     NSString *token = [[SpotifyManager shared] accessToken];
     
     NSString *tokenType = @"Bearer";
@@ -38,12 +42,22 @@
             if (!error) {
                 NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 if ([type  isEqual: @"artists"]) {
-                    self.artistData = dataDictionary[@"items"];
+                    for (int i = 0; i < 20; i++) {
+                        [self.artistData addObject:dataDictionary[@"items"][i][@"name"]];
+                        [self.artistPhotos addObject:dataDictionary[@"items"][i][@"images"][0][@"url"]];
+                       
+                    }
+                    
+                    NSLog(@"artist data: %@", self.artistData);
                     completion();
                     [self saveTopArtists];
                     return;
                 } if ([type  isEqual: @"tracks"]) {
-                    self.trackData = dataDictionary[@"items"];
+                    for (int i = 0; i < 20; i++) {
+                        [self.trackData addObject:dataDictionary[@"items"][i][@"name"]];
+                        [self.trackPhotos addObject:dataDictionary[@"items"][i][@"album"][@"images"][0][@"url"]];
+                    }
+                    NSLog(@"track data: %@", self.trackData);
                     completion();
                     [self saveTopSongs];
                 }
@@ -59,19 +73,18 @@
     topSongs[@"username"] = curr.username;
     
     if (!([curr[@"statusSong"] isEqualToString:@"saved"])) {
-        NSMutableArray *topSongsArray = [NSMutableArray new];
-        for (int i = 0; i < self.trackData.count; i++) {
-            [topSongsArray addObject:self.trackData[i][@"name"]];
-        }
-//        NSLog(@"top songs: %@", topSongsArray);
-        topSongs[@"text"] = topSongsArray;
+        topSongs[@"text"] = self.trackData;
+        topSongs[@"songImage"] = self.trackPhotos;
+        
         [topSongs saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
                 if (succeeded) {
-                    curr[@"statusSong"] = @"saved";
-                    curr[@"topSongs"] = topSongs;
-                    [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                    }];
-                    NSLog(@"The song data was saved!");
+                    if (self.trackData != nil) {
+                        curr[@"statusSong"] = @"saved";
+                        curr[@"topSongs"] = topSongs;
+                        [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                            NSLog(@"The song data was saved!");
+                        }];
+                    }
                 } else {
                     NSLog(@"Problem saving song data: %@", error.localizedDescription);
                 }
@@ -86,20 +99,18 @@
     topArtists[@"username"] = curr.username;
    
     if (!([curr[@"statusArtist"] isEqualToString:@"saved"])) {
-        NSMutableArray *topArtistsArray = [NSMutableArray new];
-        for (int i = 0; i < self.artistData.count; i++) {
-            [topArtistsArray addObject:self.artistData[i][@"name"]];
-        }
-//        NSLog(@"top artists: %@", topArtistsArray);
-        topArtists[@"text"] = topArtistsArray;
+        topArtists[@"text"] = self.artistData;
+        topArtists[@"artistImage"] = self.artistPhotos;
     
         [topArtists saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
                 if (succeeded) {
-                    curr[@"statusArtist"] = @"saved";
-                    curr[@"topArtists"] = topArtists;
-                    [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                    }];
-                    NSLog(@"The artist data was saved!");
+                    if(topArtists != nil) {
+                        curr[@"statusArtist"] = @"saved";
+                        curr[@"topArtists"] = topArtists;
+                        [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                            NSLog(@"The artist data was saved!");
+                        }];
+                    }
                 } else {
                     NSLog(@"Problem saving artist data: %@", error.localizedDescription);
                 }

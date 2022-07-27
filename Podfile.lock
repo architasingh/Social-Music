@@ -1,22 +1,6 @@
 PODS:
-  - AFNetworking (4.0.1):
-    - AFNetworking/NSURLSession (= 4.0.1)
-    - AFNetworking/Reachability (= 4.0.1)
-    - AFNetworking/Security (= 4.0.1)
-    - AFNetworking/Serialization (= 4.0.1)
-    - AFNetworking/UIKit (= 4.0.1)
-  - AFNetworking/NSURLSession (4.0.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (4.0.1)
-  - AFNetworking/Security (4.0.1)
-  - AFNetworking/Serialization (4.0.1)
-  - AFNetworking/UIKit (4.0.1):
-    - AFNetworking/NSURLSession
   - Bolts-Swift (1.5.0)
   - Bolts/Tasks (1.9.1)
-  - DateTools (2.0.0)
   - Parse (1.19.3):
     - Parse/Core (= 1.19.3)
   - Parse/Core (1.19.3):
@@ -30,31 +14,25 @@ PODS:
   - Starscream (4.0.4)
 
 DEPENDENCIES:
-  - AFNetworking
-  - DateTools
   - Parse
   - Parse/UI
   - ParseLiveQuery
 
 SPEC REPOS:
   trunk:
-    - AFNetworking
     - Bolts
     - Bolts-Swift
-    - DateTools
     - Parse
     - ParseLiveQuery
     - Starscream
 
 SPEC CHECKSUMS:
-  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   Bolts-Swift: afbbaf8c8186e7f769be4afa656949c14087ba44
-  DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
   ParseLiveQuery: 7bc437c3b986880ffe5f241a9921e37f45df0677
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
 
-PODFILE CHECKSUM: 490d03d6a4510c576379a745bf2f61704c5c0ef2
+PODFILE CHECKSUM: c9c416ce03cadea972e4ad7a077d971564865187
 
 COCOAPODS: 1.11.3
