@@ -5,6 +5,8 @@
 //  Created by Archita Singh on 7/21/22.
 //
 
+#import "Track.h"
+#import "Artist.h"
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN

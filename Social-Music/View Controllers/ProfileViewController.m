@@ -14,6 +14,8 @@
 #import "Parse/PFImageView.h"
 #import "TopItems.h"
 #import "MatchesDetailsViewController.h"
+#import "Track.h"
+#import "Artist.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
 
@@ -219,27 +221,33 @@
      [cell.layer addAnimation:shakeCells forKey:@"shake"];
 
     if (!self.favoriteButton.isSelected) {
-        cell.favoriteLabel.text = self.currUserTrackData[indexPath.row];
+        Track *track = self.currUserTrackData[indexPath.row];
+        cell.favoriteLabel.text = track.name;
+//        cell.favoriteLabel.text = self.currUserTrackData[indexPath.row];
         
-        NSString *image_string = self.currUserTrackPhotos[indexPath.row];
-
-        NSURL *url = [NSURL URLWithString:image_string];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *image = [UIImage imageWithData:data];
-
-        cell.favPhoto.image = image;
+//        NSString *image_string = self.currUserTrackPhotos[indexPath.row];
+//
+//        NSURL *url = [NSURL URLWithString:image_string];
+//        NSData *data = [NSData dataWithContentsOfURL:url];
+//        UIImage *image = [UIImage imageWithData:data];
+//
+//        cell.favPhoto.image = image;
+        cell.favPhoto.image = track.photo;
 
         return cell;
     } else { // if song button is selected
-        cell.favoriteLabel.text = self.currUserArtistData[indexPath.row];
+        Artist *artist = self.currUserArtistData[indexPath.row];
+        cell.favoriteLabel.text = artist.name;
         
-        NSString *image_string = self.currUserArtistPhotos[indexPath.row];
+//        NSString *image_string = self.currUserArtistPhotos[indexPath.row];
+//
+//        NSURL *url = [NSURL URLWithString:image_string];
+//        NSData *data = [NSData dataWithContentsOfURL:url];
+//        UIImage *image = [UIImage imageWithData:data];
 
-        NSURL *url = [NSURL URLWithString:image_string];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *image = [UIImage imageWithData:data];
-
-        cell.favPhoto.image = image;
+//        cell.favPhoto.image = image;
+        
+        cell.favPhoto.image = artist.photo;
        
         return cell;
     }

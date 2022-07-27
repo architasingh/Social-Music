@@ -5,7 +5,7 @@
 //  Created by Archita Singh on 7/6/22.
 //
 
-#import "SongViewController.h"
+#import "TrackViewController.h"
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 #import "SceneDelegate.h"
@@ -16,7 +16,7 @@
 #import <SpotifyiOS/SpotifyAppRemote.h>
 #import "SpotifyManager.h"
 
-@interface SongViewController ()
+@interface TrackViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *spotifyButton;
 
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation SongViewController
+@implementation TrackViewController
 
 - (void)viewDidLoad {
     

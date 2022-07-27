@@ -12,24 +12,24 @@
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *topArtistsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *topSongsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *topTracksLabel;
 @property (weak, nonatomic) IBOutlet UILabel *topArtistsHeader;
-@property (weak, nonatomic) IBOutlet UILabel *topSongsHeader;
+@property (weak, nonatomic) IBOutlet UILabel *topTracksHeader;
 @property (weak, nonatomic) IBOutlet UILabel *compatLabel;
 
 @property (strong, nonatomic) NSArray *otherUserTopArtists;
-@property (strong, nonatomic) NSArray *otherUserTopSongs;
+@property (strong, nonatomic) NSArray *otherUserTopTracks;
 @property (strong, nonatomic) NSString *otherUser;
 
 @property (strong, nonatomic) NSArray *currUserTopArtists;
-@property (strong, nonatomic) NSArray *currUserTopSongs;
+@property (strong, nonatomic) NSArray *currUserTopTracks;
 
 - (IBAction)didTapBack:(id)sender;
 @end
 
 @implementation MatchesDetailsViewController
 double artistCompatability;
-double songCompatability;
+double trackCompatability;
 
 // view setup
 
@@ -59,7 +59,7 @@ double songCompatability;
 - (void)getTopData:(NSString *)type forUser:(NSString *)userType {
     PFQuery *query = [PFQuery queryWithClassName:type];
     [query whereKey:@"username" equalTo:userType];
-
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *topItems, NSError *error) {
         if (topItems != nil) {
             NSString *result = [[topItems[0][@"text"] valueForKey:@"description"] componentsJoinedByString:@"\n"];
@@ -72,10 +72,10 @@ double songCompatability;
                 }
             } else {
                 if([userType isEqualToString:self.otherUser]) {
-                    self.otherUserTopSongs = topItems[0][@"text"];
-                    self.topSongsLabel.text = result;
+                    self.otherUserTopTracks = topItems[0][@"text"];
+                    self.topTracksLabel.text = result;
                 } else {
-                    self.currUserTopSongs = topItems[0][@"text"];
+                    self.currUserTopTracks = topItems[0][@"text"];
                 }
             }
 //            NSLog(@"top: %@", topItems[0][@"text"]);
@@ -123,44 +123,44 @@ double songCompatability;
         artistCompatability = compatability;
         
     } else {
-        NSMutableDictionary *currSongDict = [[NSMutableDictionary alloc] init];
-        NSMutableDictionary *otherSongDict = [[NSMutableDictionary alloc] init];
-        for (int i = 0; i < self.currUserTopSongs.count; i++) {
-            [currSongDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/200.0)] forKey:self.currUserTopSongs[i]];
+        NSMutableDictionary *currTrackDict = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary *otherTrackDict = [[NSMutableDictionary alloc] init];
+        for (int i = 0; i < self.currUserTopTracks.count; i++) {
+            [currTrackDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/200.0)] forKey:self.currUserTopTracks[i]];
         }
-        for (int i = 0; i < self.otherUserTopSongs.count; i++) {
-            [otherSongDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/200.0)] forKey:self.otherUserTopSongs[i]];
+        for (int i = 0; i < self.otherUserTopTracks.count; i++) {
+            [otherTrackDict setObject:[NSDecimalNumber numberWithDouble:((i+1)/200.0)] forKey:self.otherUserTopTracks[i]];
         }
         
-        NSLog(@"curr song Dict: %@", currSongDict);
-        NSLog(@"other song Dict: %@", otherSongDict);
+        NSLog(@"curr song Dict: %@", currTrackDict);
+        NSLog(@"other song Dict: %@", otherTrackDict);
         
-        NSMutableSet* set1 = [NSMutableSet setWithArray:self.currUserTopSongs];
-        NSMutableSet* set2 = [NSMutableSet setWithArray:self.otherUserTopSongs];
+        NSMutableSet* set1 = [NSMutableSet setWithArray:self.currUserTopTracks];
+        NSMutableSet* set2 = [NSMutableSet setWithArray:self.otherUserTopTracks];
         
         [set1 intersectSet:set2];
 
         NSArray *result = [set1 allObjects];
         NSLog(@"song result: %@", result);
-        NSMutableArray *songVal = [[NSMutableArray alloc] init];
+        NSMutableArray *trackVal = [[NSMutableArray alloc] init];
         
         for(NSString *object in result) {
-            NSDecimalNumber *indexCurr = currSongDict[object];
-            NSDecimalNumber *indexOther = otherSongDict[object];
+            NSDecimalNumber *indexCurr = currTrackDict[object];
+            NSDecimalNumber *indexOther = otherTrackDict[object];
             NSDecimalNumber *diff = [indexCurr decimalNumberBySubtracting:indexOther];
             double diffDouble = fabs([diff doubleValue]);
-            double songWeight = ((1 - diffDouble)/20)*0.25;
-            [songVal addObject:[NSDecimalNumber numberWithDouble:songWeight]];
+            double trackWeight = ((1 - diffDouble)/20)*0.25;
+            [trackVal addObject:[NSDecimalNumber numberWithDouble:trackWeight]];
         }
         
         double compatability = 0;
-        for (NSDecimalNumber *songInd in songVal) {
-            compatability += fabs([songInd doubleValue]);
+        for (NSDecimalNumber *trackInd in trackVal) {
+            compatability += fabs([trackInd doubleValue]);
         }
-        songCompatability = compatability;
+        trackCompatability = compatability;
         NSLog(@"song compatability: %f", compatability);
     }
-    double totalCompatability = (artistCompatability + songCompatability)*100;
+    double totalCompatability = (artistCompatability + trackCompatability)*100;
     NSDecimalNumber *totalCompatabilityNS = [NSDecimalNumber numberWithDouble:totalCompatability];
     NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain
                                                                                     scale:3

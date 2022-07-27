@@ -43,44 +43,61 @@
                 NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 if ([type  isEqual: @"artists"]) {
                     for (int i = 0; i < 20; i++) {
-                        [self.artistData addObject:dataDictionary[@"items"][i][@"name"]];
-                        [self.artistPhotos addObject:dataDictionary[@"items"][i][@"images"][0][@"url"]];
+                        NSString *artistName = dataDictionary[@"items"][i][@"name"];
+                        NSString *artistPhoto = dataDictionary[@"items"][i][@"images"][0][@"url"];
+                        
+                        Artist *artist = [Artist getArtist:artistName image:artistPhoto withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                        }];
+                        
+                        [self.artistData addObject:artist];
+                        
+//                        [self.artistData addObject:dataDictionary[@"items"][i][@"name"]];
+//                        [self.artistPhotos addObject:dataDictionary[@"items"][i][@"images"][0][@"url"]];
                        
                     }
                     
                     NSLog(@"artist data: %@", self.artistData);
                     completion();
-                    [self saveTopArtists];
+//                    [self saveTopArtists];
                     return;
                 } if ([type  isEqual: @"tracks"]) {
                     for (int i = 0; i < 20; i++) {
-                        [self.trackData addObject:dataDictionary[@"items"][i][@"name"]];
-                        [self.trackPhotos addObject:dataDictionary[@"items"][i][@"album"][@"images"][0][@"url"]];
+                        
+                        NSString *trackName = dataDictionary[@"items"][i][@"name"];
+                        NSString *trackPhoto = dataDictionary[@"items"][i][@"album"][@"images"][0][@"url"];
+                        
+                        Track *track = [Track getTrack:trackName image:trackPhoto withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                        }];
+                        
+                        [self.trackData addObject:track];
+                        
+//                        [self.trackData addObject:dataDictionary[@"items"][i][@"name"]];
+//                        [self.trackPhotos addObject:dataDictionary[@"items"][i][@"album"][@"images"][0][@"url"]];
                     }
                     NSLog(@"track data: %@", self.trackData);
                     completion();
-                    [self saveTopSongs];
+//                    [self saveTopTracks];
                 }
             }
         }];
     [task resume];
 }
 
-- (void) saveTopSongs {
-    PFObject *topSongs = [PFObject objectWithClassName:@"Songs"];
+- (void) saveTopTracks {
+    PFObject *topTracks = [PFObject objectWithClassName:@"Songs"];
     PFUser *curr = PFUser.currentUser;
-    topSongs[@"user"] = curr;
-    topSongs[@"username"] = curr.username;
+    topTracks[@"user"] = curr;
+    topTracks[@"username"] = curr.username;
     
     if (!([curr[@"statusSong"] isEqualToString:@"saved"])) {
-        topSongs[@"text"] = self.trackData;
-        topSongs[@"songImage"] = self.trackPhotos;
+        topTracks[@"text"] = self.trackData;
+        topTracks[@"songImage"] = self.trackPhotos;
         
-        [topSongs saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        [topTracks saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
                 if (succeeded) {
                     if (self.trackData != nil) {
                         curr[@"statusSong"] = @"saved";
-                        curr[@"topSongs"] = topSongs;
+                        curr[@"topSongs"] = topTracks;
                         [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                             NSLog(@"The song data was saved!");
                         }];
