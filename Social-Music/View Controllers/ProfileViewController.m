@@ -75,15 +75,15 @@
 
     if (curr[@"topArtists"] == nil && curr[@"topSongs"] == nil) {
         [[TopItems shared] fetchTopData:@"artists" completion:^{
-            self.currUserArtistData = [[TopItems shared] artistData];
-            self.currUserArtistPhotos = [[TopItems shared] artistPhotos];
-            NSLog(@"profile artist data: %@", self.currUserArtistData);
+//            self.currUserArtistData = [[TopItems shared] artistData];
+//            self.currUserArtistPhotos = [[TopItems shared] artistPhotos];
+//            NSLog(@"profile artist data: %@", self.currUserArtistData);
         }];
         
         [[TopItems shared] fetchTopData:@"tracks" completion:^{
-            self.currUserTrackData = [[TopItems shared] trackData];
-            self.currUserTrackPhotos = [[TopItems shared] trackPhotos];
-            NSLog(@"profile track data: %@", self.currUserTrackData);
+//            self.currUserTrackData = [[TopItems shared] trackData];
+//            self.currUserTrackPhotos = [[TopItems shared] trackPhotos];
+//            NSLog(@"profile track data: %@", self.currUserTrackData);
         }];
     } else {
         PFQuery *trackQuery = [PFQuery queryWithClassName:@"Songs"];

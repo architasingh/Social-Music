@@ -20,8 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray *artistData;
 @property (nonatomic, strong) NSMutableArray *trackData;
-@property (nonatomic, strong) NSMutableArray *artistPhotos;
-@property (nonatomic, strong) NSMutableArray *trackPhotos;
+//@property (nonatomic, strong) NSMutableArray *artistPhotos;
+//@property (nonatomic, strong) NSMutableArray *trackPhotos;
 
 @end
 

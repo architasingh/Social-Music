@@ -33,6 +33,7 @@
 		ADF55C4A287E2A5700EC3BB9 /* SpotifyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF55C49287E2A5700EC3BB9 /* SpotifyManager.m */; };
 		ADF7311A2891AF1400B28289 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF731192891AF1400B28289 /* Artist.m */; };
 		ADF7311E2891AF4300B28289 /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF7311D2891AF4300B28289 /* Track.m */; };
+		ADF731212891F7BB00B28289 /* SpotifyTopItemsData.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF731202891F7BB00B28289 /* SpotifyTopItemsData.m */; };
 		CABC6BB5C0962CBC9846E6BA /* Pods_Social_MusicTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46050F6B8A0A40E392E012F4 /* Pods_Social_MusicTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,8 @@
 		ADF731192891AF1400B28289 /* Artist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
 		ADF7311C2891AF4300B28289 /* Track.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
 		ADF7311D2891AF4300B28289 /* Track.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
+		ADF7311F2891F7BB00B28289 /* SpotifyTopItemsData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyTopItemsData.h; sourceTree = "<group>"; };
+		ADF731202891F7BB00B28289 /* SpotifyTopItemsData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyTopItemsData.m; sourceTree = "<group>"; };
 		CFB428BF9DCC53502643F31B /* Pods_Social_Music_Social_MusicUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social_Music_Social_MusicUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5DBC07435758349A4404FCE /* Pods-Social-MusicTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social-MusicTests.debug.xcconfig"; path = "Target Support Files/Pods-Social-MusicTests/Pods-Social-MusicTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,6 +261,8 @@
 				ADF731192891AF1400B28289 /* Artist.m */,
 				ADF7311C2891AF4300B28289 /* Track.h */,
 				ADF7311D2891AF4300B28289 /* Track.m */,
+				ADF7311F2891F7BB00B28289 /* SpotifyTopItemsData.h */,
+				ADF731202891F7BB00B28289 /* SpotifyTopItemsData.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -515,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD806AA9287CC8A200D6BA0F /* FavoritesCell.m in Sources */,
+				ADF731212891F7BB00B28289 /* SpotifyTopItemsData.m in Sources */,
 				ADDEC5DD28872EC000FDF4AD /* MatchesCell.m in Sources */,
 				ADC6708C28725C1A004CFA6D /* LoginViewController.m in Sources */,
 				ADC670D428764C1C004CFA6D /* MessagesViewController.m in Sources */,
