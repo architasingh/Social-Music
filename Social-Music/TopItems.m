@@ -22,8 +22,11 @@
 }
 
 - (void)fetchTopDataWithCompletion: (void(^)(void)) completion {
-    self.artistData = [[NSMutableArray alloc] init];
-    self.trackData = [[NSMutableArray alloc] init];
+    
+    self.artistNames = [[NSMutableArray alloc] init];
+    self.trackNames = [[NSMutableArray alloc] init];
+    self.artistPhotos = [[NSMutableArray alloc] init];
+    self.trackPhotos = [[NSMutableArray alloc] init];
 
     NSString *token = [[SpotifyManager shared] accessToken];
     
@@ -41,8 +44,6 @@
     NSURLSessionDataTask *artistTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable artistData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (!error) {
                 NSDictionary *artistDict = [NSJSONSerialization JSONObjectWithData:artistData options:0 error:nil];
-                
-                //fetch STID object and get photos + names
                 
                 NSString *trackURLString = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:@"tracks"];
                 
@@ -64,58 +65,6 @@
         completion();
         }];
     [artistTask resume];
-}
-
-- (void) saveTopTracks {
-    PFObject *topTracks = [PFObject objectWithClassName:@"Songs"];
-    PFUser *curr = PFUser.currentUser;
-    topTracks[@"user"] = curr;
-    topTracks[@"username"] = curr.username;
-    
-    if (!([curr[@"statusSong"] isEqualToString:@"saved"])) {
-        topTracks[@"data"] = self.trackData;
-//        topTracks[@"songImage"] = self.trackPhotos;
-        
-        [topTracks saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-                if (succeeded) {
-                    if (self.trackData != nil) {
-                        curr[@"statusSong"] = @"saved";
-                        curr[@"topSongs"] = topTracks;
-                        [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                            NSLog(@"The song data was saved!");
-                        }];
-                    }
-                } else {
-                    NSLog(@"Problem saving song data: %@", error.localizedDescription);
-                }
-            }];
-    }
-}
-
-- (void) saveTopArtists {
-    PFObject *topArtists = [PFObject objectWithClassName:@"Artists"];
-    PFUser *curr = PFUser.currentUser;
-    topArtists[@"user"] = curr;
-    topArtists[@"username"] = curr.username;
-   
-    if (!([curr[@"statusArtist"] isEqualToString:@"saved"])) {
-        topArtists[@"data"] = self.artistData;
-//        topArtists[@"artistImage"] = self.artistPhotos;
-    
-        [topArtists saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-                if (succeeded) {
-                    if(topArtists != nil) {
-                        curr[@"statusArtist"] = @"saved";
-                        curr[@"topArtists"] = topArtists;
-                        [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                            NSLog(@"The artist data was saved!");
-                        }];
-                    }
-                } else {
-                    NSLog(@"Problem saving artist data: %@", error.localizedDescription);
-                }
-            }];
-    }
 }
 
 @end

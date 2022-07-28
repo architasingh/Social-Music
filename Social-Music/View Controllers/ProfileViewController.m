@@ -28,8 +28,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 
-@property (nonatomic, strong) NSArray *currUserArtistData;
-@property (nonatomic, strong) NSArray *currUserTrackData;
+@property (nonatomic, strong) NSArray *currUserArtistNames;
+@property (nonatomic, strong) NSArray *currUserTrackNames;
 @property (nonatomic, strong) NSArray *currUserArtistPhotos;
 @property (nonatomic, strong) NSArray *currUserTrackPhotos;
 @property (nonatomic, strong) NSString *accessToken;
@@ -75,41 +75,27 @@
 
     if (curr[@"topArtists"] == nil && curr[@"topSongs"] == nil) {
         [[TopItems shared] fetchTopDataWithCompletion:^{
-            
         }];
-//        [[TopItems shared] fetchTopData:@"artists" completion:^{
-//            self.currUserArtistData = [[TopItems shared] artistData];
-//        }];
-//
-//        [[TopItems shared] fetchTopData:@"tracks" completion:^{
-//            self.currUserTrackData = [[TopItems shared] trackData];
-//        }];
+        [self queryTopData];
     } else {
-        PFQuery *trackQuery = [PFQuery queryWithClassName:@"Songs"];
-        [trackQuery whereKey:@"username" equalTo:PFUser.currentUser.username];
-        [trackQuery findObjectsInBackgroundWithBlock:^(NSArray *topSongs, NSError *error) {
-            if (topSongs != nil) {
-                self.currUserTrackData = topSongs[0][@"text"];
-                self.currUserTrackPhotos = topSongs[0][@"songImage"];
-                NSLog(@"top songs: %@", self.currUserTrackData);
-            } else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
-        
-        PFQuery *artistQuery = [PFQuery queryWithClassName:@"Artists"];
-        [artistQuery whereKey:@"username" equalTo:PFUser.currentUser.username];
-        [artistQuery findObjectsInBackgroundWithBlock:^(NSArray *topArtists, NSError *error) {
-            if (topArtists != nil) {
-                self.currUserArtistData = topArtists[0][@"text"];
-                self.currUserArtistPhotos = topArtists[0][@"artistImage"];
-                NSLog(@"top artists: %@", self.currUserArtistData);
-            } else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
-    }
+        [self queryTopData];
     [self.favoritesTableView reloadData];
+    }
+}
+
+- (void)queryTopData {
+    PFQuery *topInfoQuery = [PFQuery queryWithClassName:@"SpotifyTopItemsData"];
+    [topInfoQuery whereKey:@"user" equalTo:PFUser.currentUser];
+    [topInfoQuery findObjectsInBackgroundWithBlock:^(NSArray *topInfo, NSError *error) {
+        if (topInfo != nil) {
+            self.currUserArtistNames = topInfo[0][@"topArtistNames"];
+            self.currUserTrackNames = topInfo[0][@"topTrackNames"];
+            NSLog(@"top artists: %@", self.currUserArtistNames);
+            NSLog(@"top tracks: %@", self.currUserTrackNames);
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -220,22 +206,22 @@
      [cell.layer addAnimation:shakeCells forKey:@"shake"];
 
     if (!self.favoriteButton.isSelected) {
-        Track *track = self.currUserTrackData[indexPath.row];
-        cell.favoriteLabel.text = track.name;
-        cell.favPhoto.image = track.photo;
+//        Track *track = self.currUserTrackNames[indexPath.row];
+        cell.favoriteLabel.text = self.currUserTrackNames[indexPath.row];
+//        cell.favPhoto.image = track.photo;
 
         return cell;
     } else { // if song button is selected
-        Artist *artist = self.currUserArtistData[indexPath.row];
-        cell.favoriteLabel.text = artist.name;
-        cell.favPhoto.image = artist.photo;
+//        Artist *artist = self.currUserArtistNames[indexPath.row];
+        cell.favoriteLabel.text = self.currUserArtistNames[indexPath.row];
+//        cell.favPhoto.image = artist.photo;
        
         return cell;
     }
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.currUserArtistData.count;
+    return self.currUserArtistNames.count;
 }
 
 @end

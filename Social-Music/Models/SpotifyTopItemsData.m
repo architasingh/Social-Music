@@ -37,7 +37,6 @@
     NSMutableArray *topTrackNames = [[NSMutableArray alloc] init];
     NSMutableArray *topTrackPhotos = [[NSMutableArray alloc] init];
     
-
         for (int i = 0; i < 20; i++) {
             NSString *artistName = artistData[@"items"][i][@"name"];
             NSString *artistPhoto = artistData[@"items"][i][@"images"][0][@"url"];
@@ -51,10 +50,18 @@
             [topTrackNames addObject:trackName];
             [topTrackPhotos addObject:trackPhoto];
         }
+        
+    PFUser *curr = PFUser.currentUser;
     
-        SpotifyTopItemsData *STID = [[SpotifyTopItemsData alloc] initWithTrackNames:topTrackNames trackPhotos:topTrackPhotos artistNames:topArtistNames artistPhotos:topArtistPhotos forUser:PFUser.currentUser];
-        [STID saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        }];
+        if (!([curr[@"status"] isEqualToString:@"saved"])) {
+            NSLog(@"%@", curr[@"status"]);
+            SpotifyTopItemsData *STID = [[SpotifyTopItemsData alloc] initWithTrackNames:topTrackNames trackPhotos:topTrackPhotos artistNames:topArtistNames artistPhotos:topArtistPhotos forUser:curr];
+            curr[@"status"] = @"saved";
+            [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            }];
+            [STID saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            }];
+        }
     }
 
 @end
