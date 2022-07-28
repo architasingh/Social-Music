@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (id)shared;
 
-- (void)fetchTopData:(NSString *)type completion: (void(^)(void)) completion;
-
+//- (void)fetchTopData:(NSString *)type completion: (void(^)(void)) completion;
+- (void)fetchTopDataWithCompletion: (void(^)(void)) completion;
 
 @property (nonatomic, strong) NSMutableArray *artistData;
 @property (nonatomic, strong) NSMutableArray *trackData;

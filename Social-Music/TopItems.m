@@ -21,7 +21,7 @@
     return shared;
 }
 
-- (void)fetchTopData:(NSString *)type completion: (void(^)(void)) completion {
+- (void)fetchTopDataWithCompletion: (void(^)(void)) completion {
     self.artistData = [[NSMutableArray alloc] init];
     self.trackData = [[NSMutableArray alloc] init];
 
@@ -31,62 +31,39 @@
     NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     
-    NSString *baseURLString = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:type];
-    NSURL *url = [NSURL URLWithString:baseURLString];
+    NSString *artistURLString = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:@"artists"];
+    
+    NSURL *artistURL = [NSURL URLWithString:artistURLString];
     [request setValue:header forHTTPHeaderField:@"Authorization"];
-    [request setURL:url];
+    [request setURL:artistURL];
             
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask *artistTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable artistData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (!error) {
-                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            
-//                if ([type  isEqual: @"artists"]) {
-//                    [SpotifyTopItemsData getResponseWithData:dataDictionary ofType:@"artists" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-//                    }];
-//                }
-//                if ([type  isEqual: @"tracks"]) {
-//                    [SpotifyTopItemsData getResponseWithData:dataDictionary ofType:@"tracks" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-//                    }];
-//                }
+                NSDictionary *artistDict = [NSJSONSerialization JSONObjectWithData:artistData options:0 error:nil];
                 
-                //this part now in spotify top items data
+                //fetch STID object and get photos + names
                 
-                if ([type  isEqual: @"artists"]) {
-                    for (int i = 0; i < 20; i++) {
-                        NSString *artistName = dataDictionary[@"items"][i][@"name"];
-                        NSString *artistPhoto = dataDictionary[@"items"][i][@"images"][0][@"url"];
-
-                        Artist *artist = [Artist getArtist:artistName image:artistPhoto withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-                        }];
-
-                        [self.artistData addObject:artist];
-
-                    }
-
-                    NSLog(@"artist data: %@", self.artistData);
-                    completion();
-//                    [self saveTopArtists];
-                    return;
-                } if ([type  isEqual: @"tracks"]) {
-                    for (int i = 0; i < 20; i++) {
-
-                        NSString *trackName = dataDictionary[@"items"][i][@"name"];
-                        NSString *trackPhoto = dataDictionary[@"items"][i][@"album"][@"images"][0][@"url"];
-
-                        Track *track = [Track getTrack:trackName image:trackPhoto withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-                        }];
-
-                        [self.trackData addObject:track];
-
-                    }
-                    NSLog(@"track data: %@", self.trackData);
-                    completion();
-//                    [self saveTopTracks];
-                }
+                NSString *trackURLString = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:@"tracks"];
+                
+                NSURL *trackURL = [NSURL URLWithString:trackURLString];
+                [request setValue:header forHTTPHeaderField:@"Authorization"];
+                [request setURL:trackURL];
+                        
+                NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+                NSURLSessionDataTask *trackTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable trackData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    
+                    NSDictionary *trackDict = [NSJSONSerialization JSONObjectWithData:trackData options:0 error:nil];
+                    [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                    }];
+                    
+                    //fetch STID object and get photos + names
+                }];
+                [trackTask resume];
             }
+        completion();
         }];
-    [task resume];
+    [artistTask resume];
 }
 
 - (void) saveTopTracks {

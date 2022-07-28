@@ -74,13 +74,16 @@
     PFUser *curr = PFUser.currentUser;
 
     if (curr[@"topArtists"] == nil && curr[@"topSongs"] == nil) {
-        [[TopItems shared] fetchTopData:@"artists" completion:^{
-            self.currUserArtistData = [[TopItems shared] artistData];
+        [[TopItems shared] fetchTopDataWithCompletion:^{
+            
         }];
-        
-        [[TopItems shared] fetchTopData:@"tracks" completion:^{
-            self.currUserTrackData = [[TopItems shared] trackData];
-        }];
+//        [[TopItems shared] fetchTopData:@"artists" completion:^{
+//            self.currUserArtistData = [[TopItems shared] artistData];
+//        }];
+//
+//        [[TopItems shared] fetchTopData:@"tracks" completion:^{
+//            self.currUserTrackData = [[TopItems shared] trackData];
+//        }];
     } else {
         PFQuery *trackQuery = [PFQuery queryWithClassName:@"Songs"];
         [trackQuery whereKey:@"username" equalTo:PFUser.currentUser.username];

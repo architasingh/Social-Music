@@ -65,9 +65,9 @@
             filePath = "Social-Music/TopItems.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "-fetchTopData:completion:"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "-fetchTopDataWithCompletion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -81,9 +81,9 @@
             filePath = "Social-Music/Models/SpotifyTopItemsData.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "+getResponseWithData:ofType:withCompletion:"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "+getResponseWithArtistData:andTrackData:withCompletion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -97,25 +97,9 @@
             filePath = "Social-Music/Models/SpotifyTopItemsData.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "+getResponseWithData:ofType:withCompletion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D8A53D79-F6E4-46B7-BBBE-89496465F6D7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social-Music/TopItems.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "-fetchTopData:completion:"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "+getResponseWithArtistData:andTrackData:withCompletion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
