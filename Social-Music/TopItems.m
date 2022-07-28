@@ -33,8 +33,8 @@
     NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     
-    NSString *baseURL = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:type];
-    NSURL *url = [NSURL URLWithString:baseURL];
+    NSString *baseURLString = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:type];
+    NSURL *url = [NSURL URLWithString:baseURLString];
     [request setValue:header forHTTPHeaderField:@"Authorization"];
     [request setURL:url];
             
@@ -52,8 +52,8 @@
                     }];
                 }
                 //this part now in spotify top items data
-                /*NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                if ([type  isEqual: @"artists"]) {
+                
+                /*if ([type  isEqual: @"artists"]) {
                     for (int i = 0; i < 20; i++) {
                         NSString *artistName = dataDictionary[@"items"][i][@"name"];
                         NSString *artistPhoto = dataDictionary[@"items"][i][@"images"][0][@"url"];

@@ -28,6 +28,7 @@
 }
 
 + (void) getResponseWithData: (NSDictionary *)data ofType: (NSString *)type withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+    
     NSMutableArray *topArtists = [[NSMutableArray alloc] init];
     NSMutableArray *topTracks = [[NSMutableArray alloc] init];
     
