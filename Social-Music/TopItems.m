@@ -23,10 +23,8 @@
 
 - (void)fetchTopDataWithCompletion: (void(^)(void)) completion {
     
-    self.artistNames = [[NSMutableArray alloc] init];
-    self.trackNames = [[NSMutableArray alloc] init];
-    self.artistPhotos = [[NSMutableArray alloc] init];
-    self.trackPhotos = [[NSMutableArray alloc] init];
+    self.artistData = [[NSMutableArray alloc] init];
+    self.trackData = [[NSMutableArray alloc] init];
 
     NSString *token = [[SpotifyManager shared] accessToken];
     
@@ -55,10 +53,29 @@
                 NSURLSessionDataTask *trackTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable trackData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     
                     NSDictionary *trackDict = [NSJSONSerialization JSONObjectWithData:trackData options:0 error:nil];
+                    
+                    for (int i = 0; i < 20; i++) {
+                        NSString *trackName = trackDict[@"items"][i][@"name"];
+                        NSString *trackPhoto = trackDict[@"items"][i][@"album"][@"images"][0][@"url"];
+
+                        Track *track = [Track getTrack:trackName image:trackPhoto withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                        }];
+
+                        [self.trackData addObject:track];
+
+                        NSString *artistName = artistDict[@"items"][i][@"name"];
+                        NSString *artistPhoto = artistDict[@"items"][i][@"images"][0][@"url"];
+
+                        Artist *artist = [Artist getArtist:artistName image:artistPhoto withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                                                }];
+
+                        [self.artistData addObject:artist];
+                    }
+                    NSLog(@"artist data %@", self.artistData);
+                    NSLog(@"track data %@", self.trackData);
+                    
                     [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
                     }];
-                    
-                    //fetch STID object and get photos + names
                 }];
                 [trackTask resume];
             }

@@ -18,14 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 //- (void)fetchTopData:(NSString *)type completion: (void(^)(void)) completion;
 - (void)fetchTopDataWithCompletion: (void(^)(void)) completion;
 
-@property (nonatomic, strong) NSMutableArray *artistNames;
-@property (nonatomic, strong) NSMutableArray *trackNames;
-
-@property (nonatomic, strong) NSMutableArray *artistPhotos;
-@property (nonatomic, strong) NSMutableArray *trackPhotos;
-
-//@property (nonatomic, strong) NSMutableArray *artistNames;
-//@property (nonatomic, strong) NSMutableArray *trackNames;
+@property (nonatomic, strong) NSMutableArray *artistData;
+@property (nonatomic, strong) NSMutableArray *trackData;
 
 @end
 

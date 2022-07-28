@@ -28,10 +28,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 
+@property (nonatomic, strong) NSMutableArray *currUserArtistData;
+@property (nonatomic, strong) NSMutableArray *currUserTrackData;
 @property (nonatomic, strong) NSArray *currUserArtistNames;
 @property (nonatomic, strong) NSArray *currUserTrackNames;
 @property (nonatomic, strong) NSArray *currUserArtistPhotos;
 @property (nonatomic, strong) NSArray *currUserTrackPhotos;
+
 @property (nonatomic, strong) NSString *accessToken;
 
 - (IBAction)didTapTakePhoto:(id)sender;
@@ -49,6 +52,10 @@
     [super viewDidLoad];
     
     PFUser *user = PFUser.currentUser;
+    self.currUserTrackData = [[NSMutableArray alloc] init];
+    self.currUserArtistData = [[NSMutableArray alloc] init];
+    
+//    [self buildArraysofTracksArtists];
     
     self.usernameLabel.text = [@"@" stringByAppendingString: user.username];
     
@@ -72,15 +79,19 @@
     NSLog(@"access token: %@", self.accessToken);
     
     PFUser *curr = PFUser.currentUser;
-
-    if (curr[@"topArtists"] == nil && curr[@"topSongs"] == nil) {
+    
+    curr[@"status"] = @"";
+    NSLog(@"current status: %@",curr[@"status"]);
+    
+    if (!([curr[@"status"] isEqualToString:@"saved"])) {
         [[TopItems shared] fetchTopDataWithCompletion:^{
         }];
         [self queryTopData];
     } else {
         [self queryTopData];
-    [self.favoritesTableView reloadData];
     }
+    [self buildArraysofTracksArtists];
+    [self.favoritesTableView reloadData];
 }
 
 - (void)queryTopData {
@@ -90,12 +101,23 @@
         if (topInfo != nil) {
             self.currUserArtistNames = topInfo[0][@"topArtistNames"];
             self.currUserTrackNames = topInfo[0][@"topTrackNames"];
-            NSLog(@"top artists: %@", self.currUserArtistNames);
-            NSLog(@"top tracks: %@", self.currUserTrackNames);
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+}
+
+- (void)buildArraysofTracksArtists {
+    for (int i = 0; i < 20; i++) {
+        Track *track = [Track getTrack:self.currUserTrackNames[i] image:self.currUserArtistNames[i] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        }];
+        [self.currUserTrackData addObject:track];
+        
+        Artist *artist = [Artist getArtist:self.currUserArtistNames[i] image:self.currUserArtistPhotos[i] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            
+        }];
+        [self.currUserArtistData addObject:artist];
+    }
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -190,6 +212,8 @@
 // tableview methods
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    self.currUserArtistData = [[TopItems shared] artistData];
+    self.currUserTrackData = [[TopItems shared] trackData];
     
     FavoritesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:indexPath];
     
@@ -206,16 +230,19 @@
      [cell.layer addAnimation:shakeCells forKey:@"shake"];
 
     if (!self.favoriteButton.isSelected) {
-//        Track *track = self.currUserTrackNames[indexPath.row];
-        cell.favoriteLabel.text = self.currUserTrackNames[indexPath.row];
-//        cell.favPhoto.image = track.photo;
+        Track *track = self.currUserTrackData[indexPath.row];
+        
+        cell.favoriteLabel.text = track.name;
+        cell.favPhoto.image = track.photo;
 
         return cell;
-    } else { // if song button is selected
-//        Artist *artist = self.currUserArtistNames[indexPath.row];
-        cell.favoriteLabel.text = self.currUserArtistNames[indexPath.row];
-//        cell.favPhoto.image = artist.photo;
+    } else {
+        Artist *artist = self.currUserArtistData[indexPath.row];
+        cell.favoriteLabel.text = artist.name;
+        cell.favPhoto.image = artist.photo;
        
+        NSLog(@"artist: %@", artist);
+        
         return cell;
     }
 }

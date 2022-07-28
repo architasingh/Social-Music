@@ -36,32 +36,17 @@
     NSMutableArray *topArtistPhotos = [[NSMutableArray alloc] init];
     NSMutableArray *topTrackNames = [[NSMutableArray alloc] init];
     NSMutableArray *topTrackPhotos = [[NSMutableArray alloc] init];
-    
-        for (int i = 0; i < 20; i++) {
-            NSString *artistName = artistData[@"items"][i][@"name"];
-            NSString *artistPhoto = artistData[@"items"][i][@"images"][0][@"url"];
-            
-            [topArtistNames addObject:artistName];
-            [topArtistPhotos addObject:artistPhoto];
-            
-            NSString *trackName = trackData[@"items"][i][@"name"];
-            NSString *trackPhoto = trackData[@"items"][i][@"album"][@"images"][0][@"url"];
-            
-            [topTrackNames addObject:trackName];
-            [topTrackPhotos addObject:trackPhoto];
-        }
         
-    PFUser *curr = PFUser.currentUser;
+        PFUser *curr = PFUser.currentUser;
     
-        if (!([curr[@"status"] isEqualToString:@"saved"])) {
-            NSLog(@"%@", curr[@"status"]);
-            SpotifyTopItemsData *STID = [[SpotifyTopItemsData alloc] initWithTrackNames:topTrackNames trackPhotos:topTrackPhotos artistNames:topArtistNames artistPhotos:topArtistPhotos forUser:curr];
-            curr[@"status"] = @"saved";
-            [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            }];
-            [STID saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            }];
-        }
+        SpotifyTopItemsData *STID = [[SpotifyTopItemsData alloc] initWithTrackNames:topTrackNames trackPhotos:topTrackPhotos artistNames:topArtistNames artistPhotos:topArtistPhotos forUser:curr];
+        [STID saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        }];
+        curr[@"status"] = @"saved";
+        [curr saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        }];
+        NSLog(@"user data saved!");
+        
     }
 
 @end
