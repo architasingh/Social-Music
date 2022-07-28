@@ -24,9 +24,7 @@
 - (void)fetchTopData:(NSString *)type completion: (void(^)(void)) completion {
     self.artistData = [[NSMutableArray alloc] init];
     self.trackData = [[NSMutableArray alloc] init];
-//    self.artistPhotos = [[NSMutableArray alloc] init];
-//    self.trackPhotos = [[NSMutableArray alloc] init];
-    
+
     NSString *token = [[SpotifyManager shared] accessToken];
     
     NSString *tokenType = @"Bearer";
@@ -42,54 +40,50 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (!error) {
                 NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-
-                if ([type  isEqual: @"artists"]) {
-                    [SpotifyTopItemsData getResponseWithData:dataDictionary ofType:@"artists" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-                    }];
-                }
-                if ([type  isEqual: @"tracks"]) {
-                    [SpotifyTopItemsData getResponseWithData:dataDictionary ofType:@"tracks" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-                    }];
-                }
+            
+//                if ([type  isEqual: @"artists"]) {
+//                    [SpotifyTopItemsData getResponseWithData:dataDictionary ofType:@"artists" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+//                    }];
+//                }
+//                if ([type  isEqual: @"tracks"]) {
+//                    [SpotifyTopItemsData getResponseWithData:dataDictionary ofType:@"tracks" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+//                    }];
+//                }
+                
                 //this part now in spotify top items data
                 
-                /*if ([type  isEqual: @"artists"]) {
+                if ([type  isEqual: @"artists"]) {
                     for (int i = 0; i < 20; i++) {
                         NSString *artistName = dataDictionary[@"items"][i][@"name"];
                         NSString *artistPhoto = dataDictionary[@"items"][i][@"images"][0][@"url"];
-                        
+
                         Artist *artist = [Artist getArtist:artistName image:artistPhoto withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
                         }];
-                        
+
                         [self.artistData addObject:artist];
-                        
-//                        [self.artistData addObject:dataDictionary[@"items"][i][@"name"]];
-//                        [self.artistPhotos addObject:dataDictionary[@"items"][i][@"images"][0][@"url"]];
-                       
+
                     }
-                    
+
                     NSLog(@"artist data: %@", self.artistData);
                     completion();
 //                    [self saveTopArtists];
                     return;
                 } if ([type  isEqual: @"tracks"]) {
                     for (int i = 0; i < 20; i++) {
-                        
+
                         NSString *trackName = dataDictionary[@"items"][i][@"name"];
                         NSString *trackPhoto = dataDictionary[@"items"][i][@"album"][@"images"][0][@"url"];
-                        
+
                         Track *track = [Track getTrack:trackName image:trackPhoto withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
                         }];
-                        
+
                         [self.trackData addObject:track];
-                        
-//                        [self.trackData addObject:dataDictionary[@"items"][i][@"name"]];
-//                        [self.trackPhotos addObject:dataDictionary[@"items"][i][@"album"][@"images"][0][@"url"]];
+
                     }
                     NSLog(@"track data: %@", self.trackData);
                     completion();
 //                    [self saveTopTracks];
-                }*/
+                }
             }
         }];
     [task resume];
@@ -102,7 +96,7 @@
     topTracks[@"username"] = curr.username;
     
     if (!([curr[@"statusSong"] isEqualToString:@"saved"])) {
-        topTracks[@"text"] = self.trackData;
+        topTracks[@"data"] = self.trackData;
 //        topTracks[@"songImage"] = self.trackPhotos;
         
         [topTracks saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
@@ -128,7 +122,7 @@
     topArtists[@"username"] = curr.username;
    
     if (!([curr[@"statusArtist"] isEqualToString:@"saved"])) {
-        topArtists[@"text"] = self.artistData;
+        topArtists[@"data"] = self.artistData;
 //        topArtists[@"artistImage"] = self.artistPhotos;
     
         [topArtists saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {

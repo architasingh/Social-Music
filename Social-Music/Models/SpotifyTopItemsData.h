@@ -12,10 +12,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SpotifyTopItemsData : PFObject<PFSubclassing>
-@property (nonatomic, strong) NSArray *topArtists;
-@property (nonatomic, strong) NSArray *topTracks;
+@property (nonatomic, strong) NSArray *topArtistNames;
+@property (nonatomic, strong) NSArray *topArtistPhotos;
+@property (nonatomic, strong) NSArray *topTrackNames;
+@property (nonatomic, strong) NSArray *topTrackPhotos;
 
-- (instancetype)initWithType: (NSString *)type data: (NSArray *)data forUser: (PFUser *)user;
+- (instancetype)initWithType: (NSString *)type names: (NSArray *)names photos: (NSArray *)photos forUser: (PFUser *)user;
 
 + (void) getResponseWithData: (NSDictionary *)data ofType: (NSString *)type withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 @end

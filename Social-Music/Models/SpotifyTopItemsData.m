@@ -9,19 +9,24 @@
 
 @implementation SpotifyTopItemsData
 
-@dynamic topTracks;
-@dynamic topArtists;
+@dynamic topArtistNames;
+@dynamic topArtistPhotos;
+@dynamic topTrackNames;
+@dynamic topTrackPhotos;
+
 
 + (nonnull NSString *)parseClassName {
     return @"SpotifyTopItemsData";
 }
 
-- (instancetype)initWithType: (NSString *)type data: (NSArray *)data forUser: (PFUser *)user {
+- (instancetype)initWithType: (NSString *)type names: (NSArray *)names photos: (NSArray *)photos forUser: (PFUser *)user {
     self = [super init];
     if ([type isEqualToString:@"artists"]) {
-        self.topArtists = data;
+        self.topTrackNames = names;
+        self.topTrackPhotos = photos;
     } else {
-        self.topTracks = data;
+        self.topArtistNames = names;
+        self.topArtistPhotos = photos;
     }
    
     return self;
@@ -29,39 +34,36 @@
 
 + (void) getResponseWithData: (NSDictionary *)data ofType: (NSString *)type withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     
-    NSMutableArray *topArtists = [[NSMutableArray alloc] init];
-    NSMutableArray *topTracks = [[NSMutableArray alloc] init];
+    NSMutableArray *topArtistNames = [[NSMutableArray alloc] init];
+    NSMutableArray *topArtistPhotos = [[NSMutableArray alloc] init];
+    NSMutableArray *topTrackNames = [[NSMutableArray alloc] init];
+    NSMutableArray *topTrackPhotos = [[NSMutableArray alloc] init];
     
     if ([type isEqual: @"artists"]) {
         for (int i = 0; i < 20; i++) {
             NSString *artistName = data[@"items"][i][@"name"];
             NSString *artistPhoto = data[@"items"][i][@"images"][0][@"url"];
             
-            Artist *artist = [Artist getArtist:artistName image:artistPhoto withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-            }];
-            
-            [topArtists addObject:artist];
+            [topArtistNames addObject:artistName];
+            [topArtistPhotos addObject:artistPhoto];
            
         }
-        SpotifyTopItemsData *STID = [[SpotifyTopItemsData alloc] initWithType:@"artists" data:topArtists forUser:PFUser.currentUser];
+        SpotifyTopItemsData *STID = [[SpotifyTopItemsData alloc] initWithType:@"artists" names:topArtistNames photos:topArtistPhotos forUser:PFUser.currentUser];
         [STID saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         }];
-    
-        //call completion
         
         return;
+        
     } if ([type  isEqual: @"tracks"]) {
         for (int i = 0; i < 20; i++) {
             
             NSString *trackName = data[@"items"][i][@"name"];
             NSString *trackPhoto = data[@"items"][i][@"album"][@"images"][0][@"url"];
             
-            Track *track = [Track getTrack:trackName image:trackPhoto withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-            }];
-            
-            [topTracks addObject:track.name];
+            [topTrackNames addObject:trackName];
+            [topTrackPhotos addObject:trackPhoto];
         }
-        SpotifyTopItemsData *STID = [[SpotifyTopItemsData alloc] initWithType:@"tracks" data:topTracks forUser:PFUser.currentUser];
+        SpotifyTopItemsData *STID = [[SpotifyTopItemsData alloc] initWithType:@"tracks" names:topTrackNames photos:topTrackPhotos forUser:PFUser.currentUser];
         [STID saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         }];
 
