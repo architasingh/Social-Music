@@ -57,25 +57,25 @@ double trackCompatability;
 // get top data
 
 - (void)getTopData:(NSString *)type forUser:(NSString *)userType {
-    PFQuery *query = [PFQuery queryWithClassName:type];
+    PFQuery *query = [PFQuery queryWithClassName:type]; // change user column in STID to username?
     [query whereKey:@"username" equalTo:userType];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *topItems, NSError *error) {
         if (topItems != nil) {
-            NSString *result = [[topItems[0][@"text"] valueForKey:@"description"] componentsJoinedByString:@"\n"];
+            NSString *result = [[topItems[0][@"text"] valueForKey:@"description"] componentsJoinedByString:@"\n"]; // formatting the string
             if ([type isEqualToString:@"Artists"]) {
                 if([userType isEqualToString:self.otherUser]) {
-                    self.otherUserTopArtists = topItems[0][@"text"];
+                    self.otherUserTopArtists = topItems[0][@"text"]; // have col for this now
                     self.topArtistsLabel.text = result;
                 } else {
-                    self.currUserTopArtists = topItems[0][@"text"];
+                    self.currUserTopArtists = topItems[0][@"text"]; // have col for this now
                 }
             } else {
                 if([userType isEqualToString:self.otherUser]) {
-                    self.otherUserTopTracks = topItems[0][@"text"];
+                    self.otherUserTopTracks = topItems[0][@"text"]; // have col for this now
                     self.topTracksLabel.text = result;
                 } else {
-                    self.currUserTopTracks = topItems[0][@"text"];
+                    self.currUserTopTracks = topItems[0][@"text"]; // have col for this now
                 }
             }
 //            NSLog(@"top: %@", topItems[0][@"text"]);
@@ -85,6 +85,7 @@ double trackCompatability;
     }];
 }
 
+// by now the fetching is done
 - (void)compareUserTop:(NSString *) type {
     
     if ([type isEqualToString:@"artists"]) {
@@ -161,7 +162,7 @@ double trackCompatability;
         NSLog(@"song compatability: %f", compatability);
     }
     double totalCompatability = (artistCompatability + trackCompatability)*100;
-    NSDecimalNumber *totalCompatabilityNS = [NSDecimalNumber numberWithDouble:totalCompatability];
+    NSDecimalNumber *totalCompatabilityNS = (NSDecimalNumber *)[NSDecimalNumber numberWithDouble:totalCompatability];
     NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain
                                                                                     scale:3
                                                                                    raiseOnExactness:NO

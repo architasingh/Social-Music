@@ -81,7 +81,6 @@
     
     PFUser *curr = PFUser.currentUser;
     
-    curr[@"status"] = @"";
     NSLog(@"current status: %@",curr[@"status"]);
     
     if (!([curr[@"status"] isEqualToString:@"saved"])) {
@@ -109,8 +108,6 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-//    self.currUserTrackData = [Track buildArrayofTracks:self.currUserTrackNames withPhotos:self.currUserTrackPhotos];
-//    self.currUserArtistData = [Artist buildArrayofArtists:self.currUserArtistNames withPhotos:self.currUserArtistPhotos];
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {

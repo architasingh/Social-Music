@@ -38,7 +38,7 @@
     NSMutableArray *topTrackPhotos = [[NSMutableArray alloc] init];
     
         for (int i = 0; i < 20; i++) {
-            NSString *artistName = artistData[@"items"][i][@"name"];
+            NSString *artistName = artistData[@"items"][i][@"name"]; 
             NSString *artistPhoto = artistData[@"items"][i][@"images"][0][@"url"];
 
             [topArtistNames addObject:artistName];
