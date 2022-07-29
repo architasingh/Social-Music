@@ -16,9 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray *topArtistPhotos;
 @property (nonatomic, strong) NSArray *topTrackNames;
 @property (nonatomic, strong) NSArray *topTrackPhotos;
-@property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) NSString *username;
 
-- (instancetype)initWithTrackNames: (NSArray *)trackNames trackPhotos:(NSArray *)trackPhotos artistNames: (NSArray *)artistNames artistPhotos:(NSArray *)artistPhotos forUser: (PFUser *)user;
+- (instancetype)initWithTrackNames: (NSArray *)trackNames trackPhotos:(NSArray *)trackPhotos artistNames: (NSArray *)artistNames artistPhotos:(NSArray *)artistPhotos forUsername: (NSString *)username;
 
 + (void) getResponseWithArtists: (NSDictionary *)artistData andTracks: (NSDictionary *)trackData withCompletion: (void (^)(void))completion;
 

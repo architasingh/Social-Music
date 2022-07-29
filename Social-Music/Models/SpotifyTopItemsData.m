@@ -13,19 +13,19 @@
 @dynamic topArtistPhotos;
 @dynamic topTrackNames;
 @dynamic topTrackPhotos;
-@dynamic user;
+@dynamic username;
 
 + (nonnull NSString *)parseClassName {
     return @"SpotifyTopItemsData";
 }
 
-- (instancetype)initWithTrackNames: (NSArray *)trackNames trackPhotos:(NSArray *)trackPhotos artistNames: (NSArray *)artistNames artistPhotos:(NSArray *)artistPhotos forUser: (PFUser *)user {
+- (instancetype)initWithTrackNames: (NSArray *)trackNames trackPhotos:(NSArray *)trackPhotos artistNames: (NSArray *)artistNames artistPhotos:(NSArray *)artistPhotos forUsername: (NSString *)username {
     self = [super init];
     self.topTrackNames = trackNames;
     self.topTrackPhotos = trackPhotos;
     self.topArtistNames = artistNames;
     self.topArtistPhotos = artistPhotos;
-    self.user = user;
+    self.username = username;
    
     return self;
 }
@@ -53,7 +53,7 @@
         
         PFUser *curr = PFUser.currentUser;
     
-        SpotifyTopItemsData *STID = [[SpotifyTopItemsData alloc] initWithTrackNames:topTrackNames trackPhotos:topTrackPhotos artistNames:topArtistNames artistPhotos:topArtistPhotos forUser:curr];
+        SpotifyTopItemsData *STID = [[SpotifyTopItemsData alloc] initWithTrackNames:topTrackNames trackPhotos:topTrackPhotos artistNames:topArtistNames artistPhotos:topArtistPhotos forUsername:curr.username];
         [STID saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         }];
         curr[@"status"] = @"saved";

@@ -11,7 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MatchesDetailsViewController : UIViewController
 
-@property (strong, nonatomic) NSDictionary *user;
+@property (strong, nonatomic) NSDictionary *otherUserInfo;
+@property (strong, nonatomic) NSArray *currUserArtistNames;
+@property (strong, nonatomic) NSArray *currUserTrackNames;
 
 @end
 

@@ -80,7 +80,7 @@
     NSLog(@"access token: %@", self.accessToken);
     
     PFUser *curr = PFUser.currentUser;
-    
+//    curr[@"status"] = @"";
     NSLog(@"current status: %@",curr[@"status"]);
     
     if (!([curr[@"status"] isEqualToString:@"saved"])) {
@@ -95,13 +95,13 @@
 
 - (void)queryTopData {
     PFQuery *topInfoQuery = [PFQuery queryWithClassName:@"SpotifyTopItemsData"];
-    [topInfoQuery whereKey:@"user" equalTo:PFUser.currentUser];
+    [topInfoQuery whereKey:@"username" equalTo:PFUser.currentUser.username];
     [topInfoQuery findObjectsInBackgroundWithBlock:^(NSArray *topInfo, NSError *error) {
         if (topInfo != nil) {
             self.currUserArtistNames = topInfo[0][@"topArtistNames"];
             self.currUserTrackNames = topInfo[0][@"topTrackNames"];
-            self.currUserArtistPhotos = topInfo[0][@"topArtistPhotos"];
-            self.currUserTrackPhotos = topInfo[0][@"topTrackPhotos"];
+//            self.currUserArtistPhotos = topInfo[0][@"topArtistPhotos"];
+//            self.currUserTrackPhotos = topInfo[0][@"topTrackPhotos"];
             self.currUserTrackData = [Track buildArrayofTracks:self.currUserTrackNames withPhotos:self.currUserTrackPhotos];
             self.currUserArtistData = [Artist buildArrayofArtists:self.currUserArtistNames withPhotos:self.currUserArtistPhotos];
         } else {
@@ -221,19 +221,19 @@
         Track *track = self.currUserTrackData[indexPath.row];
         
         cell.favoriteLabel.text = track.name;
-        cell.favPhoto.image = track.photo;
+//        cell.favPhoto.image = track.photo;
         
         NSLog(@"artist: %@", track.name);
-        NSLog(@"artist: %@", track.photo);
+//        NSLog(@"artist: %@", track.photo);
 
         return cell;
     } else {
         Artist *artist = self.currUserArtistData[indexPath.row];
         cell.favoriteLabel.text = artist.name;
-        cell.favPhoto.image = artist.photo;
+//        cell.favPhoto.image = artist.photo;
        
         NSLog(@"artist: %@", artist.name);
-        NSLog(@"artist: %@", artist.photo);
+//        NSLog(@"artist: %@", artist.photo);
         
         return cell;
     }
