@@ -14,6 +14,8 @@
 #import "Parse/PFImageView.h"
 #import "TopItems.h"
 #import "MatchesDetailsViewController.h"
+#import "Track.h"
+#import "Artist.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
 
@@ -26,10 +28,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 
-@property (nonatomic, strong) NSArray *currUserArtistData;
-@property (nonatomic, strong) NSArray *currUserTrackData;
+@property (nonatomic, strong) NSMutableArray *currUserArtistData;
+@property (nonatomic, strong) NSMutableArray *currUserTrackData;
+
+@property (nonatomic, strong) NSArray *currUserArtistNames;
+@property (nonatomic, strong) NSArray *currUserTrackNames;
 @property (nonatomic, strong) NSArray *currUserArtistPhotos;
 @property (nonatomic, strong) NSArray *currUserTrackPhotos;
+
 @property (nonatomic, strong) NSString *accessToken;
 
 - (IBAction)didTapTakePhoto:(id)sender;
@@ -47,6 +53,10 @@
     [super viewDidLoad];
     
     PFUser *user = PFUser.currentUser;
+    self.currUserTrackData = [[NSMutableArray alloc] init];
+    self.currUserArtistData = [[NSMutableArray alloc] init];
+    
+//    [self buildArraysofTracksArtists];
     
     self.usernameLabel.text = [@"@" stringByAppendingString: user.username];
     
@@ -70,45 +80,34 @@
     NSLog(@"access token: %@", self.accessToken);
     
     PFUser *curr = PFUser.currentUser;
-
-    if (curr[@"topArtists"] == nil && curr[@"topSongs"] == nil) {
-        [[TopItems shared] fetchTopData:@"artists" completion:^{
-            self.currUserArtistData = [[TopItems shared] artistData];
-            self.currUserArtistPhotos = [[TopItems shared] artistPhotos];
-            NSLog(@"profile artist data: %@", self.currUserArtistData);
+//    curr[@"status"] = @"";
+    NSLog(@"current status: %@",curr[@"status"]);
+    
+    if (!([curr[@"status"] isEqualToString:@"saved"])) {
+        [[TopItems shared] fetchTopDataWithCompletion:^{
         }];
-        
-        [[TopItems shared] fetchTopData:@"tracks" completion:^{
-            self.currUserTrackData = [[TopItems shared] trackData];
-            self.currUserTrackPhotos = [[TopItems shared] trackPhotos];
-            NSLog(@"profile track data: %@", self.currUserTrackData);
-        }];
+        [self queryTopData];
     } else {
-        PFQuery *trackQuery = [PFQuery queryWithClassName:@"Songs"];
-        [trackQuery whereKey:@"username" equalTo:PFUser.currentUser.username];
-        [trackQuery findObjectsInBackgroundWithBlock:^(NSArray *topSongs, NSError *error) {
-            if (topSongs != nil) {
-                self.currUserTrackData = topSongs[0][@"text"];
-                self.currUserTrackPhotos = topSongs[0][@"songImage"];
-                NSLog(@"top songs: %@", self.currUserTrackData);
-            } else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
-        
-        PFQuery *artistQuery = [PFQuery queryWithClassName:@"Artists"];
-        [artistQuery whereKey:@"username" equalTo:PFUser.currentUser.username];
-        [artistQuery findObjectsInBackgroundWithBlock:^(NSArray *topArtists, NSError *error) {
-            if (topArtists != nil) {
-                self.currUserArtistData = topArtists[0][@"text"];
-                self.currUserArtistPhotos = topArtists[0][@"artistImage"];
-                NSLog(@"top artists: %@", self.currUserArtistData);
-            } else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
+        [self queryTopData];
     }
     [self.favoritesTableView reloadData];
+}
+
+- (void)queryTopData {
+    PFQuery *topInfoQuery = [PFQuery queryWithClassName:@"SpotifyTopItemsData"];
+    [topInfoQuery whereKey:@"username" equalTo:PFUser.currentUser.username];
+    [topInfoQuery findObjectsInBackgroundWithBlock:^(NSArray *topInfo, NSError *error) {
+        if (topInfo != nil) {
+            self.currUserArtistNames = topInfo[0][@"topArtistNames"];
+            self.currUserTrackNames = topInfo[0][@"topTrackNames"];
+//            self.currUserArtistPhotos = topInfo[0][@"topArtistPhotos"];
+//            self.currUserTrackPhotos = topInfo[0][@"topTrackPhotos"];
+            self.currUserTrackData = [Track buildArrayofTracks:self.currUserTrackNames withPhotos:self.currUserTrackPhotos];
+            self.currUserArtistData = [Artist buildArrayofArtists:self.currUserArtistNames withPhotos:self.currUserArtistPhotos];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -219,34 +218,29 @@
      [cell.layer addAnimation:shakeCells forKey:@"shake"];
 
     if (!self.favoriteButton.isSelected) {
-        cell.favoriteLabel.text = self.currUserTrackData[indexPath.row];
+        Track *track = self.currUserTrackData[indexPath.row];
         
-        NSString *image_string = self.currUserTrackPhotos[indexPath.row];
-
-        NSURL *url = [NSURL URLWithString:image_string];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *image = [UIImage imageWithData:data];
-
-        cell.favPhoto.image = image;
+        cell.favoriteLabel.text = track.name;
+//        cell.favPhoto.image = track.photo;
+        
+        NSLog(@"artist: %@", track.name);
+//        NSLog(@"artist: %@", track.photo);
 
         return cell;
-    } else { // if song button is selected
-        cell.favoriteLabel.text = self.currUserArtistData[indexPath.row];
-        
-        NSString *image_string = self.currUserArtistPhotos[indexPath.row];
-
-        NSURL *url = [NSURL URLWithString:image_string];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *image = [UIImage imageWithData:data];
-
-        cell.favPhoto.image = image;
+    } else {
+        Artist *artist = self.currUserArtistData[indexPath.row];
+        cell.favoriteLabel.text = artist.name;
+//        cell.favPhoto.image = artist.photo;
        
+        NSLog(@"artist: %@", artist.name);
+//        NSLog(@"artist: %@", artist.photo);
+        
         return cell;
     }
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.currUserArtistData.count;
+    return self.currUserArtistNames.count;
 }
 
 @end

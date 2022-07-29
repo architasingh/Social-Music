@@ -17,7 +17,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SongViewController : UIViewController 
+@interface TrackViewController : UIViewController 
 
 @end
 

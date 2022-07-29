@@ -51,7 +51,7 @@
     NSIndexPath *indexPath = [self.matchesTableView indexPathForCell:(UITableViewCell *)sender];
     NSArray *user = self.users[indexPath.row];
     MatchesDetailsViewController *detailVC = [segue destinationViewController];
-    detailVC.user = (NSDictionary*)user;
+    detailVC.otherUserInfo = (NSDictionary*)user;
 }
 
 

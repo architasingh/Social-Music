@@ -337,8 +337,8 @@
                         <outlet property="compatLabel" destination="oYf-ZI-jeV" id="56p-AF-2Rd"/>
                         <outlet property="topArtistsHeader" destination="5Ag-56-ewQ" id="jZt-9t-7TN"/>
                         <outlet property="topArtistsLabel" destination="cDa-uc-PnH" id="4M4-KN-rQz"/>
-                        <outlet property="topSongsHeader" destination="5Db-mc-2mW" id="gQx-Qe-VlA"/>
-                        <outlet property="topSongsLabel" destination="l93-hb-BXW" id="jJk-jN-6Vo"/>
+                        <outlet property="topTracksHeader" destination="5Db-mc-2mW" id="gQx-Qe-VlA"/>
+                        <outlet property="topTracksLabel" destination="l93-hb-BXW" id="jJk-jN-6Vo"/>
                         <outlet property="usernameLabel" destination="Ngx-D2-bsV" id="eds-zP-tbd"/>
                     </connections>
                 </viewController>
@@ -446,6 +446,7 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VXi-hs-A2p">
                                                             <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
+                                                            <color key="backgroundColor" red="0.60403251089999999" green="0.68055736339999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="74" id="Ix5-vQ-w7E"/>
                                                             </constraints>
@@ -502,10 +503,10 @@
             </objects>
             <point key="canvasLocation" x="2691" y="822"/>
         </scene>
-        <!--Song View Controller-->
+        <!--Track View Controller-->
         <scene sceneID="3ii-dv-W4J">
             <objects>
-                <viewController storyboardIdentifier="homeController" modalPresentationStyle="fullScreen" id="D3n-ay-07O" customClass="SongViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeController" modalPresentationStyle="fullScreen" id="D3n-ay-07O" customClass="TrackViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="76A-VV-ZW7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
