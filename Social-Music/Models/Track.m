@@ -18,7 +18,7 @@
     return self;
 }
 
-+ (Track *) getTrack:(NSString *)name image:(NSString*)imageString withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (Track *) getTrack:(NSString *)name image:(NSString*)imageString {
     // get UIImage
     NSURL *url = [NSURL URLWithString:imageString];
     NSData *data = [NSData dataWithContentsOfURL:url];
@@ -27,6 +27,15 @@
     // create a track with name and image props
     Track *track = [[Track alloc] initWithName:name image:image];
     return track;
+}
+
++ (NSMutableArray *)buildArrayofTracks: (NSArray *)arrayName withPhotos : (NSArray *)arrayPhoto  {
+    NSMutableArray *arrayOfTracks = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 20; i++) {
+        Track *track = [Track getTrack:arrayName[i] image:arrayPhoto[i]];
+        [arrayOfTracks addObject:track];
+    }
+    return arrayOfTracks;
 }
 
 @end

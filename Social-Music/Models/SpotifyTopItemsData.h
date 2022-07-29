@@ -20,7 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithTrackNames: (NSArray *)trackNames trackPhotos:(NSArray *)trackPhotos artistNames: (NSArray *)artistNames artistPhotos:(NSArray *)artistPhotos forUser: (PFUser *)user;
 
-+ (void) getResponseWithArtists: (NSDictionary *)artistData andTracks: (NSDictionary *)trackData withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) getResponseWithArtists: (NSDictionary *)artistData andTracks: (NSDictionary *)trackData withCompletion: (void (^)(void))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -30,6 +30,7 @@
 
 @property (nonatomic, strong) NSMutableArray *currUserArtistData;
 @property (nonatomic, strong) NSMutableArray *currUserTrackData;
+
 @property (nonatomic, strong) NSArray *currUserArtistNames;
 @property (nonatomic, strong) NSArray *currUserTrackNames;
 @property (nonatomic, strong) NSArray *currUserArtistPhotos;
@@ -90,7 +91,6 @@
     } else {
         [self queryTopData];
     }
-    [self buildArraysofTracksArtists];
     [self.favoritesTableView reloadData];
 }
 
@@ -101,23 +101,16 @@
         if (topInfo != nil) {
             self.currUserArtistNames = topInfo[0][@"topArtistNames"];
             self.currUserTrackNames = topInfo[0][@"topTrackNames"];
+            self.currUserArtistPhotos = topInfo[0][@"topArtistPhotos"];
+            self.currUserTrackPhotos = topInfo[0][@"topTrackPhotos"];
+            self.currUserTrackData = [Track buildArrayofTracks:self.currUserTrackNames withPhotos:self.currUserTrackPhotos];
+            self.currUserArtistData = [Artist buildArrayofArtists:self.currUserArtistNames withPhotos:self.currUserArtistPhotos];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-}
-
-- (void)buildArraysofTracksArtists {
-    for (int i = 0; i < 20; i++) {
-        Track *track = [Track getTrack:self.currUserTrackNames[i] image:self.currUserArtistNames[i] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        }];
-        [self.currUserTrackData addObject:track];
-        
-        Artist *artist = [Artist getArtist:self.currUserArtistNames[i] image:self.currUserArtistPhotos[i] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-            
-        }];
-        [self.currUserArtistData addObject:artist];
-    }
+//    self.currUserTrackData = [Track buildArrayofTracks:self.currUserTrackNames withPhotos:self.currUserTrackPhotos];
+//    self.currUserArtistData = [Artist buildArrayofArtists:self.currUserArtistNames withPhotos:self.currUserArtistPhotos];
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -212,8 +205,6 @@
 // tableview methods
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    self.currUserArtistData = [[TopItems shared] artistData];
-    self.currUserTrackData = [[TopItems shared] trackData];
     
     FavoritesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:indexPath];
     
@@ -234,6 +225,9 @@
         
         cell.favoriteLabel.text = track.name;
         cell.favPhoto.image = track.photo;
+        
+        NSLog(@"artist: %@", track.name);
+        NSLog(@"artist: %@", track.photo);
 
         return cell;
     } else {
@@ -241,7 +235,8 @@
         cell.favoriteLabel.text = artist.name;
         cell.favPhoto.image = artist.photo;
        
-        NSLog(@"artist: %@", artist);
+        NSLog(@"artist: %@", artist.name);
+        NSLog(@"artist: %@", artist.photo);
         
         return cell;
     }

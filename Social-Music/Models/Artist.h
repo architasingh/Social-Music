@@ -16,7 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIImage *photo;
 
 - (instancetype)initWithName: (NSString *)name image: (UIImage *)photo;
-+ (Artist *) getArtist:(NSString *)name image:(NSString*)imageString withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (Artist *) getArtist:(NSString *)name image:(NSString*)imageString;
++ (NSMutableArray *)buildArrayofArtists: (NSArray *)arrayName withPhotos : (NSArray *)arrayPhoto;
 
 @end
 
