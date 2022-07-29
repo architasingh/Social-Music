@@ -59,11 +59,8 @@ double trackCompatability;
                 self.otherUserArtistNames = topItems[0][@"topArtistNames"];
                 self.otherUserTrackNames = topItems[0][@"topTrackNames"];
                 
-                NSString *artistsString = [[self.otherUserArtistNames valueForKey:@"description"] componentsJoinedByString:@"\n"];
-                NSString *tracksString = [[self.otherUserTrackNames valueForKey:@"description"] componentsJoinedByString:@"\n"];
+                [self formatArtistTrackLabels];
                 
-                self.topArtistsLabel.text = artistsString;
-                self.topTracksLabel.text = tracksString;
             } else {
                 self.currUserArtistNames = topItems[0][@"topArtistNames"];
                 self.currUserTrackNames = topItems[0][@"topTrackNames"];
@@ -72,6 +69,22 @@ double trackCompatability;
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+}
+
+- (void) formatArtistTrackLabels {
+    NSMutableArray *displayTracks = [[NSMutableArray alloc] init];
+    NSMutableArray *displayArtists = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < self.otherUserArtistNames.count; i++) {
+        [displayTracks addObject: [@"☆ " stringByAppendingString:self.otherUserTrackNames[i]]];
+        [displayArtists addObject:[@"☆ " stringByAppendingString:self.otherUserArtistNames[i]]];
+    }
+    
+    NSString *artistsString = [[displayArtists valueForKey:@"description"] componentsJoinedByString:@"\n"];
+    NSString *tracksString = [[displayTracks valueForKey:@"description"] componentsJoinedByString:@"\n"];
+    
+    self.topArtistsLabel.text = artistsString;
+    self.topTracksLabel.text = tracksString;
 }
 
 - (void)compareUserTop {
@@ -159,16 +172,14 @@ double trackCompatability;
     NSString *totalCompatString = [[totalCompatabilityNS stringValue] stringByAppendingString: @"%"];
     NSLog(@"total compatability: %@", totalCompatString);
     
-    NSTimeInterval duration = 0.5f;
+    NSTimeInterval duration = 0.35f;
     [UIView transitionWithView:self.compatLabel
                       duration:duration
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
-        self.compatLabel.text = totalCompatString;
+                        self.compatLabel.text = [totalCompatString stringByAppendingString: @" Match!"];
                     } completion:nil];
-    
-//    self.compatLabel.text = totalCompatString;
-}
+    }
 
 // button action
 
