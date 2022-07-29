@@ -167,6 +167,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     return self.messages.count;
 }
 
+
 // keyboard methods
 
 - (void) hideKeyboard {

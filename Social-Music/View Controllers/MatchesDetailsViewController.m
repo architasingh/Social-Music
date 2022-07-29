@@ -143,10 +143,13 @@ double trackCompatability;
     trackCompatability = compatability;
     NSLog(@"song compatability: %f", compatability);
 
-    double totalCompatability = (artistCompatability + trackCompatability)*100;
+    double totalCompatability = (artistCompatability + trackCompatability)*500; //5 is multiplier, 100 is to convert to %
+    if (totalCompatability > 100.00) {
+        totalCompatability = 100.00;
+    }
     NSDecimalNumber *totalCompatabilityNS = (NSDecimalNumber *)[NSDecimalNumber numberWithDouble:totalCompatability];
     NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain
-                                                                                    scale:3
+                                                                                    scale:2
                                                                                    raiseOnExactness:NO
                                                                                     raiseOnOverflow:NO
                                                                                    raiseOnUnderflow:NO
@@ -155,7 +158,16 @@ double trackCompatability;
     
     NSString *totalCompatString = [[totalCompatabilityNS stringValue] stringByAppendingString: @"%"];
     NSLog(@"total compatability: %@", totalCompatString);
-    self.compatLabel.text = totalCompatString;
+    
+    NSTimeInterval duration = 0.5f;
+    [UIView transitionWithView:self.compatLabel
+                      duration:duration
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+        self.compatLabel.text = totalCompatString;
+                    } completion:nil];
+    
+//    self.compatLabel.text = totalCompatString;
 }
 
 // button action
