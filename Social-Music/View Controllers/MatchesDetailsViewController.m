@@ -22,12 +22,14 @@
 
 @property (strong, nonatomic) NSString *otherUsername;
 
+@property double artistScore;
+@property double trackScore;
+@property double perfectScore;
+
 - (IBAction)didTapBack:(id)sender;
 @end
 
 @implementation MatchesDetailsViewController
-double artistCompatability;
-double trackCompatability;
 
 // view setup
 
@@ -44,7 +46,7 @@ double trackCompatability;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self compareUserTop];
+    [self compareUserTopArtists]; //tracks called within artists
 }
 
 // get top data
@@ -89,7 +91,7 @@ double trackCompatability;
 
 // tweaking matching approach
 
-- (void)compareUserTop {
+- (void)compareUserTopArtists {
     // set artist scores for current and other users
     NSMutableDictionary *currUserArtistsDict = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *otherUserArtistsDict = [[NSMutableDictionary alloc] init];
@@ -101,8 +103,8 @@ double trackCompatability;
     for (int i = 0; i < self.otherUserArtistNames.count; i++) {
         [otherUserArtistsDict setObject:[NSDecimalNumber numberWithDouble: artistBase + 20 - i] forKey:self.otherUserArtistNames[i]];
     }
-    NSLog(@"alt curr artist dict: %@", currUserArtistsDict);
-    NSLog(@"alt other artist dict: %@", otherUserArtistsDict);
+    
+    [self perfectScore:currUserArtistsDict];
     
     // find the artists in common between the users
     NSMutableSet* artistSet1 = [NSMutableSet setWithArray:self.currUserArtistNames];
@@ -111,18 +113,6 @@ double trackCompatability;
 
     NSArray* resultArtists = [artistSet1 allObjects];
     NSLog(@"artist result: %@", resultArtists);
-    
-    // find the perfect score for curr user
-    NSDecimalNumber *positionScoreArtist = 0;
-    double perfectScoreArtist = 0;
-    
-    for (NSString *object in currUserArtistsDict) {
-        NSDecimalNumber *currScore = currUserArtistsDict[object];
-        positionScoreArtist = [currScore decimalNumberByMultiplyingBy:currScore];
-        double positionScoreDouble = ([positionScoreArtist doubleValue]);
-        perfectScoreArtist += positionScoreDouble;
-    }
-    NSLog(@"final perfect score: %f", perfectScoreArtist);
     
     // multiply the two users' scores for each match
     // add all match scores and divide by the perfect score
@@ -135,9 +125,26 @@ double trackCompatability;
         sumOfProductsArtist += product;
     }
     
-    double artistScore = 100*(sumOfProductsArtist/perfectScoreArtist);
-    NSLog(@"artist score: %f", artistScore);
+    self.artistScore = 100*(sumOfProductsArtist/self.perfectScore);
+    NSLog(@"artist score: %f", self.artistScore);
+    [self compareUserTopTracks];
+}
+
+- (void)perfectScore: (NSDictionary *)dict {
+    // find the perfect score for curr user (is the same for artists + tracks)
+    NSDecimalNumber *positionScore = 0;
+    self.perfectScore = 0;
     
+    for (NSString *object in dict) {
+        NSDecimalNumber *currScore = dict[object];
+        positionScore = [currScore decimalNumberByMultiplyingBy:currScore];
+        double positionScoreDouble = ([positionScore doubleValue]);
+        self.perfectScore += positionScoreDouble;
+    }
+    NSLog(@"perfect score: %f", self.perfectScore);
+}
+
+- (void)compareUserTopTracks {
     // tracks
     NSMutableDictionary *currUserTracksDict = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *otherUserTracksDict = [[NSMutableDictionary alloc] init];
@@ -149,8 +156,8 @@ double trackCompatability;
     for (int i = 0; i < self.otherUserTrackNames.count; i++) {
         [otherUserTracksDict setObject:[NSDecimalNumber numberWithDouble: trackBase + 20 - i] forKey:self.otherUserTrackNames[i]];
     }
-    NSLog(@"alt curr track dict: %@", currUserTracksDict);
-    NSLog(@"alt other track dict: %@", otherUserTracksDict);
+    
+    [self perfectScore:currUserTracksDict];
     
     // finding the artists in common between the users
     NSMutableSet* trackSet1 = [NSMutableSet setWithArray:self.currUserTrackNames];
@@ -160,34 +167,25 @@ double trackCompatability;
     NSArray* resultTracks = [trackSet1 allObjects];
     NSLog(@"track result: %@", resultTracks);
     
-    // find the perfect score for curr user
-    NSDecimalNumber *positionScoreTrack = 0;
-    double perfectScoreTrack = 0;
-    
-    for (NSString *object in currUserArtistsDict) {
-        NSDecimalNumber *currScore = currUserArtistsDict[object];
-        positionScoreTrack = [currScore decimalNumberByMultiplyingBy:currScore];
-        double positionScoreDouble = ([positionScoreTrack doubleValue]);
-        perfectScoreTrack += positionScoreDouble;
-    }
-    NSLog(@"track perfect score: %f", perfectScoreTrack);
-    
     // multiply the two users' scores for each match
     // add all match scores and divide by the perfect score
     double sumOfProductsTrack = 0;
     
-    for(NSString *object in resultArtists) {
+    for(NSString *object in resultTracks) {
         NSDecimalNumber *currScore = currUserTracksDict[object];
         NSDecimalNumber *otherScore = otherUserTracksDict[object];
         double product = ([currScore doubleValue] * [otherScore doubleValue]);
         sumOfProductsTrack += product;
     }
     
-    double trackScore = 100*(sumOfProductsTrack/perfectScoreTrack);
-    NSLog(@"track score: %f", trackScore);
-   
-    double totalCompatability = ((.75 * artistScore) + (.25 * trackScore));
+    self.trackScore = 100*(sumOfProductsTrack/self.perfectScore);
+    NSLog(@"track score: %f", self.trackScore);
+    
+    [self formatMatchLabel];
+}
 
+- (void)formatMatchLabel {
+    double totalCompatability = ((.75 * self.artistScore) + (.25 * self.trackScore));
     NSDecimalNumber *totalCompatabilityNS = (NSDecimalNumber *)[NSDecimalNumber numberWithDouble:totalCompatability];
     NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain
                                                                                     scale:2
@@ -196,6 +194,7 @@ double trackCompatability;
                                                                                    raiseOnUnderflow:NO
                                                                                 raiseOnDivideByZero:NO];
     totalCompatabilityNS = [totalCompatabilityNS decimalNumberByRoundingAccordingToBehavior:behavior];
+    
     
     NSString *totalCompatString = [[totalCompatabilityNS stringValue] stringByAppendingString: @"%"];
     NSLog(@"total compatability: %@", totalCompatString);
@@ -207,7 +206,8 @@ double trackCompatability;
                     animations:^{
                         self.compatLabel.text = [totalCompatString stringByAppendingString: @" Match!"];
                     } completion:nil];
-    }
+}
+
 
 // button action
 
