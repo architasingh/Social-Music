@@ -79,6 +79,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     
     __unsafe_unretained typeof(self) weakSelf = self;
     [self.liveQuerySubscription addCreateHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull object) {
+        // add nil check
         __strong typeof (self) strongSelf = weakSelf;
         [strongSelf.messages insertObject:object atIndex:0];
         NSLog(@"object: %@", object);
