@@ -480,7 +480,6 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VXi-hs-A2p">
                                                             <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
-                                                            <color key="backgroundColor" red="0.60403251089999999" green="0.68055736339999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="74" id="Ix5-vQ-w7E"/>
                                                             </constraints>
