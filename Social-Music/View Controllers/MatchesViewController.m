@@ -9,6 +9,8 @@
 #import "MatchesCell.h"
 #import <Parse/Parse.h>
 #import "MatchesDetailsViewController.h"
+#import "KafkaRingIndicatorHeader.h"
+#import "KafkaRefresh.h"
 
 @interface MatchesViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -28,6 +30,20 @@
     self.matchesTableView.delegate = self;
     
     [self displayUsers];
+    
+    KafkaRingIndicatorHeader * circle = [[KafkaRingIndicatorHeader alloc] init];
+    [self kafkaRefresh:circle];
+}
+
+- (void) kafkaRefresh:(KafkaRingIndicatorHeader *)circle {
+    circle.themeColor = UIColor.systemIndigoColor;
+    circle.animatedBackgroundColor = UIColor.systemTealColor;
+    __weak KafkaRingIndicatorHeader *weakCircle = circle;
+    circle.refreshHandler = ^{
+        [self.matchesTableView reloadData];
+        [weakCircle endRefreshing];
+    };
+     self.matchesTableView.headRefreshControl = circle;
 }
 
 - (void) displayUsers {
@@ -41,7 +57,6 @@
                 }
             }
             [self.matchesTableView reloadData];
-//            NSLog(@"Users: %@", self.users);
       } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
       }
@@ -63,8 +78,10 @@
     MatchesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"matchesCell" forIndexPath:indexPath];
     
     cell.userLabel.text = [@"@" stringByAppendingString: self.users[indexPath.row][@"username"]];
+    NSLog(@"username: %@", cell.userLabel.text);
 
     cell.userImage.file = self.users[indexPath.row][@"profilePicture"];
+    [cell.userImage loadInBackground];
     
     cell.userImage.layer.cornerRadius = 45;
     cell.userImage.layer.masksToBounds = YES;
