@@ -29,10 +29,10 @@
     self.matchesTableView.dataSource = self;
     self.matchesTableView.delegate = self;
     
+    [self displayUsers];
+    
     KafkaRingIndicatorHeader * circle = [[KafkaRingIndicatorHeader alloc] init];
     [self kafkaRefresh:circle];
-    
-    [self displayUsers];
 }
 
 - (void) kafkaRefresh:(KafkaRingIndicatorHeader *)circle {
@@ -57,7 +57,6 @@
                 }
             }
             [self.matchesTableView reloadData];
-//            NSLog(@"Users: %@", self.users);
       } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
       }
@@ -79,8 +78,10 @@
     MatchesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"matchesCell" forIndexPath:indexPath];
     
     cell.userLabel.text = [@"@" stringByAppendingString: self.users[indexPath.row][@"username"]];
+    NSLog(@"username: %@", cell.userLabel.text);
 
     cell.userImage.file = self.users[indexPath.row][@"profilePicture"];
+    [cell.userImage loadInBackground];
     
     cell.userImage.layer.cornerRadius = 45;
     cell.userImage.layer.masksToBounds = YES;
