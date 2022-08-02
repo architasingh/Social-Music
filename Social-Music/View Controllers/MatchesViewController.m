@@ -29,21 +29,21 @@
     self.matchesTableView.dataSource = self;
     self.matchesTableView.delegate = self;
     
-    KafkaRingIndicatorHeader * arrow = [[KafkaRingIndicatorHeader alloc] init];
-    [self kafkaRefresh:arrow];
+    KafkaRingIndicatorHeader * circle = [[KafkaRingIndicatorHeader alloc] init];
+    [self kafkaRefresh:circle];
     
     [self displayUsers];
 }
 
-- (void) kafkaRefresh:(KafkaRingIndicatorHeader *)arrow {
-    arrow.themeColor = UIColor.systemIndigoColor;
-    arrow.animatedBackgroundColor = UIColor.systemTealColor;
-    arrow.refreshHandler = ^{
-        self.matchesTableView.dataSource = self;
+- (void) kafkaRefresh:(KafkaRingIndicatorHeader *)circle {
+    circle.themeColor = UIColor.systemIndigoColor;
+    circle.animatedBackgroundColor = UIColor.systemTealColor;
+    __weak KafkaRingIndicatorHeader *weakCircle = circle;
+    circle.refreshHandler = ^{
         [self.matchesTableView reloadData];
-        [arrow endRefreshing];
+        [weakCircle endRefreshing];
     };
-     self.matchesTableView.headRefreshControl = arrow;
+     self.matchesTableView.headRefreshControl = circle;
 }
 
 - (void) displayUsers {

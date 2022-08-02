@@ -42,8 +42,8 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     gestureRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:gestureRecognizer];
     
-    KafkaRingIndicatorHeader * arrow = [[KafkaRingIndicatorHeader alloc] init];
-    [self kafkaRefresh:arrow];
+    KafkaRingIndicatorHeader * circle = [[KafkaRingIndicatorHeader alloc] init];
+    [self kafkaRefresh:circle];
     
     self.chatMessage.delegate = self;
     
@@ -59,15 +59,15 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void) kafkaRefresh:(KafkaRingIndicatorHeader *)arrow {
-    arrow.themeColor = UIColor.systemIndigoColor;
-    arrow.animatedBackgroundColor = UIColor.systemTealColor;
-    arrow.refreshHandler = ^{
-        self.chatTableView.dataSource = self;
+- (void) kafkaRefresh:(KafkaRingIndicatorHeader *)circle {
+    circle.themeColor = UIColor.systemIndigoColor;
+    circle.animatedBackgroundColor = UIColor.systemTealColor;
+    __weak KafkaRingIndicatorHeader *weakCircle = circle;
+    circle.refreshHandler = ^{
         [self.chatTableView reloadData];
-        [arrow endRefreshing];
+        [weakCircle endRefreshing];
     };
-     self.chatTableView.headRefreshControl = arrow;
+     self.chatTableView.headRefreshControl = circle;
 }
 
 // live query

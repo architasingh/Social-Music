@@ -65,8 +65,8 @@
     
     self.favoritesTableView.estimatedRowHeight = UITableViewAutomaticDimension;
     
-    KafkaRingIndicatorHeader * arrow = [[KafkaRingIndicatorHeader alloc] init];
-    [self kafkaRefresh:arrow];
+    KafkaRingIndicatorHeader * circle = [[KafkaRingIndicatorHeader alloc] init];
+    [self kafkaRefresh:circle];
     
     [self.favoriteButton setTitle:@"Show Top Songs" forState:UIControlStateSelected];
     [self.favoriteButton setTitle:@"Show Top Artists" forState:UIControlStateNormal];
@@ -74,15 +74,15 @@
     self.favoritesTableView.dataSource = self;
 }
 
-- (void) kafkaRefresh:(KafkaRingIndicatorHeader *)arrow {
-    arrow.themeColor = UIColor.systemIndigoColor;
-    arrow.animatedBackgroundColor = UIColor.systemTealColor;
-    arrow.refreshHandler = ^{
-        self.favoritesTableView.dataSource = self;
+- (void) kafkaRefresh:(KafkaRingIndicatorHeader *)circle {
+    circle.themeColor = UIColor.systemIndigoColor;
+    circle.animatedBackgroundColor = UIColor.systemTealColor;
+    __weak KafkaRingIndicatorHeader *weakCircle = circle;
+    circle.refreshHandler = ^{
         [self.favoritesTableView reloadData];
-        [arrow endRefreshing];
+        [weakCircle endRefreshing];
     };
-     self.favoritesTableView.headRefreshControl = arrow;
+     self.favoritesTableView.headRefreshControl = circle;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
