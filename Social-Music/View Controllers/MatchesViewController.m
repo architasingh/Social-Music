@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import "MatchesDetailsViewController.h"
 
-@interface MatchesViewController () <UITableViewDataSource>
+@interface MatchesViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *matchesLabel;
 @property (weak, nonatomic) IBOutlet UITableView *matchesTableView;
@@ -25,6 +25,7 @@
     
     self.matchesTableView.rowHeight = 100;
     self.matchesTableView.dataSource = self;
+    self.matchesTableView.delegate = self;
     
     [self displayUsers];
 }
@@ -53,12 +54,14 @@
     MatchesDetailsViewController *detailVC = [segue destinationViewController];
     detailVC.otherUserInfo = (NSDictionary*)user;
 }
-
+ 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MatchesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"matchesCell" forIndexPath:indexPath];
     
-    //deselect after tapping
     cell.userLabel.text = [@"@" stringByAppendingString: self.users[indexPath.row][@"username"]];
 
     cell.userImage.file = self.users[indexPath.row][@"profilePicture"];

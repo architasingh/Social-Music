@@ -22,9 +22,6 @@
 }
 
 - (void)fetchTopDataWithCompletion: (void(^)(void)) completion {
-    
-    self.artistData = [[NSMutableArray alloc] init];
-    self.trackData = [[NSMutableArray alloc] init];
 
     NSString *token = [[SpotifyManager shared] accessToken];
     
