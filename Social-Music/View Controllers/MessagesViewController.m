@@ -11,6 +11,7 @@
 #import "ParseLiveQuery/ParseLiveQuery-umbrella.h"
 #import "KafkaRingIndicatorHeader.h"
 #import "KafkaRefresh.h"
+#import "KeysManager.h"
 
 @interface MessagesViewController () <UITableViewDataSource, UITextViewDelegate>
 @property (strong, nonatomic) NSMutableArray *messages;
@@ -72,11 +73,8 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
 
 // live query
 - (void)setupLiveQuery {
-    NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
-        
-    NSString *parseAppID = [dict objectForKey: @"parse_app_id"];
-    NSString *parseClientKey = [dict objectForKey: @"parse_client_key"];
+    NSString *parseAppID = [[KeysManager shared] parseAppID];
+    NSString *parseClientKey = [[KeysManager shared] parseClientKey];
     
     self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:liveQueryURL applicationId:parseAppID clientKey:parseClientKey];
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];

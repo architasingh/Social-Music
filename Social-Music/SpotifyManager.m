@@ -13,6 +13,7 @@
 #import <SpotifyiOS/SPTSession.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
 #import "SpotifyManager.h"
+#import "KeysManager.h"
 
 @implementation SpotifyManager
 + (id)shared {
@@ -25,10 +26,8 @@
 }
 
 - (void)setupSpotify {
-    NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
-        
-    NSString *spotifyClientID = [dict objectForKey: @"client_key"];
+    NSString *spotifyClientID = [[KeysManager shared] spotifyClientID];
+    
     NSURL *spotifyRedirectURL = [NSURL URLWithString:@"com.codepath.Social-Music1://spotify-login-callback"];
 
     self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
@@ -38,7 +37,6 @@
     self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
 
     self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:self.configuration logLevel:SPTAppRemoteLogLevelNone];
-//SPTAppRemoteLogLevelDebug
     
     self.appRemote.delegate = self;
 
