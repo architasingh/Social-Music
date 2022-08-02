@@ -16,6 +16,8 @@
 #import "MatchesDetailsViewController.h"
 #import "Track.h"
 #import "Artist.h"
+#import "KafkaRingIndicatorHeader.h"
+#import "KafkaRefresh.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
 
@@ -63,14 +65,24 @@
     
     self.favoritesTableView.estimatedRowHeight = UITableViewAutomaticDimension;
     
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
-       [self.favoritesTableView insertSubview:refreshControl atIndex:0];
+    KafkaRingIndicatorHeader * arrow = [[KafkaRingIndicatorHeader alloc] init];
+    [self kafkaRefresh:arrow];
     
     [self.favoriteButton setTitle:@"Show Top Songs" forState:UIControlStateSelected];
     [self.favoriteButton setTitle:@"Show Top Artists" forState:UIControlStateNormal];
     
     self.favoritesTableView.dataSource = self;
+}
+
+- (void) kafkaRefresh:(KafkaRingIndicatorHeader *)arrow {
+    arrow.themeColor = UIColor.systemIndigoColor;
+    arrow.animatedBackgroundColor = UIColor.systemTealColor;
+    arrow.refreshHandler = ^{
+        self.favoritesTableView.dataSource = self;
+        [self.favoritesTableView reloadData];
+        [arrow endRefreshing];
+    };
+     self.favoritesTableView.headRefreshControl = arrow;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -106,13 +118,6 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-}
-
-- (void)beginRefresh:(UIRefreshControl *)refreshControl {
-    self.favoritesTableView.dataSource = self;
-
-    [self.favoritesTableView reloadData];
-    [refreshControl endRefreshing];
 }
 
 // button actions

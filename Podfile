@@ -9,6 +9,7 @@ target 'Social-Music' do
   pod 'Parse'
   pod 'Parse/UI'
   pod 'ParseLiveQuery'
+  pod 'KafkaRefresh'
 
   target 'Social-MusicTests' do
     inherit! :search_paths

@@ -9,6 +9,8 @@
 #import "MatchesCell.h"
 #import <Parse/Parse.h>
 #import "MatchesDetailsViewController.h"
+#import "KafkaRingIndicatorHeader.h"
+#import "KafkaRefresh.h"
 
 @interface MatchesViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -27,7 +29,21 @@
     self.matchesTableView.dataSource = self;
     self.matchesTableView.delegate = self;
     
+    KafkaRingIndicatorHeader * arrow = [[KafkaRingIndicatorHeader alloc] init];
+    [self kafkaRefresh:arrow];
+    
     [self displayUsers];
+}
+
+- (void) kafkaRefresh:(KafkaRingIndicatorHeader *)arrow {
+    arrow.themeColor = UIColor.systemIndigoColor;
+    arrow.animatedBackgroundColor = UIColor.systemTealColor;
+    arrow.refreshHandler = ^{
+        self.matchesTableView.dataSource = self;
+        [self.matchesTableView reloadData];
+        [arrow endRefreshing];
+    };
+     self.matchesTableView.headRefreshControl = arrow;
 }
 
 - (void) displayUsers {

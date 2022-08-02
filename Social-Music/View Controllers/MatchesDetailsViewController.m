@@ -96,7 +96,7 @@
     NSMutableDictionary *currUserArtistsDict = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *otherUserArtistsDict = [[NSMutableDictionary alloc] init];
     
-    double artistBase = 5;
+    double artistBase = 10;
     for (int i = 0; i < self.currUserArtistNames.count; i++) {
         [currUserArtistsDict setObject:[NSDecimalNumber numberWithDouble: artistBase + 20 - i] forKey:self.currUserArtistNames[i]];
     }
@@ -149,7 +149,7 @@
     NSMutableDictionary *currUserTracksDict = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *otherUserTracksDict = [[NSMutableDictionary alloc] init];
     
-    double trackBase = 5;
+    double trackBase = 10;
     for (int i = 0; i < self.currUserTrackNames.count; i++) {
         [currUserTracksDict setObject:[NSDecimalNumber numberWithDouble: trackBase + 20 - i] forKey:self.currUserTrackNames[i]];
     }

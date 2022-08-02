@@ -9,6 +9,8 @@
 #import <Parse/Parse.h>
 #import "ChatCell.h"
 #import "ParseLiveQuery/ParseLiveQuery-umbrella.h"
+#import "KafkaRingIndicatorHeader.h"
+#import "KafkaRefresh.h"
 
 @interface MessagesViewController () <UITableViewDataSource, UITextViewDelegate>
 @property (strong, nonatomic) NSMutableArray *messages;
@@ -40,9 +42,8 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     gestureRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:gestureRecognizer];
     
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.chatTableView insertSubview:refreshControl atIndex:0];
+    KafkaRingIndicatorHeader * arrow = [[KafkaRingIndicatorHeader alloc] init];
+    [self kafkaRefresh:arrow];
     
     self.chatMessage.delegate = self;
     
@@ -58,11 +59,15 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)beginRefresh:(UIRefreshControl *)refreshControl {
-    self.chatTableView.dataSource = self;
-
-    [self.chatTableView reloadData];
-    [refreshControl endRefreshing];
+- (void) kafkaRefresh:(KafkaRingIndicatorHeader *)arrow {
+    arrow.themeColor = UIColor.systemIndigoColor;
+    arrow.animatedBackgroundColor = UIColor.systemTealColor;
+    arrow.refreshHandler = ^{
+        self.chatTableView.dataSource = self;
+        [self.chatTableView reloadData];
+        [arrow endRefreshing];
+    };
+     self.chatTableView.headRefreshControl = arrow;
 }
 
 // live query
