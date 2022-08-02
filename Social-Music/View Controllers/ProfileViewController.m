@@ -12,12 +12,12 @@
 #import "LoginViewController.h"
 #import "SpotifyManager.h"
 #import "Parse/PFImageView.h"
-#import "TopItems.h"
 #import "MatchesDetailsViewController.h"
 #import "Track.h"
 #import "Artist.h"
 #import "KafkaRingIndicatorHeader.h"
 #import "KafkaRefresh.h"
+#import "SpotifyTopItemsData.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
 
@@ -90,17 +90,56 @@
     NSLog(@"access token: %@", self.accessToken);
     
     PFUser *curr = PFUser.currentUser;
-//    curr[@"status"] = @"";
     NSLog(@"current status: %@",curr[@"status"]);
     
     if (!([curr[@"status"] isEqualToString:@"saved"])) {
-        [[TopItems shared] fetchTopDataWithCompletion:^{
+        [self fetchTopDataWithCompletion:^{
         }];
         [self queryTopData];
     } else {
         [self queryTopData];
     }
     [self.favoritesTableView reloadData];
+}
+
+- (void)fetchTopDataWithCompletion: (void(^)(void)) completion {
+
+    NSString *token = [[SpotifyManager shared] accessToken];
+    
+    NSString *tokenType = @"Bearer";
+    NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    NSString *artistURLString = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:@"artists"];
+    
+    NSURL *artistURL = [NSURL URLWithString:artistURLString];
+    [request setValue:header forHTTPHeaderField:@"Authorization"];
+    [request setURL:artistURL];
+            
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionDataTask *artistTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable artistData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (!error) {
+                NSDictionary *artistDict = [NSJSONSerialization JSONObjectWithData:artistData options:0 error:nil];
+                
+                NSString *trackURLString = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:@"tracks"];
+                
+                NSURL *trackURL = [NSURL URLWithString:trackURLString];
+                [request setValue:header forHTTPHeaderField:@"Authorization"];
+                [request setURL:trackURL];
+                        
+                NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+                NSURLSessionDataTask *trackTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable trackData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    
+                    NSDictionary *trackDict = [NSJSONSerialization JSONObjectWithData:trackData options:0 error:nil];
+                    
+                    [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict withCompletion:^{
+                        completion();
+                    }];
+                }];
+                [trackTask resume];
+            }
+        }];
+    [artistTask resume];
 }
 
 - (void)queryTopData {

@@ -29,7 +29,6 @@
 		ADDEC5DD28872EC000FDF4AD /* MatchesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDEC5DC28872EC000FDF4AD /* MatchesCell.m */; };
 		ADDEC5E0288762B600FDF4AD /* MatchesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDEC5DF288762B600FDF4AD /* MatchesDetailsViewController.m */; };
 		ADDEC5E12888714E00FDF4AD /* Pods_Social_Music.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F005B169D8EE5472F164E41 /* Pods_Social_Music.framework */; };
-		ADDEC5E92889F93600FDF4AD /* TopItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDEC5E82889F93600FDF4AD /* TopItems.m */; };
 		ADF55C4A287E2A5700EC3BB9 /* SpotifyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF55C49287E2A5700EC3BB9 /* SpotifyManager.m */; };
 		ADF7311A2891AF1400B28289 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF731192891AF1400B28289 /* Artist.m */; };
 		ADF7311E2891AF4300B28289 /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF7311D2891AF4300B28289 /* Track.m */; };
@@ -97,8 +96,6 @@
 		ADDEC5DC28872EC000FDF4AD /* MatchesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchesCell.m; sourceTree = "<group>"; };
 		ADDEC5DE288762B600FDF4AD /* MatchesDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchesDetailsViewController.h; sourceTree = "<group>"; };
 		ADDEC5DF288762B600FDF4AD /* MatchesDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchesDetailsViewController.m; sourceTree = "<group>"; };
-		ADDEC5E72889F93600FDF4AD /* TopItems.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopItems.h; sourceTree = "<group>"; };
-		ADDEC5E82889F93600FDF4AD /* TopItems.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopItems.m; sourceTree = "<group>"; };
 		ADF55C48287E2A5700EC3BB9 /* SpotifyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyManager.h; sourceTree = "<group>"; };
 		ADF55C49287E2A5700EC3BB9 /* SpotifyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyManager.m; sourceTree = "<group>"; };
 		ADF731182891AF1400B28289 /* Artist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Artist.h; sourceTree = "<group>"; };
@@ -187,8 +184,6 @@
 				ADF55C4B287E2A6100EC3BB9 /* Cells */,
 				ADF55C48287E2A5700EC3BB9 /* SpotifyManager.h */,
 				ADF55C49287E2A5700EC3BB9 /* SpotifyManager.m */,
-				ADDEC5E72889F93600FDF4AD /* TopItems.h */,
-				ADDEC5E82889F93600FDF4AD /* TopItems.m */,
 				ADF7311B2891AF3100B28289 /* Models */,
 			);
 			path = "Social-Music";
@@ -534,7 +529,6 @@
 				ADC670CA28764BAB004CFA6D /* TrackViewController.m in Sources */,
 				ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */,
 				ADDEC5E0288762B600FDF4AD /* MatchesDetailsViewController.m in Sources */,
-				ADDEC5E92889F93600FDF4AD /* TopItems.m in Sources */,
 				ADF55C4A287E2A5700EC3BB9 /* SpotifyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
