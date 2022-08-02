@@ -15,9 +15,8 @@
 #import "MatchesDetailsViewController.h"
 #import "Track.h"
 #import "Artist.h"
-#import "KafkaRingIndicatorHeader.h"
-#import "KafkaRefresh.h"
 #import "SpotifyTopItemsData.h"
+#import "CustomRefresh.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
 
@@ -65,24 +64,12 @@
     
     self.favoritesTableView.estimatedRowHeight = UITableViewAutomaticDimension;
     
-    KafkaRingIndicatorHeader * circle = [[KafkaRingIndicatorHeader alloc] init];
-    [self kafkaRefresh:circle];
+    [[CustomRefresh shared] customRefresh: self.favoritesTableView];
     
     [self.favoriteButton setTitle:@"Show Top Songs" forState:UIControlStateSelected];
     [self.favoriteButton setTitle:@"Show Top Artists" forState:UIControlStateNormal];
     
     self.favoritesTableView.dataSource = self;
-}
-
-- (void) kafkaRefresh:(KafkaRingIndicatorHeader *)circle {
-    circle.themeColor = UIColor.systemIndigoColor;
-    circle.animatedBackgroundColor = UIColor.systemTealColor;
-    __weak KafkaRingIndicatorHeader *weakCircle = circle;
-    circle.refreshHandler = ^{
-        [self.favoritesTableView reloadData];
-        [weakCircle endRefreshing];
-    };
-     self.favoritesTableView.headRefreshControl = circle;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

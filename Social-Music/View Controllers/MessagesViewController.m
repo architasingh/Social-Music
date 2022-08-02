@@ -9,9 +9,8 @@
 #import <Parse/Parse.h>
 #import "ChatCell.h"
 #import "ParseLiveQuery/ParseLiveQuery-umbrella.h"
-#import "KafkaRingIndicatorHeader.h"
-#import "KafkaRefresh.h"
 #import "KeysManager.h"
+#import "CustomRefresh.h"
 
 @interface MessagesViewController () <UITableViewDataSource, UITextViewDelegate>
 @property (strong, nonatomic) NSMutableArray *messages;
@@ -43,8 +42,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     gestureRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:gestureRecognizer];
     
-    KafkaRingIndicatorHeader * circle = [[KafkaRingIndicatorHeader alloc] init];
-    [self kafkaRefresh:circle];
+    [[CustomRefresh shared] customRefresh: self.chatTableView];
     
     self.chatMessage.delegate = self;
     
@@ -58,17 +56,6 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
 - (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void) kafkaRefresh:(KafkaRingIndicatorHeader *)circle {
-    circle.themeColor = UIColor.systemIndigoColor;
-    circle.animatedBackgroundColor = UIColor.systemTealColor;
-    __weak KafkaRingIndicatorHeader *weakCircle = circle;
-    circle.refreshHandler = ^{
-        [self.chatTableView reloadData];
-        [weakCircle endRefreshing];
-    };
-     self.chatTableView.headRefreshControl = circle;
 }
 
 // live query
