@@ -31,7 +31,7 @@
 
 + (NSMutableArray *)buildArrayofTracks: (NSArray *)arrayName withPhotos : (NSArray *)arrayPhoto  {
     NSMutableArray *arrayOfTracks = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < arrayName.count; i++) {
         Track *track = [Track getTrack:arrayName[i] image:arrayPhoto[i]];
         [arrayOfTracks addObject:track];
     }

@@ -162,8 +162,6 @@
     
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 
-    // The Xcode simulator does not support taking pictures, so let's first check that the camera is indeed supported on the device before trying to present it.
-
     imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 
     [self presentViewController:imagePickerVC animated:YES completion:nil];
@@ -174,7 +172,6 @@
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
     
-    // The Xcode simulator does not support taking pictures, so let's first check that the camera is indeed supported on the device before trying to present it.
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     }
@@ -209,15 +206,7 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    CAKeyframeAnimation *shakeCells = [CAKeyframeAnimation animation];
-    shakeCells.keyPath = @"position.x";
-    shakeCells.values = @[ @0, @10, @-10, @10, @0 ];
-    shakeCells.keyTimes = @[ @0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1 ];
-    shakeCells.duration = 0.4;
-
-    shakeCells.additive = YES;
-
-    [cell.layer addAnimation:shakeCells forKey:@"shake"];
+    [self cellAnimation:cell];
 
     if (!self.favoriteButton.isSelected) {
         Track *track = self.currUserTrackData[indexPath.row];
@@ -239,6 +228,18 @@
         
         return cell;
     }
+}
+
+- (void)cellAnimation: (UITableViewCell *)cell {
+    CAKeyframeAnimation *shakeCells = [CAKeyframeAnimation animation];
+    shakeCells.keyPath = @"position.x";
+    shakeCells.values = @[ @0, @10, @-10, @10, @0 ];
+    shakeCells.keyTimes = @[ @0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1 ];
+    shakeCells.duration = 0.4;
+
+    shakeCells.additive = YES;
+
+    [cell.layer addAnimation:shakeCells forKey:@"shake"];
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

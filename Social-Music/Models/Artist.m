@@ -32,7 +32,7 @@
 
 + (NSMutableArray *)buildArrayofArtists: (NSArray *)arrayName withPhotos : (NSArray *)arrayPhoto  {
     NSMutableArray *arrayOfArtists = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < arrayName.count; i++) {
         Artist *artist = [Artist getArtist:arrayName[i] image:arrayPhoto[i]];
         [arrayOfArtists addObject:artist];
     }
