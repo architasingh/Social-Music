@@ -157,16 +157,39 @@
     [self.favoritesTableView reloadData];
 }
 
-// Logs out current user
+// Refreshes user's top data
 - (IBAction)didTapRefresh:(id)sender {
-    static int num = 0;
-    self.refreshButton.transform = CGAffineTransformMakeRotation(M_PI * num);
-    [self fetchTopDataOfType:@"update" WithCompletion:^{
-        [self queryTopData];
-    }];
-    num++;
+    if ([[[SpotifyManager shared] accessToken] isEqualToString:@""]) {
+        [self spotifyAlert];
+    } else {
+        static int num = 0;
+        self.refreshButton.transform = CGAffineTransformMakeRotation(M_PI * num);
+        num++;
+        
+        [self fetchTopDataOfType:@"update" WithCompletion:^{
+            [self queryTopData];
+        }];
+    }
 }
 
+// Send alert if user doesn't have an active Spotify session
+- (void) spotifyAlert {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Inactive Spotify Session Alert"
+                                message:@"To refresh your top data, please click on the 'Connect to Spotify' button first."
+                                preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction * _Nonnull action) {}];
+    
+    [alert addAction:cancelAction];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Connect to Spotify" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                    [[SpotifyManager shared] authenticateSpotify];
+                            }];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:^{
+    }];
+}
+
+// Logs out current user
 - (IBAction)didTapLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
     }];
