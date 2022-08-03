@@ -69,10 +69,8 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     
     __unsafe_unretained typeof(self) weakSelf = self;
     [self.liveQuerySubscription addCreateHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull object) {
-        // add nil check
         __strong typeof (self) strongSelf = weakSelf;
         [strongSelf.messages insertObject:object atIndex:0];
-        NSLog(@"object: %@", object);
         dispatch_async(dispatch_get_main_queue(), ^ {[strongSelf.chatTableView reloadData];});
     }];
     [self loadMessages];
@@ -129,17 +127,11 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.chatLabel.text = self.messages[indexPath.row][@"text"];
-//    NSLog(@"%@",self.messages);
     cell.bubbleView.layer.cornerRadius = 16;
     cell.bubbleView.clipsToBounds = true;
     
     NSDate *dateForm = self.messages[indexPath.row][@"date"];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"MM-dd-yyyy";
-    
-    NSDate *date = dateForm; // your NSDate object
-    NSString *dateString = [dateFormatter stringFromDate:date];
-    cell.dateLabel.text = dateString;
+    cell.dateLabel.text = [self formatDate:dateForm];
     
     PFUser *chatAuthor = self.messages[indexPath.row][@"user"];
     
@@ -152,6 +144,15 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     }];
     
     return cell;
+}
+
+-(NSString *)formatDate: (NSDate *)dateForm {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"MM-dd-yyyy";
+    
+    NSDate *date = dateForm; 
+    NSString *dateString = [dateFormatter stringFromDate:date];
+    return dateString;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

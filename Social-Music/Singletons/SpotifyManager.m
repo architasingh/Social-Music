@@ -27,17 +27,11 @@
 
 - (void)setupSpotify {
     NSString *spotifyClientID = [[KeysManager shared] spotifyClientID];
-    
     NSURL *spotifyRedirectURL = [NSURL URLWithString:@"com.codepath.Social-Music1://spotify-login-callback"];
-
     self.configuration = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
-
     self.configuration.playURI = @"";
-
     self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
-
     self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:self.configuration logLevel:SPTAppRemoteLogLevelNone];
-    
     self.appRemote.delegate = self;
 
 }
@@ -62,7 +56,7 @@
 // Spotify Delegate Functions
 
 - (void)sessionManager:(nonnull SPTSessionManager *)manager didInitiateSession:(nonnull SPTSession *)session {
-    self.appRemote.connectionParameters.accessToken = session.accessToken; // update api manager with token
+    self.appRemote.connectionParameters.accessToken = session.accessToken; 
     [self.appRemote connect];
     NSLog(@"success: %@", session);
     

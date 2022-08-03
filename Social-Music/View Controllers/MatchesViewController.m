@@ -63,14 +63,11 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MatchesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"matchesCell" forIndexPath:indexPath];
-    
     cell.userLabel.text = [@"@" stringByAppendingString: self.users[indexPath.row][@"username"]];
-
     cell.userImage.file = self.users[indexPath.row][@"profilePicture"];
     cell.userImage.layer.cornerRadius = 45;
     cell.userImage.layer.masksToBounds = YES;
     [cell.userImage loadInBackground];
-    
     return cell;
 }
 

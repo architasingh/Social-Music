@@ -36,10 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.usernameLabel.text = [@"@" stringByAppendingString: self.otherUserInfo[@"username"]];
-    NSLog(@"user %@", self.otherUserInfo);
-    
     self.otherUsername = self.otherUserInfo[@"username"];
-    NSLog(@"other user: %@",self.otherUsername);
     
     [self getTopDataforUser:self.otherUsername];
     [self getTopDataforUser:PFUser.currentUser.username];
@@ -89,8 +86,6 @@
     self.topTracksLabel.text = tracksString;
 }
 
-// tweaking matching approach
-
 - (void)compareUserTopArtists {
     // set artist scores for current and other users
     NSMutableDictionary *currUserArtistsDict = [[NSMutableDictionary alloc] init];
@@ -112,7 +107,6 @@
     [artistSet1 intersectSet:artistSet2];
 
     NSArray* resultArtists = [artistSet1 allObjects];
-    NSLog(@"artist result: %@", resultArtists);
     
     // multiply the two users' scores for each match
     // add all match scores and divide by the perfect score
@@ -126,7 +120,6 @@
     }
     
     self.artistScore = 100*(sumOfProductsArtist/self.perfectScore);
-    NSLog(@"artist score: %f", self.artistScore);
     [self compareUserTopTracks];
 }
 
@@ -141,7 +134,6 @@
         double positionScoreDouble = ([positionScore doubleValue]);
         self.perfectScore += positionScoreDouble;
     }
-    NSLog(@"perfect score: %f", self.perfectScore);
 }
 
 - (void)compareUserTopTracks {
@@ -165,7 +157,6 @@
     [trackSet1 intersectSet:trackSet2];
 
     NSArray* resultTracks = [trackSet1 allObjects];
-    NSLog(@"track result: %@", resultTracks);
     
     // multiply the two users' scores for each match
     // add all match scores and divide by the perfect score
@@ -179,8 +170,6 @@
     }
     
     self.trackScore = 100*(sumOfProductsTrack/self.perfectScore);
-    NSLog(@"track score: %f", self.trackScore);
-    
     [self formatMatchLabel];
 }
 
@@ -197,7 +186,6 @@
     
     
     NSString *totalCompatString = [[totalCompatabilityNS stringValue] stringByAppendingString: @"%"];
-    NSLog(@"total compatability: %@", totalCompatString);
     
     NSTimeInterval duration = 0.35f;
     [UIView transitionWithView:self.compatLabel

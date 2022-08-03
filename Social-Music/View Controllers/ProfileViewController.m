@@ -54,6 +54,7 @@
     [super viewDidLoad];
     
     PFUser *user = PFUser.currentUser;
+    
     self.currUserTrackData = [[NSMutableArray alloc] init];
     self.currUserArtistData = [[NSMutableArray alloc] init];
     
@@ -74,11 +75,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     self.accessToken = [[SpotifyManager shared] accessToken];
-    NSLog(@"access token: %@", self.accessToken);
-    
     PFUser *curr = PFUser.currentUser;
-    NSLog(@"current status: %@",curr[@"status"]);
-    
     if (!([curr[@"status"] isEqualToString:@"saved"])) {
         [self fetchTopDataWithCompletion:^{
             [self queryTopData];
@@ -90,7 +87,6 @@
 }
 
 - (void)fetchTopDataWithCompletion: (void(^)(void)) completion {
-
     NSString *token = [[SpotifyManager shared] accessToken];
     
     NSString *tokenType = @"Bearer";
@@ -163,14 +159,14 @@
     mySceneDelegate.window.rootViewController = loginViewController;
 }
 
-// image set up (move)
+// image set up 
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     // Get the image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
 
-    // Do something with the images (based on your use case)
+    // Set image
     self.profileImage.image = editedImage;
     
     PFUser *user = PFUser.currentUser;
@@ -206,11 +202,9 @@
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     [self presentViewController:imagePickerVC animated:YES completion:nil];
-    
 }
 
 - (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
-
     // check if image is not nil
     if (!image) {
         return nil;
@@ -229,29 +223,19 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     FavoritesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:indexPath];
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [self cellAnimation:cell];
 
     if (!self.favoriteButton.isSelected) {
         Track *track = self.currUserTrackData[indexPath.row];
-        
         cell.favoriteLabel.text = track.name;
         cell.favPhoto.image = track.photo;
-        
-        NSLog(@"artist: %@", track.name);
-        NSLog(@"artist: %@", track.photo);
-
         return cell;
     } else {
         Artist *artist = self.currUserArtistData[indexPath.row];
         cell.favoriteLabel.text = artist.name;
         cell.favPhoto.image = artist.photo;
-       
-        NSLog(@"artist: %@", artist.name);
-        NSLog(@"artist: %@", artist.photo);
-        
         return cell;
     }
 }
@@ -262,9 +246,7 @@
     shakeCells.values = @[ @0, @10, @-10, @10, @0 ];
     shakeCells.keyTimes = @[ @0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1 ];
     shakeCells.duration = 0.4;
-
     shakeCells.additive = YES;
-
     [cell.layer addAnimation:shakeCells forKey:@"shake"];
 }
 
