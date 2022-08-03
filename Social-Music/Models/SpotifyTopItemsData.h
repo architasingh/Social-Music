@@ -20,8 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithTrackNames: (NSArray *)trackNames trackPhotos:(NSArray *)trackPhotos artistNames: (NSArray *)artistNames artistPhotos:(NSArray *)artistPhotos forUsername: (NSString *)username;
 
-+ (void) getResponseWithArtists: (NSDictionary *)artistData andTracks: (NSDictionary *)trackData withCompletion: (void (^)(void))completion;
-
+//+ (void) getResponseWithArtists: (NSDictionary *)artistData andTracks: (NSDictionary *)trackData withCompletion: (void (^)(void))completion;
++ (void) getResponseWithArtists: (NSDictionary *)artistData andTracks: (NSDictionary *)trackData ofType: (NSString *)type withCompletion: (void (^)(void))completion;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cameraRollButton;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (weak, nonatomic) IBOutlet UIButton *refreshButton;
 
 @property (nonatomic, strong) NSMutableArray *currUserArtistData;
 @property (nonatomic, strong) NSMutableArray *currUserTrackData;
@@ -42,6 +43,7 @@
 - (IBAction)didTapTakePhoto:(id)sender;
 - (IBAction)didTapCameraRoll:(id)sender;
 - (IBAction)didTapLogout:(id)sender;
+- (IBAction)didTapRefresh:(id)sender;
 
 @end
 
@@ -74,7 +76,7 @@
     self.accessToken = [[SpotifyManager shared] accessToken];
     PFUser *curr = PFUser.currentUser;
     if (!([curr[@"status"] isEqualToString:@"saved"])) {
-        [self fetchTopDataWithCompletion:^{
+        [self fetchTopDataOfType:@"create" WithCompletion:^{
             [self queryTopData];
         }];
     } else {
@@ -84,7 +86,7 @@
 }
 
 // Fetch top artists and tracks from Spotify Web API
-- (void)fetchTopDataWithCompletion: (void(^)(void)) completion {
+- (void)fetchTopDataOfType: (NSString *)type WithCompletion: (void(^)(void)) completion {
     NSString *token = [[SpotifyManager shared] accessToken];
     
     NSString *tokenType = @"Bearer";
@@ -113,9 +115,17 @@
                     
                     NSDictionary *trackDict = [NSJSONSerialization JSONObjectWithData:trackData options:0 error:nil];
                     
-                    [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict withCompletion:^{
+                    if ([type isEqualToString:@"create"]) {
+                        [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict ofType:@"create" withCompletion:^{
+                            completion();
+                        }];
+                    } else if ([type isEqualToString:@"update"]) {
+                        [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict ofType:@"update" withCompletion:^{
+                            completion();
+                        }];
+                    } else {
                         completion();
-                    }];
+                    }
                 }];
                 [trackTask resume];
             }
@@ -148,6 +158,12 @@
 }
 
 // Logs out current user
+- (IBAction)didTapRefresh:(id)sender {
+    [self fetchTopDataOfType:@"update" WithCompletion:^{
+        [self queryTopData];
+    }];
+}
+
 - (IBAction)didTapLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
     }];
