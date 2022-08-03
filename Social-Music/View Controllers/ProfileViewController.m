@@ -81,8 +81,8 @@
     
     if (!([curr[@"status"] isEqualToString:@"saved"])) {
         [self fetchTopDataWithCompletion:^{
+            [self queryTopData];
         }];
-        [self queryTopData];
     } else {
         [self queryTopData];
     }
