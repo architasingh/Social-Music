@@ -15,6 +15,7 @@
 #import <SpotifyiOS/SPTSession.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
 #import "SpotifyManager.h"
+#import "KeysManager.h"
 
 @interface AppDelegate ()
 
@@ -34,15 +35,8 @@
 
 - (void) parseBackend {
     ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
-        
-        NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
-        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
-            
-        NSString *parseAppID = [dict objectForKey: @"parse_app_id"];
-        NSString *parseClientKey = [dict objectForKey: @"parse_client_key"];
-
-            configuration.applicationId = parseAppID;
-            configuration.clientKey = parseClientKey;
+            configuration.applicationId = [[KeysManager shared] parseAppID];
+            configuration.clientKey = [[KeysManager shared] parseClientKey];
             configuration.server = @"https://parseapi.back4app.com";
         }];
 

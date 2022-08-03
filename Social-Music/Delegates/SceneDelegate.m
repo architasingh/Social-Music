@@ -26,7 +26,6 @@
     if (PFUser.currentUser) {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
-            // call function that gets top artists and songs from database
     }
 }
 

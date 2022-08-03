@@ -18,20 +18,21 @@
     return self;
 }
 
+// Load track image
+// Create track with name and image properties
 + (Track *) getTrack:(NSString *)name image:(NSString*)imageString {
-    // get UIImage
     NSURL *url = [NSURL URLWithString:imageString];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *image = [UIImage imageWithData:data];
     
-    // create a track with name and image props
     Track *track = [[Track alloc] initWithName:name image:image];
     return track;
 }
 
+// Make an array of tracks given an array of names and an array of photos
 + (NSMutableArray *)buildArrayofTracks: (NSArray *)arrayName withPhotos : (NSArray *)arrayPhoto  {
     NSMutableArray *arrayOfTracks = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < arrayName.count; i++) {
         Track *track = [Track getTrack:arrayName[i] image:arrayPhoto[i]];
         [arrayOfTracks addObject:track];
     }

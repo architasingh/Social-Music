@@ -19,20 +19,21 @@
     return self;
 }
 
+// Load artist image
+// Create artist with name and image properties
 + (Artist *) getArtist:(NSString *)name image:(NSString*)imageString {
-    // get UIImage
     NSURL *url = [NSURL URLWithString:imageString];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *image = [UIImage imageWithData:data];
     
-    // create a track with name and image props
     Artist *artist = [[Artist alloc] initWithName:name image:image];
     return artist;
 }
 
+// Make an array of artists given an array of names and an array of photos
 + (NSMutableArray *)buildArrayofArtists: (NSArray *)arrayName withPhotos : (NSArray *)arrayPhoto  {
     NSMutableArray *arrayOfArtists = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < arrayName.count; i++) {
         Artist *artist = [Artist getArtist:arrayName[i] image:arrayPhoto[i]];
         [arrayOfArtists addObject:artist];
     }

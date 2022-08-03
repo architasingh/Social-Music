@@ -9,8 +9,8 @@
 #import <Parse/Parse.h>
 #import "ChatCell.h"
 #import "ParseLiveQuery/ParseLiveQuery-umbrella.h"
-#import "KafkaRingIndicatorHeader.h"
-#import "KafkaRefresh.h"
+#import "KeysManager.h"
+#import "CustomRefresh.h"
 
 @interface MessagesViewController () <UITableViewDataSource, UITextViewDelegate>
 @property (strong, nonatomic) NSMutableArray *messages;
@@ -27,7 +27,6 @@
 
 NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
 
-// view setup
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -42,8 +41,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     gestureRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:gestureRecognizer];
     
-    KafkaRingIndicatorHeader * circle = [[KafkaRingIndicatorHeader alloc] init];
-    [self kafkaRefresh:circle];
+    [[CustomRefresh shared] customRefresh: self.chatTableView];
     
     self.chatMessage.delegate = self;
     
@@ -59,24 +57,11 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void) kafkaRefresh:(KafkaRingIndicatorHeader *)circle {
-    circle.themeColor = UIColor.systemIndigoColor;
-    circle.animatedBackgroundColor = UIColor.systemTealColor;
-    __weak KafkaRingIndicatorHeader *weakCircle = circle;
-    circle.refreshHandler = ^{
-        [self.chatTableView reloadData];
-        [weakCircle endRefreshing];
-    };
-     self.chatTableView.headRefreshControl = circle;
-}
-
-// live query
+// Set up live query client and subscription
+// Reloads displayed messages when a new message is sent
 - (void)setupLiveQuery {
-    NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
-        
-    NSString *parseAppID = [dict objectForKey: @"parse_app_id"];
-    NSString *parseClientKey = [dict objectForKey: @"parse_client_key"];
+    NSString *parseAppID = [[KeysManager shared] parseAppID];
+    NSString *parseClientKey = [[KeysManager shared] parseClientKey];
     
     self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:liveQueryURL applicationId:parseAppID clientKey:parseClientKey];
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
@@ -84,15 +69,14 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     
     __unsafe_unretained typeof(self) weakSelf = self;
     [self.liveQuerySubscription addCreateHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull object) {
-        // add nil check
         __strong typeof (self) strongSelf = weakSelf;
         [strongSelf.messages insertObject:object atIndex:0];
-        NSLog(@"object: %@", object);
         dispatch_async(dispatch_get_main_queue(), ^ {[strongSelf.chatTableView reloadData];});
     }];
     [self loadMessages];
 }
 
+// Load messages from database
 - (void)loadMessages {
     [self.activityIndicatorChat stopAnimating];
 
@@ -112,8 +96,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     }];
 }
 
-// button action
-
+// Add new message to database
 - (IBAction)didTapSend:(id)sender {
     if ([self.chatMessage.text isEqual:@""]) {
         [self emptyMessageAlert];
@@ -137,24 +120,16 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
         }];
 }
 
-// tableview methods
-
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChatCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChatCell" forIndexPath:indexPath];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.chatLabel.text = self.messages[indexPath.row][@"text"];
-//    NSLog(@"%@",self.messages);
     cell.bubbleView.layer.cornerRadius = 16;
     cell.bubbleView.clipsToBounds = true;
     
     NSDate *dateForm = self.messages[indexPath.row][@"date"];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"MM-dd-yyyy";
-    
-    NSDate *date = dateForm; // your NSDate object
-    NSString *dateString = [dateFormatter stringFromDate:date];
-    cell.dateLabel.text = dateString;
+    cell.dateLabel.text = [self formatDate:dateForm];
     
     PFUser *chatAuthor = self.messages[indexPath.row][@"user"];
     
@@ -169,13 +144,21 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     return cell;
 }
 
+// Format date label
+-(NSString *)formatDate: (NSDate *)dateForm {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"MM-dd-yyyy";
+    
+    NSDate *date = dateForm; 
+    NSString *dateString = [dateFormatter stringFromDate:date];
+    return dateString;
+}
+
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.messages.count;
 }
 
-
-// keyboard methods
-
+// Set position of keyboard and dismiss on tap
 - (void) hideKeyboard {
     [self.view endEditing:YES];
 }
@@ -201,8 +184,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     }];
 }
 
-// textfield
-
+// Set character limit on message
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if(range.length + range.location > self.chatMessage.text.length)
     {
@@ -213,8 +195,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     return newLength <= 500;
 }
 
-// alert
-
+// Send alert if user inputs empty message 
 - (void) emptyMessageAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty Message Alert"
                                 message:@"You have submitted an empty message. Please enter at least 1 character for your message and try again."

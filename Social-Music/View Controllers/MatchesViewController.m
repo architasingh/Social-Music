@@ -9,8 +9,7 @@
 #import "MatchesCell.h"
 #import <Parse/Parse.h>
 #import "MatchesDetailsViewController.h"
-#import "KafkaRingIndicatorHeader.h"
-#import "KafkaRefresh.h"
+#import "CustomRefresh.h"
 
 @interface MatchesViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -31,21 +30,10 @@
     
     [self displayUsers];
     
-    KafkaRingIndicatorHeader * circle = [[KafkaRingIndicatorHeader alloc] init];
-    [self kafkaRefresh:circle];
+    [[CustomRefresh shared] customRefresh:self.matchesTableView];
 }
 
-- (void) kafkaRefresh:(KafkaRingIndicatorHeader *)circle {
-    circle.themeColor = UIColor.systemIndigoColor;
-    circle.animatedBackgroundColor = UIColor.systemTealColor;
-    __weak KafkaRingIndicatorHeader *weakCircle = circle;
-    circle.refreshHandler = ^{
-        [self.matchesTableView reloadData];
-        [weakCircle endRefreshing];
-    };
-     self.matchesTableView.headRefreshControl = circle;
-}
-
+// Display users other than the current user as different matches
 - (void) displayUsers {
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *matchUsers, NSError *error) {
@@ -63,6 +51,7 @@
     }];
 }
 
+// Pass array of users to details view
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.matchesTableView indexPathForCell:(UITableViewCell *)sender];
     NSArray *user = self.users[indexPath.row];
@@ -70,23 +59,18 @@
     detailVC.otherUserInfo = (NSDictionary*)user;
 }
  
+// Deselect cell after it has been selected
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MatchesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"matchesCell" forIndexPath:indexPath];
-    
     cell.userLabel.text = [@"@" stringByAppendingString: self.users[indexPath.row][@"username"]];
-    NSLog(@"username: %@", cell.userLabel.text);
-
     cell.userImage.file = self.users[indexPath.row][@"profilePicture"];
-    [cell.userImage loadInBackground];
-    
     cell.userImage.layer.cornerRadius = 45;
     cell.userImage.layer.masksToBounds = YES;
     [cell.userImage loadInBackground];
-    
     return cell;
 }
 
