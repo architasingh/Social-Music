@@ -30,6 +30,7 @@
     [super viewDidLoad];
 }
 
+// Opens Spotify app with authentication page
 - (IBAction)didTapSpotify:(id)sender {
     [[SpotifyManager shared] authenticateSpotify];
 }

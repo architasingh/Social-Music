@@ -24,10 +24,10 @@
     return self;
 }
 
+// Extract Parse and Spotify keys from plist to be used across view controllers
 - (void)getKeys {
     NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
-        
     self.spotifyClientID = [dict objectForKey: @"client_key"];
     self.parseAppID = [dict objectForKey: @"parse_app_id"];
     self.parseClientKey = [dict objectForKey: @"parse_client_key"];

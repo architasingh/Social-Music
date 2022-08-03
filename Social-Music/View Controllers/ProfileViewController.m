@@ -59,18 +59,15 @@
     self.currUserArtistData = [[NSMutableArray alloc] init];
     
     self.usernameLabel.text = [@"@" stringByAppendingString: user.username];
-    
     self.profileImage.file = user[@"profilePicture"];
     [self.profileImage loadInBackground];
-    
-    self.favoritesTableView.estimatedRowHeight = UITableViewAutomaticDimension;
-    
-    [[CustomRefresh shared] customRefresh: self.favoritesTableView];
-    
     [self.favoriteButton setTitle:@"Show Top Songs" forState:UIControlStateSelected];
     [self.favoriteButton setTitle:@"Show Top Artists" forState:UIControlStateNormal];
     
+    self.favoritesTableView.estimatedRowHeight = UITableViewAutomaticDimension;
     self.favoritesTableView.dataSource = self;
+    
+    [[CustomRefresh shared] customRefresh: self.favoritesTableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -86,6 +83,7 @@
     [self.favoritesTableView reloadData];
 }
 
+// Fetch top artists and tracks from Spotify Web API
 - (void)fetchTopDataWithCompletion: (void(^)(void)) completion {
     NSString *token = [[SpotifyManager shared] accessToken];
     
@@ -125,6 +123,7 @@
     [artistTask resume];
 }
 
+// Query top artists/tracks from database
 - (void)queryTopData {
     PFQuery *topInfoQuery = [PFQuery queryWithClassName:@"SpotifyTopItemsData"];
     [topInfoQuery whereKey:@"username" equalTo:PFUser.currentUser.username];
@@ -142,13 +141,13 @@
     }];
 }
 
-// button actions
-
+// Button displays one set of data when clicked initially, and another set of data when clicked again
 - (IBAction)didTapFavoritesButton:(id)sender {
     self.favoriteButton.selected = !self.favoriteButton.selected;
     [self.favoritesTableView reloadData];
 }
 
+// Logs out current user
 - (IBAction)didTapLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
     }];
@@ -159,24 +158,20 @@
     mySceneDelegate.window.rootViewController = loginViewController;
 }
 
-// image set up 
-
+// Sets profile image
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    // Get the image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-
-    // Set image
     self.profileImage.image = editedImage;
     
     PFUser *user = PFUser.currentUser;
     user[@"profilePicture"] = [self getPFFileFromImage:self.profileImage.image];
     [user saveInBackground];
     
-    // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+// Sets image from camera roll
 - (IBAction)didTapCameraRoll:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
@@ -189,6 +184,7 @@
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
+// Sets image from camera
 - (IBAction)didTapTakePhoto:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
@@ -204,14 +200,13 @@
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
+// Creates PFFile from image data
 - (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
-    // check if image is not nil
     if (!image) {
         return nil;
     }
 
     NSData *imageData = UIImagePNGRepresentation(image);
-    // get image data and check if that is not nil
     if (!imageData) {
         return nil;
     }
@@ -219,7 +214,16 @@
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
 
-// tableview methods
+// Shakes tableView cells
+- (void)cellAnimation: (UITableViewCell *)cell {
+    CAKeyframeAnimation *shakeCells = [CAKeyframeAnimation animation];
+    shakeCells.keyPath = @"position.x";
+    shakeCells.values = @[ @0, @10, @-10, @10, @0 ];
+    shakeCells.keyTimes = @[ @0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1 ];
+    shakeCells.duration = 0.4;
+    shakeCells.additive = YES;
+    [cell.layer addAnimation:shakeCells forKey:@"shake"];
+}
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     FavoritesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:indexPath];
@@ -238,16 +242,6 @@
         cell.favPhoto.image = artist.photo;
         return cell;
     }
-}
-
-- (void)cellAnimation: (UITableViewCell *)cell {
-    CAKeyframeAnimation *shakeCells = [CAKeyframeAnimation animation];
-    shakeCells.keyPath = @"position.x";
-    shakeCells.values = @[ @0, @10, @-10, @10, @0 ];
-    shakeCells.keyTimes = @[ @0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1 ];
-    shakeCells.duration = 0.4;
-    shakeCells.additive = YES;
-    [cell.layer addAnimation:shakeCells forKey:@"shake"];
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

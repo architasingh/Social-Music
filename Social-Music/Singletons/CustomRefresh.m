@@ -17,6 +17,7 @@
     return shared;
 }
 
+// Create custom refresh control to be used across view controllers
 - (void) customRefresh: (UITableView *)tableView {
     KafkaRingIndicatorHeader * circle = [[KafkaRingIndicatorHeader alloc] init];
     circle.themeColor = UIColor.systemIndigoColor;

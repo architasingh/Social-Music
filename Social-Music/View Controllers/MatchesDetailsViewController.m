@@ -46,8 +46,7 @@
     [self compareUserTopArtists]; //tracks called within artists
 }
 
-// get top data
-
+// Fetch user's top artists/tracks from database
 - (void)getTopDataforUser:(NSString *)userType {
     PFQuery *query = [PFQuery queryWithClassName:@"SpotifyTopItemsData"];
     [query whereKey:@"username" equalTo:userType];
@@ -70,6 +69,7 @@
     }];
 }
 
+// Format artist/track labels
 - (void) formatArtistTrackLabels {
     NSMutableArray *displayTracks = [[NSMutableArray alloc] init];
     NSMutableArray *displayArtists = [[NSMutableArray alloc] init];
@@ -86,11 +86,11 @@
     self.topTracksLabel.text = tracksString;
 }
 
+// Compare top artist information of two users and calculate their compatability
 - (void)compareUserTopArtists {
-    // set artist scores for current and other users
+    // Set artist scores for current and other users
     NSMutableDictionary *currUserArtistsDict = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *otherUserArtistsDict = [[NSMutableDictionary alloc] init];
-    
     double artistBase = 10;
     for (int i = 0; i < self.currUserArtistNames.count; i++) {
         [currUserArtistsDict setObject:[NSDecimalNumber numberWithDouble: artistBase + 20 - i] forKey:self.currUserArtistNames[i]];
@@ -98,18 +98,17 @@
     for (int i = 0; i < self.otherUserArtistNames.count; i++) {
         [otherUserArtistsDict setObject:[NSDecimalNumber numberWithDouble: artistBase + 20 - i] forKey:self.otherUserArtistNames[i]];
     }
-    
     [self perfectScore:currUserArtistsDict];
     
-    // find the artists in common between the users
+    // Find the artists in common between the users
     NSMutableSet* artistSet1 = [NSMutableSet setWithArray:self.currUserArtistNames];
     NSMutableSet* artistSet2 = [NSMutableSet setWithArray:self.otherUserArtistNames];
     [artistSet1 intersectSet:artistSet2];
 
     NSArray* resultArtists = [artistSet1 allObjects];
     
-    // multiply the two users' scores for each match
-    // add all match scores and divide by the perfect score
+    // Multiply the two users' scores for each match
+    // Add all match scores and divide by the perfect score
     double sumOfProductsArtist = 0;
     
     for(NSString *object in resultArtists) {
@@ -123,8 +122,8 @@
     [self compareUserTopTracks];
 }
 
+// Find the perfect score for the current user (same for artists + tracks)
 - (void)perfectScore: (NSDictionary *)dict {
-    // find the perfect score for curr user (is the same for artists + tracks)
     NSDecimalNumber *positionScore = 0;
     self.perfectScore = 0;
     
@@ -136,11 +135,11 @@
     }
 }
 
+// Compare top track information of two users and calculate their compatability
 - (void)compareUserTopTracks {
-    // tracks
+    // Set track scores for current and other users
     NSMutableDictionary *currUserTracksDict = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *otherUserTracksDict = [[NSMutableDictionary alloc] init];
-    
     double trackBase = 10;
     for (int i = 0; i < self.currUserTrackNames.count; i++) {
         [currUserTracksDict setObject:[NSDecimalNumber numberWithDouble: trackBase + 20 - i] forKey:self.currUserTrackNames[i]];
@@ -148,18 +147,17 @@
     for (int i = 0; i < self.otherUserTrackNames.count; i++) {
         [otherUserTracksDict setObject:[NSDecimalNumber numberWithDouble: trackBase + 20 - i] forKey:self.otherUserTrackNames[i]];
     }
-    
     [self perfectScore:currUserTracksDict];
     
-    // finding the artists in common between the users
+    // Find the tracks in common between the two users
     NSMutableSet* trackSet1 = [NSMutableSet setWithArray:self.currUserTrackNames];
     NSMutableSet* trackSet2 = [NSMutableSet setWithArray:self.otherUserTrackNames];
     [trackSet1 intersectSet:trackSet2];
 
     NSArray* resultTracks = [trackSet1 allObjects];
     
-    // multiply the two users' scores for each match
-    // add all match scores and divide by the perfect score
+    // Multiply the two users' scores for each match
+    // Add all match scores and divide by the perfect score
     double sumOfProductsTrack = 0;
     
     for(NSString *object in resultTracks) {
@@ -173,6 +171,8 @@
     [self formatMatchLabel];
 }
 
+// Calculate total compatability score using artist and track scores
+// Format match label and add fade-in animation
 - (void)formatMatchLabel {
     double totalCompatability = ((.75 * self.artistScore) + (.25 * self.trackScore));
     NSDecimalNumber *totalCompatabilityNS = (NSDecimalNumber *)[NSDecimalNumber numberWithDouble:totalCompatability];
@@ -183,10 +183,7 @@
                                                                                    raiseOnUnderflow:NO
                                                                                 raiseOnDivideByZero:NO];
     totalCompatabilityNS = [totalCompatabilityNS decimalNumberByRoundingAccordingToBehavior:behavior];
-    
-    
     NSString *totalCompatString = [[totalCompatabilityNS stringValue] stringByAppendingString: @"%"];
-    
     NSTimeInterval duration = 0.35f;
     [UIView transitionWithView:self.compatLabel
                       duration:duration
@@ -196,9 +193,7 @@
                     } completion:nil];
 }
 
-
-// button action
-
+// Dismiss details view
 - (IBAction)didTapBack:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }

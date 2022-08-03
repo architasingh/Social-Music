@@ -27,7 +27,6 @@
 
 NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
 
-// view setup
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -58,7 +57,8 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-// live query
+// Set up live query client and subscription
+// Reloads displayed messages when a new message is sent
 - (void)setupLiveQuery {
     NSString *parseAppID = [[KeysManager shared] parseAppID];
     NSString *parseClientKey = [[KeysManager shared] parseClientKey];
@@ -76,6 +76,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     [self loadMessages];
 }
 
+// Load messages from database
 - (void)loadMessages {
     [self.activityIndicatorChat stopAnimating];
 
@@ -95,8 +96,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     }];
 }
 
-// button action
-
+// Add new message to database
 - (IBAction)didTapSend:(id)sender {
     if ([self.chatMessage.text isEqual:@""]) {
         [self emptyMessageAlert];
@@ -119,8 +119,6 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
             }
         }];
 }
-
-// tableview methods
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChatCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChatCell" forIndexPath:indexPath];
@@ -146,6 +144,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     return cell;
 }
 
+// Format date label
 -(NSString *)formatDate: (NSDate *)dateForm {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"MM-dd-yyyy";
@@ -159,9 +158,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     return self.messages.count;
 }
 
-
-// keyboard methods
-
+// Set position of keyboard and dismiss on tap
 - (void) hideKeyboard {
     [self.view endEditing:YES];
 }
@@ -187,8 +184,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     }];
 }
 
-// textfield
-
+// Set character limit on message
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if(range.length + range.location > self.chatMessage.text.length)
     {
@@ -199,8 +195,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     return newLength <= 500;
 }
 
-// alert
-
+// Send alert if user inputs empty message 
 - (void) emptyMessageAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty Message Alert"
                                 message:@"You have submitted an empty message. Please enter at least 1 character for your message and try again."

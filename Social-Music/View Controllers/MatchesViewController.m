@@ -33,6 +33,7 @@
     [[CustomRefresh shared] customRefresh:self.matchesTableView];
 }
 
+// Display users other than the current user as different matches
 - (void) displayUsers {
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *matchUsers, NSError *error) {
@@ -50,6 +51,7 @@
     }];
 }
 
+// Pass array of users to details view
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.matchesTableView indexPathForCell:(UITableViewCell *)sender];
     NSArray *user = self.users[indexPath.row];
@@ -57,6 +59,7 @@
     detailVC.otherUserInfo = (NSDictionary*)user;
 }
  
+// Deselect cell after it has been selected
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

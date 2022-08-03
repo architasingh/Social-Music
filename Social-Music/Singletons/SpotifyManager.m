@@ -25,6 +25,8 @@
     return shared;
 }
 
+// Spotify set up/activation functions
+
 - (void)setupSpotify {
     NSString *spotifyClientID = [[KeysManager shared] spotifyClientID];
     NSURL *spotifyRedirectURL = [NSURL URLWithString:@"com.codepath.Social-Music1://spotify-login-callback"];
