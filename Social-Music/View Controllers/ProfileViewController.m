@@ -159,9 +159,12 @@
 
 // Logs out current user
 - (IBAction)didTapRefresh:(id)sender {
+    static int num = 0;
+    self.refreshButton.transform = CGAffineTransformMakeRotation(M_PI * num);
     [self fetchTopDataOfType:@"update" WithCompletion:^{
         [self queryTopData];
     }];
+    num++;
 }
 
 - (IBAction)didTapLogout:(id)sender {

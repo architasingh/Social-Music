@@ -444,10 +444,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fM5-xX-kNN">
-                                                    <rect key="frame" x="0.0" y="198" width="374" height="35"/>
+                                                    <rect key="frame" x="20" y="198" width="334" height="35"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2e-SJ-lkb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="319" height="35"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="279" height="35"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="tinted" title="Label"/>
                                                             <connections>
@@ -455,7 +455,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9J-bT-kwD">
-                                                            <rect key="frame" x="324" y="0.0" width="50" height="35"/>
+                                                            <rect key="frame" x="284" y="0.0" width="50" height="35"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="INA-FL-Gjr"/>
                                                             </constraints>
@@ -472,8 +472,8 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="fM5-xX-kNN" secondAttribute="trailing" id="RnE-YM-gxG"/>
-                                                <constraint firstItem="fM5-xX-kNN" firstAttribute="leading" secondItem="B9e-7b-3Ap" secondAttribute="leading" id="k8Q-yc-Eqf"/>
+                                                <constraint firstAttribute="trailing" secondItem="fM5-xX-kNN" secondAttribute="trailing" constant="20" id="RnE-YM-gxG"/>
+                                                <constraint firstItem="fM5-xX-kNN" firstAttribute="leading" secondItem="B9e-7b-3Ap" secondAttribute="leading" constant="20" id="k8Q-yc-Eqf"/>
                                             </constraints>
                                         </stackView>
                                     </subviews>

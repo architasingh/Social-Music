@@ -64,7 +64,7 @@
         
         NSLog(@"user data saved!");
         completion();
-    }
+    } 
     else if ([type isEqualToString:(@"update")]) {
         PFQuery *updateQuery = [PFQuery queryWithClassName:@"SpotifyTopItemsData"];
         [updateQuery whereKey:@"username" equalTo:PFUser.currentUser.username];
