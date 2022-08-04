@@ -37,7 +37,7 @@
 }
 
 - (void)authenticateSpotify {
-    SPTScope requestedScope = SPTAppRemoteControlScope|SPTUserTopReadScope;
+    SPTScope requestedScope = SPTAppRemoteControlScope|SPTUserTopReadScope|SPTUserReadPlaybackStateScope;
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
 }
 
@@ -56,7 +56,9 @@
 // Spotify delegate functions
 - (void)sessionManager:(nonnull SPTSessionManager *)manager didInitiateSession:(nonnull SPTSession *)session {
     self.appRemote.connectionParameters.accessToken = session.accessToken;
-    [self.appRemote connect];
+    dispatch_async(dispatch_get_main_queue(), ^ {
+        [self.appRemote connect];
+    });
     NSLog(@"success: %@", session);
     
     self.accessToken = session.accessToken;
