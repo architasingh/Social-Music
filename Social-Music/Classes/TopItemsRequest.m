@@ -13,14 +13,12 @@
 
 - (id)init {
     if ((self = [super init]) ) {
-        [self fetchTopDataWithCompletion:^{
-        }];
     }
     return self;
 }
 
 // Fetch top artists and tracks from Spotify Web API
-- (void)fetchTopDataWithCompletion: (void(^)(void)) completion {
+- (void)fetchTopDataOfType: (NSString *)type WithCompletion: (void(^)(void)) completion {
     NSString *token = [[SpotifyManager shared] accessToken];
     
     NSString *tokenType = @"Bearer";
@@ -49,9 +47,17 @@
                     
                     NSDictionary *trackDict = [NSJSONSerialization JSONObjectWithData:trackData options:0 error:nil];
                     
-                    [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict withCompletion:^{
+                    if ([type isEqualToString:@"create"]) {
+                        [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict ofType:@"create" withCompletion:^{
+                            completion();
+                        }];
+                    } else if ([type isEqualToString:@"update"]) {
+                        [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict ofType:@"update" withCompletion:^{
+                            completion();
+                        }];
+                    } else {
                         completion();
-                    }];
+                    }
                 }];
                 [trackTask resume];
             }

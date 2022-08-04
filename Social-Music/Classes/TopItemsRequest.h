@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TopItemsRequest : NSObject
 
-- (void)fetchTopDataWithCompletion: (void(^)(void)) completion;
+- (void)fetchTopDataOfType: (NSString *)type WithCompletion: (void(^)(void)) completion;
 
 @end
 
