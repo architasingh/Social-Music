@@ -74,6 +74,7 @@
 }
 
 - (void)playerStateDidChange:(nonnull id<SPTAppRemotePlayerState>)playerState {
+    self.trackName = playerState.track.name;
     NSLog(@"Track name: %@", playerState.track.name);
     NSLog(@"player state changed");
 }

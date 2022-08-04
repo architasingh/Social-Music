@@ -10,6 +10,7 @@
 		24DFCE43EC737AFB5C2D14BC /* Pods_Social_Music_Social_MusicUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB428BF9DCC53502643F31B /* Pods_Social_Music_Social_MusicUITests.framework */; };
 		AD806AA9287CC8A200D6BA0F /* FavoritesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD806AA8287CC8A200D6BA0F /* FavoritesCell.m */; };
 		AD806AAC287D365200D6BA0F /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD806AAB287D365200D6BA0F /* ChatCell.m */; };
+		AD9218E8289C54CC00BB9008 /* ConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9218E7289C54CC00BB9008 /* ConnectionViewController.m */; };
 		ADC6708628725C1A004CFA6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708528725C1A004CFA6D /* AppDelegate.m */; };
 		ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708828725C1A004CFA6D /* SceneDelegate.m */; };
 		ADC6708C28725C1A004CFA6D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708B28725C1A004CFA6D /* LoginViewController.m */; };
@@ -68,6 +69,8 @@
 		AD806AA8287CC8A200D6BA0F /* FavoritesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoritesCell.m; sourceTree = "<group>"; };
 		AD806AAA287D365200D6BA0F /* ChatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
 		AD806AAB287D365200D6BA0F /* ChatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
+		AD9218E6289C54CC00BB9008 /* ConnectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
+		AD9218E7289C54CC00BB9008 /* ConnectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewController.m; sourceTree = "<group>"; };
 		ADC6708128725C1A004CFA6D /* Social-Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social-Music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADC6708428725C1A004CFA6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		ADC6708528725C1A004CFA6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -244,6 +247,8 @@
 				ADC670D328764C1C004CFA6D /* MessagesViewController.m */,
 				ADDEC5DE288762B600FDF4AD /* MatchesDetailsViewController.h */,
 				ADDEC5DF288762B600FDF4AD /* MatchesDetailsViewController.m */,
+				AD9218E6289C54CC00BB9008 /* ConnectionViewController.h */,
+				AD9218E7289C54CC00BB9008 /* ConnectionViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 				ADF7311E2891AF4300B28289 /* Track.m in Sources */,
 				ADC670CE28764BF1004CFA6D /* MatchesViewController.m in Sources */,
 				ADC670BC2874AF10004CFA6D /* main.m in Sources */,
+				AD9218E8289C54CC00BB9008 /* ConnectionViewController.m in Sources */,
 				ADC670D128764C05004CFA6D /* ProfileViewController.m in Sources */,
 				ADC670CA28764BAB004CFA6D /* TrackViewController.m in Sources */,
 				ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */,

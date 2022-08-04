@@ -12,6 +12,7 @@
 #import <SpotifyiOS/SPTAppRemote.h>
 #import <SpotifyiOS/SPTSession.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
+#import <SpotifyiOS/SPTAppRemotePlayerState.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) SPTAppRemote *appRemote;
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, weak) id<SPTAppRemotePlayerStateDelegate> delegate;
+@property (nonatomic, strong) NSString *trackName;
 
 @end
 

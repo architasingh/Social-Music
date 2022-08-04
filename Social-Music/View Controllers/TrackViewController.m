@@ -18,9 +18,10 @@
 
 @interface TrackViewController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *spotifyButton;
+@property (weak, nonatomic) IBOutlet UIButton *profileSpotifyButton;
+@property (weak, nonatomic) IBOutlet UILabel *currentlyPlaying;
 
-- (IBAction)didTapSpotify:(id)sender;
+- (IBAction)didTapProfileSpotify:(id)sender;
 
 @end
 
@@ -28,6 +29,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if ([[SpotifyManager shared] accessToken] != nil) {
+        self.currentlyPlaying.text = [@"Now Playing: " stringByAppendingString:[[SpotifyManager shared] trackName]];
+    };
 }
 
 // Opens Spotify app with authentication page
