@@ -41,7 +41,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     gestureRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:gestureRecognizer];
     
-    [[CustomRefresh shared] customRefresh: self.chatTableView];
+    [[[CustomRefresh alloc] init] customRefresh:self.chatTableView];
     
     self.chatMessage.delegate = self;
     

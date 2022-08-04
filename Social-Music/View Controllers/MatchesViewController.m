@@ -30,7 +30,7 @@
     
     [self displayUsers];
     
-    [[CustomRefresh shared] customRefresh:self.matchesTableView];
+    [[[CustomRefresh alloc] init] customRefresh:self.matchesTableView];
 }
 
 // Display users other than the current user as different matches

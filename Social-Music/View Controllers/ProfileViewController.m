@@ -68,7 +68,7 @@
     self.favoritesTableView.estimatedRowHeight = UITableViewAutomaticDimension;
     self.favoritesTableView.dataSource = self;
     
-    [[CustomRefresh shared] customRefresh: self.favoritesTableView];
+    [[[CustomRefresh alloc] init] customRefresh:self.favoritesTableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

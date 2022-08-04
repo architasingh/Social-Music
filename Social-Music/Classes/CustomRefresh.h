@@ -12,7 +12,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CustomRefresh : NSObject
-+ (id)shared;
 
 -(void)customRefresh :(UITableView *)tableView;
 
