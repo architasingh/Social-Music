@@ -35,6 +35,7 @@
 		ADF731212891F7BB00B28289 /* SpotifyTopItemsData.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF731202891F7BB00B28289 /* SpotifyTopItemsData.m */; };
 		ADF7312A2899CFB000B28289 /* KeysManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF731292899CFB000B28289 /* KeysManager.m */; };
 		ADF731312899D52B00B28289 /* CustomRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF731302899D52B00B28289 /* CustomRefresh.m */; };
+		ADF73134289B93F200B28289 /* TopItemsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF73133289B93F200B28289 /* TopItemsRequest.m */; };
 		CABC6BB5C0962CBC9846E6BA /* Pods_Social_MusicTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46050F6B8A0A40E392E012F4 /* Pods_Social_MusicTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,8 @@
 		ADF731292899CFB000B28289 /* KeysManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeysManager.m; sourceTree = "<group>"; };
 		ADF7312F2899D52B00B28289 /* CustomRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomRefresh.h; sourceTree = "<group>"; };
 		ADF731302899D52B00B28289 /* CustomRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomRefresh.m; sourceTree = "<group>"; };
+		ADF73132289B93F200B28289 /* TopItemsRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopItemsRequest.h; sourceTree = "<group>"; };
+		ADF73133289B93F200B28289 /* TopItemsRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopItemsRequest.m; sourceTree = "<group>"; };
 		CFB428BF9DCC53502643F31B /* Pods_Social_Music_Social_MusicUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social_Music_Social_MusicUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5DBC07435758349A4404FCE /* Pods-Social-MusicTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social-MusicTests.debug.xcconfig"; path = "Target Support Files/Pods-Social-MusicTests/Pods-Social-MusicTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,7 +188,7 @@
 				ADC6709228725C1B004CFA6D /* LaunchScreen.storyboard */,
 				ADC6709028725C1B004CFA6D /* Assets.xcassets */,
 				ADC6709628725C1B004CFA6D /* main.m */,
-				ADF7312B2899D43D00B28289 /* Singletons */,
+				ADF7312B2899D43D00B28289 /* Classes */,
 				ADC670C728764B96004CFA6D /* Delegates */,
 				ADC670C628764B7A004CFA6D /* View Controllers */,
 				ADF55C4B287E2A6100EC3BB9 /* Cells */,
@@ -267,7 +270,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		ADF7312B2899D43D00B28289 /* Singletons */ = {
+		ADF7312B2899D43D00B28289 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				ADF731282899CFB000B28289 /* KeysManager.h */,
@@ -276,8 +279,10 @@
 				ADF55C49287E2A5700EC3BB9 /* SpotifyManager.m */,
 				ADF7312F2899D52B00B28289 /* CustomRefresh.h */,
 				ADF731302899D52B00B28289 /* CustomRefresh.m */,
+				ADF73132289B93F200B28289 /* TopItemsRequest.h */,
+				ADF73133289B93F200B28289 /* TopItemsRequest.m */,
 			);
-			path = Singletons;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		FCB2C66B86E9B89306152157 /* Pods */ = {
@@ -547,6 +552,7 @@
 				ADC670D128764C05004CFA6D /* ProfileViewController.m in Sources */,
 				ADC670CA28764BAB004CFA6D /* TrackViewController.m in Sources */,
 				ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */,
+				ADF73134289B93F200B28289 /* TopItemsRequest.m in Sources */,
 				ADDEC5E0288762B600FDF4AD /* MatchesDetailsViewController.m in Sources */,
 				ADF7312A2899CFB000B28289 /* KeysManager.m in Sources */,
 				ADF55C4A287E2A5700EC3BB9 /* SpotifyManager.m in Sources */,
