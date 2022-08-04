@@ -35,8 +35,8 @@
 
 - (void) parseBackend {
     ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
-            configuration.applicationId = [[KeysManager shared] parseAppID];
-            configuration.clientKey = [[KeysManager shared] parseClientKey];
+            configuration.applicationId = [[[KeysManager alloc] init] getParseAppID];
+            configuration.clientKey = [[[KeysManager alloc] init] getParseClientKey];
             configuration.server = @"https://parseapi.back4app.com";
         }];
 

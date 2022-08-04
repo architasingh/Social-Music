@@ -11,13 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KeysManager : NSObject
 
-+ (id)shared;
-
-- (void)getKeys;
-
-@property (nonatomic, strong) NSString * spotifyClientID;
-@property (nonatomic, strong) NSString * parseClientKey;
-@property (nonatomic, strong) NSString * parseAppID;
+- (NSString *)getSpotifyClientID;
+- (NSString *)getParseAppID;
+- (NSString *)getParseClientKey;
 
 @end
 

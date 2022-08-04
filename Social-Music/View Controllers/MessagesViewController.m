@@ -60,8 +60,8 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
 // Set up live query client and subscription
 // Reloads displayed messages when a new message is sent
 - (void)setupLiveQuery {
-    NSString *parseAppID = [[KeysManager shared] parseAppID];
-    NSString *parseClientKey = [[KeysManager shared] parseClientKey];
+    NSString *parseAppID = [[[KeysManager alloc] init] getParseAppID];
+    NSString *parseClientKey = [[[KeysManager alloc] init] getParseClientKey];
     
     self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:liveQueryURL applicationId:parseAppID clientKey:parseClientKey];
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];

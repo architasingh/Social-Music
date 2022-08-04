@@ -8,29 +8,27 @@
 #import "KeysManager.h"
 
 @implementation KeysManager
-+ (id)shared {
-    static KeysManager *shared = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        shared = [[self alloc] init];
-    });
-    return shared;
-}
+NSDictionary* dict;
 
 - (id)init {
     if ((self = [super init]) ) {
-        [self getKeys];
+        //dict = [[NSDictionary alloc] init];
+        dict = [NSDictionary dictionaryWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"]];
     }
     return self;
 }
 
 // Extract Parse and Spotify keys from plist to be used across view controllers
-- (void)getKeys {
-    NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
-    self.spotifyClientID = [dict objectForKey: @"client_key"];
-    self.parseAppID = [dict objectForKey: @"parse_app_id"];
-    self.parseClientKey = [dict objectForKey: @"parse_client_key"];
+- (NSString *)getSpotifyClientID {
+    return [dict objectForKey: @"client_key"];
+}
+
+- (NSString *)getParseAppID {
+    return [dict objectForKey: @"parse_app_id"];
+}
+
+- (NSString *)getParseClientKey {
+    return [dict objectForKey: @"parse_client_key"];
 }
 
 @end
