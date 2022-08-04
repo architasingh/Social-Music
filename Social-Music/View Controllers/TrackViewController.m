@@ -18,8 +18,14 @@
 
 @interface TrackViewController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *profileSpotifyButton;
 @property (weak, nonatomic) IBOutlet UILabel *currentlyPlaying;
+@property (weak, nonatomic) IBOutlet UIButton *prevButton;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIButton *skipButton;
+
+- (IBAction)didTapPrevious:(id)sender;
+- (IBAction)didTapPause:(id)sender;
+- (IBAction)didTapSkip:(id)sender;
 
 @end
 
@@ -31,8 +37,46 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     if ([[SpotifyManager shared] accessToken] != nil) {
-        self.currentlyPlaying.text = [@"Now Playing: " stringByAppendingString:[[SpotifyManager shared] trackName]];
+        [self formatNowPlaying];
     };
+}
+
+- (IBAction)didTapSkip:(id)sender {
+    [[[SpotifyManager shared] appRemote].playerAPI skipToNext:^(id  _Nullable result, NSError * _Nullable error) {
+            if (error) {
+                NSLog(@"failed");
+            } else {
+                NSLog(@"succeeded");
+            }
+    }];
+    [self formatNowPlaying];
+}
+
+- (IBAction)didTapPause:(id)sender {
+    [[[SpotifyManager shared] appRemote].playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
+    }];
+    [self formatNowPlaying];
+}
+
+- (IBAction)didTapPrevious:(id)sender {
+    [[[SpotifyManager shared] appRemote].playerAPI skipToPrevious:^(id  _Nullable result, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"failed");
+        } else {
+            NSLog(@"succeeded");
+        }
+    }];
+    [self formatNowPlaying];
+}
+
+- (void)formatNowPlaying {
+    NSString *nowPlaying = @"Now Playing: ";
+    NSString *fullText = [@"Now Playing: " stringByAppendingString:[[SpotifyManager shared] trackName]];
+
+    NSMutableAttributedString *boldedString = [[NSMutableAttributedString alloc] initWithString:fullText];
+    NSRange boldRange = [fullText rangeOfString:nowPlaying];
+    [boldedString addAttribute: NSFontAttributeName value:[UIFont boldSystemFontOfSize:17] range:boldRange];
+    [self.currentlyPlaying setAttributedText: boldedString];
 }
 
 @end

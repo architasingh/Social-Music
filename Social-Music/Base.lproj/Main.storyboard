@@ -102,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-723" y="61"/>
+            <point key="canvasLocation" x="-548" y="62"/>
         </scene>
         <!--Connection View Controller-->
         <scene sceneID="Q7d-4l-y51">
@@ -186,7 +186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PEd-nW-Ukz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="200" y="78"/>
+            <point key="canvasLocation" x="299" y="78"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="x1R-Mi-5w8">
@@ -207,7 +207,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Htg-FO-iKa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1074" y="78"/>
+            <point key="canvasLocation" x="1154" y="78"/>
         </scene>
         <!--Matches View Controller-->
         <scene sceneID="dqb-Al-ejN">
@@ -302,7 +302,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oqy-Co-XBs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1074" y="830"/>
+            <point key="canvasLocation" x="1154" y="830"/>
         </scene>
         <!--Matches Details View Controller-->
         <scene sceneID="qv2-TW-Pto">
@@ -464,7 +464,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VkC-mF-2PZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1869.5652173913045" y="830.35714285714278"/>
+            <point key="canvasLocation" x="1951" y="830"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="mTV-dC-RZY">
@@ -650,19 +650,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="kiW-RH-UAK">
-                                <rect key="frame" x="30" y="355" width="354" height="194"/>
+                                <rect key="frame" x="30" y="240" width="354" height="219"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect with Spotify to play music!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXT-m3-umU">
-                                        <rect key="frame" x="42.5" y="0.0" width="269" height="35"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect with Spotify to play music!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXT-m3-umU">
+                                        <rect key="frame" x="42.5" y="0.0" width="269" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="36b-QW-TsJ"/>
+                                            <constraint firstAttribute="height" constant="60" id="36b-QW-TsJ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBV-cN-GYa">
-                                        <rect key="frame" x="137.5" y="75" width="79" height="35"/>
+                                        <rect key="frame" x="137.5" y="100" width="79" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="WnS-ZA-3Qz"/>
                                         </constraints>
@@ -673,22 +673,31 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ACN-Wk-EZ6">
-                                        <rect key="frame" x="76" y="150" width="202" height="44"/>
+                                        <rect key="frame" x="76" y="175" width="202" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRG-x8-j5N">
                                                 <rect key="frame" x="0.0" y="0.0" width="54" height="44"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="prev-button"/>
+                                                <connections>
+                                                    <action selector="didTapPrevious:" destination="D3n-ay-07O" eventType="touchUpInside" id="bj3-UA-gMS"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IH4-bV-OQs">
                                                 <rect key="frame" x="74" y="0.0" width="54" height="44"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="play-button"/>
+                                                <connections>
+                                                    <action selector="didTapPlay:" destination="D3n-ay-07O" eventType="touchUpInside" id="0rx-xw-bZ3"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwE-tv-GIa">
                                                 <rect key="frame" x="148" y="0.0" width="54" height="44"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="skip-button"/>
+                                                <connections>
+                                                    <action selector="didTapSkip:" destination="D3n-ay-07O" eventType="touchUpInside" id="wtn-Rs-bgA"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -701,7 +710,7 @@
                         <viewLayoutGuide key="safeArea" id="v5R-JP-Qaq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="kiW-RH-UAK" firstAttribute="top" secondItem="76A-VV-ZW7" secondAttribute="topMargin" constant="355" id="aEQ-Ew-nNy"/>
+                            <constraint firstItem="kiW-RH-UAK" firstAttribute="top" secondItem="76A-VV-ZW7" secondAttribute="topMargin" constant="240" id="aEQ-Ew-nNy"/>
                             <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="kiW-RH-UAK" secondAttribute="bottom" constant="10" id="ft6-CF-E0W"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kiW-RH-UAK" secondAttribute="trailing" constant="10" id="gAZ-8A-ilW"/>
                             <constraint firstItem="kiW-RH-UAK" firstAttribute="leading" secondItem="76A-VV-ZW7" secondAttribute="leadingMargin" constant="10" id="sqn-Pw-Dvf"/>
@@ -710,11 +719,14 @@
                     <tabBarItem key="tabBarItem" title="" image="music-icon" id="hRA-dU-rGa"/>
                     <connections>
                         <outlet property="currentlyPlaying" destination="pXT-m3-umU" id="EnN-Ss-lSc"/>
+                        <outlet property="playButton" destination="IH4-bV-OQs" id="hbJ-B7-AqR"/>
+                        <outlet property="prevButton" destination="FRG-x8-j5N" id="M4h-ah-9fa"/>
+                        <outlet property="skipButton" destination="jwE-tv-GIa" id="3us-Fg-tCS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mna-K6-BRG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="284" y="830"/>
+            <point key="canvasLocation" x="401" y="830"/>
         </scene>
         <!--Messages View Controller-->
         <scene sceneID="oO9-7h-Ioi">
@@ -857,11 +869,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mj1-LP-E3U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-468" y="822"/>
+            <point key="canvasLocation" x="-422" y="830"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fmF-Bo-GXc"/>
+        <segue reference="kHf-e0-7m3"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
