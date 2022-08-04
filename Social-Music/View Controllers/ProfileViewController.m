@@ -159,17 +159,23 @@
 
 // Refreshes user's top data
 - (IBAction)didTapRefresh:(id)sender {
-    if ([[[SpotifyManager shared] accessToken] isEqualToString:@""]) {
+    if ([[SpotifyManager shared] accessToken] == nil) {
         [self spotifyAlert];
     } else {
-        static int num = 0;
-        self.refreshButton.transform = CGAffineTransformMakeRotation(M_PI * num);
-        num++;
-        
+        [self animateRefresh];
+    
         [self fetchTopDataOfType:@"update" WithCompletion:^{
             [self queryTopData];
         }];
     }
+}
+
+- (void)animateRefresh {
+    static int num = 0;
+    [UIView animateWithDuration:.5 animations:^{
+        self.refreshButton.transform = CGAffineTransformMakeRotation(M_PI * num);
+    }];
+    num++;
 }
 
 // Send alert if user doesn't have an active Spotify session
