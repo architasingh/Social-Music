@@ -49,7 +49,7 @@
                 }
             } else {
                 NSLog(@"User registered successfully");
-                [self performSegueWithIdentifier:@"loginSegue" sender:self];
+                [self performSegueWithIdentifier:@"signupSegue" sender:self];
             }
         }];
 }

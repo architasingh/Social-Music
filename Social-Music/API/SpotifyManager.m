@@ -37,7 +37,7 @@
 }
 
 - (void)authenticateSpotify {
-    SPTScope requestedScope = SPTAppRemoteControlScope|SPTUserTopReadScope|SPTUserReadPlaybackStateScope;
+    SPTScope requestedScope = SPTAppRemoteControlScope|SPTUserTopReadScope|SPTUserReadPlaybackStateScope|SPTUserReadCurrentlyPlayingScope|SPTUserReadRecentlyPlayedScope;
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
 }
 

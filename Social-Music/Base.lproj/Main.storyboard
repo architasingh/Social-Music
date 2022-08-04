@@ -97,12 +97,13 @@
                         <outlet property="passwordField" destination="CIU-T7-Jrh" id="F2f-Jp-nn5"/>
                         <outlet property="signupButton" destination="gke-Uc-pAn" id="TUf-Zz-duK"/>
                         <outlet property="usernameField" destination="o4i-9I-5mT" id="cgp-Lv-sz5"/>
-                        <segue destination="xPe-bD-24o" kind="presentation" identifier="loginSegue" id="fmF-Bo-GXc"/>
+                        <segue destination="xPe-bD-24o" kind="presentation" identifier="signupSegue" id="fmF-Bo-GXc"/>
+                        <segue destination="UpB-DC-VGc" kind="presentation" identifier="loginSegue" id="jBz-ZH-MDc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-548" y="62"/>
+            <point key="canvasLocation" x="-464" y="62"/>
         </scene>
         <!--Connection View Controller-->
         <scene sceneID="Q7d-4l-y51">
@@ -112,11 +113,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Py3-z3-HQY">
-                                <rect key="frame" x="50" y="140" width="314" height="621"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Py3-z3-HQY">
+                                <rect key="frame" x="40" y="120" width="334" height="590"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Music Buddy! " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XtU-QU-fAP">
-                                        <rect key="frame" x="25.5" y="0.0" width="263.5" height="50"/>
+                                        <rect key="frame" x="35.5" y="0.0" width="263.5" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="7eJ-YE-TQK"/>
                                         </constraints>
@@ -125,9 +126,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WA7-GX-Jus">
-                                        <rect key="frame" x="6" y="100" width="302.5" height="145"/>
+                                        <rect key="frame" x="0.0" y="80" width="334" height="135"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="145" id="8uf-85-a4r"/>
+                                            <constraint firstAttribute="height" constant="135" id="8uf-85-a4r"/>
                                         </constraints>
                                         <string key="text">See how compatible your music taste is with other users, engage in live chat, listen to music, and view your top songs and artists! </string>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -135,19 +136,28 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgn-yL-2o3">
-                                        <rect key="frame" x="0.0" y="295" width="314" height="145"/>
+                                        <rect key="frame" x="0.0" y="245" width="334" height="135"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="145" id="pf6-s2-TXg"/>
+                                            <constraint firstAttribute="height" constant="135" id="2NE-7X-EY3"/>
                                         </constraints>
-                                        <string key="text">To play music, you must first log-in to your Spotify account. If you just want to see your top data and match compatability, click continue.</string>
+                                        <string key="text">To play music, see your top songs and artists, and learn about your match compatability with others, login to your Spotify account.</string>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkj-P7-HjA">
-                                        <rect key="frame" x="76" y="490" width="162" height="50"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*Existing users only need to connect to Spotify to play music/refresh top data." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Zy-qc-uQl">
+                                        <rect key="frame" x="2" y="410" width="330" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="YH3-wj-m4k"/>
+                                            <constraint firstAttribute="height" constant="50" id="9oC-HL-eTc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkj-P7-HjA">
+                                        <rect key="frame" x="86" y="490" width="162" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="YH3-wj-m4k"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Connect With Spotify"/>
@@ -156,7 +166,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SyF-u2-XtP">
-                                        <rect key="frame" x="116" y="590" width="82.5" height="31"/>
+                                        <rect key="frame" x="126" y="555" width="82.5" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="2CH-ZG-tIx"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Continue"/>
                                         <connections>
@@ -170,10 +183,10 @@
                         <viewLayoutGuide key="safeArea" id="cRP-zE-bI5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Py3-z3-HQY" secondAttribute="trailing" constant="50" id="0lP-E5-1o1"/>
-                            <constraint firstItem="Py3-z3-HQY" firstAttribute="leading" secondItem="TYe-fv-Shu" secondAttribute="leading" constant="50" id="Kdu-KK-hMw"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Py3-z3-HQY" secondAttribute="bottom" constant="100" id="oxb-YB-zDa"/>
-                            <constraint firstItem="Py3-z3-HQY" firstAttribute="top" secondItem="TYe-fv-Shu" secondAttribute="top" constant="140" id="tnP-d7-Wl9"/>
+                            <constraint firstAttribute="trailing" secondItem="Py3-z3-HQY" secondAttribute="trailing" constant="40" id="0lP-E5-1o1"/>
+                            <constraint firstItem="Py3-z3-HQY" firstAttribute="leading" secondItem="TYe-fv-Shu" secondAttribute="leading" constant="40" id="Kdu-KK-hMw"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Py3-z3-HQY" secondAttribute="bottom" constant="10" id="oxb-YB-zDa"/>
+                            <constraint firstItem="Py3-z3-HQY" firstAttribute="top" secondItem="TYe-fv-Shu" secondAttribute="top" constant="120" id="tnP-d7-Wl9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="S0e-nG-qfg"/>
@@ -650,7 +663,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="kiW-RH-UAK">
-                                <rect key="frame" x="30" y="240" width="354" height="219"/>
+                                <rect key="frame" x="30" y="344" width="354" height="219"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect with Spotify to play music!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXT-m3-umU">
                                         <rect key="frame" x="42.5" y="0.0" width="269" height="60"/>
@@ -710,7 +723,7 @@
                         <viewLayoutGuide key="safeArea" id="v5R-JP-Qaq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="kiW-RH-UAK" firstAttribute="top" secondItem="76A-VV-ZW7" secondAttribute="topMargin" constant="240" id="aEQ-Ew-nNy"/>
+                            <constraint firstItem="kiW-RH-UAK" firstAttribute="top" secondItem="76A-VV-ZW7" secondAttribute="topMargin" constant="344" id="aEQ-Ew-nNy"/>
                             <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="kiW-RH-UAK" secondAttribute="bottom" constant="10" id="ft6-CF-E0W"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kiW-RH-UAK" secondAttribute="trailing" constant="10" id="gAZ-8A-ilW"/>
                             <constraint firstItem="kiW-RH-UAK" firstAttribute="leading" secondItem="76A-VV-ZW7" secondAttribute="leadingMargin" constant="10" id="sqn-Pw-Dvf"/>
@@ -873,7 +886,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kHf-e0-7m3"/>
+        <segue reference="NHr-it-vFn"/>
+        <segue reference="fmF-Bo-GXc"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
