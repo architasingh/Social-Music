@@ -102,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-578" y="78"/>
+            <point key="canvasLocation" x="-723" y="61"/>
         </scene>
         <!--Connection View Controller-->
         <scene sceneID="Q7d-4l-y51">
@@ -113,7 +113,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Py3-z3-HQY">
-                                <rect key="frame" x="50" y="140" width="314" height="577"/>
+                                <rect key="frame" x="50" y="140" width="314" height="621"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Music Buddy! " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XtU-QU-fAP">
                                         <rect key="frame" x="25.5" y="0.0" width="263.5" height="50"/>
@@ -125,17 +125,27 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WA7-GX-Jus">
-                                        <rect key="frame" x="6" y="100" width="302.5" height="296"/>
+                                        <rect key="frame" x="6" y="100" width="302.5" height="145"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="296" id="8uf-85-a4r"/>
+                                            <constraint firstAttribute="height" constant="145" id="8uf-85-a4r"/>
                                         </constraints>
-                                        <string key="text">See how compatible your music taste is with other users, engage in live chat, listen to music, and view your top songs and artists! To proceed, log-in to your Spotify account.</string>
+                                        <string key="text">See how compatible your music taste is with other users, engage in live chat, listen to music, and view your top songs and artists! </string>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgn-yL-2o3">
+                                        <rect key="frame" x="0.0" y="295" width="314" height="145"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="145" id="pf6-s2-TXg"/>
+                                        </constraints>
+                                        <string key="text">To play music, you must first log-in to your Spotify account. If you just want to see your top data and match compatability, click continue.</string>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkj-P7-HjA">
-                                        <rect key="frame" x="76" y="446" width="162" height="50"/>
+                                        <rect key="frame" x="76" y="490" width="162" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="YH3-wj-m4k"/>
                                         </constraints>
@@ -146,9 +156,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SyF-u2-XtP">
-                                        <rect key="frame" x="74.5" y="546" width="165" height="31"/>
+                                        <rect key="frame" x="116" y="590" width="82.5" height="31"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Click here to continue"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Continue"/>
                                         <connections>
                                             <action selector="didTapNext:" destination="xPe-bD-24o" eventType="touchUpInside" id="ktF-g8-KIM"/>
                                             <segue destination="UpB-DC-VGc" kind="show" identifier="connectSegue" id="NHr-it-vFn"/>
@@ -166,6 +176,7 @@
                             <constraint firstItem="Py3-z3-HQY" firstAttribute="top" secondItem="TYe-fv-Shu" secondAttribute="top" constant="140" id="tnP-d7-Wl9"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="S0e-nG-qfg"/>
                     <connections>
                         <outlet property="introLabel" destination="WA7-GX-Jus" id="xhN-cT-Xik"/>
                         <outlet property="nextButton" destination="SyF-u2-XtP" id="myq-ZP-CSl"/>
@@ -175,13 +186,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PEd-nW-Ukz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="253.62318840579712" y="77.678571428571431"/>
+            <point key="canvasLocation" x="200" y="78"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="x1R-Mi-5w8">
             <objects>
                 <tabBarController storyboardIdentifier="tabBarController" modalPresentationStyle="fullScreen" id="UpB-DC-VGc" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="sRq-8F-n7e"/>
+                    <navigationItem key="navigationItem" id="HqD-4Y-NhI"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ugj-YJ-yFT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -201,7 +212,7 @@
         <!--Matches View Controller-->
         <scene sceneID="dqb-Al-ejN">
             <objects>
-                <viewController id="v65-9G-UTX" customClass="MatchesViewController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="v65-9G-UTX" customClass="MatchesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8RL-np-q1W">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -458,7 +469,7 @@
         <!--Profile View Controller-->
         <scene sceneID="mTV-dC-RZY">
             <objects>
-                <viewController id="Agy-Kp-GIX" customClass="ProfileViewController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Agy-Kp-GIX" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="04V-8c-pz1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -639,10 +650,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="kiW-RH-UAK">
-                                <rect key="frame" x="106" y="355" width="202" height="116"/>
+                                <rect key="frame" x="30" y="355" width="354" height="194"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect with Spotify to play music!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXT-m3-umU">
+                                        <rect key="frame" x="42.5" y="0.0" width="269" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="36b-QW-TsJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBV-cN-GYa">
+                                        <rect key="frame" x="137.5" y="75" width="79" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="WnS-ZA-3Qz"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Connect"/>
+                                        <connections>
+                                            <segue destination="xPe-bD-24o" kind="show" id="kHf-e0-7m3"/>
+                                        </connections>
+                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ACN-Wk-EZ6">
-                                        <rect key="frame" x="0.0" y="0.0" width="202" height="44"/>
+                                        <rect key="frame" x="76" y="150" width="202" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRG-x8-j5N">
                                                 <rect key="frame" x="0.0" y="0.0" width="54" height="44"/>
@@ -664,57 +695,31 @@
                                             <constraint firstAttribute="height" constant="44" id="Zjf-mw-LcX"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aU4-36-q9W">
-                                        <rect key="frame" x="18.5" y="84" width="165.5" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="GH9-Iz-azL"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" title="Connect with Spotify">
-                                            <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="15"/>
-                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="didTapProfileSpotify:" destination="D3n-ay-07O" eventType="touchUpInside" id="nF8-dR-LPL"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXT-m3-umU">
-                                <rect key="frame" x="30" y="164.5" width="354" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="v5R-JP-Qaq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="kiW-RH-UAK" firstAttribute="top" secondItem="pXT-m3-umU" secondAttribute="bottom" constant="170" id="3Q2-oD-uLG"/>
-                            <constraint firstItem="pXT-m3-umU" firstAttribute="top" secondItem="76A-VV-ZW7" secondAttribute="topMargin" constant="164.5" id="7wt-Vb-tA4"/>
                             <constraint firstItem="kiW-RH-UAK" firstAttribute="top" secondItem="76A-VV-ZW7" secondAttribute="topMargin" constant="355" id="aEQ-Ew-nNy"/>
-                            <constraint firstItem="pXT-m3-umU" firstAttribute="leading" secondItem="76A-VV-ZW7" secondAttribute="leadingMargin" constant="10" id="cyl-Dk-9wJ"/>
                             <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="kiW-RH-UAK" secondAttribute="bottom" constant="10" id="ft6-CF-E0W"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="kiW-RH-UAK" secondAttribute="trailing" constant="86" id="gAZ-8A-ilW"/>
-                            <constraint firstItem="kiW-RH-UAK" firstAttribute="leading" secondItem="76A-VV-ZW7" secondAttribute="leadingMargin" constant="86" id="sqn-Pw-Dvf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pXT-m3-umU" secondAttribute="trailing" constant="10" id="sy4-mW-VN3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kiW-RH-UAK" secondAttribute="trailing" constant="10" id="gAZ-8A-ilW"/>
+                            <constraint firstItem="kiW-RH-UAK" firstAttribute="leading" secondItem="76A-VV-ZW7" secondAttribute="leadingMargin" constant="10" id="sqn-Pw-Dvf"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="music-icon" id="hRA-dU-rGa"/>
                     <connections>
                         <outlet property="currentlyPlaying" destination="pXT-m3-umU" id="EnN-Ss-lSc"/>
-                        <outlet property="profileSpotifyButton" destination="aU4-36-q9W" id="iZd-8d-SDG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mna-K6-BRG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="298.55072463768118" y="821.65178571428567"/>
+            <point key="canvasLocation" x="284" y="830"/>
         </scene>
         <!--Messages View Controller-->
         <scene sceneID="oO9-7h-Ioi">
             <objects>
-                <viewController id="4gV-xG-pKd" customClass="MessagesViewController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="4gV-xG-pKd" customClass="MessagesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xuO-Hl-u9m">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -855,6 +860,9 @@
             <point key="canvasLocation" x="-468" y="822"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="fmF-Bo-GXc"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="login-logo" width="80" height="80"/>
@@ -874,9 +882,6 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

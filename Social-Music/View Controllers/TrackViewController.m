@@ -21,8 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *profileSpotifyButton;
 @property (weak, nonatomic) IBOutlet UILabel *currentlyPlaying;
 
-- (IBAction)didTapProfileSpotify:(id)sender;
-
 @end
 
 @implementation TrackViewController
@@ -37,8 +35,4 @@
     };
 }
 
-// Opens Spotify app with authentication page
-- (IBAction)didTapSpotify:(id)sender {
-    [[SpotifyManager shared] authenticateSpotify];
-}
 @end
