@@ -17,6 +17,7 @@
 #import "Artist.h"
 #import "SpotifyTopItemsData.h"
 #import "CustomRefresh.h"
+#import "TopItemsRequest.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UITableViewDataSource>
 
@@ -49,9 +50,6 @@
 
 @implementation ProfileViewController
 
-
-// view setup
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -69,14 +67,14 @@
     self.favoritesTableView.estimatedRowHeight = UITableViewAutomaticDimension;
     self.favoritesTableView.dataSource = self;
     
-    [[CustomRefresh shared] customRefresh: self.favoritesTableView];
+    [[[CustomRefresh alloc] init] customRefresh:self.favoritesTableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     self.accessToken = [[SpotifyManager shared] accessToken];
     PFUser *curr = PFUser.currentUser;
     if (!([curr[@"status"] isEqualToString:@"saved"])) {
-        [self fetchTopDataOfType:@"create" WithCompletion:^{
+        [[[TopItemsRequest alloc] init] fetchTopDataOfType:@"create" WithCompletion:^{
             [self queryTopData];
         }];
     } else {
@@ -85,55 +83,7 @@
     [self.favoritesTableView reloadData];
 }
 
-// Fetch top artists and tracks from Spotify Web API
-- (void)fetchTopDataOfType: (NSString *)type WithCompletion: (void(^)(void)) completion {
-    NSString *token = [[SpotifyManager shared] accessToken];
-    
-    NSString *tokenType = @"Bearer";
-    NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    
-    NSString *artistURLString = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:@"artists"];
-    
-    NSURL *artistURL = [NSURL URLWithString:artistURLString];
-    [request setValue:header forHTTPHeaderField:@"Authorization"];
-    [request setURL:artistURL];
-            
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSURLSessionDataTask *artistTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable artistData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            if (!error) {
-                NSDictionary *artistDict = [NSJSONSerialization JSONObjectWithData:artistData options:0 error:nil];
-                
-                NSString *trackURLString = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:@"tracks"];
-                
-                NSURL *trackURL = [NSURL URLWithString:trackURLString];
-                [request setValue:header forHTTPHeaderField:@"Authorization"];
-                [request setURL:trackURL];
-                        
-                NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-                NSURLSessionDataTask *trackTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable trackData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                    
-                    NSDictionary *trackDict = [NSJSONSerialization JSONObjectWithData:trackData options:0 error:nil];
-                    
-                    if ([type isEqualToString:@"create"]) {
-                        [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict ofType:@"create" withCompletion:^{
-                            completion();
-                        }];
-                    } else if ([type isEqualToString:@"update"]) {
-                        [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict ofType:@"update" withCompletion:^{
-                            completion();
-                        }];
-                    } else {
-                        completion();
-                    }
-                }];
-                [trackTask resume];
-            }
-        }];
-    [artistTask resume];
-}
-
-// Query top artists/tracks from database
+// Get top artists/tracks from database
 - (void)queryTopData {
     PFQuery *topInfoQuery = [PFQuery queryWithClassName:@"SpotifyTopItemsData"];
     [topInfoQuery whereKey:@"username" equalTo:PFUser.currentUser.username];
@@ -157,19 +107,19 @@
     [self.favoritesTableView reloadData];
 }
 
-// Refreshes user's top data
+// Refresh user's top data
 - (IBAction)didTapRefresh:(id)sender {
     if ([[SpotifyManager shared] accessToken] == nil) {
         [self spotifyAlert];
     } else {
         [self animateRefresh];
-    
-        [self fetchTopDataOfType:@"update" WithCompletion:^{
+        [[[TopItemsRequest alloc] init] fetchTopDataOfType:@"update" WithCompletion:^{
             [self queryTopData];
         }];
     }
 }
 
+// Rotate refresh button when tapped
 - (void)animateRefresh {
     static int num = 0;
     [UIView animateWithDuration:.5 animations:^{
@@ -181,21 +131,20 @@
 // Send alert if user doesn't have an active Spotify session
 - (void) spotifyAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Inactive Spotify Session Alert"
-                                message:@"To refresh your top data, please click on the 'Connect to Spotify' button first."
+                                message:@"To refresh your top data, please click on the 'Connect to Spotify' button first. After authenticating with Spotify, tap the refresh button again to update your top items."
                                 preferredStyle:(UIAlertControllerStyleAlert)];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction * _Nonnull action) {}];
-    
     [alert addAction:cancelAction];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Connect to Spotify" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *connectAction = [UIAlertAction actionWithTitle:@"Connect to Spotify" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                                     [[SpotifyManager shared] authenticateSpotify];
                             }];
-    [alert addAction:okAction];
+    [alert addAction:connectAction];
     [self presentViewController:alert animated:YES completion:^{
     }];
 }
 
-// Logs out current user
+// Log out current user
 - (IBAction)didTapLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
     }];
@@ -206,7 +155,7 @@
     mySceneDelegate.window.rootViewController = loginViewController;
 }
 
-// Sets profile image
+// Set profile image
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
@@ -219,7 +168,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-// Sets image from camera roll
+// Set image from camera roll
 - (IBAction)didTapCameraRoll:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
@@ -232,7 +181,7 @@
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
-// Sets image from camera
+// Set image from camera
 - (IBAction)didTapTakePhoto:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
@@ -248,7 +197,7 @@
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
-// Creates PFFile from image data
+// Create PFFile from image data
 - (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
     if (!image) {
         return nil;
@@ -262,7 +211,7 @@
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
 
-// Shakes tableView cells
+// Shake tableView cells
 - (void)cellAnimation: (UITableViewCell *)cell {
     CAKeyframeAnimation *shakeCells = [CAKeyframeAnimation animation];
     shakeCells.keyPath = @"position.x";

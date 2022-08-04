@@ -41,7 +41,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     gestureRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:gestureRecognizer];
     
-    [[CustomRefresh shared] customRefresh: self.chatTableView];
+    [[[CustomRefresh alloc] init] customRefresh:self.chatTableView];
     
     self.chatMessage.delegate = self;
     
@@ -58,10 +58,10 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
 }
 
 // Set up live query client and subscription
-// Reloads displayed messages when a new message is sent
+// Reload displayed messages when a new message is sent
 - (void)setupLiveQuery {
-    NSString *parseAppID = [[KeysManager shared] parseAppID];
-    NSString *parseClientKey = [[KeysManager shared] parseClientKey];
+    NSString *parseAppID = [[[KeysManager alloc] init] getParseAppID];
+    NSString *parseClientKey = [[[KeysManager alloc] init] getParseClientKey];
     
     self.liveQueryClient = [[PFLiveQueryClient alloc] initWithServer:liveQueryURL applicationId:parseAppID clientKey:parseClientKey];
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
@@ -148,7 +148,6 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
 -(NSString *)formatDate: (NSDate *)dateForm {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"MM-dd-yyyy";
-    
     NSDate *date = dateForm; 
     NSString *dateString = [dateFormatter stringFromDate:date];
     return dateString;
@@ -165,9 +164,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-
     float newVerticalPosition = -keyboardSize.height;
-
     [self moveFrameToVerticalPosition:newVerticalPosition forDuration:0.3f];
 }
 
@@ -178,7 +175,6 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
 - (void)moveFrameToVerticalPosition:(float)position forDuration:(float)duration {
     CGRect frame = self.view.frame;
     frame.origin.y = position;
-
     [UIView animateWithDuration:duration animations:^{
         self.view.frame = frame;
     }];
@@ -195,26 +191,21 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
     return newLength <= 500;
 }
 
-// Send alert if user inputs empty message 
+// Send alert if user tries to send empty message
 - (void) emptyMessageAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty Message Alert"
                                 message:@"You have submitted an empty message. Please enter at least 1 character for your message and try again."
                                 preferredStyle:(UIAlertControllerStyleAlert)];
-   
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
                                     style:UIAlertActionStyleCancel
                                     handler:^(UIAlertAction * _Nonnull action) {
-                                                             
                                     }];
-    
     [alert addAction:cancelAction];
-
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * _Nonnull action) {
                                                      }];
     [alert addAction:okAction];
-    
     [self presentViewController:alert animated:YES completion:^{
     }];
 }

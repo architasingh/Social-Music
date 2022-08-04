@@ -31,8 +31,6 @@
 
 @implementation MatchesDetailsViewController
 
-// view setup
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.usernameLabel.text = [@"@" stringByAppendingString: self.otherUserInfo[@"username"]];
@@ -50,15 +48,12 @@
 - (void)getTopDataforUser:(NSString *)userType {
     PFQuery *query = [PFQuery queryWithClassName:@"SpotifyTopItemsData"];
     [query whereKey:@"username" equalTo:userType];
-    
     [query findObjectsInBackgroundWithBlock:^(NSArray *topItems, NSError *error) {
         if (topItems != nil) {
             if ([userType isEqualToString:self.otherUsername]) {
                 self.otherUserArtistNames = topItems[0][@"topArtistNames"];
                 self.otherUserTrackNames = topItems[0][@"topTrackNames"];
-                
                 [self formatArtistTrackLabels];
-                
             } else {
                 self.currUserArtistNames = topItems[0][@"topArtistNames"];
                 self.currUserTrackNames = topItems[0][@"topTrackNames"];
@@ -73,15 +68,12 @@
 - (void) formatArtistTrackLabels {
     NSMutableArray *displayTracks = [[NSMutableArray alloc] init];
     NSMutableArray *displayArtists = [[NSMutableArray alloc] init];
-    
     for (int i = 0; i < self.otherUserArtistNames.count; i++) {
         [displayTracks addObject: [@"☆ " stringByAppendingString:self.otherUserTrackNames[i]]];
         [displayArtists addObject:[@"☆ " stringByAppendingString:self.otherUserArtistNames[i]]];
     }
-    
     NSString *artistsString = [[displayArtists valueForKey:@"description"] componentsJoinedByString:@"\n"];
     NSString *tracksString = [[displayTracks valueForKey:@"description"] componentsJoinedByString:@"\n"];
-    
     self.topArtistsLabel.text = artistsString;
     self.topTracksLabel.text = tracksString;
 }
@@ -104,20 +96,17 @@
     NSMutableSet* artistSet1 = [NSMutableSet setWithArray:self.currUserArtistNames];
     NSMutableSet* artistSet2 = [NSMutableSet setWithArray:self.otherUserArtistNames];
     [artistSet1 intersectSet:artistSet2];
-
     NSArray* resultArtists = [artistSet1 allObjects];
     
     // Multiply the two users' scores for each match
     // Add all match scores and divide by the perfect score
     double sumOfProductsArtist = 0;
-    
     for(NSString *object in resultArtists) {
         NSDecimalNumber *currScore = currUserArtistsDict[object];
         NSDecimalNumber *otherScore = otherUserArtistsDict[object];
         double product = ([currScore doubleValue] * [otherScore doubleValue]);
         sumOfProductsArtist += product;
     }
-    
     self.artistScore = 100*(sumOfProductsArtist/self.perfectScore);
     [self compareUserTopTracks];
 }
@@ -126,7 +115,6 @@
 - (void)perfectScore: (NSDictionary *)dict {
     NSDecimalNumber *positionScore = 0;
     self.perfectScore = 0;
-    
     for (NSString *object in dict) {
         NSDecimalNumber *currScore = dict[object];
         positionScore = [currScore decimalNumberByMultiplyingBy:currScore];
@@ -153,13 +141,11 @@
     NSMutableSet* trackSet1 = [NSMutableSet setWithArray:self.currUserTrackNames];
     NSMutableSet* trackSet2 = [NSMutableSet setWithArray:self.otherUserTrackNames];
     [trackSet1 intersectSet:trackSet2];
-
     NSArray* resultTracks = [trackSet1 allObjects];
     
     // Multiply the two users' scores for each match
     // Add all match scores and divide by the perfect score
     double sumOfProductsTrack = 0;
-    
     for(NSString *object in resultTracks) {
         NSDecimalNumber *currScore = currUserTracksDict[object];
         NSDecimalNumber *otherScore = otherUserTracksDict[object];

@@ -8,13 +8,10 @@
 #import "CustomRefresh.h"
 
 @implementation CustomRefresh
-+ (id)shared {
-    static CustomRefresh *shared = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        shared = [[self alloc] init];
-    });
-    return shared;
+- (id)init {
+    if ((self = [super init]) ) {
+    }
+    return self;
 }
 
 // Create custom refresh control to be used across view controllers

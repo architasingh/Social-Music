@@ -15,7 +15,6 @@
         self.name = name;
         self.photo = photo;
     }
-   
     return self;
 }
 
@@ -25,7 +24,6 @@
     NSURL *url = [NSURL URLWithString:imageString];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *image = [UIImage imageWithData:data];
-    
     Artist *artist = [[Artist alloc] initWithName:name image:image];
     return artist;
 }

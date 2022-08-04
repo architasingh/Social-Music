@@ -20,9 +20,8 @@
 
 @implementation SceneDelegate
 
-
+// If the user is logged in, continue to home screen
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
-    // If the user is logged in, continue to home screen
     if (PFUser.currentUser) {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];

@@ -65,8 +65,13 @@
             filePath = "Social-Music/View Controllers/ProfileViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+=======
             startingLineNumber = "76"
             endingLineNumber = "76"
+>>>>>>> 94cfb771ab5e0bf688e2a54cf88c457f3f5ed326
             landmarkName = "-viewDidAppear:"
             landmarkType = "7">
          </BreakpointContent>
@@ -81,10 +86,17 @@
             filePath = "Social-Music/View Controllers/ProfileViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "ProfileViewController"
+            landmarkType = "3">
+=======
             startingLineNumber = "162"
             endingLineNumber = "162"
             landmarkName = "-didTapRefresh:"
             landmarkType = "7">
+>>>>>>> 94cfb771ab5e0bf688e2a54cf88c457f3f5ed326
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
