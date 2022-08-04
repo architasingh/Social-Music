@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cameraRollButton;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (weak, nonatomic) IBOutlet UIButton *refreshButton;
 
 @property (nonatomic, strong) NSMutableArray *currUserArtistData;
 @property (nonatomic, strong) NSMutableArray *currUserTrackData;
@@ -42,6 +43,7 @@
 - (IBAction)didTapTakePhoto:(id)sender;
 - (IBAction)didTapCameraRoll:(id)sender;
 - (IBAction)didTapLogout:(id)sender;
+- (IBAction)didTapRefresh:(id)sender;
 
 @end
 
@@ -74,7 +76,7 @@
     self.accessToken = [[SpotifyManager shared] accessToken];
     PFUser *curr = PFUser.currentUser;
     if (!([curr[@"status"] isEqualToString:@"saved"])) {
-        [self fetchTopDataWithCompletion:^{
+        [self fetchTopDataOfType:@"create" WithCompletion:^{
             [self queryTopData];
         }];
     } else {
@@ -84,7 +86,7 @@
 }
 
 // Fetch top artists and tracks from Spotify Web API
-- (void)fetchTopDataWithCompletion: (void(^)(void)) completion {
+- (void)fetchTopDataOfType: (NSString *)type WithCompletion: (void(^)(void)) completion {
     NSString *token = [[SpotifyManager shared] accessToken];
     
     NSString *tokenType = @"Bearer";
@@ -113,9 +115,17 @@
                     
                     NSDictionary *trackDict = [NSJSONSerialization JSONObjectWithData:trackData options:0 error:nil];
                     
-                    [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict withCompletion:^{
+                    if ([type isEqualToString:@"create"]) {
+                        [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict ofType:@"create" withCompletion:^{
+                            completion();
+                        }];
+                    } else if ([type isEqualToString:@"update"]) {
+                        [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict ofType:@"update" withCompletion:^{
+                            completion();
+                        }];
+                    } else {
                         completion();
-                    }];
+                    }
                 }];
                 [trackTask resume];
             }
@@ -145,6 +155,44 @@
 - (IBAction)didTapFavoritesButton:(id)sender {
     self.favoriteButton.selected = !self.favoriteButton.selected;
     [self.favoritesTableView reloadData];
+}
+
+// Refreshes user's top data
+- (IBAction)didTapRefresh:(id)sender {
+    if ([[SpotifyManager shared] accessToken] == nil) {
+        [self spotifyAlert];
+    } else {
+        [self animateRefresh];
+    
+        [self fetchTopDataOfType:@"update" WithCompletion:^{
+            [self queryTopData];
+        }];
+    }
+}
+
+- (void)animateRefresh {
+    static int num = 0;
+    [UIView animateWithDuration:.5 animations:^{
+        self.refreshButton.transform = CGAffineTransformMakeRotation(M_PI * num);
+    }];
+    num++;
+}
+
+// Send alert if user doesn't have an active Spotify session
+- (void) spotifyAlert {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Inactive Spotify Session Alert"
+                                message:@"To refresh your top data, please click on the 'Connect to Spotify' button first."
+                                preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction * _Nonnull action) {}];
+    
+    [alert addAction:cancelAction];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Connect to Spotify" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                    [[SpotifyManager shared] authenticateSpotify];
+                            }];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:^{
+    }];
 }
 
 // Logs out current user
