@@ -35,7 +35,6 @@
     self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
     self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:self.configuration logLevel:SPTAppRemoteLogLevelNone];
     self.appRemote.delegate = self;
-
 }
 
 - (void)authenticateSpotify {
@@ -58,7 +57,7 @@
 // Spotify Delegate Functions
 
 - (void)sessionManager:(nonnull SPTSessionManager *)manager didInitiateSession:(nonnull SPTSession *)session {
-    self.appRemote.connectionParameters.accessToken = session.accessToken; 
+    self.appRemote.connectionParameters.accessToken = session.accessToken;
     [self.appRemote connect];
     NSLog(@"success: %@", session);
     

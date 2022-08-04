@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cameraRollButton;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (weak, nonatomic) IBOutlet UIButton *refreshButton;
 
 @property (nonatomic, strong) NSMutableArray *currUserArtistData;
 @property (nonatomic, strong) NSMutableArray *currUserTrackData;
@@ -43,6 +44,7 @@
 - (IBAction)didTapTakePhoto:(id)sender;
 - (IBAction)didTapCameraRoll:(id)sender;
 - (IBAction)didTapLogout:(id)sender;
+- (IBAction)didTapRefresh:(id)sender;
 
 @end
 
@@ -75,13 +77,62 @@
     self.accessToken = [[SpotifyManager shared] accessToken];
     PFUser *curr = PFUser.currentUser;
     if (!([curr[@"status"] isEqualToString:@"saved"])) {
-        [[[TopItemsRequest alloc] init] fetchTopDataWithCompletion:^{
+        [self fetchTopDataOfType:@"create" WithCompletion:^{
             [self queryTopData];
         }];
     } else {
         [self queryTopData];
     }
     [self.favoritesTableView reloadData];
+}
+
+
+// Fetch top artists and tracks from Spotify Web API
+- (void)fetchTopDataOfType: (NSString *)type WithCompletion: (void(^)(void)) completion {
+    NSString *token = [[SpotifyManager shared] accessToken];
+    
+    NSString *tokenType = @"Bearer";
+    NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    NSString *artistURLString = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:@"artists"];
+    
+    NSURL *artistURL = [NSURL URLWithString:artistURLString];
+    [request setValue:header forHTTPHeaderField:@"Authorization"];
+    [request setURL:artistURL];
+            
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionDataTask *artistTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable artistData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (!error) {
+                NSDictionary *artistDict = [NSJSONSerialization JSONObjectWithData:artistData options:0 error:nil];
+                
+                NSString *trackURLString = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:@"tracks"];
+                
+                NSURL *trackURL = [NSURL URLWithString:trackURLString];
+                [request setValue:header forHTTPHeaderField:@"Authorization"];
+                [request setURL:trackURL];
+                        
+                NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+                NSURLSessionDataTask *trackTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable trackData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    
+                    NSDictionary *trackDict = [NSJSONSerialization JSONObjectWithData:trackData options:0 error:nil];
+                    
+                    if ([type isEqualToString:@"create"]) {
+                        [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict ofType:@"create" withCompletion:^{
+                            completion();
+                        }];
+                    } else if ([type isEqualToString:@"update"]) {
+                        [SpotifyTopItemsData getResponseWithArtists:artistDict andTracks:trackDict ofType:@"update" withCompletion:^{
+                            completion();
+                        }];
+                    } else {
+                        completion();
+                    }
+                }];
+                [trackTask resume];
+            }
+        }];
+    [artistTask resume];
 }
 
 // Query top artists/tracks from database
@@ -106,6 +157,44 @@
 - (IBAction)didTapFavoritesButton:(id)sender {
     self.favoriteButton.selected = !self.favoriteButton.selected;
     [self.favoritesTableView reloadData];
+}
+
+// Refreshes user's top data
+- (IBAction)didTapRefresh:(id)sender {
+    if ([[SpotifyManager shared] accessToken] == nil) {
+        [self spotifyAlert];
+    } else {
+        [self animateRefresh];
+    
+        [self fetchTopDataOfType:@"update" WithCompletion:^{
+            [self queryTopData];
+        }];
+    }
+}
+
+- (void)animateRefresh {
+    static int num = 0;
+    [UIView animateWithDuration:.5 animations:^{
+        self.refreshButton.transform = CGAffineTransformMakeRotation(M_PI * num);
+    }];
+    num++;
+}
+
+// Send alert if user doesn't have an active Spotify session
+- (void) spotifyAlert {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Inactive Spotify Session Alert"
+                                message:@"To refresh your top data, please click on the 'Connect to Spotify' button first."
+                                preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction * _Nonnull action) {}];
+    
+    [alert addAction:cancelAction];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Connect to Spotify" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                    [[SpotifyManager shared] authenticateSpotify];
+                            }];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:^{
+    }];
 }
 
 // Logs out current user

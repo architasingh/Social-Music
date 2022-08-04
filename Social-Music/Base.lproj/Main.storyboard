@@ -139,7 +139,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="54"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Matches" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u47-Bc-Cgq">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Users" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u47-Bc-Cgq">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="54"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                             <nil key="textColor"/>
@@ -414,10 +414,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="idN-XP-dMP">
-                                                    <rect key="frame" x="75" y="114" width="224" height="31"/>
+                                                    <rect key="frame" x="75" y="114" width="224" height="29"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJy-ab-xzQ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="102" height="31"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="102" height="29"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" title="Take Photo"/>
                                                             <connections>
@@ -425,7 +425,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Erb-uY-dyG">
-                                                            <rect key="frame" x="122" y="0.0" width="102" height="31"/>
+                                                            <rect key="frame" x="122" y="0.0" width="102" height="29"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" title="Camera Roll"/>
                                                             <connections>
@@ -435,27 +435,45 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwL-fH-qEB">
-                                                    <rect key="frame" x="144" y="155" width="86.5" height="35"/>
+                                                    <rect key="frame" x="144" y="153" width="86.5" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="IeF-Jj-sKJ"/>
+                                                        <constraint firstAttribute="height" constant="35" id="FEW-L9-sQL"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2e-SJ-lkb">
-                                                    <rect key="frame" x="95" y="200" width="184" height="33"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="tinted" title="Label"/>
-                                                    <connections>
-                                                        <action selector="didTapFavoritesButton:" destination="Agy-Kp-GIX" eventType="touchUpInside" id="ksc-Bp-SFI"/>
-                                                    </connections>
-                                                </button>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fM5-xX-kNN">
+                                                    <rect key="frame" x="20" y="198" width="334" height="35"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2e-SJ-lkb">
+                                                            <rect key="frame" x="0.0" y="0.0" width="279" height="35"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="tinted" title="Label"/>
+                                                            <connections>
+                                                                <action selector="didTapFavoritesButton:" destination="Agy-Kp-GIX" eventType="touchUpInside" id="ksc-Bp-SFI"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9J-bT-kwD">
+                                                            <rect key="frame" x="284" y="0.0" width="50" height="35"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="INA-FL-Gjr"/>
+                                                            </constraints>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="didTapRefresh:" destination="Agy-Kp-GIX" eventType="touchUpInside" id="8Fv-xp-fgW"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="oKc-IC-Lgz"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="K2e-SJ-lkb" secondAttribute="trailing" constant="95" id="Veb-EM-eSb"/>
-                                                <constraint firstItem="K2e-SJ-lkb" firstAttribute="leading" secondItem="B9e-7b-3Ap" secondAttribute="leading" constant="95" id="bg9-H3-8Al"/>
-                                                <constraint firstItem="K2e-SJ-lkb" firstAttribute="top" secondItem="NwL-fH-qEB" secondAttribute="bottom" constant="10" id="gBt-qA-BBY"/>
+                                                <constraint firstAttribute="trailing" secondItem="fM5-xX-kNN" secondAttribute="trailing" constant="20" id="RnE-YM-gxG"/>
+                                                <constraint firstItem="fM5-xX-kNN" firstAttribute="leading" secondItem="B9e-7b-3Ap" secondAttribute="leading" constant="20" id="k8Q-yc-Eqf"/>
                                             </constraints>
                                         </stackView>
                                     </subviews>
@@ -528,6 +546,7 @@
                         <outlet property="favoritesTableView" destination="ou0-Mx-FQR" id="vp2-MY-wgS"/>
                         <outlet property="logoutButton" destination="lGi-Q7-2Km" id="Qyy-1L-int"/>
                         <outlet property="profileImage" destination="8RG-BV-fKu" id="LOv-Gu-gwQ"/>
+                        <outlet property="refreshButton" destination="H9J-bT-kwD" id="9Ri-0M-6LJ"/>
                         <outlet property="takePhotoButton" destination="jJy-ab-xzQ" id="emK-kv-cfW"/>
                         <outlet property="usernameLabel" destination="NwL-fH-qEB" id="ocV-ha-6os"/>
                     </connections>
@@ -751,6 +770,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="login-logo" width="80" height="80"/>
         <image name="matches-icon" width="16" height="16"/>
         <image name="messages-icon" width="16" height="16"/>
