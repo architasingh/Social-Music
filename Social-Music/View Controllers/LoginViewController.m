@@ -35,6 +35,12 @@
         PFUser *newUser = [PFUser user];
         newUser.username = self.usernameField.text;
         newUser.password = self.passwordField.text;
+    
+        NSURL *url = [NSURL URLWithString:@"https://openclipart.org/image/800px/247319"];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *defaultImage = [UIImage imageWithData:data];
+        newUser[@"profilePicture"] = [PFFileObject fileObjectWithName:@"image.png" data:UIImagePNGRepresentation(defaultImage)];
+    
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
