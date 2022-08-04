@@ -25,7 +25,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Update this? Keychain? Belongs in SpotifyManager? Look into encoded details within token if possible?
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"access_token"];
 
     [[SpotifyManager shared] setupSpotify];
@@ -33,6 +32,7 @@
     return YES;
 }
 
+// Configure and initialize Parse
 - (void) parseBackend {
     ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
             configuration.applicationId = [[[KeysManager alloc] init] getParseAppID];

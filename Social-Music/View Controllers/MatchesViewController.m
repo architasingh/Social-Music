@@ -33,7 +33,7 @@
     [[[CustomRefresh alloc] init] customRefresh:self.matchesTableView];
 }
 
-// Display users other than the current user as different matches
+// Display users other than the current user (potential matches)
 - (void) displayUsers {
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *matchUsers, NSError *error) {

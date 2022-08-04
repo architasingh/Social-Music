@@ -24,7 +24,6 @@
     NSURL *url = [NSURL URLWithString:imageString];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *image = [UIImage imageWithData:data];
-    
     Track *track = [[Track alloc] initWithName:name image:image];
     return track;
 }

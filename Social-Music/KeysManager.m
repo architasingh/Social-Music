@@ -12,7 +12,6 @@ NSDictionary* dict;
 
 - (id)init {
     if ((self = [super init]) ) {
-        //dict = [[NSDictionary alloc] init];
         dict = [NSDictionary dictionaryWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"]];
     }
     return self;

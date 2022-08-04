@@ -26,7 +26,6 @@
 }
 
 // Spotify set up/activation functions
-
 - (void)setupSpotify {
     NSString *spotifyClientID = [[[KeysManager alloc] init] getSpotifyClientID];
     NSURL *spotifyRedirectURL = [NSURL URLWithString:@"com.codepath.Social-Music1://spotify-login-callback"];
@@ -54,8 +53,7 @@
     }
 }
 
-// Spotify Delegate Functions
-
+// Spotify delegate functions
 - (void)sessionManager:(nonnull SPTSessionManager *)manager didInitiateSession:(nonnull SPTSession *)session {
     self.appRemote.connectionParameters.accessToken = session.accessToken;
     [self.appRemote connect];

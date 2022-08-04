@@ -156,6 +156,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AD9218E2289C384F00BB9008 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				ADF73132289B93F200B28289 /* TopItemsRequest.h */,
+				ADF73133289B93F200B28289 /* TopItemsRequest.m */,
+				ADF55C48287E2A5700EC3BB9 /* SpotifyManager.h */,
+				ADF55C49287E2A5700EC3BB9 /* SpotifyManager.m */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		ADC6707828725C1A004CFA6D = {
 			isa = PBXGroup;
 			children = (
@@ -182,13 +193,17 @@
 		ADC6708328725C1A004CFA6D /* Social-Music */ = {
 			isa = PBXGroup;
 			children = (
+				ADF731282899CFB000B28289 /* KeysManager.h */,
+				ADF731292899CFB000B28289 /* KeysManager.m */,
+				ADF7312F2899D52B00B28289 /* CustomRefresh.h */,
+				ADF731302899D52B00B28289 /* CustomRefresh.m */,
 				ADC6709528725C1B004CFA6D /* Info.plist */,
 				ADC670BF2874E789004CFA6D /* Keys.plist */,
 				ADC6708D28725C1A004CFA6D /* Main.storyboard */,
 				ADC6709228725C1B004CFA6D /* LaunchScreen.storyboard */,
 				ADC6709028725C1B004CFA6D /* Assets.xcassets */,
 				ADC6709628725C1B004CFA6D /* main.m */,
-				ADF7312B2899D43D00B28289 /* Classes */,
+				AD9218E2289C384F00BB9008 /* API */,
 				ADC670C728764B96004CFA6D /* Delegates */,
 				ADC670C628764B7A004CFA6D /* View Controllers */,
 				ADF55C4B287E2A6100EC3BB9 /* Cells */,
@@ -268,21 +283,6 @@
 				ADF731202891F7BB00B28289 /* SpotifyTopItemsData.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		ADF7312B2899D43D00B28289 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				ADF731282899CFB000B28289 /* KeysManager.h */,
-				ADF731292899CFB000B28289 /* KeysManager.m */,
-				ADF55C48287E2A5700EC3BB9 /* SpotifyManager.h */,
-				ADF55C49287E2A5700EC3BB9 /* SpotifyManager.m */,
-				ADF7312F2899D52B00B28289 /* CustomRefresh.h */,
-				ADF731302899D52B00B28289 /* CustomRefresh.m */,
-				ADF73132289B93F200B28289 /* TopItemsRequest.h */,
-				ADF73133289B93F200B28289 /* TopItemsRequest.m */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		FCB2C66B86E9B89306152157 /* Pods */ = {

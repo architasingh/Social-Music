@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CustomRefresh : NSObject
 
--(void)customRefresh :(UITableView *)tableView;
+- (void)customRefresh :(UITableView *)tableView;
 
 @end
 
