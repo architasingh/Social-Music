@@ -110,7 +110,8 @@ NSMutableDictionary *relatedDict;
 }
 
 - (void)saveRelatedArtists {
-    if (relatedDict.count == 20) {
+    PFUser *curr = PFUser.currentUser;
+    if ((relatedDict.count == 20) & !([curr[@"savedRelated"] isEqualToString: @"saved"])) {
         NSArray *userArtistIDs = [[NSArray alloc] init];
         NSArray *relatedArtistsFullArray = [[NSArray alloc] init];
         userArtistIDs = [relatedDict allKeys];
@@ -120,6 +121,8 @@ NSMutableDictionary *relatedDict;
         relatedArtistObject[@"artistId"] = userArtistIDs;
         relatedArtistObject[@"relatedArtists"] = relatedArtistsFullArray;
         relatedArtistObject[@"username"] = PFUser.currentUser.username;
+        curr[@"savedRelated"] = @"saved";
+        [curr saveInBackground];
         [relatedArtistObject saveInBackground];
         NSLog(@"saved related");
     }
