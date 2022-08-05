@@ -23,7 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 // Proceed to tab bar controller
@@ -31,7 +30,7 @@
     [self performSegueWithIdentifier:@"connectSegue" sender:self];
 }
 
-// Opens Spotify app with authentication page
+// Open Spotify app with authentication page
 - (IBAction)didTapSpotify:(id)sender {
     [[SpotifyManager shared] authenticateSpotify];
 }

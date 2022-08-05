@@ -33,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.playButton.hidden = TRUE;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,15 +48,22 @@
                 NSLog(@"failed");
             } else {
                 NSLog(@"succeeded");
+                [[[SpotifyManager shared] appRemote].playerAPI getPlayerState:^(id  _Nullable result, NSError * _Nullable error) {
+                    if (error) {
+                        NSLog(@"failed");
+                    } else {
+                        [self formatNowPlaying];
+                        NSLog(@"succeeded");
+                    }
+                }];
             }
     }];
-    [self formatNowPlaying];
 }
 
 - (IBAction)didTapPause:(id)sender {
-    [[[SpotifyManager shared] appRemote].playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
-    }];
-    [self formatNowPlaying];
+//    [[[SpotifyManager shared] appRemote].playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
+//    }];
+//    [self formatNowPlaying];
 }
 
 - (IBAction)didTapPrevious:(id)sender {
@@ -63,10 +71,16 @@
         if (error) {
             NSLog(@"failed");
         } else {
-            NSLog(@"succeeded");
+            [[[SpotifyManager shared] appRemote].playerAPI getPlayerState:^(id  _Nullable result, NSError * _Nullable error) {
+                if (error) {
+                    NSLog(@"failed");
+                } else {
+                    [self formatNowPlaying];
+                    NSLog(@"succeeded");
+                }
+            }];
         }
     }];
-    [self formatNowPlaying];
 }
 
 - (void)formatNowPlaying {

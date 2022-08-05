@@ -663,7 +663,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="kiW-RH-UAK">
-                                <rect key="frame" x="30" y="344" width="354" height="219"/>
+                                <rect key="frame" x="30" y="150" width="354" height="244"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect with Spotify to play music!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXT-m3-umU">
                                         <rect key="frame" x="42.5" y="0.0" width="269" height="60"/>
@@ -675,9 +675,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBV-cN-GYa">
-                                        <rect key="frame" x="137.5" y="100" width="79" height="35"/>
+                                        <rect key="frame" x="137.5" y="100" width="79" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="WnS-ZA-3Qz"/>
+                                            <constraint firstAttribute="height" constant="60" id="WnS-ZA-3Qz"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Connect"/>
@@ -686,7 +686,7 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ACN-Wk-EZ6">
-                                        <rect key="frame" x="76" y="175" width="202" height="44"/>
+                                        <rect key="frame" x="76" y="200" width="202" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRG-x8-j5N">
                                                 <rect key="frame" x="0.0" y="0.0" width="54" height="44"/>
@@ -723,7 +723,7 @@
                         <viewLayoutGuide key="safeArea" id="v5R-JP-Qaq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="kiW-RH-UAK" firstAttribute="top" secondItem="76A-VV-ZW7" secondAttribute="topMargin" constant="344" id="aEQ-Ew-nNy"/>
+                            <constraint firstItem="kiW-RH-UAK" firstAttribute="top" secondItem="76A-VV-ZW7" secondAttribute="topMargin" constant="150" id="aEQ-Ew-nNy"/>
                             <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="kiW-RH-UAK" secondAttribute="bottom" constant="10" id="ft6-CF-E0W"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kiW-RH-UAK" secondAttribute="trailing" constant="10" id="gAZ-8A-ilW"/>
                             <constraint firstItem="kiW-RH-UAK" firstAttribute="leading" secondItem="76A-VV-ZW7" secondAttribute="leadingMargin" constant="10" id="sqn-Pw-Dvf"/>
@@ -887,7 +887,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="NHr-it-vFn"/>
-        <segue reference="fmF-Bo-GXc"/>
+        <segue reference="kHf-e0-7m3"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>

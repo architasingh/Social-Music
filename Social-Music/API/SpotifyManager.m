@@ -60,7 +60,6 @@
         [self.appRemote connect];
     });
     NSLog(@"success: %@", session);
-    
     self.accessToken = session.accessToken;
 }
 
