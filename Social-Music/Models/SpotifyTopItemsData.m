@@ -76,6 +76,6 @@
     } else {
         NSLog(@"Invalid request");
     }
-    }
+}
 
 @end

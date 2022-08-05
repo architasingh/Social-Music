@@ -701,7 +701,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="play-button"/>
                                                 <connections>
-                                                    <action selector="didTapPlay:" destination="D3n-ay-07O" eventType="touchUpInside" id="0rx-xw-bZ3"/>
+                                                    <action selector="didTapPause:" destination="D3n-ay-07O" eventType="touchUpInside" id="NIi-qv-X1m"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwE-tv-GIa">
@@ -732,7 +732,6 @@
                     <tabBarItem key="tabBarItem" title="" image="music-icon" id="hRA-dU-rGa"/>
                     <connections>
                         <outlet property="currentlyPlaying" destination="pXT-m3-umU" id="EnN-Ss-lSc"/>
-                        <outlet property="playButton" destination="IH4-bV-OQs" id="hbJ-B7-AqR"/>
                         <outlet property="prevButton" destination="FRG-x8-j5N" id="M4h-ah-9fa"/>
                         <outlet property="skipButton" destination="jwE-tv-GIa" id="3us-Fg-tCS"/>
                     </connections>

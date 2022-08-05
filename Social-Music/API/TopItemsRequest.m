@@ -12,8 +12,11 @@
 
 @implementation TopItemsRequest
 
+NSMutableDictionary *relatedDict;
+
 - (id)init {
     if ((self = [super init]) ) {
+        relatedDict = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -38,7 +41,7 @@
                 NSDictionary *artistDict = [NSJSONSerialization JSONObjectWithData:artistData options:0 error:nil];
                 
 //                get related artists
-                [self breakdownDict:artistDict];
+                [self getRelatedArtistsWithDict:artistDict];
                 
                 NSString *trackURLString = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:@"tracks"];
                 
@@ -68,40 +71,59 @@
         }];
     [artistTask resume];
 }
-- (void)breakdownDict:(NSDictionary *)dict {
-    NSLog(@"dict: %lu", (unsigned long)dict.count);
-    for (int i = 0; i < 20; i++) {
-        [self getRelatedArtistsWithID:dict[@"items"][i][@"id"]];
+
+- (void)getRelatedArtistsWithDict:(NSDictionary *)dict {
+    for (int i = 0; i < 20; i ++) {
+
+        NSString *artistID = dict[@"items"][i][@"id"];
+        
+        NSString *token = [[SpotifyManager shared] accessToken];
+        NSString *tokenType = @"Bearer";
+        NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+
+        NSString *baseURL = @"https://api.spotify.com/v1/artists/";
+        NSString *addID = [baseURL stringByAppendingString:artistID];
+        NSURL *idURL = [NSURL URLWithString:[addID stringByAppendingString:@"/related-artists"]];
+        [request setValue:header forHTTPHeaderField:@"Authorization"];
+        [request setURL:idURL];
+        
+        NSMutableArray *relatedArtists = [[NSMutableArray alloc] init];
+
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        NSURLSessionDataTask *artistIDTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable artistData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                if (error != nil) {
+                }
+                else {
+                    NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:artistData options:0 error:nil];
+                    NSMutableArray *fullArtistsArray = [[NSMutableArray alloc] init];
+                    fullArtistsArray = [responseDict valueForKey:@"artists"];
+                    for (int j = 0; j < fullArtistsArray.count; j ++) {
+                        [relatedArtists addObject:responseDict[@"artists"][j][@"name"]];
+                    }
+                    [relatedDict setObject:relatedArtists forKey:artistID];
+                    [self saveRelatedArtists];
+                }
+        }];
+        [artistIDTask resume];
     }
 }
 
-- (void)getRelatedArtistsWithID:(NSString *)artistID {
-    NSString *token = [[SpotifyManager shared] accessToken];
-    NSString *tokenType = @"Bearer";
-    NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+- (void)saveRelatedArtists {
+    if (relatedDict.count == 20) {
+        NSArray *userArtistIDs = [[NSArray alloc] init];
+        NSArray *relatedArtistsFullArray = [[NSArray alloc] init];
+        userArtistIDs = [relatedDict allKeys];
+        relatedArtistsFullArray = [relatedDict allValues];
 
-    NSString *baseURL = @"https://api.spotify.com/v1/artists/";
-    NSString *addID = [baseURL stringByAppendingString:artistID];
-    NSURL *idURL = [NSURL URLWithString:[addID stringByAppendingString:@"/related-artists"]];
-    [request setValue:header forHTTPHeaderField:@"Authorization"];
-    [request setURL:idURL];
-
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSURLSessionDataTask *artistIDTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable artistData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:artistData options:0 error:nil];
-        
-        NSMutableArray *fullArtistsArray =[[NSMutableArray alloc] init];
-        fullArtistsArray = [responseDict valueForKey:@"artists"];
-        
-        NSMutableArray *relatedArtistsArray =[[NSMutableArray alloc] init];
-        for (int j = 0; j < fullArtistsArray.count; j ++) {
-            [relatedArtistsArray addObject:responseDict[@"artists"][j][@"name"]];
-        }
-        [Artist buildArrayofArtists:relatedArtistsArray withPhotos:responseDict[@"images"][0][@"url"]];
-        NSLog(@"artist's related: %@", relatedArtistsArray);
-    }];
-    [artistIDTask resume];
+        PFObject *relatedArtistObject = [PFObject objectWithClassName:@"RelatedArtists"];
+        relatedArtistObject[@"artistId"] = userArtistIDs;
+        relatedArtistObject[@"relatedArtists"] = relatedArtistsFullArray;
+        relatedArtistObject[@"username"] = PFUser.currentUser.username;
+        [relatedArtistObject saveInBackground];
+        NSLog(@"saved related");
+    }
 }
+
 
 @end

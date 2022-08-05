@@ -60,9 +60,9 @@
 }
 
 - (IBAction)didTapPause:(id)sender {
-//    [[[SpotifyManager shared] appRemote].playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
-//    }];
-//    [self formatNowPlaying];
+    [[[SpotifyManager shared] appRemote].playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
+    }];
+    [self formatNowPlaying];
 }
 
 - (IBAction)didTapPrevious:(id)sender {
