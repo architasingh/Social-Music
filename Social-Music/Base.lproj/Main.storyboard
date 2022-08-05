@@ -686,32 +686,47 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ACN-Wk-EZ6">
-                                        <rect key="frame" x="76" y="200" width="202" height="44"/>
+                                        <rect key="frame" x="48" y="200" width="258" height="44"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRG-x8-j5N">
-                                                <rect key="frame" x="0.0" y="0.0" width="54" height="44"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="prev-button"/>
-                                                <connections>
-                                                    <action selector="didTapPrevious:" destination="D3n-ay-07O" eventType="touchUpInside" id="bj3-UA-gMS"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IH4-bV-OQs">
-                                                <rect key="frame" x="74" y="0.0" width="54" height="44"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="play-button"/>
-                                                <connections>
-                                                    <action selector="didTapPause:" destination="D3n-ay-07O" eventType="touchUpInside" id="NIi-qv-X1m"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwE-tv-GIa">
-                                                <rect key="frame" x="148" y="0.0" width="54" height="44"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="skip-button"/>
-                                                <connections>
-                                                    <action selector="didTapSkip:" destination="D3n-ay-07O" eventType="touchUpInside" id="wtn-Rs-bgA"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="72J-GH-85l">
+                                                <rect key="frame" x="0.0" y="0.0" width="258" height="44"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRG-x8-j5N">
+                                                        <rect key="frame" x="0.0" y="0.0" width="54" height="44"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="prev-button"/>
+                                                        <connections>
+                                                            <action selector="didTapPrevious:" destination="D3n-ay-07O" eventType="touchUpInside" id="bj3-UA-gMS"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IH4-bV-OQs">
+                                                        <rect key="frame" x="74" y="0.0" width="45" height="44"/>
+                                                        <color key="tintColor" systemColor="labelColor"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="pause.circle.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="didTapPause:" destination="D3n-ay-07O" eventType="touchUpInside" id="NIi-qv-X1m"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMl-kP-04Z">
+                                                        <rect key="frame" x="139" y="0.0" width="45" height="44"/>
+                                                        <color key="tintColor" systemColor="labelColor"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="play.circle.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="didTapPlay:" destination="D3n-ay-07O" eventType="touchUpInside" id="kcT-fA-KA7"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwE-tv-GIa">
+                                                        <rect key="frame" x="204" y="0.0" width="54" height="44"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="skip-button" title=""/>
+                                                        <connections>
+                                                            <action selector="didTapSkip:" destination="D3n-ay-07O" eventType="touchUpInside" id="wtn-Rs-bgA"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="Zjf-mw-LcX"/>
@@ -732,6 +747,8 @@
                     <tabBarItem key="tabBarItem" title="" image="music-icon" id="hRA-dU-rGa"/>
                     <connections>
                         <outlet property="currentlyPlaying" destination="pXT-m3-umU" id="EnN-Ss-lSc"/>
+                        <outlet property="pauseButton" destination="IH4-bV-OQs" id="1jo-ME-xkj"/>
+                        <outlet property="playButton" destination="NMl-kP-04Z" id="0oC-9J-woh"/>
                         <outlet property="prevButton" destination="FRG-x8-j5N" id="M4h-ah-9fa"/>
                         <outlet property="skipButton" destination="jwE-tv-GIa" id="3us-Fg-tCS"/>
                     </connections>
@@ -894,11 +911,15 @@
         <image name="matches-icon" width="16" height="16"/>
         <image name="messages-icon" width="16" height="16"/>
         <image name="music-icon" width="16" height="16"/>
+        <image name="pause.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
-        <image name="play-button" width="30" height="30"/>
+        <image name="play.circle.fill" catalog="system" width="128" height="121"/>
         <image name="prev-button" width="30" height="30"/>
         <image name="profile-icon" width="16" height="16"/>
         <image name="skip-button" width="30" height="30"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

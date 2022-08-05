@@ -22,10 +22,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *prevButton;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
+@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
 
 - (IBAction)didTapPrevious:(id)sender;
 - (IBAction)didTapPause:(id)sender;
 - (IBAction)didTapSkip:(id)sender;
+- (IBAction)didTapPlay:(id)sender;
 
 @end
 
@@ -39,6 +41,12 @@
     if ([[SpotifyManager shared] accessToken] != nil) {
         [self formatNowPlaying];
     };
+}
+
+- (IBAction)didTapPlay:(id)sender {
+    [[[SpotifyManager shared] appRemote].playerAPI resume:^(id  _Nullable result, NSError * _Nullable error) {
+    }];
+    [self formatNowPlaying];
 }
 
 - (IBAction)didTapSkip:(id)sender {
@@ -62,7 +70,7 @@
 - (IBAction)didTapPause:(id)sender {
     [[[SpotifyManager shared] appRemote].playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
     }];
-    [self formatNowPlaying];
+    [self formatPaused];
 }
 
 - (IBAction)didTapPrevious:(id)sender {
@@ -85,6 +93,16 @@
 - (void)formatNowPlaying {
     NSString *nowPlaying = @"Now Playing: ";
     NSString *fullText = [@"Now Playing: " stringByAppendingString:[[SpotifyManager shared] trackName]];
+
+    NSMutableAttributedString *boldedString = [[NSMutableAttributedString alloc] initWithString:fullText];
+    NSRange boldRange = [fullText rangeOfString:nowPlaying];
+    [boldedString addAttribute: NSFontAttributeName value:[UIFont boldSystemFontOfSize:17] range:boldRange];
+    [self.currentlyPlaying setAttributedText: boldedString];
+}
+
+- (void)formatPaused {
+    NSString *nowPlaying = @"Paused: ";
+    NSString *fullText = [@"Paused: " stringByAppendingString:[[SpotifyManager shared] trackName]];
 
     NSMutableAttributedString *boldedString = [[NSMutableAttributedString alloc] initWithString:fullText];
     NSRange boldRange = [fullText rangeOfString:nowPlaying];
