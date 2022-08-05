@@ -8,6 +8,7 @@
 #import "TopItemsRequest.h"
 #import "SpotifyManager.h"
 #import "SpotifyTopItemsData.h"
+#import "Artist.h"
 
 @implementation TopItemsRequest
 
@@ -36,6 +37,9 @@
             if (!error) {
                 NSDictionary *artistDict = [NSJSONSerialization JSONObjectWithData:artistData options:0 error:nil];
                 
+//                get related artists
+                [self breakdownDict:artistDict];
+                
                 NSString *trackURLString = [@"https://api.spotify.com/v1/me/top/" stringByAppendingString:@"tracks"];
                 
                 NSURL *trackURL = [NSURL URLWithString:trackURLString];
@@ -63,6 +67,41 @@
             }
         }];
     [artistTask resume];
+}
+- (void)breakdownDict:(NSDictionary *)dict {
+    NSLog(@"dict: %lu", (unsigned long)dict.count);
+    for (int i = 0; i < 20; i++) {
+        [self getRelatedArtistsWithID:dict[@"items"][i][@"id"]];
+    }
+}
+
+- (void)getRelatedArtistsWithID:(NSString *)artistID {
+    NSString *token = [[SpotifyManager shared] accessToken];
+    NSString *tokenType = @"Bearer";
+    NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+
+    NSString *baseURL = @"https://api.spotify.com/v1/artists/";
+    NSString *addID = [baseURL stringByAppendingString:artistID];
+    NSURL *idURL = [NSURL URLWithString:[addID stringByAppendingString:@"/related-artists"]];
+    [request setValue:header forHTTPHeaderField:@"Authorization"];
+    [request setURL:idURL];
+
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionDataTask *artistIDTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable artistData, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:artistData options:0 error:nil];
+        
+        NSMutableArray *fullArtistsArray =[[NSMutableArray alloc] init];
+        fullArtistsArray = [responseDict valueForKey:@"artists"];
+        
+        NSMutableArray *relatedArtistsArray =[[NSMutableArray alloc] init];
+        for (int j = 0; j < fullArtistsArray.count; j ++) {
+            [relatedArtistsArray addObject:responseDict[@"artists"][j][@"name"]];
+        }
+        [Artist buildArrayofArtists:relatedArtistsArray withPhotos:responseDict[@"images"][0][@"url"]];
+        NSLog(@"artist's related: %@", relatedArtistsArray);
+    }];
+    [artistIDTask resume];
 }
 
 @end

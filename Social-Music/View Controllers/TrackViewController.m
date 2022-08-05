@@ -33,7 +33,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.playButton.hidden = TRUE;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
