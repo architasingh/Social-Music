@@ -20,14 +20,12 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *currentlyPlaying;
 @property (weak, nonatomic) IBOutlet UIButton *prevButton;
-@property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
-@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
+@property (weak, nonatomic) IBOutlet UIButton *pausePlayButton;
 
 - (IBAction)didTapPrevious:(id)sender;
-- (IBAction)didTapPause:(id)sender;
+- (IBAction)didTapPausePlay:(id)sender;
 - (IBAction)didTapSkip:(id)sender;
-- (IBAction)didTapPlay:(id)sender;
 
 @end
 
@@ -41,12 +39,6 @@
     if ([[SpotifyManager shared] accessToken] != nil) {
         [self formatNowPlaying];
     };
-}
-
-- (IBAction)didTapPlay:(id)sender {
-    [[[SpotifyManager shared] appRemote].playerAPI resume:^(id  _Nullable result, NSError * _Nullable error) {
-    }];
-    [self formatNowPlaying];
 }
 
 - (IBAction)didTapSkip:(id)sender {
@@ -67,10 +59,18 @@
     }];
 }
 
-- (IBAction)didTapPause:(id)sender {
-    [[[SpotifyManager shared] appRemote].playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
-    }];
-    [self formatPaused];
+- (IBAction)didTapPausePlay:(id)sender {
+    self.pausePlayButton.selected = !self.pausePlayButton.selected;
+    if (self.pausePlayButton.selected) {
+        [[[SpotifyManager shared] appRemote].playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
+        }];
+        [self formatPaused];
+    } else {
+        [[[SpotifyManager shared] appRemote].playerAPI resume:^(id  _Nullable result, NSError * _Nullable error) {
+        }];
+        [self formatNowPlaying];
+    }
+
 }
 
 - (IBAction)didTapPrevious:(id)sender {
