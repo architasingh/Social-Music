@@ -11,6 +11,7 @@
 		AD806AA9287CC8A200D6BA0F /* FavoritesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD806AA8287CC8A200D6BA0F /* FavoritesCell.m */; };
 		AD806AAC287D365200D6BA0F /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD806AAB287D365200D6BA0F /* ChatCell.m */; };
 		AD9218E8289C54CC00BB9008 /* ConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9218E7289C54CC00BB9008 /* ConnectionViewController.m */; };
+		AD9218EE289DDC9800BB9008 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9218ED289DDC9800BB9008 /* DiscoverViewController.m */; };
 		ADC6708628725C1A004CFA6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708528725C1A004CFA6D /* AppDelegate.m */; };
 		ADC6708928725C1A004CFA6D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708828725C1A004CFA6D /* SceneDelegate.m */; };
 		ADC6708C28725C1A004CFA6D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6708B28725C1A004CFA6D /* LoginViewController.m */; };
@@ -71,6 +72,8 @@
 		AD806AAB287D365200D6BA0F /* ChatCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
 		AD9218E6289C54CC00BB9008 /* ConnectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
 		AD9218E7289C54CC00BB9008 /* ConnectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewController.m; sourceTree = "<group>"; };
+		AD9218EC289DDC9800BB9008 /* DiscoverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
+		AD9218ED289DDC9800BB9008 /* DiscoverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		ADC6708128725C1A004CFA6D /* Social-Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social-Music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADC6708428725C1A004CFA6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		ADC6708528725C1A004CFA6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				ADDEC5DF288762B600FDF4AD /* MatchesDetailsViewController.m */,
 				AD9218E6289C54CC00BB9008 /* ConnectionViewController.h */,
 				AD9218E7289C54CC00BB9008 /* ConnectionViewController.m */,
+				AD9218EC289DDC9800BB9008 /* DiscoverViewController.h */,
+				AD9218ED289DDC9800BB9008 /* DiscoverViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -545,6 +550,7 @@
 				AD806AA9287CC8A200D6BA0F /* FavoritesCell.m in Sources */,
 				ADF731212891F7BB00B28289 /* SpotifyTopItemsData.m in Sources */,
 				ADDEC5DD28872EC000FDF4AD /* MatchesCell.m in Sources */,
+				AD9218EE289DDC9800BB9008 /* DiscoverViewController.m in Sources */,
 				ADC6708C28725C1A004CFA6D /* LoginViewController.m in Sources */,
 				ADF731312899D52B00B28289 /* CustomRefresh.m in Sources */,
 				ADC670D428764C1C004CFA6D /* MessagesViewController.m in Sources */,

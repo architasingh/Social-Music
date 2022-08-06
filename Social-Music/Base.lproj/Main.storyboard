@@ -130,7 +130,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="135" id="8uf-85-a4r"/>
                                         </constraints>
-                                        <string key="text">See how compatible your music taste is with other users, engage in live chat, listen to music, and view your top songs and artists! </string>
+                                        <string key="text">See how compatible your music taste is with other users, engage in live chat, listen to music, discover new artists, and view your top songs and artists! </string>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -220,7 +220,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Htg-FO-iKa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1154" y="78"/>
+            <point key="canvasLocation" x="1154" y="62"/>
         </scene>
         <!--Matches View Controller-->
         <scene sceneID="dqb-Al-ejN">
@@ -315,7 +315,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oqy-Co-XBs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1154" y="830"/>
+            <point key="canvasLocation" x="299" y="830"/>
         </scene>
         <!--Matches Details View Controller-->
         <scene sceneID="qv2-TW-Pto">
@@ -477,7 +477,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VkC-mF-2PZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1951" y="830"/>
+            <point key="canvasLocation" x="1154" y="830"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="mTV-dC-RZY">
@@ -617,6 +617,9 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="rJX-HE-KHb" secondAttribute="bottom" id="Pad-8M-VLq"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES" selected="YES"/>
+                                        </accessibility>
                                         <connections>
                                             <outlet property="favPhoto" destination="VXi-hs-A2p" id="ZOE-OM-nnT"/>
                                             <outlet property="favoriteLabel" destination="TvI-4U-PMq" id="2BP-kj-VQC"/>
@@ -652,7 +655,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bu4-U1-KfM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2691" y="822"/>
+            <point key="canvasLocation" x="1980" y="830"/>
         </scene>
         <!--Track View Controller-->
         <scene sceneID="3ii-dv-W4J">
@@ -663,7 +666,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="kiW-RH-UAK">
-                                <rect key="frame" x="30" y="254" width="354" height="244"/>
+                                <rect key="frame" x="30" y="254" width="354" height="344"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect with Spotify to play music!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXT-m3-umU">
                                         <rect key="frame" x="42.5" y="0.0" width="269" height="60"/>
@@ -723,6 +726,17 @@
                                             <segue destination="xPe-bD-24o" kind="show" id="kHf-e0-7m3"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9Z-nH-Gha">
+                                        <rect key="frame" x="97.5" y="284" width="159" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="fDG-IA-baM"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Discover new artists!"/>
+                                        <connections>
+                                            <segue destination="lnc-aA-Uk9" kind="show" id="x1K-se-cG4"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -745,7 +759,66 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mna-K6-BRG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="401" y="830"/>
+            <point key="canvasLocation" x="-1517.3913043478262" y="829.6875"/>
+        </scene>
+        <!--Discover View Controller-->
+        <scene sceneID="7bP-x4-Z9S">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="lnc-aA-Uk9" customClass="DiscoverViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gvc-Jl-ZlQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7E-KK-zSD">
+                                <rect key="frame" x="40" y="44" width="102" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Back"/>
+                                <connections>
+                                    <action selector="didTapBack:" destination="lnc-aA-Uk9" eventType="touchUpInside" id="g13-mv-HtT"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2s5-nU-gNM">
+                                <rect key="frame" x="20" y="124" width="374" height="738"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover new artists!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flU-x5-Y0h">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="mZ4-uO-n40"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsi-ie-JMf">
+                                        <rect key="frame" x="0.0" y="60" width="374" height="678"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Cba-pf-vXN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="2s5-nU-gNM" secondAttribute="trailing" id="2k2-Ob-oql"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="2s5-nU-gNM" secondAttribute="bottom" id="GRR-O6-U7V"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="r7E-KK-zSD" secondAttribute="trailing" constant="252" id="Zcs-O8-M66"/>
+                            <constraint firstItem="2s5-nU-gNM" firstAttribute="top" secondItem="Gvc-Jl-ZlQ" secondAttribute="topMargin" constant="80" id="ZyV-Wg-9eI"/>
+                            <constraint firstItem="r7E-KK-zSD" firstAttribute="leading" secondItem="Gvc-Jl-ZlQ" secondAttribute="leadingMargin" constant="20" id="irN-cs-BkW"/>
+                            <constraint firstItem="r7E-KK-zSD" firstAttribute="top" secondItem="Gvc-Jl-ZlQ" secondAttribute="topMargin" id="kEf-zC-b5A"/>
+                            <constraint firstItem="2s5-nU-gNM" firstAttribute="leading" secondItem="Gvc-Jl-ZlQ" secondAttribute="leadingMargin" id="oVO-LK-bVP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="zty-m6-CW2"/>
+                    <connections>
+                        <outlet property="backButton" destination="r7E-KK-zSD" id="9vD-Tu-hth"/>
+                        <outlet property="relatedArtistsLabel" destination="wsi-ie-JMf" id="U6v-V1-gxf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hs1-wj-sUx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1517.3913043478262" y="1511.3839285714284"/>
         </scene>
         <!--Messages View Controller-->
         <scene sceneID="oO9-7h-Ioi">
@@ -888,7 +961,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mj1-LP-E3U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-422" y="830"/>
+            <point key="canvasLocation" x="-606" y="830"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
