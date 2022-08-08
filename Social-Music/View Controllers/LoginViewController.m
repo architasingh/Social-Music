@@ -72,7 +72,7 @@
 }
 
 // Send alert if user inputs empty username/password fields
-- (void) loginAlert {
+- (void)loginAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty Fields Alert"
                                 message:@"You have submitted one or more empty fields. Please enter at least 1 character for username/password and try again."
                                 preferredStyle:(UIAlertControllerStyleAlert)];
@@ -88,7 +88,7 @@
 }
 
 // Dismiss keyboard
-- (void) hideKeyboard {
+- (void)hideKeyboard {
     [self.view endEditing:YES];
 }
 

@@ -65,7 +65,7 @@
 }
 
 // Format artist/track labels
-- (void) formatArtistTrackLabels {
+- (void)formatArtistTrackLabels {
     NSMutableArray *displayTracks = [[NSMutableArray alloc] init];
     NSMutableArray *displayArtists = [[NSMutableArray alloc] init];
     for (int i = 0; i < self.otherUserArtistNames.count; i++) {

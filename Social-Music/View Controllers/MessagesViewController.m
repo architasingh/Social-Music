@@ -192,7 +192,7 @@ NSString *liveQueryURL = @"wss://socialmusicnew.b4a.io";
 }
 
 // Send alert if user tries to send empty message
-- (void) emptyMessageAlert {
+- (void)emptyMessageAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty Message Alert"
                                 message:@"You have submitted an empty message. Please enter at least 1 character for your message and try again."
                                 preferredStyle:(UIAlertControllerStyleAlert)];

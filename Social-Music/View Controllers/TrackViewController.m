@@ -41,12 +41,50 @@
     };
 }
 
+// Skip to next song
 - (IBAction)didTapSkip:(id)sender {
-    [[[SpotifyManager shared] appRemote].playerAPI skipToNext:^(id  _Nullable result, NSError * _Nullable error) {
+    if ([[SpotifyManager shared] accessToken]) {
+        [[[SpotifyManager shared] appRemote].playerAPI skipToNext:^(id  _Nullable result, NSError * _Nullable error) {
+                if (error) {
+                    NSLog(@"failed");
+                } else {
+                    NSLog(@"succeeded");
+                    [[[SpotifyManager shared] appRemote].playerAPI getPlayerState:^(id  _Nullable result, NSError * _Nullable error) {
+                        if (error) {
+                            NSLog(@"failed");
+                        } else {
+                            [self formatNowPlaying];
+                            NSLog(@"succeeded");
+                        }
+                    }];
+                }
+        }];
+    }
+}
+
+// Play or pause song
+- (IBAction)didTapPausePlay:(id)sender {
+    if ([[SpotifyManager shared] accessToken]) {
+        self.pausePlayButton.selected = !self.pausePlayButton.selected;
+        if (self.pausePlayButton.selected) {
+            [[[SpotifyManager shared] appRemote].playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
+            }];
+            [self formatPaused];
+        } else {
+            [[[SpotifyManager shared] appRemote].playerAPI resume:^(id  _Nullable result, NSError * _Nullable error) {
+            }];
+            [self formatNowPlaying];
+        }
+    }
+}
+
+// Go to previous song
+- (IBAction)didTapPrevious:(id)sender {
+    if ([[SpotifyManager shared] accessToken]) {
+        [[[SpotifyManager shared] appRemote].playerAPI skipToPrevious:^(id  _Nullable result, NSError * _Nullable error) {
             if (error) {
                 NSLog(@"failed");
             } else {
-                NSLog(@"succeeded");
                 [[[SpotifyManager shared] appRemote].playerAPI getPlayerState:^(id  _Nullable result, NSError * _Nullable error) {
                     if (error) {
                         NSLog(@"failed");
@@ -56,40 +94,11 @@
                     }
                 }];
             }
-    }];
-}
-
-- (IBAction)didTapPausePlay:(id)sender {
-    self.pausePlayButton.selected = !self.pausePlayButton.selected;
-    if (self.pausePlayButton.selected) {
-        [[[SpotifyManager shared] appRemote].playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
         }];
-        [self formatPaused];
-    } else {
-        [[[SpotifyManager shared] appRemote].playerAPI resume:^(id  _Nullable result, NSError * _Nullable error) {
-        }];
-        [self formatNowPlaying];
     }
-
 }
 
-- (IBAction)didTapPrevious:(id)sender {
-    [[[SpotifyManager shared] appRemote].playerAPI skipToPrevious:^(id  _Nullable result, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"failed");
-        } else {
-            [[[SpotifyManager shared] appRemote].playerAPI getPlayerState:^(id  _Nullable result, NSError * _Nullable error) {
-                if (error) {
-                    NSLog(@"failed");
-                } else {
-                    [self formatNowPlaying];
-                    NSLog(@"succeeded");
-                }
-            }];
-        }
-    }];
-}
-
+// Format text when song is playing
 - (void)formatNowPlaying {
     NSString *nowPlaying = @"Now Playing: ";
     NSString *fullText = [@"Now Playing: " stringByAppendingString:[[SpotifyManager shared] trackName]];
@@ -100,6 +109,7 @@
     [self.currentlyPlaying setAttributedText: boldedString];
 }
 
+// Format text when song is paused
 - (void)formatPaused {
     NSString *nowPlaying = @"Paused: ";
     NSString *fullText = [@"Paused: " stringByAppendingString:[[SpotifyManager shared] trackName]];
