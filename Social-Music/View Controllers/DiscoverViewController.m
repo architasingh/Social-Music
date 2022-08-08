@@ -21,13 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if ([[SpotifyManager shared] accessToken]) {
-        [self createDiscoverArray];
-    } else {
-        [self connectAlert];
-    }
-
-    // Do any additional setup after loading the view.
+    [self createDiscoverArray];
 }
 
 // Pick a random artist from the array and return it
@@ -46,13 +40,15 @@
     [query whereKey:@"username" equalTo:currUsername];
     [query findObjectsInBackgroundWithBlock:^(NSArray *relatedData, NSError *error) {
         if (!error) {
-            NSArray *relatedArtistArray = relatedData[0][@"relatedArtists"];
-            
-            for (int i = 0; i < 20; i++) {
-                [discoverArray addObject:[self returnArrayItem:relatedArtistArray[i]]];
-
-                NSString *relatedArtistsString = [[discoverArray valueForKey:@"description"] componentsJoinedByString:@"\n"];
-                self.relatedArtistsLabel.text = relatedArtistsString;
+            if (!(relatedData.count == 0)) {
+                NSArray *relatedArtistArray = relatedData[0][@"relatedArtists"];
+                for (int i = 0; i < 20; i++) {
+                    [discoverArray addObject:[self returnArrayItem:relatedArtistArray[i]]];
+                    NSString *relatedArtistsString = [[discoverArray valueForKey:@"description"] componentsJoinedByString:@"\n"];
+                    self.relatedArtistsLabel.text = relatedArtistsString;
+                }
+            } else {
+                self.relatedArtistsLabel.text = @"Connect to Spotify to discover new artists!";
             }
       } else {
         NSLog(@"Error: %@ %@", error, [error userInfo]);
