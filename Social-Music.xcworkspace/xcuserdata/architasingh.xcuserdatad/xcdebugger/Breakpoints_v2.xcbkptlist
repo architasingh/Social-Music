@@ -5,40 +5,9 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
-         <BreakpointContent
-            uuid = "F4E99D63-0B53-425B-9D2D-D8BAC7139A3D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            symbolName = "UIViewAlertForUnsatisfiableConstraints"
-            moduleName = "">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "po [[UIWindow keyWindow] _autolayoutTrace]">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
-            <Locations>
-               <Location
-                  uuid = "F4E99D63-0B53-425B-9D2D-D8BAC7139A3D - ba3ad5676a792f38"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "UIViewAlertForUnsatisfiableConstraints"
-                  moduleName = "UIKitCore"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            uuid = "D106264A-43D2-4C94-999A-D6FBE55195E4"
+            uuid = "D93006C8-8600-4D4F-A79C-3CC41125475E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -58,45 +27,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3190A74D-CD11-4B99-834D-15BACEBABDD5"
+            uuid = "2BF21FA3-D3A1-41F2-B4D8-CBED57F0AE0E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Social-Music/View Controllers/ProfileViewController.m"
+            filePath = "Social-Music/API/TopItemsRequest.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-=======
-            startingLineNumber = "76"
-            endingLineNumber = "76"
->>>>>>> 94cfb771ab5e0bf688e2a54cf88c457f3f5ed326
-            landmarkName = "-viewDidAppear:"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "-fetchTopDataOfType:WithCompletion:"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "209E6142-D4CE-4E69-BAAA-CCDFE2718FC4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social-Music/View Controllers/ProfileViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "ProfileViewController"
-            landmarkType = "3">
-=======
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "-didTapRefresh:"
-            landmarkType = "7">
->>>>>>> 94cfb771ab5e0bf688e2a54cf88c457f3f5ed326
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
