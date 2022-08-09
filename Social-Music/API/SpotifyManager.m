@@ -74,6 +74,13 @@
 
 - (void)playerStateDidChange:(nonnull id<SPTAppRemotePlayerState>)playerState {
     self.trackName = playerState.track.name;
+    [self.appRemote.imageAPI fetchImageForItem: playerState.track withSize:CGSizeZero callback:^(UIImage *image, NSError * _Nullable error) {
+        if (!error) {
+            self.trackImage = image;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"SpotifyManagerImageDidChange" object:self];
+        }
+    }];
+    
     NSLog(@"Track name: %@", playerState.track.name);
     NSLog(@"player state changed");
 }

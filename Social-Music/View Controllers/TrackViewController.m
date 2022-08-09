@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *prevButton;
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
 @property (weak, nonatomic) IBOutlet UIButton *pausePlayButton;
+@property (weak, nonatomic) IBOutlet UIImageView *trackImage;
 
 - (IBAction)didTapPrevious:(id)sender;
 - (IBAction)didTapPausePlay:(id)sender;
@@ -33,32 +34,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(formatNowPlaying) name:@"SpotifyManagerImageDidChange" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     if ([[SpotifyManager shared] accessToken] != nil) {
         [self formatNowPlaying];
+        self.trackImage.image = [[SpotifyManager shared] trackImage];
     };
 }
 
 // Skip to next song
 - (IBAction)didTapSkip:(id)sender {
     if ([[SpotifyManager shared] accessToken]) {
-        [[[SpotifyManager shared] appRemote].playerAPI skipToNext:^(id  _Nullable result, NSError * _Nullable error) {
-                if (error) {
-                    NSLog(@"failed");
-                } else {
-                    NSLog(@"succeeded");
-                    [[[SpotifyManager shared] appRemote].playerAPI getPlayerState:^(id  _Nullable result, NSError * _Nullable error) {
-                        if (error) {
-                            NSLog(@"failed");
-                        } else {
-                            [self formatNowPlaying];
-                            NSLog(@"succeeded");
-                        }
-                    }];
-                }
-        }];
+        [[[SpotifyManager shared] appRemote].playerAPI skipToNext:nil];
     }
 }
 
@@ -81,25 +70,14 @@
 // Go to previous song
 - (IBAction)didTapPrevious:(id)sender {
     if ([[SpotifyManager shared] accessToken]) {
-        [[[SpotifyManager shared] appRemote].playerAPI skipToPrevious:^(id  _Nullable result, NSError * _Nullable error) {
-            if (error) {
-                NSLog(@"failed");
-            } else {
-                [[[SpotifyManager shared] appRemote].playerAPI getPlayerState:^(id  _Nullable result, NSError * _Nullable error) {
-                    if (error) {
-                        NSLog(@"failed");
-                    } else {
-                        [self formatNowPlaying];
-                        NSLog(@"succeeded");
-                    }
-                }];
-            }
-        }];
+        [[[SpotifyManager shared] appRemote].playerAPI skipToPrevious:nil];
     }
 }
 
 // Format text when song is playing
 - (void)formatNowPlaying {
+    self.trackImage.image = [[SpotifyManager shared] trackImage];
+    
     NSString *nowPlaying = @"Now Playing: ";
     NSString *fullText = [@"Now Playing: " stringByAppendingString:[[SpotifyManager shared] trackName]];
 
@@ -111,6 +89,8 @@
 
 // Format text when song is paused
 - (void)formatPaused {
+    self.trackImage.image = [[SpotifyManager shared] trackImage];
+    
     NSString *nowPlaying = @"Paused: ";
     NSString *fullText = [@"Paused: " stringByAppendingString:[[SpotifyManager shared] trackName]];
 

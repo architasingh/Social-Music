@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, weak) id<SPTAppRemotePlayerStateDelegate> delegate;
 @property (nonatomic, strong) NSString *trackName;
+@property (nonatomic, strong) UIImage *trackImage;
 
 @end
 

@@ -689,20 +689,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="kiW-RH-UAK">
-                                <rect key="frame" x="30" y="200" width="354" height="384"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="kiW-RH-UAK">
+                                <rect key="frame" x="30" y="118" width="354" height="442"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="♪ Music Player ♪" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ps-Fg-EfG">
-                                        <rect key="frame" x="81.5" y="0.0" width="191" height="50"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="record" translatesAutoresizingMaskIntoConstraints="NO" id="EZT-lu-0JJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="140"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="W28-qr-ite"/>
+                                            <constraint firstAttribute="height" constant="140" id="oUx-ax-ahe"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
-                                        <color key="textColor" red="0.0039215686269999999" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect to Spotify to play music!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXT-m3-umU">
-                                        <rect key="frame" x="53" y="90" width="248.5" height="60"/>
+                                        <rect key="frame" x="53" y="172" width="248.5" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="36b-QW-TsJ"/>
                                         </constraints>
@@ -711,7 +708,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ACN-Wk-EZ6">
-                                        <rect key="frame" x="75.5" y="190" width="203" height="44"/>
+                                        <rect key="frame" x="75.5" y="264" width="203" height="44"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="72J-GH-85l">
                                                 <rect key="frame" x="0.0" y="0.0" width="203" height="44"/>
@@ -751,7 +748,7 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBV-cN-GYa">
-                                        <rect key="frame" x="101.5" y="274" width="151" height="35"/>
+                                        <rect key="frame" x="101.5" y="340" width="151" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="WnS-ZA-3Qz"/>
                                         </constraints>
@@ -768,7 +765,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9Z-nH-Gha">
-                                        <rect key="frame" x="129.5" y="349" width="95" height="35"/>
+                                        <rect key="frame" x="129.5" y="407" width="95" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="95" id="GJZ-uU-iVH"/>
                                             <constraint firstAttribute="height" constant="35" id="fDG-IA-baM"/>
@@ -791,7 +788,7 @@
                         <viewLayoutGuide key="safeArea" id="v5R-JP-Qaq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="kiW-RH-UAK" firstAttribute="top" secondItem="76A-VV-ZW7" secondAttribute="topMargin" constant="200" id="aEQ-Ew-nNy"/>
+                            <constraint firstItem="kiW-RH-UAK" firstAttribute="top" secondItem="76A-VV-ZW7" secondAttribute="topMargin" constant="118" id="aEQ-Ew-nNy"/>
                             <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="kiW-RH-UAK" secondAttribute="bottom" constant="10" id="ft6-CF-E0W"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kiW-RH-UAK" secondAttribute="trailing" constant="10" id="gAZ-8A-ilW"/>
                             <constraint firstItem="kiW-RH-UAK" firstAttribute="leading" secondItem="76A-VV-ZW7" secondAttribute="leadingMargin" constant="10" id="sqn-Pw-Dvf"/>
@@ -803,6 +800,7 @@
                         <outlet property="pausePlayButton" destination="IH4-bV-OQs" id="lth-cv-TpI"/>
                         <outlet property="prevButton" destination="FRG-x8-j5N" id="M4h-ah-9fa"/>
                         <outlet property="skipButton" destination="jwE-tv-GIa" id="3us-Fg-tCS"/>
+                        <outlet property="trackImage" destination="EZT-lu-0JJ" id="KQ3-Mb-Gaa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mna-K6-BRG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1029,6 +1027,7 @@
         <image name="playpause.fill" catalog="system" width="128" height="70"/>
         <image name="prev-button" width="30" height="30"/>
         <image name="profile-icon" width="16" height="16"/>
+        <image name="record" width="840" height="690"/>
         <image name="skip-button" width="30" height="30"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
