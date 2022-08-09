@@ -74,7 +74,7 @@
 		AD9218E7289C54CC00BB9008 /* ConnectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewController.m; sourceTree = "<group>"; };
 		AD9218EC289DDC9800BB9008 /* DiscoverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		AD9218ED289DDC9800BB9008 /* DiscoverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
-		ADC6708128725C1A004CFA6D /* Social-Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social-Music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADC6708128725C1A004CFA6D /* MusicBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADC6708428725C1A004CFA6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		ADC6708528725C1A004CFA6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		ADC6708728725C1A004CFA6D /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
@@ -86,9 +86,9 @@
 		ADC6709328725C1B004CFA6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADC6709528725C1B004CFA6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADC6709628725C1B004CFA6D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		ADC6709C28725C1B004CFA6D /* Social-MusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Social-MusicTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADC6709C28725C1B004CFA6D /* MusicBuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicBuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADC670A028725C1B004CFA6D /* Social_MusicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Social_MusicTests.m; sourceTree = "<group>"; };
-		ADC670A628725C1B004CFA6D /* Social-MusicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Social-MusicUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADC670A628725C1B004CFA6D /* MusicBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADC670AA28725C1B004CFA6D /* Social_MusicUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Social_MusicUITests.m; sourceTree = "<group>"; };
 		ADC670AC28725C1B004CFA6D /* Social_MusicUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Social_MusicUITestsLaunchTests.m; sourceTree = "<group>"; };
 		ADC670B9287261D4004CFA6D /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				ADC670B9287261D4004CFA6D /* SpotifyiOS.framework */,
-				ADC6708328725C1A004CFA6D /* Social-Music */,
+				ADC6708328725C1A004CFA6D /* MusicBuddy */,
 				ADC6709F28725C1B004CFA6D /* Social-MusicTests */,
 				ADC670A928725C1B004CFA6D /* Social-MusicUITests */,
 				ADC6708228725C1A004CFA6D /* Products */,
@@ -189,14 +189,14 @@
 		ADC6708228725C1A004CFA6D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ADC6708128725C1A004CFA6D /* Social-Music.app */,
-				ADC6709C28725C1B004CFA6D /* Social-MusicTests.xctest */,
-				ADC670A628725C1B004CFA6D /* Social-MusicUITests.xctest */,
+				ADC6708128725C1A004CFA6D /* MusicBuddy.app */,
+				ADC6709C28725C1B004CFA6D /* MusicBuddyTests.xctest */,
+				ADC670A628725C1B004CFA6D /* MusicBuddyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		ADC6708328725C1A004CFA6D /* Social-Music */ = {
+		ADC6708328725C1A004CFA6D /* MusicBuddy */ = {
 			isa = PBXGroup;
 			children = (
 				ADF731282899CFB000B28289 /* KeysManager.h */,
@@ -215,7 +215,7 @@
 				ADF55C4B287E2A6100EC3BB9 /* Cells */,
 				ADF7311B2891AF3100B28289 /* Models */,
 			);
-			path = "Social-Music";
+			path = MusicBuddy;
 			sourceTree = "<group>";
 		};
 		ADC6709F28725C1B004CFA6D /* Social-MusicTests */ = {
@@ -311,9 +311,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		ADC6708028725C1A004CFA6D /* Social-Music */ = {
+		ADC6708028725C1A004CFA6D /* MusicBuddy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ADC670B028725C1B004CFA6D /* Build configuration list for PBXNativeTarget "Social-Music" */;
+			buildConfigurationList = ADC670B028725C1B004CFA6D /* Build configuration list for PBXNativeTarget "MusicBuddy" */;
 			buildPhases = (
 				FBC41689920CA5C8B9B776CE /* [CP] Check Pods Manifest.lock */,
 				ADC6707D28725C1A004CFA6D /* Sources */,
@@ -325,14 +325,14 @@
 			);
 			dependencies = (
 			);
-			name = "Social-Music";
+			name = MusicBuddy;
 			productName = "Social-Music";
-			productReference = ADC6708128725C1A004CFA6D /* Social-Music.app */;
+			productReference = ADC6708128725C1A004CFA6D /* MusicBuddy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		ADC6709B28725C1B004CFA6D /* Social-MusicTests */ = {
+		ADC6709B28725C1B004CFA6D /* MusicBuddyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ADC670B328725C1B004CFA6D /* Build configuration list for PBXNativeTarget "Social-MusicTests" */;
+			buildConfigurationList = ADC670B328725C1B004CFA6D /* Build configuration list for PBXNativeTarget "MusicBuddyTests" */;
 			buildPhases = (
 				D4E9A5F541454BF9AA4E2AB1 /* [CP] Check Pods Manifest.lock */,
 				ADC6709828725C1B004CFA6D /* Sources */,
@@ -344,14 +344,14 @@
 			dependencies = (
 				ADC6709E28725C1B004CFA6D /* PBXTargetDependency */,
 			);
-			name = "Social-MusicTests";
+			name = MusicBuddyTests;
 			productName = "Social-MusicTests";
-			productReference = ADC6709C28725C1B004CFA6D /* Social-MusicTests.xctest */;
+			productReference = ADC6709C28725C1B004CFA6D /* MusicBuddyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		ADC670A528725C1B004CFA6D /* Social-MusicUITests */ = {
+		ADC670A528725C1B004CFA6D /* MusicBuddyUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ADC670B628725C1B004CFA6D /* Build configuration list for PBXNativeTarget "Social-MusicUITests" */;
+			buildConfigurationList = ADC670B628725C1B004CFA6D /* Build configuration list for PBXNativeTarget "MusicBuddyUITests" */;
 			buildPhases = (
 				E74E096BDA38E09E8EA6B9C3 /* [CP] Check Pods Manifest.lock */,
 				ADC670A228725C1B004CFA6D /* Sources */,
@@ -364,9 +364,9 @@
 			dependencies = (
 				ADC670A828725C1B004CFA6D /* PBXTargetDependency */,
 			);
-			name = "Social-MusicUITests";
+			name = MusicBuddyUITests;
 			productName = "Social-MusicUITests";
-			productReference = ADC670A628725C1B004CFA6D /* Social-MusicUITests.xctest */;
+			productReference = ADC670A628725C1B004CFA6D /* MusicBuddyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -391,7 +391,7 @@
 					};
 				};
 			};
-			buildConfigurationList = ADC6707C28725C1A004CFA6D /* Build configuration list for PBXProject "Social-Music" */;
+			buildConfigurationList = ADC6707C28725C1A004CFA6D /* Build configuration list for PBXProject "MusicBuddy" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -404,9 +404,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				ADC6708028725C1A004CFA6D /* Social-Music */,
-				ADC6709B28725C1B004CFA6D /* Social-MusicTests */,
-				ADC670A528725C1B004CFA6D /* Social-MusicUITests */,
+				ADC6708028725C1A004CFA6D /* MusicBuddy */,
+				ADC6709B28725C1B004CFA6D /* MusicBuddyTests */,
+				ADC670A528725C1B004CFA6D /* MusicBuddyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -593,12 +593,12 @@
 /* Begin PBXTargetDependency section */
 		ADC6709E28725C1B004CFA6D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = ADC6708028725C1A004CFA6D /* Social-Music */;
+			target = ADC6708028725C1A004CFA6D /* MusicBuddy */;
 			targetProxy = ADC6709D28725C1B004CFA6D /* PBXContainerItemProxy */;
 		};
 		ADC670A828725C1B004CFA6D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = ADC6708028725C1A004CFA6D /* Social-Music */;
+			target = ADC6708028725C1A004CFA6D /* MusicBuddy */;
 			targetProxy = ADC670A728725C1B004CFA6D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -748,7 +748,7 @@
 					"$(PROJECT_DIR)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Social-Music/Info.plist";
+				INFOPLIST_FILE = MusicBuddy/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This image is only used within the app to set your profile picture.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -784,7 +784,7 @@
 					"$(PROJECT_DIR)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Social-Music/Info.plist";
+				INFOPLIST_FILE = MusicBuddy/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This image is only used within the app to set your profile picture.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -955,7 +955,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ADC6707C28725C1A004CFA6D /* Build configuration list for PBXProject "Social-Music" */ = {
+		ADC6707C28725C1A004CFA6D /* Build configuration list for PBXProject "MusicBuddy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ADC670AE28725C1B004CFA6D /* Debug */,
@@ -964,7 +964,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ADC670B028725C1B004CFA6D /* Build configuration list for PBXNativeTarget "Social-Music" */ = {
+		ADC670B028725C1B004CFA6D /* Build configuration list for PBXNativeTarget "MusicBuddy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ADC670B128725C1B004CFA6D /* Debug */,
@@ -973,7 +973,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ADC670B328725C1B004CFA6D /* Build configuration list for PBXNativeTarget "Social-MusicTests" */ = {
+		ADC670B328725C1B004CFA6D /* Build configuration list for PBXNativeTarget "MusicBuddyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ADC670B428725C1B004CFA6D /* Debug */,
@@ -982,7 +982,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ADC670B628725C1B004CFA6D /* Build configuration list for PBXNativeTarget "Social-MusicUITests" */ = {
+		ADC670B628725C1B004CFA6D /* Build configuration list for PBXNativeTarget "MusicBuddyUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ADC670B728725C1B004CFA6D /* Debug */,

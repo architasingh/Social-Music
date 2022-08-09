@@ -25,7 +25,7 @@
                                             <constraint firstAttribute="height" constant="80" id="Yu7-gZ-7oZ"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Music Buddy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2g-8B-fdU">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="MusicBuddy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2g-8B-fdU">
                                         <rect key="frame" x="0.0" y="110" width="314" height="45.5"/>
                                         <color key="tintColor" red="0.6588235294" green="0.27450980390000002" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -110,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-465.21739130434787" y="61.607142857142854"/>
+            <point key="canvasLocation" x="-486" y="62"/>
         </scene>
         <!--Connection View Controller-->
         <scene sceneID="Q7d-4l-y51">
@@ -123,8 +123,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Py3-z3-HQY">
                                 <rect key="frame" x="40" y="120" width="334" height="590"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Music Buddy! " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XtU-QU-fAP">
-                                        <rect key="frame" x="35.5" y="0.0" width="263.5" height="50"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to MusicBuddy! " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XtU-QU-fAP">
+                                        <rect key="frame" x="37.5" y="0.0" width="259" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="7eJ-YE-TQK"/>
                                         </constraints>
@@ -162,14 +162,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkj-P7-HjA">
-                                        <rect key="frame" x="91.5" y="490" width="151" height="35"/>
+                                        <rect key="frame" x="88" y="490" width="158" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="YH3-wj-m4k"/>
                                         </constraints>
                                         <color key="tintColor" red="0.0039215686269999999" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Connect to Spotify">
-                                            <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="15"/>
+                                            <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="16"/>
                                             <color key="baseBackgroundColor" red="0.0040000000000000001" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -177,11 +177,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SyF-u2-XtP">
-                                        <rect key="frame" x="136" y="555" width="62" height="35"/>
+                                        <rect key="frame" x="134.5" y="555" width="65" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="2CH-ZG-tIx"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <color key="tintColor" red="0.0039215686269999999" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Continue"/>
@@ -212,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PEd-nW-Ukz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="299" y="78"/>
+            <point key="canvasLocation" x="341" y="78"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="x1R-Mi-5w8">
@@ -345,7 +345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oqy-Co-XBs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="298.55072463768118" y="829.6875"/>
+            <point key="canvasLocation" x="299" y="795"/>
         </scene>
         <!--Matches Details View Controller-->
         <scene sceneID="qv2-TW-Pto">
@@ -372,7 +372,7 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="re1-Ax-dGP">
-                                                <rect key="frame" x="10" y="48" width="387" height="677"/>
+                                                <rect key="frame" x="10" y="48" width="387" height="599"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ngx-D2-bsV">
                                                         <rect key="frame" x="0.0" y="0.0" width="387" height="40"/>
@@ -425,10 +425,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M0Z-qT-pci">
-                                                        <rect key="frame" x="0.0" y="549" width="387" height="128"/>
+                                                        <rect key="frame" x="0.0" y="549" width="387" height="50"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6SM-41-AWp">
-                                                                <rect key="frame" x="0.0" y="0.0" width="387" height="128"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="387" height="50"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Songs:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Db-mc-2mW">
                                                                         <rect key="frame" x="0.0" y="0.0" width="387" height="20"/>
@@ -440,7 +440,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l93-hb-BXW">
-                                                                        <rect key="frame" x="0.0" y="40" width="387" height="88"/>
+                                                                        <rect key="frame" x="0.0" y="40" width="387" height="10"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -506,7 +506,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VkC-mF-2PZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1153.6231884057972" y="829.6875"/>
+            <point key="canvasLocation" x="1154" y="795"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="mTV-dC-RZY">
@@ -545,25 +545,25 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="idN-XP-dMP">
-                                                    <rect key="frame" x="72" y="114" width="230" height="29"/>
+                                                    <rect key="frame" x="67" y="114" width="240" height="29"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJy-ab-xzQ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="105" height="29"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="29"/>
                                                             <color key="tintColor" red="0.0039215686269999999" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" title="Take Photo">
-                                                                <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="15"/>
+                                                                <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="16"/>
                                                             </buttonConfiguration>
                                                             <connections>
                                                                 <action selector="didTapTakePhoto:" destination="Agy-Kp-GIX" eventType="touchUpInside" id="YAn-ob-uIi"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Erb-uY-dyG">
-                                                            <rect key="frame" x="125" y="0.0" width="105" height="29"/>
+                                                            <rect key="frame" x="130" y="0.0" width="110" height="29"/>
                                                             <color key="tintColor" red="0.0039215686269999999" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" title="Camera Roll">
-                                                                <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="15"/>
+                                                                <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="16"/>
                                                             </buttonConfiguration>
                                                             <connections>
                                                                 <action selector="didTapCameraRoll:" destination="Agy-Kp-GIX" eventType="touchUpInside" id="BcI-dN-F1l"/>
@@ -591,7 +591,7 @@
                                                             <color key="tintColor" red="0.0039215686269999999" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="tinted" title="Label">
-                                                                <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="15"/>
+                                                                <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="16"/>
                                                             </buttonConfiguration>
                                                             <connections>
                                                                 <action selector="didTapFavoritesButton:" destination="Agy-Kp-GIX" eventType="touchUpInside" id="ksc-Bp-SFI"/>
@@ -644,7 +644,7 @@
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvI-4U-PMq">
                                                             <rect key="frame" x="93" y="0.0" width="241" height="74"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                                             <color key="textColor" red="0.0039215686269999999" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -696,7 +696,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bu4-U1-KfM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1980" y="830"/>
+            <point key="canvasLocation" x="2007" y="795"/>
         </scene>
         <!--Track View Controller-->
         <scene sceneID="3ii-dv-W4J">
@@ -706,8 +706,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="kiW-RH-UAK">
-                                <rect key="frame" x="30" y="118" width="354" height="442"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="kiW-RH-UAK">
+                                <rect key="frame" x="30" y="118" width="354" height="472"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="record" translatesAutoresizingMaskIntoConstraints="NO" id="EZT-lu-0JJ">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="140"/>
@@ -716,16 +716,16 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect to Spotify to play music" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXT-m3-umU">
-                                        <rect key="frame" x="55.5" y="172" width="243.5" height="60"/>
+                                        <rect key="frame" x="55.5" y="190" width="243.5" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="36b-QW-TsJ"/>
+                                            <constraint firstAttribute="height" constant="44" id="36b-QW-TsJ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" red="0.0039215686269999999" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ACN-Wk-EZ6">
-                                        <rect key="frame" x="75.5" y="264" width="203" height="44"/>
+                                        <rect key="frame" x="75.5" y="284" width="203" height="44"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="72J-GH-85l">
                                                 <rect key="frame" x="0.0" y="0.0" width="203" height="44"/>
@@ -764,41 +764,46 @@
                                             <constraint firstAttribute="height" constant="44" id="Zjf-mw-LcX"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBV-cN-GYa">
-                                        <rect key="frame" x="101.5" y="340" width="151" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="WnS-ZA-3Qz"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                        <color key="tintColor" red="0.0039215686269999999" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Connect to Spotify"/>
-                                        <buttonConfiguration key="configuration" style="tinted" title="Connect to Spotify">
-                                            <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="15"/>
-                                            <color key="baseBackgroundColor" red="0.0040000000000000001" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <segue destination="xPe-bD-24o" kind="show" id="kHf-e0-7m3"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9Z-nH-Gha">
-                                        <rect key="frame" x="94.5" y="407" width="165" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="GJZ-uU-iVH"/>
-                                            <constraint firstAttribute="height" constant="35" id="fDG-IA-baM"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                        <color key="tintColor" red="0.0039215686269999999" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Discover!"/>
-                                        <buttonConfiguration key="configuration" style="tinted" title="Discover new artists!">
-                                            <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="15"/>
-                                            <color key="baseBackgroundColor" red="0.0040000000000000001" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <segue destination="lnc-aA-Uk9" kind="show" id="x1K-se-cG4"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Bsg-2v-dN0">
+                                        <rect key="frame" x="90.5" y="378" width="173" height="94"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBV-cN-GYa">
+                                                <rect key="frame" x="0.0" y="0.0" width="173" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="WnS-ZA-3Qz"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                <color key="tintColor" red="0.0039215686269999999" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Connect to Spotify"/>
+                                                <buttonConfiguration key="configuration" style="tinted" title="Connect to Spotify">
+                                                    <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="16"/>
+                                                    <color key="baseBackgroundColor" red="0.0040000000000000001" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <segue destination="xPe-bD-24o" kind="show" id="kHf-e0-7m3"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9Z-nH-Gha">
+                                                <rect key="frame" x="0.0" y="59" width="173" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="GJZ-uU-iVH"/>
+                                                    <constraint firstAttribute="height" constant="35" id="fDG-IA-baM"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                <color key="tintColor" red="0.0039215686269999999" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Discover!"/>
+                                                <buttonConfiguration key="configuration" style="tinted" title="Discover new artists!">
+                                                    <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="16"/>
+                                                    <color key="baseBackgroundColor" red="0.0040000000000000001" green="0.098039215690000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <segue destination="lnc-aA-Uk9" kind="show" id="x1K-se-cG4"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -822,7 +827,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mna-K6-BRG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1517.3913043478262" y="829.6875"/>
+            <point key="canvasLocation" x="-1517" y="795"/>
         </scene>
         <!--Discover View Controller-->
         <scene sceneID="7bP-x4-Z9S">
@@ -1039,12 +1044,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mj1-LP-E3U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-606" y="830"/>
+            <point key="canvasLocation" x="-604" y="795"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="NHr-it-vFn"/>
-        <segue reference="kHf-e0-7m3"/>
+        <segue reference="fmF-Bo-GXc"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
