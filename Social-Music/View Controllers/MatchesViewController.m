@@ -34,7 +34,7 @@
 }
 
 // Display users other than the current user (potential matches)
-- (void) displayUsers {
+- (void)displayUsers {
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *matchUsers, NSError *error) {
         if (!error) {

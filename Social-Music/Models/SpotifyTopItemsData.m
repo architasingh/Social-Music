@@ -30,7 +30,7 @@
     return self;
 }
 
-+ (void) getResponseWithArtists: (NSDictionary *)artistData andTracks: (NSDictionary *)trackData ofType: (NSString *)type withCompletion: (void (^)(void))completion {
++ (void)getResponseWithArtists: (NSDictionary *)artistData andTracks: (NSDictionary *)trackData ofType: (NSString *)type withCompletion: (void (^)(void))completion {
     NSMutableArray *topArtistNames = [[NSMutableArray alloc] init];
     NSMutableArray *topArtistPhotos = [[NSMutableArray alloc] init];
     NSMutableArray *topTrackNames = [[NSMutableArray alloc] init];

@@ -58,7 +58,7 @@
         if (self.pausePlayButton.selected) {
             [[[SpotifyManager shared] appRemote].playerAPI pause:^(id  _Nullable result, NSError * _Nullable error) {
             }];
-            [self formatPaused];
+            [self formatNowPlaying];
         } else {
             [[[SpotifyManager shared] appRemote].playerAPI resume:^(id  _Nullable result, NSError * _Nullable error) {
             }];
@@ -74,20 +74,24 @@
     }
 }
 
-// Format text when song is playing
+// Format text and display image of song that's playing
 - (void)formatNowPlaying {
-    self.trackImage.image = [[SpotifyManager shared] trackImage];
-    
-    NSString *nowPlaying = @"Now Playing: ";
-    NSString *fullText = [@"Now Playing: " stringByAppendingString:[[SpotifyManager shared] trackName]];
+    if (self.pausePlayButton.selected) {
+        [self formatPaused];
+    } else {
+        self.trackImage.image = [[SpotifyManager shared] trackImage];
+        
+        NSString *nowPlaying = @"Now Playing: ";
+        NSString *fullText = [@"Now Playing: " stringByAppendingString:[[SpotifyManager shared] trackName]];
 
-    NSMutableAttributedString *boldedString = [[NSMutableAttributedString alloc] initWithString:fullText];
-    NSRange boldRange = [fullText rangeOfString:nowPlaying];
-    [boldedString addAttribute: NSFontAttributeName value:[UIFont boldSystemFontOfSize:17] range:boldRange];
-    [self.currentlyPlaying setAttributedText: boldedString];
+        NSMutableAttributedString *boldedString = [[NSMutableAttributedString alloc] initWithString:fullText];
+        NSRange boldRange = [fullText rangeOfString:nowPlaying];
+        [boldedString addAttribute: NSFontAttributeName value:[UIFont boldSystemFontOfSize:17] range:boldRange];
+        [self.currentlyPlaying setAttributedText: boldedString];
+    }
 }
 
-// Format text when song is paused
+// Format text and display image of paused song
 - (void)formatPaused {
     self.trackImage.image = [[SpotifyManager shared] trackImage];
     

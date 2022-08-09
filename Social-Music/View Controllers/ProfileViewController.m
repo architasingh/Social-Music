@@ -129,7 +129,7 @@
 }
 
 // Send alert if user doesn't have an active Spotify session
-- (void) spotifyAlert {
+- (void)spotifyAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Inactive Spotify Session"
                                 message:@"Please authenticate with Spotify before trying to refresh your top items."
                                 preferredStyle:(UIAlertControllerStyleAlert)];
