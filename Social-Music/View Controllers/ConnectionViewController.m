@@ -23,10 +23,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.nextButton.tintColor = [UIColor colorWithRed:0.004 green:0.098 blue:0.212 alpha:1.000];
+    self.spotifyButton.tintColor = [UIColor colorWithRed:0.004 green:0.098 blue:0.212 alpha:1.000];
 }
 
 // Proceed to tab bar controller
-- (IBAction)didTapNext:(id)sender {
+- (IBAction)didTapNext:(id)sender {    
     [self performSegueWithIdentifier:@"connectSegue" sender:self];
 }
 

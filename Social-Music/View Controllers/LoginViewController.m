@@ -25,6 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.loginButton.tintColor = [UIColor colorWithRed:0.004 green:0.098 blue:0.212 alpha:1.000];
+    self.signupButton.tintColor = [UIColor colorWithRed:0.004 green:0.098 blue:0.212 alpha:1.000];
+    
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     gestureRecognizer.cancelsTouchesInView = NO; 
     [self.view addGestureRecognizer:gestureRecognizer];
