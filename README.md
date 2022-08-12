@@ -1,4 +1,4 @@
-# Social-Music Capstone - Project Spec
+# MusicBuddy Capstone - Project Spec
 
 ## Table of Contents
 1. [Overview](#Overview)
@@ -6,62 +6,53 @@
 
 ## Overview
 ### Description
-A social music app where users enter their favorite songs and artists and are shown other users with a % of music taste similarity. Users can create playlist blends with other users that combines their music tastes. They can message other users to give/receive song recommendations. Users set their platform preference for listening to songs. The app then converts songs from one platform to the preferred platform when shared (example: User uses Spotify, converts received message from Apple Music to Spotify). 
+MusicBuddy is a social music app that allows users to network with others and explore new music. Users can listen to music through the app and discover new artists (generated based on the users' top artists' related artists). Users can view their top 20 songs and artists on their profile and refresh this data. There is a live forum where users can meet new people and discuss their favorite music and get new music suggestions. Users can also see how compatible their music taste is with other users by seeing their percentage match compatibility and view other users' top 20 songs and artists.
 
 ### App Evaluation
 - **Category:** Social Networking / Music
-- **Mobile:** This app would be primarily developed for mobile. Functionality wouldn't be limited to mobile devices, but the mobile version could have more features.
-- **Story:** The app analyzes users' music taste, and connects them to other users with similar choices. When messaging users, the app will convert the platform the song is going to play on to the user's preferred platform.
+- **Mobile:** This app would be primarily developed for mobile. 
+- **Story:** The app analyzes users' music taste, and connects them to other users with similar choices. Users can see how compatible their music taste is with other users.
 - **Market:** Anyone could use this app. 
-- **Habit:** This app could be used as often or unoften as the user wanted depending on how what they're looking for (song recommendations, new friends, etc.).
-- **Scope:** First we would start with pairing people based on music taste and blending their songs into joint playlists. Then we would implement the platform conversion aspect in messaging. Large potential for use with spotify, apple music, or other music streaming applications.
+- **Habit:** This app could be used as often as the user wanted depending on how what they're looking for (song recommendations, new friends, etc.).
+- **Scope:** First, we would start with displaying the user's top data. Then we would work on displaying and fetching other users' top data. Using these two sets of data, we could then generate a % match compatability.
 
 ## Product Spec
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
 
-* User logs in to access previous chats and preference settings
-* User picks favorite artists/genres/songs
-* Users can see a list of profiles with the % of similarity, can click on them to message them
-* Profile pages for each user
-* Settings (Accesibility, Notification, General, etc.)
+* Users can message on a live forum
+* User can see favorite artists/songs
+* Users can see other app users 
+* Users can see % similarity with other users
+* Users can see other users top data
 
 **Optional Nice-to-have Stories**
-
-* Page of most played songs (i.e. songs that most users are connecting through)
-* Page of most played blends, top user pairings
-* Ability to create multiple different blends with the same user
-* Page where user can just listen to their own music and get recommendations based off of their past listening activity
+* Page where user can just listen to their own music
+* Users can get artist recommendations based on their top artists
+* Persisted user can refresh their top data 
 
 ### 2. Screen Archetypes
 
 * Login 
 * Register - User signs up or logs into their account
-   * Upon Download/Reopening of the application, the user is must log in to access profile information to be properly matched with another person. 
-* Matches Screen - Chat for users to communicate (direct 1-on-1)
-   * Upon selecting music choice, users can see different matches and option to message them
-* Messages Screen - Chat for users to communicate (direct 1-on-1)
-    * Users can converse with one another
-* Profile Screen 
-   * User can upload a photo and fill in general information
-* Song Selection Screen
-   * User can choose a desired song, artist, genre, or playlist and start listening and interacting with others.
-* Settings Screen
-   * Can change language, and app notification settings.
+* Matches Screen - Other users displayed
+* Matches Details Screen - Percentage similarity displayed, other users' top data displayed
+* Messages Screen - Live forum for users to communicate
+* Profile Screen - User can upload a photo and see top artist/song info
+* Music Screen - User can play, pause, skip, skip to prev song
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
 * Profile
-* Settings
-
-Optional:
-* Discover (Top Choices)
+* Music
+* Messages
+* Matches
 
 **Flow Navigation** (Screen to Screen)
 * Forced Log-in -> Account creation if no log in is available
-* Music Selection (Or Queue if Optional) -> Jumps to Chat
+* Music Selection -> Jumps to Chat
 * Profile -> Text field to be modified. 
 * Settings -> Toggle settings
